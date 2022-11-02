@@ -3,6 +3,30 @@ extends RigidBody2D
 
 var size
 
+var links = 0
+var linked = 0
+
+const LINK_UP     = 1
+const LINK_DOWN   = 1 << 1
+const LINK_LEFT   = 1 << 2
+const LINK_RIGHT  = 1 << 3
+
+func _process(_delta):
+	update()
+
+func _draw():
+	var p = $CollisionShape2D.position
+	var r = Rect2(p - size, size * 2)
+	draw_rect(r, Color(0, 1, 1), false)
+	if 0 != (linked & LINK_UP):
+		draw_link(Vector2(p.x, p.y - 64))
+	if 0 != (linked & LINK_DOWN):
+		draw_link(Vector2(p.x, p.y + 64))
+	if 0 != (linked & LINK_LEFT):
+		draw_link(Vector2(p.x - 64, p.y))
+	if 0 != (linked & LINK_RIGHT):
+		draw_link(Vector2(p.x + 64, p.y))
+
 func make_node(_pos, _size):
 	position = _pos
 	size = _size
@@ -10,3 +34,28 @@ func make_node(_pos, _size):
 	s.custom_solver_bias = 0.70
 	s.extents = size
 	$CollisionShape2D.shape = s
+
+func build_node(link_list):
+	for l in link_list:
+		mask_link(l)
+
+func draw_link(p):
+	draw_circle(p, 32.0, Color(0.75, 0, 0.75))
+
+func mask_link(l):
+	var d = (Vector2(l.x, l.y) - position).normalized()
+	if abs(d.x) > abs(d.y):
+		if d.x > 0:
+			linked = linked | LINK_RIGHT
+			print("+x: right")
+		else:
+			linked = linked | LINK_LEFT
+			print("-x: left")
+	else:
+		if d.y > 0:
+			linked = linked | LINK_DOWN
+			print("+y: down")
+		else:
+			linked = linked | LINK_UP
+			print("-y: up")
+	pass
