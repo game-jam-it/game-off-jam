@@ -11,8 +11,9 @@
 [resource]
 Button/colors/font_color = Color( 0.544998, 0.552243, 0.730469, 1 )
 Button/colors/font_color_disabled = Color( 0.294118, 0.298039, 0.4, 1 )
+Button/colors/font_color_focus = Color( 0.544998, 0.552243, 0.730469, 1 )
 Button/colors/font_color_hover = Color( 0.956863, 0.968627, 0.980392, 1 )
-Button/colors/font_color_pressed = Color( 0.956863, 0.968627, 0.980392, 1 )
+Button/colors/font_color_pressed = Color( 0.544998, 0.552243, 0.730469, 1 )
 Button/constants/hseparation = 8
 Button/fonts/font = null
 Button/styles/disabled = ExtResource( 4 )
@@ -20,7 +21,8 @@ Button/styles/focus = SubResource( 8 )
 Button/styles/hover = ExtResource( 1 )
 Button/styles/normal = ExtResource( 4 )
 Button/styles/pressed = ExtResource( 3 )
-CheckButton/colors/font_color_hover_pressed = Color( 0.544998, 0.552243, 0.730469, 1 )
+CheckButton/colors/font_color_hover = Color( 0.956863, 0.968627, 0.980392, 1 )
+CheckButton/colors/font_color_hover_pressed = Color( 0.956863, 0.968627, 0.980392, 1 )
 CheckButton/styles/disabled = ExtResource( 5 )
 CheckButton/styles/focus = ExtResource( 5 )
 CheckButton/styles/hover = ExtResource( 5 )
