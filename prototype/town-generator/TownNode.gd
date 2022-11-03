@@ -18,10 +18,14 @@ func _process(_delta):
 func _draw():
 	var p = $CollisionShape2D.position
 	var r = Rect2(p - size, size * 2)
-	match type:
-		1: draw_rect(r, Color(0, 0.90, 0.90), false)
-		2: draw_rect(r, Color(0, 0.50, 0.50), false)
-		3: draw_rect(r, Color(0, 0.10, 0.10), false)
+	if type == 1: 
+		draw_rect(r, Color(0, 0.90, 0.90), false)
+	elif type == 2: 
+		draw_rect(r, Color(0, 0.50, 0.50), false)
+	elif type == 3: 
+		draw_rect(r, Color(0, 0.10, 0.10), false)
+	else:
+		draw_rect(r, Color(0.05, 0.05, 0.05), false)
 
 	if 0 != (linked & LINK_UP):
 		draw_link(Vector2(p.x, p.y - 64))
