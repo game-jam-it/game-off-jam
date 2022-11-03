@@ -2,6 +2,7 @@ class_name TownNode
 extends RigidBody2D
 
 var size
+var type
 
 var links = 0
 var linked = 0
@@ -17,7 +18,11 @@ func _process(_delta):
 func _draw():
 	var p = $CollisionShape2D.position
 	var r = Rect2(p - size, size * 2)
-	draw_rect(r, Color(0, 1, 1), false)
+	match type:
+		1: draw_rect(r, Color(0, 0.90, 0.90), false)
+		2: draw_rect(r, Color(0, 0.50, 0.50), false)
+		3: draw_rect(r, Color(0, 0.10, 0.10), false)
+
 	if 0 != (linked & LINK_UP):
 		draw_link(Vector2(p.x, p.y - 64))
 	if 0 != (linked & LINK_DOWN):
@@ -36,26 +41,22 @@ func make_node(_pos, _size):
 	$CollisionShape2D.shape = s
 
 func build_node(link_list):
-	for l in link_list:
-		mask_link(l)
+	for link in link_list:
+		mask_link(Vector2(link.x, link.y))
 
 func draw_link(p):
 	draw_circle(p, 32.0, Color(0.75, 0, 0.75))
 
-func mask_link(l):
-	var d = (Vector2(l.x, l.y) - position).normalized()
-	if abs(d.x) > abs(d.y):
-		if d.x > 0:
+func mask_link(link):
+	var direction = link - position
+	if abs(direction.x) > abs(direction.y):
+		if direction.x > 0:
 			linked = linked | LINK_RIGHT
-			print("+x: right")
 		else:
 			linked = linked | LINK_LEFT
-			print("-x: left")
 	else:
-		if d.y > 0:
+		if direction.y > 0:
 			linked = linked | LINK_DOWN
-			print("+y: down")
 		else:
 			linked = linked | LINK_UP
-			print("-y: up")
 	pass

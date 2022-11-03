@@ -58,17 +58,42 @@ func make_nodes():
 	# Wait for the physics animation to end
 	yield(get_tree().create_timer(0.8), 'timeout')
 
+	# TODO On center nodes check size if max w or h split
+	# TODO On center reduce culled value on outsirds increase
+
 	var node_positions = []
 	for n in $Nodes.get_children():
+		# Note: Distance works but has some edge cases to solve
+		# this a second run based on the main road adjust values.
+		var distance = n.position.distance_squared_to(Vector2.ZERO)
+		if distance < 2400000:
+			print("center: ", distance)
+			n.type = 1
+		elif distance < 6400000:
+			if abs(n.position.y) < 256.0:
+				print("center: ", distance)
+				n.type = 1
+			else:
+				print("subs: ", distance)
+				n.type = 2
+		elif distance < 12800000 && abs(n.position.y) < 392.0:
+				print("subs: ", distance)
+				n.type = 2
+		else:
+			print("out: ", distance)
+			n.type = 3
+
 		if randf() < nodes_culled:
 			n.queue_free()
 		else:
 			n.mode = RigidBody2D.MODE_STATIC
 			node_positions.append(Vector3(n.position.x, n.position.y, 0))
-
 		yield(get_tree().create_timer(0.01), 'timeout')
+
 	path = run_prims_algorithm(node_positions)
 	is_ready = true
+	print("512: ", 512*512)
+	print("xxx: ", 640*360)
 	build_nodes()
 
 # Runs prim's algorithm
