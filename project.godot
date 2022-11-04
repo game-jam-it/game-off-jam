@@ -14,6 +14,10 @@ config/name="Game Off Jam"
 run/main_scene="res://prototype/scenes/MainScene.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameSettings="*res://prototype/GameSettings.gd"
+
 [display]
 
 window/size/width=1280
