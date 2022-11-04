@@ -3,8 +3,8 @@ extends Control
 onready var label = $Label
 
 func _ready():
-	GameSettings.connect("show_fps", self, "_on_show_fps")
-	label.visible = GameSettings.data.fps
+	AppState.connect("show_fps", self, "_on_show_fps")
+	label.visible = AppState.settings.fps
 
 func _process(_delta):
 	label.text = "FPS: %s" % [Engine.get_frames_per_second()]

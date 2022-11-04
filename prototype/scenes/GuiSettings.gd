@@ -12,36 +12,39 @@ onready var music_slider = $TabContainer/Audio/MarginContainer/GridContainer/Mus
 onready var sfx_slider = $TabContainer/Audio/MarginContainer/GridContainer/SfxHSlider
 
 func _ready():
-	fps_check_button.pressed = GameSettings.data.fps
-	vsync_check_button.pressed = GameSettings.data.vsync
-	screen_check_button.pressed = GameSettings.data.fullscreen
-	brightness_slider.value = GameSettings.data.brightness
-	master_slider.value = GameSettings.data.volume_master
-	music_slider.value = GameSettings.data.volume_music
-	sfx_slider.value = GameSettings.data.volume_sfx
+	AppState.connect("show_settings", self, "_on_show_settings")
+	fps_check_button.pressed = AppState.settings.fps
+	vsync_check_button.pressed = AppState.settings.vsync
+	screen_check_button.pressed = AppState.settings.fullscreen
+	brightness_slider.value = AppState.settings.brightness
+	master_slider.value = AppState.settings.volume_master
+	music_slider.value = AppState.settings.volume_music
+	sfx_slider.value = AppState.settings.volume_sfx
+
+func _on_show_settings():
 	popup_centered()
 
 # Video Settings
 
 func _on_FpsCheckButton_toggled(state:bool):
-	GameSettings.toggle_fps(state)
+	AppState.toggle_fps(state)
 
 func _on_VSyncCheckButton_toggled(state:bool):
-	GameSettings.toggle_vsync(state)
+	AppState.toggle_vsync(state)
 
 func _on_ScreenCheckButton_toggled(state:bool):
-	GameSettings.toggle_fullscreen(state)
+	AppState.toggle_fullscreen(state)
 
 func _on_BrightnessHSlider_value_changed(value:float):
-	GameSettings.update_brightness(value)
+	AppState.update_brightness(value)
 
 # Audio Settings
 
 func _on_MasterHSlider_value_changed(value:float):
-	GameSettings.update_master_volume(value)
+	AppState.update_master_volume(value)
 
 func _on_MusicHSlider_value_changed(value:float):
-	GameSettings.update_music_volume(value)
+	AppState.update_music_volume(value)
 
 func _on_SfxHSlider_value_changed(value:float):
-	GameSettings.update_sfx_volume(value)
+	AppState.update_sfx_volume(value)

@@ -15,7 +15,6 @@
 [sub_resource type="StyleBoxEmpty" id=6]
 
 [node name="GuiSettings" type="Popup"]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
