@@ -1,10 +1,11 @@
 extends Reference
 
+const SQ3 = sqrt(3)
+
 var HexCell = preload("./HexCell.gd")
 
 var hex_size
-var hex_transform
-var hex_transform_inv
+var hex_scale
 
 var path_barriers = {}
 var path_obstacles = {}
@@ -14,35 +15,44 @@ var view_obstacles = {}
 var path_bounds = Rect2()
 var path_cost_default = 1.0
 
-# Allow the user to scale the hex for fake perspective or somesuch
-export(Vector2) var hex_scale = Vector2(1, 1) setget set_hex_scale
-
-func _init():
-	set_hex_scale(hex_scale)
+func _init(scale:Vector2):
+	set_hex_scale(scale)
 
 func set_hex_scale(scale:Vector2):
+	hex_size = HexCell.SIZE * scale
 	hex_scale = scale
-	hex_size = HexCell.SIZE * hex_scale
-	hex_transform = Transform2D(
-		Vector2(hex_size.x * 3/4, -hex_size.y / 2),
-		Vector2(0, -hex_size.y),
-		Vector2(0, 0)
-	)
-	hex_transform_inv = hex_transform.affine_inverse()
 
 
 """
 	Converting between hex-grid and 2D coordinates
 """
 
-func get_hex_center(hex):
-	# Returns centre of the hex
-	return hex_transform * hex.get_axial_coords()
+func pixel_to_hex(vec):
+	var q = ( 2.0 / 3.0 * vec.x) / hex_scale.x 
+	var r = (-1.0 / 3.0 * vec.x + SQ3 / 3.0 * vec.y) / hex_scale.y
+	var v = _round_coords(Vector3(q, r, -q-r))
+	return HexCell.new(round(v.x), round(v.y)) 
 
-func get_hex_center_for(obj):
-	# Returns centre of the hex for
-	var node = HexCell.new(obj)
-	return hex_transform * node.get_axial_coords()
+func hex_to_pixel(hex):
+	var x = hex_scale.x * (3.0 / 2 * hex.q)
+	var y = hex_scale.y * (SQ3 / 2 * hex.q + SQ3 * hex.r)
+	return Vector2(x, y)
+
+func coords_to_pixel(q, r):
+	var x = hex_scale.x * (3.0 / 2 * q)
+	var y = hex_scale.y * (SQ3 / 2 * q + SQ3 * r)
+	return Vector2(x, y)
+
+func _round_coords(vec):
+	var o = Vector3(round(vec.x), round(vec.y), round(vec.z))
+	var d = (o - vec).abs()
+	if d.x > d.y and d.x > d.z:
+		o.x = -o.y - o.z
+	elif d.y > d.z:
+		o.y = -o.x - o.z
+	else:
+		o.z = -o.x - o.y
+	return o
 
 """
 	Pathfinding Utilities

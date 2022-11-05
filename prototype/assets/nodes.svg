@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="64"
+   height="64"
+   viewBox="0 0 16.933333 16.933333"
+   version="1.1"
+   id="svg5"
+   inkscape:export-filename="circle-64.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14, custom)"
+   sodipodi:docname="nodes.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="6.6750857"
+     inkscape:cx="26.141986"
+     inkscape:cy="40.748541"
+     inkscape:window-width="1259"
+     inkscape:window-height="1414"
+     inkscape:window-x="1287"
+     inkscape:window-y="12"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:type="star"
+       style="display:none;fill:none;stroke:#ffffff;stroke-width:0.26868;stroke-linecap:round;stroke-dasharray:none;stroke-dashoffset:25.9;stroke-opacity:0.25"
+       id="path234"
+       inkscape:flatsided="true"
+       sodipodi:sides="6"
+       sodipodi:cx="0"
+       sodipodi:cy="0"
+       sodipodi:r1="8.5471554"
+       sodipodi:r2="7.4020543"
+       sodipodi:arg1="1.0471976"
+       sodipodi:arg2="1.5707963"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 4.2735773,7.4020539 -8.5471554,-4e-7 L -8.5471554,-4.1713026e-7 -4.2735773,-7.4020539 l 8.5471554,4e-7 L 8.5471554,4.1713026e-7 Z"
+       transform="matrix(0.97279504,0,0,1,8.4666667,8.4666667)" />
+    <circle
+       style="display:inline;fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-dashoffset:25.9;stroke-opacity:0.25"
+       id="path944"
+       cx="8.4666662"
+       cy="8.4666662"
+       r="6.2177086" />
+  </g>
+</svg>
