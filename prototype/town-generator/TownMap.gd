@@ -1,12 +1,12 @@
 extends Node2D
 
 var min_size = 5
-var max_size = 15
-var tile_size = 48
-var node_count = 48
+var max_size = 13
+var tile_size = 64
+var node_count = 64
 var cull_target = 0.25
 
-var x_spread = 200
+var x_spread = 100
 var y_spread = 20
 
 var path_all = null
@@ -71,9 +71,14 @@ func make_nodes():
 			rand_range(-y_spread, y_spread)
 		)
 		var n = NodeScene.instance()
-		var w = min_size + randi() % (max_size - min_size)
-		var h = min_size + randi() % (max_size - min_size)
-		n.make_node(p, Vector2(w, h) * tile_size)
+
+		var r = randi() % 3
+		
+		if r <= 1:   n.make_node(p, Vector2(5, 5) * tile_size)
+		elif r <= 2: n.make_node(p, Vector2(7, 7) * tile_size)
+		elif r <= 3: n.make_node(p, Vector2(9, 9) * tile_size)
+		else:        n.make_node(p, Vector2(3, 3) * tile_size)
+
 		$Nodes.add_child(n)
 	# Wait for the physics animation to end
 	yield(get_tree().create_timer(0.8), 'timeout')
