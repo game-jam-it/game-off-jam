@@ -16,6 +16,6 @@ func _process(_delta):
 func _draw():
 	draw_arc(Vector2(0, 0), size, 0, PI2, 32, color, 2)
 
-func set_position(_coords:Vector2):
-	coords = _coords
-	position = coords
+func set_coords(value:Vector2):
+	coords = value
+	position = value

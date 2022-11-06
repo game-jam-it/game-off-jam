@@ -29,11 +29,15 @@ func _init(value=null):
 func _new_cell(vec: Vector3):
 	assert((vec.x + vec.y + vec.z) < 0.001)
 	vec = self._round_coords(vec)
-	return get_script().new(vec.x, vec.y)
+	return get_script().new(vec)
 
 """
 	Coords Utilities
 """
+
+func equals(other):
+	if other == null: return false
+	return self.q == other.q && self.r == other.r
 
 func get_cube_coords():
 	return Vector3(q, r, (-q-r))
@@ -73,6 +77,11 @@ func line_to(target):
 	return path
 
 func distance_to(target):
+	if typeof(target) == TYPE_VECTOR2:
+		target = _new_cell(Vector3(target.x, target.y, (-target.x-target.y)))
+	elif typeof(target) == TYPE_VECTOR3:
+		target = _new_cell(target)
+
 	var to = target.get_cube_coords()
 	var from = self.get_cube_coords()
 	return int((abs(to.x - from.x) + abs(to.y - from.y) + abs(to.z - from.z)) / 2)
