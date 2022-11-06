@@ -1,8 +1,8 @@
 class_name TownNode
 extends RigidBody2D
 
-var size
-var type
+var size: Vector2
+var type: int
 
 var links = 0
 var linked = 0
@@ -17,7 +17,7 @@ func _process(_delta):
 
 func _draw():
 	var p = $CollisionShape2D.position
-	var r = Rect2(p - size, size * 2)
+	var r = Rect2(p - size, size * 2.0)
 	if type == 1: 
 		draw_rect(r, Color(0, 0.90, 0.90), false)
 	elif type == 2: 
@@ -27,14 +27,14 @@ func _draw():
 	else:
 		draw_rect(r, Color(0.05, 0.05, 0.05), false)
 
-	if 0 != (linked & LINK_UP):
-		draw_link(Vector2(p.x, p.y - 64))
-	if 0 != (linked & LINK_DOWN):
-		draw_link(Vector2(p.x, p.y + 64))
-	if 0 != (linked & LINK_LEFT):
-		draw_link(Vector2(p.x - 64, p.y))
-	if 0 != (linked & LINK_RIGHT):
-		draw_link(Vector2(p.x + 64, p.y))
+	# if 0 != (linked & LINK_UP):
+	# 	draw_link(Vector2(p.x, p.y - 64))
+	# if 0 != (linked & LINK_DOWN):
+	# 	draw_link(Vector2(p.x, p.y + 64))
+	# if 0 != (linked & LINK_LEFT):
+	# 	draw_link(Vector2(p.x - 64, p.y))
+	# if 0 != (linked & LINK_RIGHT):
+	# 	draw_link(Vector2(p.x + 64, p.y))
 
 func make_node(_pos, _size):
 	position = _pos

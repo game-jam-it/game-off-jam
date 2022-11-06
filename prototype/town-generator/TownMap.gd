@@ -1,7 +1,7 @@
 extends Node2D
 
 var min_size = 5
-var max_size = 13
+var max_size = 15
 var tile_size = 64
 var node_count = 64
 var cull_target = 0.25
@@ -19,30 +19,31 @@ var NodeScene = preload("res://prototype/town-generator/TownNode.tscn")
 func _ready():
 	randomize()
 	make_nodes()
+	print_debug("Town map done")
 
 func _draw():
+	pass
 	#for n in $Nodes.get_children():
 	#	var r = Rect2(n.position - n.size, n.size * 2)
 	#	if is_ready:
 	#		draw_rect(r, Color(0, 1, 1), false)
 	#	else:
 	#		draw_rect(r, Color(1, 1, 0), false)
-	if path_all:
-		for p in path_all.get_points():
-			var pp = path_all.get_point_position(p)
-			# Distance check for back road links and paths
-			#draw_arc(Vector2(pp.x, pp.y), tile_size * max_size * 4, 0, PI*2, 32, Color(0.23, 0.23, 0.23), 12)
-			
-			for c in path_all.get_point_connections(p):
-				var cp = path_all.get_point_position(c)
-				draw_line(Vector2(pp.x, pp.y), Vector2(cp.x, cp.y), Color(0.5, 0.5, 0.0), 8, true)
-	if path_main:
-		for p in path_main.get_points():
-			var pp = path_main.get_point_position(p)
-			#draw_circle(Vector2(pp.x, pp.y), 32.0, Color(1, 0, 0))
-			for c in path_main.get_point_connections(p):
-				var cp = path_main.get_point_position(c)
-				draw_line(Vector2(pp.x, pp.y), Vector2(cp.x, cp.y), Color(1.0, 1.0, 0.0), 8, true)
+	# if path_all:
+	# 	for p in path_all.get_points():
+	# 		var pp = path_all.get_point_position(p)
+	# 		# Distance check for back road links and paths
+	# 		#draw_arc(Vector2(pp.x, pp.y), tile_size * max_size * 4, 0, PI*2, 32, Color(0.23, 0.23, 0.23), 12)
+	# 		for c in path_all.get_point_connections(p):
+	# 			var cp = path_all.get_point_position(c)
+	# 			draw_line(Vector2(pp.x, pp.y), Vector2(cp.x, cp.y), Color(0.5, 0.5, 0.0), 8, true)
+	# if path_main:
+	# 	for p in path_main.get_points():
+	# 		var pp = path_main.get_point_position(p)
+	# 		#draw_circle(Vector2(pp.x, pp.y), 32.0, Color(1, 0, 0))
+	# 		for c in path_main.get_point_connections(p):
+	# 			var cp = path_main.get_point_position(c)
+	# 			draw_line(Vector2(pp.x, pp.y), Vector2(cp.x, cp.y), Color(1.0, 1.0, 0.0), 8, true)
 
 func _input(event):
 	if is_ready && event.is_action_pressed("ui_select"):
@@ -64,6 +65,7 @@ func parse_node(type, cull, node, positions):
 		positions.append(Vector3(node.position.x, node.position.y, 0))
 
 func make_nodes():
+	$Grid.setup_grid()
 	is_ready = false
 	for _i in range(node_count):
 		var p = Vector2(
@@ -80,6 +82,7 @@ func make_nodes():
 		else:        n.make_node(p, Vector2(3, 3) * tile_size)
 
 		$Nodes.add_child(n)
+
 	# Wait for the physics animation to end
 	yield(get_tree().create_timer(0.8), 'timeout')
 
@@ -109,6 +112,7 @@ func make_nodes():
 	is_ready = true
 	build_nodes()
 	build_mains()
+	build_grids()
 
 # Runs prim's algorithm
 # Given an array of positions it
@@ -177,3 +181,26 @@ func build_mains():
 	for p in id_path:
 		positions.append(path_all.get_point_position(p))
 	path_main = run_prims_algorithm(positions)
+
+func build_grids():
+	var grid = $Grid
+
+	# Draw the main road sections
+	for from in path_main.get_points():
+		var from_position = path_main.get_point_position(from)
+		for to in path_main.get_point_connections(from):
+			var to_position = path_main.get_point_position(to)
+			grid.draw_main_road(from_position, to_position)
+			yield(get_tree().create_timer(0.01), 'timeout')
+			
+	# Draw the side road sections
+	for from in path_all.get_points():
+		var from_position = path_all.get_point_position(from)
+		for to in path_all.get_point_connections(from):
+			var to_position = path_all.get_point_position(to)
+			grid.draw_side_road(from_position, to_position)
+			yield(get_tree().create_timer(0.01), 'timeout')
+
+	# Draw the town nodes and blocks
+	for n in $Nodes.get_children():
+		grid.draw_town_node(n.position, n.size, n.type)
