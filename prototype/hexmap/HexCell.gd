@@ -14,13 +14,21 @@ const DIR_ALL = [DIR_N, DIR_NE, DIR_SE, DIR_S, DIR_SW, DIR_NW]
 var q: int
 var r: int
 
-func _init(_q: int, _r: int):
-	assert((_q + _r + (-_q-_r)) < 0.001)
-	self.q = _q
-	self.r = _r
+func _init(value=null):
+	if typeof(value) == TYPE_VECTOR2:
+		value = _round_coords(Vector3(value.x, value.y, (-value.x-value.y)))
+	elif typeof(value) == TYPE_VECTOR3:
+		value = _round_coords(value)
+	elif typeof(value) == TYPE_OBJECT and value.has_method("get_cube_coords"):
+		value = value.get_cube_coords()
+
+	assert((value.x + value.y + value.z) < 0.001)
+	self.q = value.x
+	self.r = value.y
 
 func _new_cell(vec: Vector3):
 	assert((vec.x + vec.y + vec.z) < 0.001)
+	vec = self._round_coords(vec)
 	return get_script().new(vec.x, vec.y)
 
 """
@@ -30,16 +38,23 @@ func _new_cell(vec: Vector3):
 func get_cube_coords():
 	return Vector3(q, r, (-q-r))
 
+func get_axial_coords():
+	return Vector2(q, r)
+
 func _round_coords(vec):
-	var o = Vector3(round(vec.x), round(vec.y), round(vec.z))
-	var d = (o - vec).abs()
+	if typeof(vec) == TYPE_VECTOR2:
+		vec = Vector3(vec.x, vec.y, -vec.x-vec.y)
+	var rv = Vector3(round(vec.x), round(vec.y), round(vec.z))
+
+	var d = (rv - vec).abs()
 	if d.x > d.y and d.x > d.z:
-		o.x = -o.y - o.z
+		rv.x = -rv.y - rv.z
 	elif d.y > d.z:
-		o.y = -o.x - o.z
+		rv.y = -rv.x - rv.z
 	else:
-		o.z = -o.x - o.y
-	return o
+		rv.z = -rv.x - rv.y
+
+	return rv
 
 """
 	Pathfinding Utilities
@@ -76,7 +91,7 @@ func get_all_adjacent():
 	var coords = self.get_cube_coords()
 	for dir in DIR_ALL:
 		var node = coords + dir
-		nodes.append(get_script().new(node.x, node.y, node.z))
+		nodes.append(_new_cell(node))
 	return nodes
 
 func get_all_within(distance):

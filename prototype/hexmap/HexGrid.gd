@@ -2,6 +2,14 @@ extends Reference
 
 const SQ3 = sqrt(3)
 
+# Directions to neighbouring cells
+const Direction_N = Vector3(0, 1, -1)
+const Direction_NE = Vector3(1, 0, -1)
+const Direction_SE = Vector3(1, -1, 0)
+const Direction_S = Vector3(0, -1, 1)
+const Direction_SW = Vector3(-1, 0, 1)
+const Direction_NW = Vector3(-1, 1, 0)
+
 var HexCell = preload("./HexCell.gd")
 
 var hex_size
@@ -30,8 +38,7 @@ func set_hex_scale(scale:Vector2):
 func pixel_to_hex(vec):
 	var q = ( 2.0 / 3.0 * vec.x) / hex_scale.x 
 	var r = (-1.0 / 3.0 * vec.x + SQ3 / 3.0 * vec.y) / hex_scale.y
-	var v = _round_coords(Vector3(q, r, -q-r))
-	return HexCell.new(round(v.x), round(v.y)) 
+	return HexCell.new(Vector3(q, r, -q-r)) 
 
 func hex_to_pixel(hex):
 	var x = hex_scale.x * (3.0 / 2 * hex.q)
@@ -73,16 +80,16 @@ func add_path_obstacles(vals, cost=0):
 	if not typeof(vals) == TYPE_ARRAY:
 		vals = [vals]
 	for coords in vals:
-		coords = HexCell.new(coords).get_axial_coords()
-		path_obstacles[coords] = cost
+		var hex = HexCell.new(coords)
+		path_obstacles[hex.get_axial_coords()] = cost
 
 func remove_path_obstacles(vals):
 	# Remove the given obstacle/s from the grid
 	if not typeof(vals) == TYPE_ARRAY:
 		vals = [vals]
 	for coords in vals:
-		coords = HexCell.new(coords).get_axial_coords()
-		path_obstacles.erase(coords)
+		var hex = HexCell.new(coords)
+		path_obstacles.erase(hex.get_axial_coords())
 
 func get_path_barriers():
 	return path_barriers
