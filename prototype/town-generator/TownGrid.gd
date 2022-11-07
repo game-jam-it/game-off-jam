@@ -21,6 +21,7 @@ func _ready():
 	print_debug("Town grid done")
 
 func _init_grid():
+	# TODO: Make size independed of the window
 	width = round(OS.window_size.x / radius) * 4
 	height = round(OS.window_size.y / radius) * 4
 	print_debug("Size: %s. %s" % [width, height])
@@ -33,16 +34,9 @@ func clear_grid():
 	hexgrid.set_bounds(Vector2(-width, -height-width), Vector2(width, height+width))
 	for n in $Nodes.get_children():
 		n.queue_free()
-	# for q in range(-width, width):
-	# 	var offset = q >> 1
-	# 	for r in range(-height-offset, height-offset):
-	# 		var hex = HexCell.new(Vector2(q, r))
-	# 		var node = GridNode.instance()
-	# 		map[hex.get_axial_coords()] = node
-	# 		node.set_coords(hexgrid.hex_to_pixel(hex))
-	# 		$Nodes.add_child(node)
 
 func draw_main_road(from: Vector3, to: Vector3):
+	var draw = false;
 	for hex in get_main_path(from, to):
 		var coords = hex.get_axial_coords()
 		if !map.has(coords):
@@ -52,6 +46,8 @@ func draw_main_road(from: Vector3, to: Vector3):
 			map[hex.get_axial_coords()] = node
 			$Nodes.add_child(node)
 			# TODO: Expand with art
+			draw = true
+	return draw
 
 func get_main_path(from: Vector3, to: Vector3):
 	var origin = hexgrid.pixel_to_hex(Vector2(from.x, from.y))
@@ -63,6 +59,7 @@ func get_main_path(from: Vector3, to: Vector3):
 	return hexgrid.find_path(origin, target)
 
 func draw_side_road(from: Vector3, to: Vector3):
+	var draw = false;
 	for hex in get_side_path(from, to):
 		var coords = hex.get_axial_coords()
 		if !map.has(coords):
@@ -72,6 +69,8 @@ func draw_side_road(from: Vector3, to: Vector3):
 			map[hex.get_axial_coords()] = node
 			$Nodes.add_child(node)
 			# TODO: Expand with art
+			draw = true
+	return draw
 
 func get_side_path(from: Vector3, to: Vector3):
 	var origin = hexgrid.pixel_to_hex(Vector2(from.x, from.y))
@@ -84,5 +83,29 @@ func get_side_path(from: Vector3, to: Vector3):
 	if mains.has(tc) && mains.has(oc): return []
 	return hexgrid.find_path(origin, target)
 
-func draw_town_node(position: Vector2, size: Vector2, type: int):
-	pass
+func draw_town_node(position: Vector2, size: Vector2, _type: int):
+	# Note: This depends on radius 
+	# being set to double tile size.
+	print_debug(size.x / (radius * 0.5))
+	var distance = round(abs((size.x / (radius * 0.5)) / 2.0) - 0.1) - 1
+
+	var hex = hexgrid.pixel_to_hex(position)
+	var coords = hex.get_axial_coords()
+	if map.has(coords):
+		map[coords].set_color(Color.darkorange)
+	else:
+		var node = GridNode.instance()
+		node.set_color(Color.darkorange)
+		node.set_coords(hexgrid.hex_to_pixel(hex))
+		map[coords] = node
+		$Nodes.add_child(node)
+
+	var list = hex.get_all_within(distance)
+	for h in list:
+		var c = h.get_axial_coords()
+		if !map.has(c):
+			var node = GridNode.instance()
+			node.set_color(Color.dimgray)
+			node.set_coords(hexgrid.hex_to_pixel(h))
+			map[c] = node
+			$Nodes.add_child(node)

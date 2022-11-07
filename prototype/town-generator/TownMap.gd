@@ -83,12 +83,12 @@ func make_nodes():
 		)
 		var n = NodeScene.instance()
 
-		var r = randi() % 3
+		var r = randi() % 4
 		
-		if r <= 1:   n.make_node(p, Vector2(5, 5) * tile_size)
-		elif r <= 2: n.make_node(p, Vector2(7, 7) * tile_size)
-		elif r <= 3: n.make_node(p, Vector2(9, 9) * tile_size)
-		else:        n.make_node(p, Vector2(3, 3) * tile_size)
+		if r == 1:   n.make_node(p, Vector2(7, 7) * tile_size)
+		elif r == 2: n.make_node(p, Vector2(9, 9) * tile_size)
+		elif r == 3: n.make_node(p, Vector2(11, 11) * tile_size)
+		else:        n.make_node(p, Vector2(5, 5) * tile_size)
 
 		$Nodes.add_child(n)
 
@@ -103,14 +103,14 @@ func make_nodes():
 		# Note: Distance works but has some edge cases to solve
 		# this a second run based on the main road adjust values.
 		var distance = n.position.distance_squared_to(Vector2.ZERO)
-		if distance < 1600000:
+		if distance < 1920000:
 			parse_node(1, cull_target * 0.6, n, positions)
 		elif distance < 6400000:
-			if abs(n.position.y) < 256.0:
+			if abs(n.position.y) < 384.0:
 				parse_node(1, cull_target * 0.8, n, positions)
 			else:
 				parse_node(2, cull_target, n, positions)
-		elif distance < 12800000 && abs(n.position.y) < 392.0:
+		elif distance < 19200000 && abs(n.position.y) < 392.0:
 			parse_node(2, cull_target * 1.2, n, positions)
 		else:
 			parse_node(3, cull_target * 1.6, n, positions)
@@ -201,17 +201,19 @@ func build_grids():
 		var from_position = path_main.get_point_position(from)
 		for to in path_main.get_point_connections(from):
 			var to_position = path_main.get_point_position(to)
-			grid.draw_main_road(from_position, to_position)   
-			yield(get_tree().create_timer(0.01), 'timeout')
+			if grid.draw_main_road(from_position, to_position):
+				yield(get_tree().create_timer(0.01), 'timeout')
 
 	# Draw the side road sections
-	# TODO: Fixhickup, as it tries to render main again
+	# TODO: Fix the hickup, as it tries to render main again
+	# an option is too initialize town nodes while this runs in a thread.
+
 	for from in path_all.get_points():
 		var from_position = path_all.get_point_position(from)
 		for to in path_all.get_point_connections(from):
 			var to_position = path_all.get_point_position(to)
-			grid.draw_side_road(from_position, to_position)
-			yield(get_tree().create_timer(0.01), 'timeout')
+			if grid.draw_side_road(from_position, to_position):
+				yield(get_tree().create_timer(0.01), 'timeout')
 
 	# Draw the town nodes and blocks
 	for n in $Nodes.get_children():
