@@ -3,23 +3,25 @@ extends Node2D
 var min_size = 5
 var max_size = 15
 var tile_size = 64
-var node_count = 64
+var node_count = 96
 var cull_target = 0.25
 
-var x_spread = 100
+var x_spread = 80
 var y_spread = 20
 
 var path_all = null
 var path_main = null
 
 var is_ready = false
+var is_building = false
 
 var NodeScene = preload("res://prototype/town-generator/TownNode.tscn")
 
 func _ready():
 	randomize()
-	make_nodes()
+	yield(make_nodes(), "completed")
 	print_debug("Town map done")
+	is_ready = true
 
 func _draw():
 	pass
@@ -47,11 +49,13 @@ func _draw():
 
 func _input(event):
 	if is_ready && event.is_action_pressed("ui_select"):
+		is_ready = false
 		for n in $Nodes.get_children():
 			n.queue_free()
 		path_all = null
 		path_main = null
-		make_nodes()
+		yield(make_nodes(), "completed")
+		is_ready = true
 
 func _process(_delta):
 	update()
@@ -65,8 +69,13 @@ func parse_node(type, cull, node, positions):
 		positions.append(Vector3(node.position.x, node.position.y, 0))
 
 func make_nodes():
-	$Grid.setup_grid()
-	is_ready = false
+	if is_ready:
+		return
+	if is_building:
+		return
+	is_building = true
+
+	$Grid.clear_grid()
 	for _i in range(node_count):
 		var p = Vector2(
 			rand_range(-x_spread, x_spread), 
@@ -109,10 +118,10 @@ func make_nodes():
 		yield(get_tree().create_timer(0.01), 'timeout')
 
 	path_all = run_prims_algorithm(positions)
-	is_ready = true
-	build_nodes()
-	build_mains()
-	build_grids()
+	yield(build_nodes(), "completed")
+	yield(build_mains(), "completed")
+	yield(build_grids(), "completed")
+	is_building = false
 
 # Runs prim's algorithm
 # Given an array of positions it
@@ -151,6 +160,7 @@ func build_nodes():
 		for c in path_all.get_point_connections(p):
 			l.append(path_all.get_point_position(c))
 			n.build_node(l)
+	yield(get_tree().create_timer(0.01), 'timeout')
 
 func build_mains():
 	var min_n = null
@@ -181,6 +191,7 @@ func build_mains():
 	for p in id_path:
 		positions.append(path_all.get_point_position(p))
 	path_main = run_prims_algorithm(positions)
+	yield(get_tree().create_timer(0.01), 'timeout')
 
 func build_grids():
 	var grid = $Grid
@@ -190,10 +201,11 @@ func build_grids():
 		var from_position = path_main.get_point_position(from)
 		for to in path_main.get_point_connections(from):
 			var to_position = path_main.get_point_position(to)
-			grid.draw_main_road(from_position, to_position)
+			grid.draw_main_road(from_position, to_position)   
 			yield(get_tree().create_timer(0.01), 'timeout')
-			
+
 	# Draw the side road sections
+	# TODO: Fixhickup, as it tries to render main again
 	for from in path_all.get_points():
 		var from_position = path_all.get_point_position(from)
 		for to in path_all.get_point_connections(from):

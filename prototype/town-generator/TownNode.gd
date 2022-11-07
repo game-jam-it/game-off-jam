@@ -16,16 +16,20 @@ func _process(_delta):
 	update()
 
 func _draw():
-	var p = $CollisionShape2D.position
-	var r = Rect2(p - size, size * 2.0)
-	if type == 1: 
-		draw_rect(r, Color(0, 0.90, 0.90), false)
+	var color = Color(0.05, 0.05, 0.05)
+	var bounds = Rect2(global_position - size, size * 2.0)
+	var render = Rect2($CollisionShape2D.position - size, size * 2.0)
+
+	if bounds.has_point(get_global_mouse_position()):
+		color = Color(0.9, 0.9, 0.9)
+	elif type == 1: 
+		color = Color(0, 0.90, 0.90)
 	elif type == 2: 
-		draw_rect(r, Color(0, 0.50, 0.50), false)
+		color = Color(0, 0.50, 0.50)
 	elif type == 3: 
-		draw_rect(r, Color(0, 0.10, 0.10), false)
-	else:
-		draw_rect(r, Color(0.05, 0.05, 0.05), false)
+		color = Color(0, 0.10, 0.10)
+
+	draw_rect(render, color, false)
 
 	# if 0 != (linked & LINK_UP):
 	# 	draw_link(Vector2(p.x, p.y - 64))
