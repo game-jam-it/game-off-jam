@@ -5,7 +5,7 @@ extends Camera2D
 
 # var dragging = false
 
-var zoom_in = Vector2(0.5, 0.5)
+var zoom_in = Vector2(1.0, 1.0)
 var zoom_out = Vector2(15.0, 15.0)
 
 var panning = false
@@ -34,9 +34,11 @@ func zoom_camera(mouse_position):
 	var viewport_size = get_viewport().size
 	var previous_zoom = zoom
 
-	if zoom.x >= 1.0: 
+	# TODO: Store old offset when woming in and restore it
+	if zoom.x > zoom_in.x: 
+		offset += ((viewport_size * 0.5) - mouse_position) * (self.zoom_in-previous_zoom)
+		zoom_out = self.zoom
 		zoom = self.zoom_in 
-		offset += ((viewport_size * 0.5) - mouse_position) * (zoom-previous_zoom)
 	else: 
-		zoom = self.zoom_out
 		offset = viewport_size * 0.5
+		zoom = self.zoom_out
