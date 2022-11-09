@@ -1,4 +1,4 @@
-class_name TownEventsNode
+class_name TownEvents
 extends Node2D
 
 var path = AStar.new()
@@ -6,7 +6,7 @@ var road = AStar.new()
 
 var event = {}
 
-var TownNode = preload("res://TheTown/Townmap/prefabs/TownNode.tscn")
+var TownNode = preload("res://TheTown/TownMap/prefabs/TownNode.tscn")
 
 func _ready():
 	pass
@@ -25,6 +25,8 @@ func create(radius: int, size: float, location: Vector2):
 		3: scale = 11 * size
 
 	var node = TownNode.instance()
+	node.connect("mouse_entered_node", TheTown, "on_mouse_entered_event")
+	node.connect("mouse_exited_node", TheTown, "on_mouse_entered_event")
 	node.set_radius(radius, scale)
 	node.set_location(location)
 	self.add_child(node)

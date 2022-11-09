@@ -1,4 +1,4 @@
-class_name TownHexNode
+class_name TownHex
 extends Node2D
 
 const PI2 = PI*2

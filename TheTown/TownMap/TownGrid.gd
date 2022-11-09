@@ -1,4 +1,4 @@
-class_name TownGridNode
+class_name TownGrid
 extends Node2D
 
 const radius: int = 128
@@ -11,10 +11,10 @@ var width = 0
 var height = 0
 var hexgrid = null
 
-var HexCell = preload("res://TheTown/Hexmap/HexCell.gd")
-var HexGrid = preload("res://TheTown/Hexmap/HexGrid.gd")
+var HexCell = preload("res://TheTown/HexMap/HexCell.gd")
+var HexGrid = preload("res://TheTown/HexMap/HexGrid.gd")
 
-var TownHex = preload("res://TheTown/Townmap/prefabs/TownHex.tscn")
+var TownHex = preload("res://TheTown/TownMap/prefabs/TownHex.tscn")
 
 func _ready():
 	reset_size(OS.window_size)

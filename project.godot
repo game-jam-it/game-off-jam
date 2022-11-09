@@ -10,42 +10,36 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node2D",
-"class": "TheTownNode",
-"language": "GDScript",
-"path": "res://TheTown/TheTown.gd"
-}, {
-"base": "Node2D",
 "class": "TownCreator",
 "language": "GDScript",
-"path": "res://TheTown/Townmap/TownCreator.gd"
+"path": "res://TheTown/TownMap/TownCreator.gd"
+}, {
+"base": "Node2D",
+"class": "TownEvents",
+"language": "GDScript",
+"path": "res://TheTown/TownMap/TownEvents.gd"
+}, {
+"base": "Node2D",
+"class": "TownGrid",
+"language": "GDScript",
+"path": "res://TheTown/TownMap/TownGrid.gd"
+}, {
+"base": "Node2D",
+"class": "TownHex",
+"language": "GDScript",
+"path": "res://TheTown/TownMap/prefabs/TownHex.gd"
 }, {
 "base": "RigidBody2D",
-"class": "TownEventNode",
+"class": "TownNode",
 "language": "GDScript",
-"path": "res://TheTown/Townmap/prefabs/TownNode.gd"
-}, {
-"base": "Node2D",
-"class": "TownEventsNode",
-"language": "GDScript",
-"path": "res://TheTown/Townmap/TownEvents.gd"
-}, {
-"base": "Node2D",
-"class": "TownGridNode",
-"language": "GDScript",
-"path": "res://TheTown/Townmap/TownGrid.gd"
-}, {
-"base": "Node2D",
-"class": "TownHexNode",
-"language": "GDScript",
-"path": "res://TheTown/Townmap/prefabs/TownHex.gd"
+"path": "res://TheTown/TownMap/prefabs/TownNode.gd"
 } ]
 _global_script_class_icons={
-"TheTownNode": "",
 "TownCreator": "",
-"TownEventNode": "",
-"TownEventsNode": "",
-"TownGridNode": "",
-"TownHexNode": ""
+"TownEvents": "",
+"TownGrid": "",
+"TownHex": "",
+"TownNode": ""
 }
 
 [application]

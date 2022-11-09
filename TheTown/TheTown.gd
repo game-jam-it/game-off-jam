@@ -1,4 +1,3 @@
-class_name TheTownNode
 extends Node2D
 
 const BIG_MAP = {
@@ -60,3 +59,18 @@ func get_nodes():
 func build_the_town():
 	camera.zoom = Vector2(map_cfg.zoom, map_cfg.zoom)
 	yield(creator.create_town("GameOff 2022", map_cfg), "completed")
+
+func on_mouse_exited_event(coord):
+	print_debug("Exited Event: %s. %s" % [coord.x, coord.y])
+	# TODO Grab Event Info
+
+func on_mouse_entered_event(coord):
+	print_debug("Entered Event: %s. %s" % [coord.x, coord.y])
+	# TODO Grab Display Basic Info
+	#  -> On Click: 
+	#    -> Show Extra Dialog
+	#    -> Lock Mouse Exit
+	#  -> Confirm Dialog 
+	#    -> Zoom to Event
+	#  -> Confirm Dialog 
+	#    -> Zoom to Event

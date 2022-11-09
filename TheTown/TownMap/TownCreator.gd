@@ -6,8 +6,8 @@ var is_working = false
 
 var seed_phrase = "Godot Rocks"
 
-var grid: TownGridNode
-var nodes: TownEventsNode
+var grid: TownGrid
+var nodes: TownEvents
 var rng: RandomNumberGenerator
 
 const MIN_SIZE =  5

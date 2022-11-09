@@ -1,4 +1,4 @@
-class_name TownEventNode
+class_name TownNode
 extends RigidBody2D
 
 const PI2 = PI*2
@@ -11,6 +11,11 @@ var coords = Vector2.ZERO
 var location = Vector2.ZERO
 var base_color = Color(0.24, 0.24, 0.24)
 var hover_color = Color(0.72, 0.72, 0.72)
+
+var mouse_hover = false
+
+signal mouse_entered_node(coords)
+signal mouse_exited_node(coords)
 
 func _process(_delta):
 	update()
@@ -25,8 +30,14 @@ func _draw():
 
 	if bounds.has_point(get_global_mouse_position()):
 		draw_rect(render, hover_color, false)
+		if !mouse_hover:
+			mouse_hover = true
+			emit_signal("mouse_entered_node", coords)
 	else:
 		draw_rect(render, base_color, false)
+		if mouse_hover:
+			mouse_hover = false
+			emit_signal("mouse_exited_node", coords)
 
 
 func set_coords(value:Vector2):

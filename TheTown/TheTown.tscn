@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://TheTown/Townmap/TownGrid.gd" type="Script" id=1]
+[ext_resource path="res://TheTown/TownMap/TownGrid.gd" type="Script" id=1]
 [ext_resource path="res://TheTown/TheTown.gd" type="Script" id=2]
-[ext_resource path="res://TheTown/Townmap/TownEvents.gd" type="Script" id=3]
-[ext_resource path="res://TheTown/Townmap/TownCreator.gd" type="Script" id=4]
+[ext_resource path="res://TheTown/TownMap/TownEvents.gd" type="Script" id=3]
+[ext_resource path="res://TheTown/TownMap/TownCreator.gd" type="Script" id=4]
 [ext_resource path="res://prototype/CameraDrag.gd" type="Script" id=5]
 
 [node name="TheTown" type="Node2D"]
