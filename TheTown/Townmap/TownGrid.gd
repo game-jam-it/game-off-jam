@@ -17,12 +17,9 @@ var HexGrid = preload("res://TheTown/Hexmap/HexGrid.gd")
 var TownHex = preload("res://TheTown/Townmap/prefabs/TownHex.tscn")
 
 func _ready():
-	_init_grid()
+	reset_size(OS.window_size)
 
-func _init_grid():
-	# TODO: Make size independed of the window
-	width = round(OS.window_size.x / radius) * 4
-	height = round(OS.window_size.y / radius) * 4
+func _initialize_grid():
 	hexgrid = HexGrid.new(Vector2(radius, radius))
 	hexgrid.set_bounds(Vector2(-width, -height-width), Vector2(width, height+width))
 
@@ -30,9 +27,14 @@ func clear():
 	map.clear()
 	path.clear()
 	road.clear()
-	_init_grid()
+	_initialize_grid()
 	for node in self.get_children():
 		node.queue_free()
+
+func reset_size(value: Vector2):
+	width = round(value.x / radius) * 4
+	height = round(value.y / radius) * 4	
+	_initialize_grid()
 
 func get_coords(location: Vector2):
 	var hex = hexgrid.pixel_to_hex(location)

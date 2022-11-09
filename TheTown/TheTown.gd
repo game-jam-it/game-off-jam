@@ -2,29 +2,31 @@ class_name TheTownNode
 extends Node2D
 
 const BIG_MAP = {
-	"zoom": 20,
-	"nodes": 192,
+	"zoom": 16,
+	"nodes": 128,
 	"culler": 0.35,
 	"spread": Vector2(620.0, 40.0),
+	"grid_size": Vector2(1280.0, 720.0),
 	"center": 7680000,
 	"center_offset": 384,
-	"outer": 38400000,
+	"outer": 25600000,
 	"outer_offset": 512,
-	"edge": 89600000,
+	"edge": 51200000,
 	"edge_offset": 768,
 }
 
 const SMALL_MAP = {
-	"zoom": 16,
-	"nodes": 96,
+	"zoom": 14,
+	"nodes": 56,
 	"culler": 0.25,
 	"spread": Vector2(160.0, 20.0),
-	"center": 5120000,
-	"center_offset": 384,
-	"outer": 19200000,
-	"outer_offset": 512,
-	"edge": 51200000,
-	"edge_offset": 768,
+	"grid_size": Vector2(1024.0, 576.0),
+	"center": 2560000,
+	"center_offset": 128,
+	"outer": 7680000,
+	"outer_offset": 256,
+	"edge": 25600000,
+	"edge_offset": 512,
 }
 
 var map_cfg = SMALL_MAP

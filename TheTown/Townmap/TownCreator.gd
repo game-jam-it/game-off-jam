@@ -127,6 +127,7 @@ func create_town(_seed_phrase:String, cfg = {
 	"nodes": 96,
 	"culler": 0.25,
 	"spread": Vector2(160.0, 20.0),
+	"grid_size": Vector2(620.0, 40.0),
 	"center": 5120000,
 	"center_offset": 384,
 	"outer": 12800000,
@@ -146,6 +147,11 @@ func create_town(_seed_phrase:String, cfg = {
 
 	grid = TheTown.get_grid()
 	nodes = TheTown.get_nodes()
+
+	grid.clear()
+	nodes.clear()
+
+	grid.reset_size(cfg.grid_size)
 
 	var list = yield(_create_nodes(cfg), "completed")
 	nodes.path = yield(_create_path(list), "completed")
@@ -169,9 +175,6 @@ func create_town(_seed_phrase:String, cfg = {
 func _create_nodes(cfg):
 	if !is_working:
 		return []
-
-	grid.clear()
-	nodes.clear()
 
 	# Create town event nodes
 	for _idx in range(cfg.nodes):
