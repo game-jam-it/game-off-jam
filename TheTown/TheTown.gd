@@ -136,3 +136,9 @@ func on_event_selected(coords):
 	# See: TheTown.on_mouse_entered_event
 	# if event_coords != null:
 	# 	camera.zoom_to(grid.get_location(event_coords))
+
+func start_selected_event():
+	print_debug("start expedition")
+
+func cancel_selected_event():
+	print_debug("cancel expedition")
