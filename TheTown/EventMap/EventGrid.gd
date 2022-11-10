@@ -1,4 +1,5 @@
-extends Node
+class_name EventGrid
+extends Node2D
 
 
 # Declare member variables here. Examples:

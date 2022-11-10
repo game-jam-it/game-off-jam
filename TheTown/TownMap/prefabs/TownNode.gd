@@ -1,6 +1,9 @@
 class_name TownNode
 extends RigidBody2D
 
+signal mouse_entered_node(coords)
+signal mouse_exited_node(coords)
+
 const PI2 = PI*2
 
 var type = 0
@@ -13,9 +16,6 @@ var base_color = Color(0.24, 0.24, 0.24)
 var hover_color = Color(0.72, 0.72, 0.72)
 
 var mouse_hover = false
-
-signal mouse_entered_node(coords)
-signal mouse_exited_node(coords)
 
 func _process(_delta):
 	update()

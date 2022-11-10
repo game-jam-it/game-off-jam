@@ -1,42 +1,26 @@
 extends Camera2D
 
-# var mouse_start_pos
-# var screen_start_position
-
-# var dragging = false
+var panning = false
 
 var zoom_in = Vector2(1.0, 1.0)
 var zoom_out = Vector2(15.0, 15.0)
 
-var panning = false
-
 func _input(event):
-	# if event.is_action("mouse_right"):
-	# 	if event.is_pressed():
-	# 		mouse_start_pos = event.position
-	# 		screen_start_position = position
-	# 		dragging = true
-	# 	else:
-	# 		dragging = false
-	# if event is InputEventMouseMotion and dragging:
-	# 	position = zoom * (mouse_start_pos - event.position) + screen_start_position
-		
-	if event.is_action_released('zoom_event'):
-		zoom_camera(event.position)
-	if event.is_action_pressed("pan_with_mouse"):
+	if event.is_action_pressed("mouse_pan"):
 		panning = true
-	elif event.is_action_released("pan_with_mouse"):
+	elif event.is_action_released("mouse_pan"):
 		panning = false
-	if event is InputEventMouseMotion and panning == true:
+	if panning == true && event is InputEventMouseMotion:
 		offset -= event.relative * zoom
 
-func zoom_camera(mouse_position):
+func zoom_to(location:Vector2):
 	var viewport_size = get_viewport().size
 	var previous_zoom = zoom
 
-	# TODO: Store old offset when woming in and restore it
+	# TODO: Store old offset when zooming in and restore it
 	if zoom.x > zoom_in.x: 
-		offset += ((viewport_size * 0.5) - mouse_position) * (self.zoom_in-previous_zoom)
+		var target = get_viewport_transform() * location
+		offset += ((viewport_size * 0.5) - target) * (self.zoom_in-previous_zoom)
 		zoom_out = self.zoom
 		zoom = self.zoom_in 
 	else: 
