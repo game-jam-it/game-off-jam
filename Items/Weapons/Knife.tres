@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Items/Weapon.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "Knife"
+flavor = null
+damage = 2
+reduction = null
+other_effects = "Gains 5% reduction for every Daring a character has"

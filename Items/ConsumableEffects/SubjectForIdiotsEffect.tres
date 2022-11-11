@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Items/ConsumableEffects/Scripts/OneChallengeStatBoostEffect.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+fortitude_boost = 0
+daring_boost = 0
+smarts_boost = 2

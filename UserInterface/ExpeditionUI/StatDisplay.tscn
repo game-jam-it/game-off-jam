@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UserInterface/ExpeditionUI/StatDisplay.gd" type="Script" id=1]
+[ext_resource path="res://UserInterface/Assets/fortitude_stat.png" type="Texture" id=2]
+
+[node name="StatDisplay" type="TextureRect"]
+margin_right = 78.0
+margin_bottom = 48.0
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+stat_name = "<StatName>"
+stat_description = "<StatDescription>"
+
+[node name="Value" type="Label" parent="."]
+margin_left = 36.0
+margin_top = 17.0
+margin_right = 76.0
+margin_bottom = 31.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "1"
+align = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_StatDisplay_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_StatDisplay_mouse_exited"]
