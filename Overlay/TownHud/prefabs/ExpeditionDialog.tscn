@@ -3,7 +3,6 @@
 [ext_resource path="res://Overlay/TownHud/prefabs/ExpeditionDialog.gd" type="Script" id=1]
 
 [node name="ExpeditionDialog" type="PopupDialog"]
-visible = true
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_top = -270.0
@@ -80,15 +79,15 @@ margin_bottom = 28.0
 size_flags_horizontal = 8
 custom_constants/separation = 12
 
-[node name="ExploreButton" type="Button" parent="MarginContainer/VBoxContainer/OptionsMargin/HBoxContainer"]
-unique_name_in_owner = true
-margin_right = 60.0
-margin_bottom = 20.0
-text = "explore"
-
 [node name="LeaveButton" type="Button" parent="MarginContainer/VBoxContainer/OptionsMargin/HBoxContainer"]
 unique_name_in_owner = true
 margin_left = 72.0
 margin_right = 118.0
 margin_bottom = 20.0
 text = "leave"
+
+[node name="ExploreButton" type="Button" parent="MarginContainer/VBoxContainer/OptionsMargin/HBoxContainer"]
+unique_name_in_owner = true
+margin_right = 60.0
+margin_bottom = 20.0
+text = "explore"

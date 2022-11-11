@@ -13,6 +13,8 @@ onready var cancel_btn = get_node('%LeaveButton')
 
 func _ready():
 	connect("popup_hide", self, "on_hide_popup")
+	connect("about_to_show", self, "on_about_to_show")
+
 	start_btn.connect("pressed", self, "on_start_pressed")
 	cancel_btn.connect("pressed", self, "on_cancel_pressed")
 
@@ -24,8 +26,13 @@ func set_info(title, descr):
 func on_start_pressed():
 	emit_signal("start_expedition")
 
+func on_cancel_pressed():
+	self.visible = false
+
 func on_hide_popup():
 	emit_signal("cancel_expedition")
 
-func on_cancel_pressed():
-	self.visible = false
+func on_about_to_show():
+	yield(get_tree(), "idle_frame")
+	print_debug("grab focus ...")
+	start_btn.grab_focus()
