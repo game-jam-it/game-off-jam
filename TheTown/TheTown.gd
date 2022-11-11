@@ -4,7 +4,7 @@ const BIG_MAP = {
 	"zoom": 16,
 	"nodes": 128,
 	"culler": 0.35,
-	"spread": Vector2(620.0, 40.0),
+	"spread": Vector2(480.0, 40.0),
 	"grid_size": Vector2(1280.0, 720.0),
 	"center": 7680000,
 	"center_offset": 384,
@@ -18,7 +18,7 @@ const SMALL_MAP = {
 	"zoom": 14,
 	"nodes": 56,
 	"culler": 0.25,
-	"spread": Vector2(160.0, 20.0),
+	"spread": Vector2(120.0, 20.0),
 	"grid_size": Vector2(1024.0, 576.0),
 	"center": 2560000,
 	"center_offset": 128,
@@ -137,8 +137,8 @@ func on_event_selected(coords):
 	# if event_coords != null:
 	# 	camera.zoom_to(grid.get_location(event_coords))
 
-func start_selected_event():
-	print_debug("start expedition")
+func start_selected_event(coords):
+	print_debug("start expedition: %s.%s" % [coords.x, coords.y])
 
-func cancel_selected_event():
-	print_debug("cancel expedition")
+func cancel_selected_event(coords):
+	print_debug("cancel expedition: %s.%s" % [coords.x, coords.y])

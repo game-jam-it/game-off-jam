@@ -65,6 +65,10 @@ config/icon="res://icon.png"
 TheTown="*res://TheTown/TheTown.tscn"
 Overlay="*res://Overlay/Overlay.tscn"
 
+[debug]
+
+gdscript/warnings/return_value_discarded=false
+
 [display]
 
 window/size/width=1280
