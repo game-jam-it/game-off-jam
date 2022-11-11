@@ -17,7 +17,18 @@ var hover_color = Color(0.72, 0.72, 0.72)
 
 var mouse_hover = false
 
-func _process(_delta):
+func _process(_delta):	
+	var offset = Vector2(size, size)
+	var bounds = Rect2(global_position - offset, offset * 2.0)
+	if bounds.has_point(get_global_mouse_position()):
+		if !mouse_hover:
+			mouse_hover = true
+			emit_signal("mouse_entered_node", coords)
+	else:
+		if mouse_hover:
+			mouse_hover = false
+			emit_signal("mouse_exited_node", coords)
+
 	update()
 
 func _draw():
@@ -30,14 +41,8 @@ func _draw():
 
 	if bounds.has_point(get_global_mouse_position()):
 		draw_rect(render, hover_color, false)
-		if !mouse_hover:
-			mouse_hover = true
-			emit_signal("mouse_entered_node", coords)
 	else:
 		draw_rect(render, base_color, false)
-		if mouse_hover:
-			mouse_hover = false
-			emit_signal("mouse_exited_node", coords)
 
 
 func set_coords(value:Vector2):

@@ -39,7 +39,7 @@ signal event_focused(coords)
 signal event_selected(coords)
 
 var map_cfg = SMALL_MAP
-var draw_debug = true
+var draw_debug = false
 
 onready var grid = $Grid
 onready var event = $Event
@@ -63,6 +63,9 @@ func _ready():
 	build_the_town()
 
 func _input(input):
+	if input.is_action_pressed("ui_home"):
+		draw_debug = !draw_debug
+
 	if input.is_action_pressed("big_map"):
 		map_cfg = BIG_MAP
 	if input.is_action_pressed("small_map"):
