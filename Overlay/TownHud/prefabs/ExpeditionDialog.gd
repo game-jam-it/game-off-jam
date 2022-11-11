@@ -1,6 +1,6 @@
 extends PopupDialog
 
-var active = false
+var coords = null
 
 signal start_expedition()
 signal cancel_expedition()

@@ -36,6 +36,7 @@ func create(radius: int, size: float, location: Vector2):
 	node.set_location(location)
 	self.add_child(node)
 
+
 func handle_input(input):
 	if event_coords != null && input.is_action_pressed("mouse_click"):
 		emit_signal("event_selected", event_coords)
@@ -49,3 +50,15 @@ func on_mouse_exited_event(coords):
 func on_mouse_entered_event(coords):
 		event_coords = coords
 		emit_signal("event_focused", coords)
+
+func show_mode(_coords):
+	# TODO Expand System
+	# Set grid as child
+	# Rename to mode
+	visible = true
+
+func hide_mode(_coords):
+	# TODO Expand System
+	# Set grid as child
+	# Rename to mode
+	visible = false

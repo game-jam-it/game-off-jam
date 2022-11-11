@@ -80,15 +80,15 @@ margin_bottom = 28.0
 size_flags_horizontal = 8
 custom_constants/separation = 12
 
-[node name="LeaveButton" type="Button" parent="MarginContainer/VBoxContainer/OptionsMargin/HBoxContainer"]
-unique_name_in_owner = true
-margin_right = 46.0
-margin_bottom = 20.0
-text = "leave"
-
 [node name="ExploreButton" type="Button" parent="MarginContainer/VBoxContainer/OptionsMargin/HBoxContainer"]
 unique_name_in_owner = true
-margin_left = 58.0
-margin_right = 118.0
+margin_right = 60.0
 margin_bottom = 20.0
 text = "explore"
+
+[node name="LeaveButton" type="Button" parent="MarginContainer/VBoxContainer/OptionsMargin/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 72.0
+margin_right = 118.0
+margin_bottom = 20.0
+text = "leave"

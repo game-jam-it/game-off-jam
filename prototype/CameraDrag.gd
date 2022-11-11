@@ -13,6 +13,10 @@ func _input(event):
 	if panning == true && event is InputEventMouseMotion:
 		offset -= event.relative * zoom
 
+func zoom_reset():
+	offset = get_viewport().size * 0.5
+	zoom = self.zoom_out
+
 func zoom_to(location:Vector2):
 	var viewport_size = get_viewport().size
 	var previous_zoom = zoom

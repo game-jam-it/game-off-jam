@@ -51,15 +51,15 @@ onready var creator = $Creator
 var town_state = TownState.PrepMode
 var event_coords = null
 
-signal event_node_clear()
-signal event_node_hover(coords)
-
 func _ready():
 	nodes.connect("event_clear", self, "on_event_clear")
 	nodes.connect("event_focused", self, "on_event_focused")
 	nodes.connect("event_selected", self, "on_event_selected")
+
+	event.connect("pause_explore_event", self, "on_pause_explore_event")
 	# TODO Move create-town-on-load 
 	# to new game event from menu
+	event.visible = false
 	build_the_town()
 
 func _input(input):
@@ -76,7 +76,7 @@ func _input(input):
 	elif town_state == TownState.PrepMode:
 		nodes.handle_input(input)
 	elif town_state == TownState.ExploreMode:
-		_input_explore_mode(input)
+		event.handle_input(input)
 
 func _input_set_mode(_input):
 	# TODO Implement _input_set_mode
@@ -114,14 +114,6 @@ func on_event_focused(coords):
 	if event_coords != coords:
 		event_coords = coords
 		emit_signal("event_focused", coords)
-	# TODO Grab Display Basic Info
-	#  -> On Click: 
-	#    -> Show Extra Dialog
-	#    -> Lock Mouse Exit
-	#  -> Confirm Dialog 
-	#    -> Zoom to Event
-	#  -> Confirm Dialog 
-	#    -> Zoom to Event
 
 func on_event_selected(coords):
 	if !creator.is_done:
@@ -138,7 +130,26 @@ func on_event_selected(coords):
 	# 	camera.zoom_to(grid.get_location(event_coords))
 
 func start_selected_event(coords):
-	print_debug("start expedition: %s.%s" % [coords.x, coords.y])
+	print("Start expedition: %s.%s" % [coords.x, coords.y])
+	event_coords = coords
+	town_state = TownState.ExploreMode
+	emit_signal("event_focused", coords)
+	camera.zoom_to(grid.get_location(event_coords))
+	event.start_mode(coords)
+	nodes.hide_mode(coords)
+	# TODO Add grid as a child
+	#grid.visible = false
 
 func cancel_selected_event(coords):
-	print_debug("cancel expedition: %s.%s" % [coords.x, coords.y])
+	print("Cancel expedition: %s.%s" % [coords.x, coords.y])
+	# TODO Implement
+
+
+func on_pause_explore_event():
+	print("Pause expedition: %s.%s" % [event_coords.x, event_coords.y])
+	emit_signal("pause_expedition")
+	# TODO Asjut pause behavior
+	town_state = TownState.PrepMode
+	nodes.show_mode(event_coords)
+	event.end_mode(event_coords)
+	camera.zoom_reset()
