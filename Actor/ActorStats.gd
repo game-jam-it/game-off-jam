@@ -11,20 +11,48 @@ Actor stats
 	Smarts
 """
 
-var item = preload("res://Items/Consumables/AmmunitionBox.tres")
-var item2 = preload("res://Items/Consumables/Apple.tres")
+var item1 = preload("res://Items/Consumables/AmmunitionBox.tres")
+var item2 = preload("res://Items/Consumables/Cleats.tres")
+var character1 = preload("res://Characters/Nerd.tres")
 
 func _input(_event):
 	if Input.is_action_just_pressed("test"):
-		print("consuming: " + item.name)
-		item.consume()
+		ActorStats.character = character1
+	if Input.is_action_just_pressed("test_2"):
+		print("consuming: " + item1.name)
+		item1.consume()
 		print("consuming: " + item2.name)
 		item2.consume()
 
+# Base info
+var character: Character setget set_character
+
+signal character_changed(character)
+
+func set_character(new_character: Character) -> void:
+	character = new_character
+	emit_signal("character_changed", new_character)
+	
+	# Set all the character stats
+	# Primary stats
+	set_max_hearts(new_character.max_hp)
+	set_current_hearts(new_character.max_hp)
+	set_current_stress(0)
+	# Secondary stats
+	set_fortitude(new_character.fortitude)
+	set_fortitude_boost(0)
+	set_daring(new_character.daring)
+	set_daring_boost(0)
+	set_smarts(new_character.smarts)
+	set_smarts_boost(0)
+	# Reset inventory too
+	ActorInventory.ammo = 0
+	ActorInventory.money = 0
+
 # Primary stats
-var current_hearts: int = 3 setget set_current_hearts
+var current_hearts: int = 5 setget set_current_hearts
 var max_hearts: int = 5 setget set_max_hearts
-var current_stress: int = 4 setget set_current_stress
+var current_stress: int = 0 setget set_current_stress
 var max_stress: int = 6 setget set_max_stress
 
 signal hearts_changed(value)
@@ -88,16 +116,16 @@ func set_fortitude_boost(value: int) -> void:
 	fortitude_boost = value
 	fortitude = base_fortitude + value
 	emit_signal("fortitude_changed", fortitude)
-	emit_signal("fortitude_boost_changed", fortitude)
+	emit_signal("fortitude_boost_changed", fortitude_boost)
 
 func set_daring_boost(value: int) -> void:
 	daring_boost = value
 	daring = base_daring + value
 	emit_signal("daring_changed", daring)
-	emit_signal("daring_boost_changed", daring)
+	emit_signal("daring_boost_changed", daring_boost)
 
 func set_smarts_boost(value: int) -> void:
 	smarts_boost = value
 	smarts = base_smarts + value
 	emit_signal("smarts_changed", smarts)
-	emit_signal("smarts_boost_changed", smarts)
+	emit_signal("smarts_boost_changed", smarts_boost)

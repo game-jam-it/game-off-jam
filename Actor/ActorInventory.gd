@@ -12,29 +12,31 @@ Actor Inventory
 """
 
 # Items
-var trinkets: Array = []
-var consumables: Array = []
-var weapons: Array = []
+var inventory: Array = []
 
-signal trinkets_changed(trinkets)
-signal consumables_changed(consumables)
-signal weapons_changed(weapons)
+signal inventory_changed(inventory)
 
-func add_trinket(trinket: Trinket) -> void:
-	trinkets.append(trinket)
-	emit_signal("trinkets_changed", trinkets)
+func add_item(item: Item) -> void:
+	inventory.append(item)
+	emit_signal("inventory_changed", inventory)
 
-func add_consumable(consumable: ConsumableItem) -> void:
-	consumables.append(consumable)
-	emit_signal("consumables_changed", consumables)
+func remove_item(item_slot: int) -> void:
+	if item_slot > inventory.size() - 1:
+		return
+	
+	inventory.remove(item_slot)
+	emit_signal("inventory_changed", inventory)
 
 func consume_item(item_slot: int) -> void:
-	if item_slot < consumables.size():
-		consumables[item_slot].consume()
-
-func add_weapon(weapon: Weapon) -> void:
-	weapons.append(weapon)
-	emit_signal("weapons_changed", weapons)
+	if item_slot > inventory.size() - 1:
+		return
+	
+	var item = inventory[item_slot]
+	# Make sure the item is a consumable and consume + remove it
+	if item is ConsumableItem:
+		item.consume()
+		inventory.remove(item_slot)
+		emit_signal("inventory_changed", inventory)
 
 # Supplies
 var money: int = 0 setget set_money

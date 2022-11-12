@@ -10,9 +10,19 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Resource",
+"class": "Character",
+"language": "GDScript",
+"path": "res://Characters/Character.gd"
+}, {
+"base": "Resource",
+"class": "CharacterEffect",
+"language": "GDScript",
+"path": "res://Characters/Effects/Scripts/CharacterEffect.gd"
+}, {
+"base": "Resource",
 "class": "ConsumableEffect",
 "language": "GDScript",
-"path": "res://Items/ConsumableEffect.gd"
+"path": "res://Items/ConsumableEffects/Scripts/ConsumableEffect.gd"
 }, {
 "base": "Item",
 "class": "ConsumableItem",
@@ -55,6 +65,8 @@ _global_script_classes=[ {
 "path": "res://Items/Weapon.gd"
 } ]
 _global_script_class_icons={
+"Character": "",
+"CharacterEffect": "",
 "ConsumableEffect": "",
 "ConsumableItem": "",
 "GainRandomAmmoEffect": "",
@@ -74,8 +86,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-ActorStats="*res://Actor/ActorStats.gd"
 ActorInventory="*res://Actor/ActorInventory.gd"
+ActorStats="*res://Actor/ActorStats.gd"
 
 [display]
 
@@ -93,6 +105,11 @@ common/drop_mouse_on_gui_input_disabled=true
 test={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777244,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+test_2={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777245,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

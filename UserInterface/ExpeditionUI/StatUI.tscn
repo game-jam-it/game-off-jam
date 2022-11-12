@@ -31,3 +31,19 @@ margin_right = 242.0
 texture = ExtResource( 3 )
 stat_name = "Smarts"
 stat_description = "How book-smart a character is, can be used to use various tech, books, machinery, among other things while under pressure, can also be used to persuade someone with logic and knowledge."
+
+[node name="AmmoLabel" type="Label" parent="."]
+margin_left = 252.0
+margin_top = 10.0
+margin_right = 309.0
+margin_bottom = 24.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "<ammo>"
+
+[node name="MoneyLabel" type="Label" parent="."]
+margin_left = 251.0
+margin_top = 29.0
+margin_right = 311.0
+margin_bottom = 43.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "<money>"

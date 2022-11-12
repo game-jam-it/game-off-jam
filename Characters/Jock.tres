@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Characters/Character.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "Jock (Sbrandon)"
+unique_effect_description = "Gains +1 when using fortitude to open passageways. (doors, hatches, etc)"
+max_hp = 4
+fortitude = 5
+daring = 2
+smarts = 1
+items = [  ]
+character_effects = [  ]

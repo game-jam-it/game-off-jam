@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Characters/Character.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "Black Dude (PG)"
+unique_effect_description = "Followers cannot protect you from a slasher's deathblow."
+max_hp = 6
+fortitude = 2
+daring = 3
+smarts = 4
+items = [  ]
+character_effects = [  ]

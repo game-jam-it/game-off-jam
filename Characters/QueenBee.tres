@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Characters/Character.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "Queen Bee (Vanessa)"
+unique_effect_description = "Followers give +1 to a random stat in addition to what they normally do. Recruiting followers gets a -1 discount."
+max_hp = 2
+fortitude = 2
+daring = 2
+smarts = 2
+items = [  ]
+character_effects = [  ]
