@@ -42,12 +42,15 @@ func handle_input(input):
 		emit_signal("event_selected", event_coords)
 
 func on_mouse_exited_event(coords):
+	if !self.visible:
+		return
 	if event_coords == coords:
 		event_coords = null
 	emit_signal("event_clear", coords)
 	# TODO Clear Event Info
 
 func on_mouse_entered_event(coords):
+	if self.visible:
 		event_coords = coords
 		emit_signal("event_focused", coords)
 
