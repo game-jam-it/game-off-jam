@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 """
 Actor stats
@@ -11,12 +11,13 @@ Actor stats
 	Smarts
 """
 
-var item1 = preload("res://Items/Consumables/Cleats.tres")
-var character1 = preload("res://Characters/Nerd.tres")
+# Note: Can not be preloaded cyclic refrences cause errors
+var item1 = load("res://Items/Consumables/Cleats.tres")
+var character1 = load("res://Characters/Nerd.tres")
 
 func _input(_event):
 	if Input.is_action_just_pressed("test"):
-		ActorStats.character = character1
+		self.character = character1
 	if Input.is_action_just_pressed("test_2"):
 		print("consuming: " + item1.name)
 		item1.consume()
@@ -65,19 +66,19 @@ signal stress_changed(value)
 signal max_stress_changed(value)
 
 func set_current_hearts(value: int) -> void:
-	current_hearts = clamp(value, 0, max_hearts)
+	current_hearts = int(clamp(value, 0, max_hearts))
 	emit_signal("hearts_changed", current_hearts)
 
 func set_max_hearts(value: int) -> void:
-	max_hearts = max(1, value)
+	max_hearts = int(max(1, value))
 	emit_signal("max_hearts_changed", max_hearts)
 
 func set_current_stress(value: int) -> void:
-	current_stress = clamp(value, 0, max_stress)
+	current_stress = int(clamp(value, 0, max_stress))
 	emit_signal("stress_changed", current_stress)
 
 func set_max_stress(value: int) -> void:
-	max_stress = max(1, value)
+	max_stress = int(max(1, value))
 	emit_signal("max_stress_changed", max_stress)
 
 # Secondary stats
