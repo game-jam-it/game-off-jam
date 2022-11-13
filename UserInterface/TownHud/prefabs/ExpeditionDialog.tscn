@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Overlay/TownHud/prefabs/ExpeditionDialog.gd" type="Script" id=1]
+[ext_resource path="res://UserInterface/TownHud/prefabs/ExpeditionDialog.gd" type="Script" id=1]
 
 [node name="ExpeditionDialog" type="PopupDialog"]
 anchor_top = 0.5

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Items/Weapon.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "Fists"
+flavor = ""
+base_damage = 1
+base_reduction = 0
+other_effect_description = ""
+other_effects = [  ]

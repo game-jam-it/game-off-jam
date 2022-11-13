@@ -9,6 +9,31 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Resource",
+"class": "Character",
+"language": "GDScript",
+"path": "res://Characters/Character.gd"
+}, {
+"base": "Resource",
+"class": "CharacterEffect",
+"language": "GDScript",
+"path": "res://Characters/Effects/Scripts/CharacterEffect.gd"
+}, {
+"base": "Resource",
+"class": "ConsumableEffect",
+"language": "GDScript",
+"path": "res://Items/Consumables/ConsumableEffects/Scripts/ConsumableEffect.gd"
+}, {
+"base": "Item",
+"class": "ConsumableItem",
+"language": "GDScript",
+"path": "res://Items/ConsumableItem.gd"
+}, {
+"base": "WeaponEffect",
+"class": "DamageBoostEffect",
+"language": "GDScript",
+"path": "res://Items/Weapons/WeaponEffects/Scripts/DamageBoostEffect.gd"
+}, {
 "base": "Node2D",
 "class": "EventGrid",
 "language": "GDScript",
@@ -18,6 +43,36 @@ _global_script_classes=[ {
 "class": "EventMap",
 "language": "GDScript",
 "path": "res://TheTown/EventMap/EventMap.gd"
+}, {
+"base": "ConsumableEffect",
+"class": "GainRandomAmmoEffect",
+"language": "GDScript",
+"path": "res://Items/Consumables/ConsumableEffects/Scripts/GainRandomAmmoEffect.gd"
+}, {
+"base": "ConsumableEffect",
+"class": "HealingEffect",
+"language": "GDScript",
+"path": "res://Items/Consumables/ConsumableEffects/Scripts/HealingEffect.gd"
+}, {
+"base": "Resource",
+"class": "Item",
+"language": "GDScript",
+"path": "res://Items/Item.gd"
+}, {
+"base": "ConsumableEffect",
+"class": "OneChallengeStatBoostEffect",
+"language": "GDScript",
+"path": "res://Items/Consumables/ConsumableEffects/Scripts/OneChallengeStatBoostEffect.gd"
+}, {
+"base": "WeaponEffect",
+"class": "ReductionBoostEffect",
+"language": "GDScript",
+"path": "res://Items/Weapons/WeaponEffects/Scripts/ReductionBoostEffect.gd"
+}, {
+"base": "ConsumableEffect",
+"class": "StressReductionEffect",
+"language": "GDScript",
+"path": "res://Items/Consumables/ConsumableEffects/Scripts/StressReductionEffect.gd"
 }, {
 "base": "Node2D",
 "class": "TownCreator",
@@ -43,27 +98,58 @@ _global_script_classes=[ {
 "class": "TownNode",
 "language": "GDScript",
 "path": "res://TheTown/TownMap/prefabs/TownNode.gd"
+}, {
+"base": "Item",
+"class": "Trinket",
+"language": "GDScript",
+"path": "res://Items/Trinket.gd"
+}, {
+"base": "Item",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://Items/Weapon.gd"
+}, {
+"base": "Resource",
+"class": "WeaponEffect",
+"language": "GDScript",
+"path": "res://Items/Weapons/WeaponEffects/Scripts/WeaponEffect.gd"
 } ]
 _global_script_class_icons={
+"Character": "",
+"CharacterEffect": "",
+"ConsumableEffect": "",
+"ConsumableItem": "",
+"DamageBoostEffect": "",
 "EventGrid": "",
 "EventMap": "",
+"GainRandomAmmoEffect": "",
+"HealingEffect": "",
+"Item": "",
+"OneChallengeStatBoostEffect": "",
+"ReductionBoostEffect": "",
+"StressReductionEffect": "",
 "TownCreator": "",
 "TownEvents": "",
 "TownGrid": "",
 "TownHex": "",
-"TownNode": ""
+"TownNode": "",
+"Trinket": "",
+"Weapon": "",
+"WeaponEffect": ""
 }
 
 [application]
 
 config/name="Game Off Jam"
-run/main_scene="res://MainScene.tscn"
+run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 TheTown="*res://TheTown/TheTown.tscn"
-Overlay="*res://Overlay/Overlay.tscn"
+Overlay="*res://UserInterface/Overlay.tscn"
+ActorStats="*res://Actor/ActorStats.gd"
+ActorInventory="*res://Actor/ActorInventory.gd"
 
 [debug]
 
@@ -100,6 +186,46 @@ ui_focus_next={
 ui_focus_prev={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":true,"control":false,"meta":false,"command":false,"pressed":false,"scancode":96,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+test={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777244,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+test_2={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777245,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+test_3={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777246,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+test_4={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777247,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+test_5={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777248,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+test_6={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777249,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+test_7={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777250,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+test_8={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777251,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 big_map={

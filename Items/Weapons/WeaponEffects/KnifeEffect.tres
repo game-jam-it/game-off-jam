@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Items/Weapons/WeaponEffects/Scripts/ReductionBoostEffect.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+reduction_boost = 5
+every_x_stat = 1
+fortitude = false
+daring = true
+smarts = false

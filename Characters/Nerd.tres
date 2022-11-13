@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Characters/Character.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "Nerd (Norman)"
+unique_effect_description = "Wining a smarts challenge will show the player the location of a valuable treasure, or the slasher, it will be differentiated."
+max_hp = 3
+fortitude = 2
+daring = 3
+smarts = 5
+items = [  ]
+character_effects = [  ]
