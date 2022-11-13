@@ -11,8 +11,7 @@ Actor stats
 	Smarts
 """
 
-var item1 = preload("res://Items/Consumables/AmmunitionBox.tres")
-var item2 = preload("res://Items/Consumables/Cleats.tres")
+var item1 = preload("res://Items/Consumables/Cleats.tres")
 var character1 = preload("res://Characters/Nerd.tres")
 
 func _input(_event):
@@ -21,8 +20,13 @@ func _input(_event):
 	if Input.is_action_just_pressed("test_2"):
 		print("consuming: " + item1.name)
 		item1.consume()
-		print("consuming: " + item2.name)
-		item2.consume()
+	if Input.is_action_just_pressed("test_3"):
+		get_damage()
+		get_reduction()
+	if Input.is_action_just_pressed("test_4"):
+		var new_weapon: Weapon = load("res://Items/Weapons/Knife.tres")
+		print("Equipping new weapon: " + str(new_weapon.name))
+		ActorInventory.set_current_weapon(new_weapon)
 
 # Base info
 var character: Character setget set_character
@@ -129,3 +133,19 @@ func set_smarts_boost(value: int) -> void:
 	smarts = base_smarts + value
 	emit_signal("smarts_changed", smarts)
 	emit_signal("smarts_boost_changed", smarts_boost)
+
+func get_damage() -> int:
+	# Trigger the weapon effect first for possible additional damage calculations
+	ActorInventory.get_current_weapon().get_effect()
+	
+	var weapon_damage: int = ActorInventory.get_current_weapon().damage
+	print("Damage: " + str(weapon_damage))
+	return weapon_damage
+
+func get_reduction() -> int:
+	# Trigger the weapon effect first for possible additional reduction calculations
+	ActorInventory.get_current_weapon().get_effect()
+	
+	var reduction: int = ActorInventory.get_current_weapon().reduction
+	print("Reduction: " + str(reduction) + "%")
+	return reduction

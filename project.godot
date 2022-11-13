@@ -22,22 +22,27 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "ConsumableEffect",
 "language": "GDScript",
-"path": "res://Items/ConsumableEffects/Scripts/ConsumableEffect.gd"
+"path": "res://Items/Consumables/ConsumableEffects/Scripts/ConsumableEffect.gd"
 }, {
 "base": "Item",
 "class": "ConsumableItem",
 "language": "GDScript",
 "path": "res://Items/ConsumableItem.gd"
 }, {
+"base": "WeaponEffect",
+"class": "DamageBoostEffect",
+"language": "GDScript",
+"path": "res://Items/Weapons/WeaponEffects/Scripts/DamageBoostEffect.gd"
+}, {
 "base": "ConsumableEffect",
 "class": "GainRandomAmmoEffect",
 "language": "GDScript",
-"path": "res://Items/ConsumableEffects/Scripts/GainRandomAmmoEffect.gd"
+"path": "res://Items/Consumables/ConsumableEffects/Scripts/GainRandomAmmoEffect.gd"
 }, {
 "base": "ConsumableEffect",
 "class": "HealingEffect",
 "language": "GDScript",
-"path": "res://Items/ConsumableEffects/Scripts/HealingEffect.gd"
+"path": "res://Items/Consumables/ConsumableEffects/Scripts/HealingEffect.gd"
 }, {
 "base": "Resource",
 "class": "Item",
@@ -47,12 +52,17 @@ _global_script_classes=[ {
 "base": "ConsumableEffect",
 "class": "OneChallengeStatBoostEffect",
 "language": "GDScript",
-"path": "res://Items/ConsumableEffects/Scripts/OneChallengeStatBoostEffect.gd"
+"path": "res://Items/Consumables/ConsumableEffects/Scripts/OneChallengeStatBoostEffect.gd"
+}, {
+"base": "WeaponEffect",
+"class": "ReductionBoostEffect",
+"language": "GDScript",
+"path": "res://Items/Weapons/WeaponEffects/Scripts/ReductionBoostEffect.gd"
 }, {
 "base": "ConsumableEffect",
 "class": "StressReductionEffect",
 "language": "GDScript",
-"path": "res://Items/ConsumableEffects/Scripts/StressReductionEffect.gd"
+"path": "res://Items/Consumables/ConsumableEffects/Scripts/StressReductionEffect.gd"
 }, {
 "base": "Item",
 "class": "Trinket",
@@ -63,19 +73,27 @@ _global_script_classes=[ {
 "class": "Weapon",
 "language": "GDScript",
 "path": "res://Items/Weapon.gd"
+}, {
+"base": "Resource",
+"class": "WeaponEffect",
+"language": "GDScript",
+"path": "res://Items/Weapons/WeaponEffects/Scripts/WeaponEffect.gd"
 } ]
 _global_script_class_icons={
 "Character": "",
 "CharacterEffect": "",
 "ConsumableEffect": "",
 "ConsumableItem": "",
+"DamageBoostEffect": "",
 "GainRandomAmmoEffect": "",
 "HealingEffect": "",
 "Item": "",
 "OneChallengeStatBoostEffect": "",
+"ReductionBoostEffect": "",
 "StressReductionEffect": "",
 "Trinket": "",
-"Weapon": ""
+"Weapon": "",
+"WeaponEffect": ""
 }
 
 [application]
@@ -110,6 +128,36 @@ test={
 test_2={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777245,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+test_3={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777246,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+test_4={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777247,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+test_5={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777248,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+test_6={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777249,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+test_7={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777250,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+test_8={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777251,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

@@ -11,6 +11,27 @@ Actor Inventory
 	Ammo (Only one type which all weapons will use)
 """
 
+# If no weapon is active
+var base_weapon = preload("res://Items/Weapons/Fists.tres")
+
+# Active weapon
+var current_weapon: Weapon = null setget set_current_weapon, get_current_weapon
+
+signal current_weapon_changed(weapon)
+
+func set_current_weapon(new_weapon: Weapon) -> Weapon:
+	var old_weapon: Weapon = current_weapon
+	current_weapon = new_weapon
+	
+	emit_signal("current_weapon_changed", current_weapon)
+	return old_weapon
+
+func get_current_weapon() -> Weapon:
+	if current_weapon == null:
+		return base_weapon
+	else:
+		return current_weapon
+
 # Items
 var inventory: Array = []
 
