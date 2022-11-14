@@ -38,8 +38,11 @@ signal event_clear(coords)
 signal event_focused(coords)
 signal event_selected(coords)
 
+signal pause_expedition
+signal resume_expedition
+
 var map_cfg = SMALL_MAP
-var draw_debug = false
+var draw_debug = true
 
 onready var grid = $Grid
 onready var event = $Event
@@ -71,8 +74,9 @@ func _input(input):
 	if input.is_action_pressed("small_map"):
 		map_cfg = SMALL_MAP
 
-	if creator.is_done && input.is_action_pressed("ui_select"):
-		build_the_town()
+	# TODO: Hook Up to the initial load
+	#if creator.is_done && input.is_action_pressed("ui_select"):
+	#	build_the_town()
 
 	if town_state == TownState.SetMode:
 		_input_set_mode(input)
