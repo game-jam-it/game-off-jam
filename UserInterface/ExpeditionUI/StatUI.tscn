@@ -1,49 +1,54 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://UserInterface/ExpeditionUI/StatUI.gd" type="Script" id=1]
 [ext_resource path="res://UserInterface/ExpeditionUI/StatDisplay.tscn" type="PackedScene" id=2]
-[ext_resource path="res://UserInterface/Assets/smarts_stat.png" type="Texture" id=3]
-[ext_resource path="res://UserInterface/Assets/daring_stat.png" type="Texture" id=4]
+[ext_resource path="res://UserInterface/Fonts/poppins_ui_text.tres" type="DynamicFont" id=3]
+[ext_resource path="res://UserInterface/Assets/fortitude_icon.png" type="Texture" id=4]
+[ext_resource path="res://UserInterface/Assets/smarts_icon.png" type="Texture" id=5]
+[ext_resource path="res://UserInterface/Assets/daring_icon.png" type="Texture" id=6]
 
 [node name="StatUI" type="Control"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 1 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 255.0
+margin_bottom = 26.0
 
-[node name="FortitudeDisplay" parent="HBoxContainer" instance=ExtResource( 2 )]
+[node name="StatDisplay" parent="HBoxContainer" instance=ExtResource( 2 )]
 stat_name = "Fortitude"
-stat_description = "How strong your character is, can be used to: Force a door open, lift a heavy object, intimidate someone, Destroy a sturdy object, among others."
+stat_description = "How strong your character is, can be used to: Force a door open, lift a heavy object, intimidate someone, Destroy a sturdy object, among others"
+stat_texture = ExtResource( 4 )
 
-[node name="DaringDisplay" parent="HBoxContainer" instance=ExtResource( 2 )]
-margin_left = 82.0
-margin_right = 158.0
-texture = ExtResource( 4 )
+[node name="StatDisplay2" parent="HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 64.0
+margin_right = 124.0
 stat_name = "Daring"
-stat_description = "How agile a character is, can be used to pick locks, squeeze in tight spaces, hide, persuade someone with charisma, and take a risky acrobatic action."
+stat_description = "How agile a character is, can be used to pick locks, squeeze in tight spaces, hide, persuade someone with charisma, and take a risky acrobatic action"
+stat_texture = ExtResource( 6 )
 
-[node name="SmartsDisplay" parent="HBoxContainer" instance=ExtResource( 2 )]
-margin_left = 162.0
-margin_right = 242.0
-texture = ExtResource( 3 )
+[node name="StatDisplay3" parent="HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 128.0
+margin_right = 188.0
 stat_name = "Smarts"
-stat_description = "How book-smart a character is, can be used to use various tech, books, machinery, among other things while under pressure, can also be used to persuade someone with logic and knowledge."
+stat_description = "How book-smart a character is, can be used to use various tech, books, machinery, among other things while under pressure, can also be used to persuade someone with logic and knowledge"
+stat_texture = ExtResource( 5 )
 
 [node name="AmmoLabel" type="Label" parent="."]
-margin_left = 252.0
-margin_top = 10.0
-margin_right = 309.0
-margin_bottom = 24.0
+margin_left = 275.0
+margin_top = 3.0
+margin_right = 341.0
+margin_bottom = 23.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 3 )
 text = "<ammo>"
 
 [node name="MoneyLabel" type="Label" parent="."]
-margin_left = 251.0
-margin_top = 29.0
-margin_right = 311.0
-margin_bottom = 43.0
+margin_left = 195.0
+margin_top = 3.0
+margin_right = 265.0
+margin_bottom = 23.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 3 )
 text = "<money>"

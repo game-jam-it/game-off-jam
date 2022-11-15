@@ -3,10 +3,10 @@ extends Control
 var hearts = 1 setget set_hearts
 var max_hearts = 1 setget set_max_hearts
 
-const heart_texture_width = 60
+const heart_texture_width = 26+8 # 26 for heart 8 pixels between next heart
 
-onready var hearts_full_ui = $HeartsFull
-onready var hearts_empty_ui = $HeartsEmpty
+onready var hearts_full_ui = $HeartsFullTexture
+onready var hearts_empty_ui = $HeartsEmptyTexture
 
 func set_hearts(value: int) -> void:
 	hearts = value

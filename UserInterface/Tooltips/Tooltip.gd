@@ -1,4 +1,5 @@
 extends Popup
+class_name Tooltip
 
 var header_text: String = ""
 var description_text: String = ""

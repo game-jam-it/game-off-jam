@@ -4,4 +4,6 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="ExpeditionUI" parent="." instance=ExtResource( 1 )]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ExpeditionUI" parent="CanvasLayer" instance=ExtResource( 1 )]

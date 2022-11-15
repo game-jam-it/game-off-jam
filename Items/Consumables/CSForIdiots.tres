@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://Items/Assets/cs_for_dummies.png" type="Texture" id=1]
+[ext_resource path="res://Items/ConsumableItem.gd" type="Script" id=2]
+[ext_resource path="res://Items/Consumables/ConsumableEffects/CSForIdiotsEffect.tres" type="Resource" id=3]
+
+[resource]
+script = ExtResource( 2 )
+name = "Common Sense For Idiots"
+flavor = "You feel smarter, but only once."
+texture = ExtResource( 1 )
+effect_description = "Gain +2 smarts during the next smarts challenge."
+cost = 2
+consume_effects = [ ExtResource( 3 ) ]

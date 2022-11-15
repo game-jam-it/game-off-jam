@@ -3,9 +3,9 @@ extends Control
 var current_stress: int = 0 setget set_current_stress
 var max_stress: int = 6
 
-const stress_segment_texture_width: int = 44
+const stress_segment_texture_width: int = 23
 
-onready var stress_segment_ui = $Segments
+onready var stress_segment_ui = $StressSegmentTexture
 
 func set_current_stress(value: int) -> void:
 	current_stress = value

@@ -12,7 +12,7 @@ Actor Inventory
 """
 
 # If no weapon is active
-var base_weapon = preload("res://Items/Weapons/Fists.tres")
+var base_weapon = load("res://Items/Weapons/Fists.tres")
 
 # Active weapon
 var current_weapon: Weapon = null setget set_current_weapon, get_current_weapon
@@ -33,19 +33,23 @@ func get_current_weapon() -> Weapon:
 		return current_weapon
 
 # Items
-var inventory: Array = []
+# Make an inventory with 5 slots
+var inventory: Array = [null, null, null, null, null]
 
 signal inventory_changed(inventory)
 
 func add_item(item: Item) -> void:
-	inventory.append(item)
-	emit_signal("inventory_changed", inventory)
+	for slot in inventory.size():
+		if inventory[slot] == null:
+			inventory[slot] = item
+			emit_signal("inventory_changed", inventory)
+			break
 
 func remove_item(item_slot: int) -> void:
 	if item_slot > inventory.size() - 1:
 		return
 	
-	inventory.remove(item_slot)
+	inventory[item_slot] = null
 	emit_signal("inventory_changed", inventory)
 
 func consume_item(item_slot: int) -> void:
@@ -58,6 +62,10 @@ func consume_item(item_slot: int) -> void:
 		item.consume()
 		inventory.remove(item_slot)
 		emit_signal("inventory_changed", inventory)
+
+func clear_inventory() -> void:
+	inventory = [null, null, null, null, null]
+	emit_signal("inventory_changed", inventory)
 
 # Supplies
 var money: int = 0 setget set_money
