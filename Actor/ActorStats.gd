@@ -11,7 +11,7 @@ Actor stats
 	Smarts
 """
 
-# Note: Can not be preloaded cyclic refrences cause errors
+# Note: Can not preload, as cyclic refrences cause errors
 var item1 = load("res://Items/Consumables/Cleats.tres")
 var character1 = load("res://Characters/Nerd.tres")
 
