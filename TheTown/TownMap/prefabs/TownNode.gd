@@ -1,6 +1,13 @@
 class_name TownNode
 extends RigidBody2D
 
+enum Type {
+	None,
+	Center,
+	Country,
+	Outskirt,
+}
+
 signal mouse_entered_node(coords)
 signal mouse_exited_node(coords)
 
@@ -8,7 +15,7 @@ const PI2 = PI*2
 
 var type = 0
 
-var size = 48
+var size = 0
 var radius = 1
 var coords = Vector2.ZERO
 var location = Vector2.ZERO

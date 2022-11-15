@@ -7,6 +7,10 @@ signal pause_explore_event(coords)
 func _ready():
 	pass # Replace with function body.
 
+func clear():
+	for node in self.get_children():
+		node.queue_free()
+
 func handle_input(input):
 	if input.is_action_pressed("ui_cancel"):
 		print_debug("Eventmap -> pause_explore_event")

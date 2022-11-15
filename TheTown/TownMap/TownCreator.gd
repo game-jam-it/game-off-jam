@@ -7,7 +7,11 @@ var is_working = false
 var seed_phrase = "Godot Rocks"
 
 var grid: TownGrid
+
+# TODO Fix names here
 var nodes: TownEvents
+var events: EventMap
+
 var rng: RandomNumberGenerator
 
 const MIN_SIZE =  5
@@ -15,6 +19,12 @@ const MAX_SIZE = 15
 
 const TILE_SIZE = 64
 const CULL_TARGET = 0.20
+
+
+# FixMe: These maps are a hack
+# Clean linked resources in godot?
+var mapped = {}
+
 
 func _ready():
 	rng = RandomNumberGenerator.new()
@@ -141,6 +151,8 @@ func create_town(_seed_phrase:String, cfg = {
 	is_done = false
 	is_working = true
 
+	mapped = Events.build_maps()
+
 	rng = RandomNumberGenerator.new()
 	# FixMe: Add rndome seed_phrases
 	# rng.seed = hash(_seed_phrase)
@@ -149,16 +161,18 @@ func create_town(_seed_phrase:String, cfg = {
 
 	grid = TheTown.get_grid()
 	nodes = TheTown.get_nodes()
+	events = TheTown.get_events()
 
 	grid.clear()
 	nodes.clear()
+	events.clear()
 
 	grid.reset_size(cfg.grid_size)
 
 	var list = yield(_create_nodes(cfg), "completed")
 	nodes.path = yield(_create_path(list), "completed")
 	nodes.road = yield(_create_road(nodes.path), "completed")
-
+	
 	yield(_draw_roads(nodes.road), "completed")
 	yield(_draw_paths(nodes.path), "completed")
 	yield(_draw_nodes(nodes.get_children()), "completed")
@@ -180,12 +194,12 @@ func _create_nodes(cfg):
 
 	# Create town event nodes
 	for _idx in range(cfg.nodes):
-		var rad = rng.randi() % 4
+		var rad = 1 + (rng.randi() % 4)
 		nodes.create(rad, TILE_SIZE, Vector2(
 			rng.randf_range(-cfg.spread.x, cfg.spread.x),
 			rng.randf_range(-cfg.spread.y, cfg.spread.y)
 		))
-	yield(get_tree().create_timer(0.8), 'timeout')
+	yield(get_tree().create_timer(1.2), 'timeout')
 
 	# Set regions and snap to grid
 	var list = []
@@ -197,16 +211,16 @@ func _create_nodes(cfg):
 		# Uses Position as location is not updated by physics
 		var dist = node.location.distance_squared_to(Vector2.ZERO)
 		if dist < cfg.center:
-			_set_node_region(1, cfg.culler * 0.6, node, list)
+			_set_node_region(TownNode.Type.Center, cfg.culler * 0.6, node, list)
 		elif dist < cfg.outer:
 			if abs(node.position.y) < cfg.center_offset:
-				_set_node_region(1, cfg.culler * 0.8, node, list)
+				_set_node_region(TownNode.Type.Center, cfg.culler * 0.8, node, list)
 			else:
-				_set_node_region(2, cfg.culler * 1.2, node, list)
+				_set_node_region(TownNode.Type.Outskirt, cfg.culler * 1.2, node, list)
 		elif dist < cfg.edge && abs(node.position.y) < cfg.outer_offset:
-			_set_node_region(2, cfg.culler * 1.6, node, list)
+			_set_node_region(TownNode.Type.Outskirt, cfg.culler * 1.6, node, list)
 		else:
-			_set_node_region(3, cfg.culler * 2.0, node, list)
+			_set_node_region(TownNode.Type.Country, cfg.culler * 2.0, node, list)
 	yield(get_tree(), "idle_frame")
 	return list
 
@@ -288,22 +302,26 @@ func _set_node_region(type, cull, node, list):
 		node.queue_free()
 		return
 	node.type = type
-	if type == 1: 
+	if type == TownNode.Type.Center:
+		## Add to center nodes
 		node.set_colors(
 			Color(0, 0.60, 0.60),
 			Color(0, 0.85, 0.85)
 		)
-	elif type == 2: 
+	elif type == TownNode.Type.Outskirt:
+		## Add to outskirt nodes
 		node.set_colors(
 			Color(0, 0.40, 0.40),
 			Color(0, 0.75, 0.75)
 		)
-	elif type == 3: 
+	elif type == TownNode.Type.Country:
+		## Add to country nodes
 		node.set_colors(
 			Color(0, 0.20, 0.20),
 			Color(0, 0.55, 0.55)
 		)
 	list.append(Vector3(node.position.x, node.position.y, 0))
+
 
 """
 	Renders the town layout to TheTown
@@ -312,35 +330,97 @@ func _set_node_region(type, cull, node, list):
 func _draw_nodes(list:Array):
 	if !is_working: 
 		return
-
 	for node in list:
-		grid.draw_node(node.position, node.size, node.type)
+		## TODO Select node type and render
+		grid.draw_node(node.position, node.size)
+		match node.type:
+			TownNode.Type.None:
+				_add_empty_node(node)
+			TownNode.Type.Center:
+				_add_center_node(node)
+			TownNode.Type.Country:
+				_add_country_node(node)
+			TownNode.Type.Outskirt:
+				_add_outskirt_node(node)
 		yield(get_tree(), "idle_frame")
-
 	yield(get_tree(), "idle_frame")
+
 
 func _draw_paths(path:AStar):
 	if !is_working: 
 		return
-
 	for from in path.get_points():
 		var from_position = path.get_point_position(from)
 		for to in path.get_point_connections(from):
 			var to_position = path.get_point_position(to)
 			if grid.draw_path(from_position, to_position):
 				yield(get_tree(), "idle_frame")
-
 	yield(get_tree(), "idle_frame")
 
 func _draw_roads(road:AStar):
 	if !is_working: 
 		return
-
 	for from in road.get_points():
 		var from_position = road.get_point_position(from)
 		for to in road.get_point_connections(from):
 			var to_position = road.get_point_position(to)
 			if grid.draw_road(from_position, to_position):
 				yield(get_tree(), "idle_frame")
-
 	yield(get_tree(), "idle_frame")
+
+
+func _add_empty_node(node):
+	print("Free: %s - %s" % [node.radius, node.size])
+	node.queue_free()
+	# TODO Fill out map for roads and travel events
+
+
+func _add_center_node(node):
+	if not mapped.center.has(node.radius):
+		_add_empty_node(node)
+		return
+	var list = mapped.center[node.radius]
+	if list.empty():
+		_add_empty_node(node)
+		return
+	var info = list.pop_front()
+	nodes.events[node.coords] = info
+	#nodes.center_event[node.coords] = info
+	var scn = info.scene.instance()
+	scn.position = node.position
+	TheTown.event.add_child(scn)
+	print("Center: %s on: %s" % [info.name, node.radius])
+
+
+func _add_country_node(node):
+	if not mapped.country.has(node.radius):
+		_add_empty_node(node)
+		return
+	var list = mapped.country[node.radius]
+	if list.empty():
+		_add_empty_node(node)
+		return
+	var info = list.pop_front()
+	nodes.events[node.coords] = info
+	#nodes.country_event[node.coords] = info
+	var scn = info.scene.instance()
+	scn.position = node.position
+	TheTown.event.add_child(scn)
+	print("Country: %s on: %s" % [info.name, node.radius])
+
+
+func _add_outskirt_node(node):
+	if not mapped.outskirt.has(node.radius):
+		_add_empty_node(node)
+		return
+	var list = mapped.outskirt[node.radius]
+	if list.empty():
+		_add_empty_node(node)
+		return
+	var info = list.pop_front()
+	nodes.events[node.coords] = info
+	#nodes.outskirt_event[node.coords] = info
+	var scn = info.scene.instance()
+	scn.position = node.position
+	TheTown.event.add_child(scn)
+	print("Outskirt: %s on: %s" % [info.name, node.radius])

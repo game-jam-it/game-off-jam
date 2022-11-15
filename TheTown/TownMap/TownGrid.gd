@@ -77,7 +77,7 @@ func draw_path(from: Vector3, to: Vector3):
 			draw = true
 	return draw
 
-func draw_node(location: Vector2, size: int, _type: int):
+func draw_node(location: Vector2, size: int):
 	# FIXME: This depends on radius 
 	# being set to double tile size.
 	# print_debug(size / (radius * 0.5))
