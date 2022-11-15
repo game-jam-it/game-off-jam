@@ -40,6 +40,11 @@ _global_script_classes=[ {
 "path": "res://TheTown/EventMap/EventGrid.gd"
 }, {
 "base": "Node2D",
+"class": "EventHex",
+"language": "GDScript",
+"path": "res://TheTown/EventMap/prefabs/EventHex.gd"
+}, {
+"base": "Node2D",
 "class": "EventMap",
 "language": "GDScript",
 "path": "res://TheTown/EventMap/EventMap.gd"
@@ -121,6 +126,7 @@ _global_script_class_icons={
 "ConsumableItem": "",
 "DamageBoostEffect": "",
 "EventGrid": "",
+"EventHex": "",
 "EventMap": "",
 "GainRandomAmmoEffect": "",
 "HealingEffect": "",
@@ -146,6 +152,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+Events="*res://Events/Events.gd"
 TheTown="*res://TheTown/TheTown.tscn"
 Overlay="*res://UserInterface/Overlay.tscn"
 ActorStats="*res://Actor/ActorStats.gd"
