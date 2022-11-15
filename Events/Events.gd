@@ -9,19 +9,19 @@ var center = []
 var country = [{
 	"size": 4,
 	"name": "Cemetary",
-	"descr": "",
+	"descr": "You go here to find common sense.",
 	"scene": preload("res://Events/country/Cemetary.tscn"),
 },{
 	"size": 4,
 	"name": "Empty House",
-	"descr": "",
+	"descr": "The introduction, auto starts ...",
 	"scene": preload("res://Events/country/IntroHouse.tscn"),
 }]
 
 var outskirt = [{
 	"size": 4,
 	"name": "A Girls House",
-	"descr": "",
+	"descr": "You need common sense to defeat the girl.",
 	"scene": preload("res://Events/outskirt/FinalHouse.tscn"),
 }]
 

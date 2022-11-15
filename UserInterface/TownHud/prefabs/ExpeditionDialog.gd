@@ -34,5 +34,4 @@ func on_hide_popup():
 
 func on_about_to_show():
 	yield(get_tree(), "idle_frame")
-	print_debug("grab focus ...")
 	start_btn.grab_focus()

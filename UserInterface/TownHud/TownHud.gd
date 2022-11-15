@@ -24,7 +24,9 @@ func on_event_selected(coords:Vector2):
 	# TODO: Enter event dialog mode
 	expedition_popup.popup()
 	expedition_popup.coords = coords
+	var event = TheTown.get_nodes().get_event(coords)
 	# print_debug("Event: %s.%s" % [coords.x, coords.y])
+	if event != null: expedition_popup.set_info(event.name, event.descr)
 	event_coords_label.text = str("Selected: %s.%s" % [coords.x, coords.y])
 
 
