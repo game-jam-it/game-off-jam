@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/small-cematery-map.png-c9f556407f29ae1e9dcdd91ccbc21372.stex"
+path="res://.import/small-final-house-map.png-87c9efa2845aa87528e7ad86a4d40f37.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://prototype/assets/maps/small-cematery-map.png"
-dest_files=[ "res://.import/small-cematery-map.png-c9f556407f29ae1e9dcdd91ccbc21372.stex" ]
+source_file="res://prototype/assets/maps/small-final-house-map.png"
+dest_files=[ "res://.import/small-final-house-map.png-87c9efa2845aa87528e7ad86a4d40f37.stex" ]
 
 [params]
 

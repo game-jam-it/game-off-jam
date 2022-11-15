@@ -18,12 +18,12 @@ func handle_input(input):
 
 func end_mode(_coords):
 	# TODO Expand System
-	# Rename to mode
-	visible = false
+	# only hide details
+	#visible = false
 	pass
 
 func start_mode(_coords):
 	# TODO Expand System
-	# Rename to mode
-	visible = true
+	# only show details
+	#visible = true
 	pass

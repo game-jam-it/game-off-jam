@@ -12,14 +12,14 @@ var country = [{
 	"descr": "You go here to find common sense.",
 	"scene": preload("res://Events/country/Cemetary.tscn"),
 },{
-	"size": 4,
+	"size": 2,
 	"name": "Empty House",
 	"descr": "The introduction, auto starts ...",
 	"scene": preload("res://Events/country/IntroHouse.tscn"),
 }]
 
 var outskirt = [{
-	"size": 4,
+	"size": 3,
 	"name": "A Girls House",
 	"descr": "You need common sense to defeat the girl.",
 	"scene": preload("res://Events/outskirt/FinalHouse.tscn"),
