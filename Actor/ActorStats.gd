@@ -83,6 +83,18 @@ var fortitude_boost: int = 0 setget set_fortitude_boost
 var daring_boost: int = 0 setget set_daring_boost
 var smarts_boost: int = 0 setget set_smarts_boost
 
+func take_damage(enemy: Enemy) -> void:
+	self.current_hearts -= enemy.damage
+	
+	# Check for death
+	if current_hearts <= 0:
+		on_death()
+
+func on_death() -> void:
+	# TODO
+	print("Player died")
+	return
+
 signal fortitude_changed(value)
 signal daring_changed(value)
 signal smarts_changed(value)
