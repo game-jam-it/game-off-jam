@@ -11,7 +11,6 @@ func _ready():
 	expedition_popup.connect("start_expedition", self, "on_start_expedition")
 	expedition_popup.connect("cancel_expedition", self, "on_cancel_expedition")
 
-
 func on_event_clear():
 	# print_debug("Event: reset")
 	event_coords_label.text = str("")

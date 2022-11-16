@@ -12,12 +12,18 @@ onready var start_btn = get_node('%ExploreButton')
 onready var cancel_btn = get_node('%LeaveButton')
 
 func _ready():
+	self.set_exclusive(true)
 	connect("popup_hide", self, "on_hide_popup")
 	connect("about_to_show", self, "on_about_to_show")
 
 	start_btn.connect("pressed", self, "on_start_pressed")
 	cancel_btn.connect("pressed", self, "on_cancel_pressed")
 
+func _input(input):
+	if not self.visible:
+		return
+	if input.is_action_pressed("ui_cancel"):
+		self.visible = false
 
 func set_info(title, descr):
 	title_txt.text = title
