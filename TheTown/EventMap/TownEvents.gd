@@ -1,4 +1,4 @@
-class_name EventMap
+class_name TownEvents
 extends Node2D
 
 signal pause_explore_event(coords)

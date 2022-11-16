@@ -1,4 +1,4 @@
-class_name TownEvents
+class_name TownNodes
 extends Node2D
 
 signal event_clear(coords)

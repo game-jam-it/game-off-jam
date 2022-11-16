@@ -59,8 +59,8 @@ var map_cfg = SMALL_MAP
 var draw_debug = true
 
 onready var grid = $Grid
-onready var event = $Event
-onready var nodes = $Events
+onready var nodes = $Nodes
+onready var events = $Events
 onready var camera = $Camera
 onready var creator = $Creator
 
@@ -72,10 +72,10 @@ func _ready():
 	nodes.connect("event_clear", self, "on_event_clear")
 	nodes.connect("event_focused", self, "on_event_focused")
 	nodes.connect("event_selected", self, "on_event_selected")
-	event.connect("pause_explore_event", self, "on_pause_explore_event")
+	events.connect("pause_explore_event", self, "on_pause_explore_event")
 	# TODO Move create-town-on-load 
 	# to new game event from menu
-	# event.visible = false
+	# events.visible = false
 	build_the_town()
 
 func _input(input):
@@ -96,14 +96,10 @@ func _input(input):
 	elif town_state == TownState.PrepMode:
 		nodes.handle_input(input)
 	elif town_state == TownState.ExploreMode:
-		event.handle_input(input)
+		events.handle_input(input)
 
 func _input_set_mode(_input):
 	# TODO Implement _input_set_mode
-	pass
-
-func _input_explore_mode(_input):
-	# TODO Implement _input_explore_mode
 	pass
 
 func get_grid():
@@ -113,7 +109,7 @@ func get_nodes():
 	return nodes
 
 func get_events():
-	return event
+	return events
 
 func build_the_town():
 	#camera.zoom = Vector2(map_cfg.zoom, map_cfg.zoom)
@@ -153,7 +149,7 @@ func start_selected_event(coords):
 	town_state = TownState.ExploreMode
 	emit_signal("event_focused", coords)
 	camera.zoom_to(grid.get_location(event_coords))
-	event.start_mode(coords)
+	events.start_mode(coords)
 	nodes.hide_mode(coords)
 	grid.visible = false
 
@@ -169,7 +165,7 @@ func on_pause_explore_event():
 	# TODO Asjut pause behavior
 	# Current behavior is exit
 	town_state = TownState.PrepMode
+	events.end_mode(event_coords)
 	nodes.show_mode(event_coords)
-	event.end_mode(event_coords)
 	camera.zoom_reset()
 	grid.visible = true

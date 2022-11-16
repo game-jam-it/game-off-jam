@@ -9,8 +9,8 @@ var seed_phrase = "Godot Rocks"
 var grid: TownGrid
 
 # TODO Fix names here
-var nodes: TownEvents
-var events: EventMap
+var nodes: TownNodes
+var events: TownEvents
 
 var rng: RandomNumberGenerator
 
@@ -50,6 +50,7 @@ func load_town(_key:String):
 
 	grid = TheTown.get_grid()
 	nodes = TheTown.get_nodes()
+	events = TheTown.get_events()
 
 	yield(_load_nodes(), "completed")
 	yield(_load_paths(), "completed")
@@ -388,7 +389,7 @@ func _add_center_node(node):
 	#nodes.center_event[node.coords] = info
 	var scn = info.scene.instance()
 	scn.position = node.position
-	TheTown.event.add_child(scn)
+	TheTown.events.add_child(scn)
 	print("Center: %s on: %s" % [info.name, node.radius])
 
 
@@ -405,7 +406,7 @@ func _add_country_node(node):
 	#nodes.country_event[node.coords] = info
 	var scn = info.scene.instance()
 	scn.position = node.position
-	TheTown.event.add_child(scn)
+	TheTown.events.add_child(scn)
 	print("Country: %s on: %s" % [info.name, node.radius])
 
 
@@ -422,5 +423,5 @@ func _add_outskirt_node(node):
 	#nodes.outskirt_event[node.coords] = info
 	var scn = info.scene.instance()
 	scn.position = node.position
-	TheTown.event.add_child(scn)
+	TheTown.events.add_child(scn)
 	print("Outskirt: %s on: %s" % [info.name, node.radius])
