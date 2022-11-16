@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://prototype/assets/maps/small-cematery-map.png" type="Texture" id=1]
 [ext_resource path="res://TheTown/EventMap/EventGrid.gd" type="Script" id=2]
 [ext_resource path="res://TheTown/EventMap/EventMap.gd" type="Script" id=3]
+[ext_resource path="res://Entities/EntityQueue.gd" type="Script" id=4]
 
 [node name="Cemetary" type="Node2D"]
 script = ExtResource( 3 )
@@ -11,24 +12,27 @@ script = ExtResource( 3 )
 script = ExtResource( 2 )
 size = 36
 
-[node name="Spawn" type="Node2D" parent="."]
+[node name="Queue" type="Node2D" parent="."]
+script = ExtResource( 4 )
 
-[node name="Point 1" type="Node2D" parent="Spawn"]
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="Point 1" type="Node2D" parent="Spawns"]
 position = Vector2( 605, -422 )
 
-[node name="Point 2" type="Node2D" parent="Spawn"]
+[node name="Point 2" type="Node2D" parent="Spawns"]
 position = Vector2( 622, 512 )
 
-[node name="Point 3" type="Node2D" parent="Spawn"]
+[node name="Point 3" type="Node2D" parent="Spawns"]
 position = Vector2( -5, 595 )
 
-[node name="Point 4" type="Node2D" parent="Spawn"]
+[node name="Point 4" type="Node2D" parent="Spawns"]
 position = Vector2( -595, 424 )
 
-[node name="Point 5" type="Node2D" parent="Spawn"]
+[node name="Point 5" type="Node2D" parent="Spawns"]
 position = Vector2( -602, -364 )
 
-[node name="Point 6" type="Node2D" parent="Spawn"]
+[node name="Point 6" type="Node2D" parent="Spawns"]
 position = Vector2( 23, -576 )
 
 [node name="Terrain" type="Sprite" parent="."]

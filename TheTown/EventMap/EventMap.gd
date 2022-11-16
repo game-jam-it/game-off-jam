@@ -1,5 +1,8 @@
 class_name EventMap
-extends Node
+extends Node2D
 
-func _ready():
-	pass
+# TODO On Ready
+# - Spawn player on to the map
+# - Add player to the queue
+# - Initialize the queue
+# - Start event rounds

@@ -2,7 +2,7 @@ extends Camera2D
 
 var panning = false
 
-var zoom_in = Vector2(1.0, 1.0)
+var zoom_in = Vector2(0.5, 0.5)
 var focus_on = Vector2(7.5, 7.5)
 var zoom_out = Vector2(15.0, 15.0)
 
@@ -26,12 +26,12 @@ func zoom_reset():
 	viewport_offset = get_viewport().size * 0.5
 	viewport_transform = get_viewport_transform()
 
-func zoom_to(location:Vector2):
+func set_zoom_to(location:Vector2):
 	zoom = self.zoom_in
 	var target = viewport_transform * location
 	offset = viewport_offset - (viewport_offset - target) * 15
 
-func focus_on(location:Vector2):
+func set_focus_to(location:Vector2):
 	zoom = self.focus_on 
 	var target = viewport_transform * location
 	offset = viewport_offset - (viewport_offset - target) * 15

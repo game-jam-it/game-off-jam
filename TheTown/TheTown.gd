@@ -112,7 +112,6 @@ func get_events():
 	return events
 
 func build_the_town():
-	#camera.zoom = Vector2(map_cfg.zoom, map_cfg.zoom)
 	camera.zoom_reset()
 	yield(creator.create_town("GameOff 2022", map_cfg), "completed")
 
@@ -141,14 +140,14 @@ func on_event_selected(coords):
 		event_coords = coords
 		emit_signal("event_selected", coords)
 	if event_coords != null:
-		camera.focus_on(grid.get_location(event_coords))
+		camera.set_focus_to(grid.get_location(event_coords))
 
 func start_selected_event(coords):
 	print("Start expedition: %s.%s" % [coords.x, coords.y])
 	event_coords = coords
 	town_state = TownState.ExploreMode
 	emit_signal("event_focused", coords)
-	camera.zoom_to(grid.get_location(event_coords))
+	camera.set_zoom_to(grid.get_location(event_coords))
 	events.start_mode(coords)
 	nodes.hide_mode(coords)
 	grid.visible = false
