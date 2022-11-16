@@ -5,7 +5,7 @@
 [ext_resource path="res://TheTown/TownMap/TownNodes.gd" type="Script" id=3]
 [ext_resource path="res://TheTown/TownMap/TownCreator.gd" type="Script" id=4]
 [ext_resource path="res://prototype/CameraDrag.gd" type="Script" id=5]
-[ext_resource path="res://TheTown/EventMap/TownEvents.gd" type="Script" id=6]
+[ext_resource path="res://TheTown/TownMap/TownEvents.gd" type="Script" id=6]
 
 [node name="TheTown" type="Node2D"]
 script = ExtResource( 2 )
