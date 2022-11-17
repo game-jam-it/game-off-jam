@@ -55,7 +55,7 @@ signal event_selected(coords)
 signal pause_expedition
 signal resume_expedition
 
-var map_cfg = SMALL_MAP
+var map_cfg = MICRO_MAP
 var draw_debug = true
 
 onready var grid = $Grid

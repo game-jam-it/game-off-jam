@@ -23,7 +23,7 @@ func handle_input(input):
 		print_debug("Eventmap -> pause_explore_event")
 		emit_signal("pause_explore_event")
 
-func end_event(coords):
+func end_event(_coords):
 	if active != null:
 		active.end_event()
 		active = null

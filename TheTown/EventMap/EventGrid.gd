@@ -121,8 +121,6 @@ func _init_grid():
 			self.add_child(node)
 
 func _init_objects():
-	if $Objects == null:
-		return
 	for obj in $Objects.get_children():
 		match obj.obj_type:
 			GridObject.ObjType.Area:

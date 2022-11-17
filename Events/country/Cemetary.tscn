@@ -159,5 +159,5 @@ position = Vector2( -602, -364 )
 position = Vector2( 23, -576 )
 
 [node name="Terrain" type="Sprite" parent="."]
-z_index = -1
+z_index = -10
 texture = ExtResource( 1 )
