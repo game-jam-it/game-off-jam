@@ -1,9 +1,9 @@
 class_name EntityInput
 extends Node2D
 
-var entity: Entity = null
+var entity = null
 
-func initialize(ent: Entity) -> void:
+func initialize(ent) -> void:
 	entity = ent
 
 func choose_action():

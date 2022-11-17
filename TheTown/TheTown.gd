@@ -148,7 +148,7 @@ func start_selected_event(coords):
 	town_state = TownState.ExploreMode
 	emit_signal("event_focused", coords)
 	camera.set_zoom_to(grid.get_location(event_coords))
-	events.start_mode(coords)
+	events.start_event(coords)
 	nodes.hide_mode(coords)
 	grid.visible = false
 
@@ -164,7 +164,7 @@ func on_pause_explore_event():
 	# TODO Asjut pause behavior
 	# Current behavior is exit
 	town_state = TownState.PrepMode
-	events.end_mode(event_coords)
+	events.end_event(event_coords)
 	nodes.show_mode(event_coords)
 	camera.zoom_reset()
 	grid.visible = true

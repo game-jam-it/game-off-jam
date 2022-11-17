@@ -371,7 +371,7 @@ func _draw_roads(road:AStar):
 
 
 func _add_empty_node(node):
-	print("Free: %s - %s" % [node.radius, node.size])
+	#print("Free: %s - %s" % [node.radius, node.size])
 	node.queue_free()
 	# TODO Fill out map for roads and travel events
 
@@ -389,7 +389,8 @@ func _add_center_node(node):
 	#nodes.center_event[node.coords] = info
 	var scn = info.scene.instance()
 	scn.position = node.position
-	TheTown.events.add_child(scn)
+	events.add_child(scn)
+	events.scenes[node.coords] = scn
 	print("Center: %s on: %s" % [info.name, node.radius])
 
 
@@ -406,7 +407,8 @@ func _add_country_node(node):
 	#nodes.country_event[node.coords] = info
 	var scn = info.scene.instance()
 	scn.position = node.position
-	TheTown.events.add_child(scn)
+	events.add_child(scn)
+	events.scenes[node.coords] = scn
 	print("Country: %s on: %s" % [info.name, node.radius])
 
 
@@ -423,5 +425,6 @@ func _add_outskirt_node(node):
 	#nodes.outskirt_event[node.coords] = info
 	var scn = info.scene.instance()
 	scn.position = node.position
-	TheTown.events.add_child(scn)
+	events.add_child(scn)
+	events.scenes[node.coords] = scn
 	print("Outskirt: %s on: %s" % [info.name, node.radius])

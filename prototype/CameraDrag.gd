@@ -2,7 +2,7 @@ extends Camera2D
 
 var panning = false
 
-var zoom_in = Vector2(0.5, 0.5)
+var zoom_in = Vector2(0.75, 0.75)
 var focus_on = Vector2(7.5, 7.5)
 var zoom_out = Vector2(15.0, 15.0)
 
