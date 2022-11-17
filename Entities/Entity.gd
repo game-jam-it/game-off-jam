@@ -11,3 +11,8 @@ func _ready():
 	for action in actions.get_children():
 		action.initialize(self)
 
+func end_turn():
+	input.end_turn()
+
+func start_turn(grid):
+	input.start_turn(grid)

@@ -6,7 +6,10 @@ signal active_changed(active)
 
 onready var active: Entity
 
-func initialize():
+var _grid: EventGrid
+
+func inti(grid: EventGrid):
+	_grid = grid
 	_sort_entities()
 	if get_child_count() > 0: 
 		active = get_child(0)
@@ -17,19 +20,23 @@ func initialize():
 """
 
 func skip_turn():
-	_next_entity()
+	# Note: Do we want to exit?
+	return _next_entity()
 
 func play_turn():
+	if active != null: active.start_turn(_grid)
+	else: return skip_turn()
 	var target = yield(active.input.choose_target(), "completed")
 	if target == null:
-		_next_entity()
-		return
+		active.end_turn()
+		return _next_entity()
 	var action = yield(active.input.choose_action(), "completed")
 	if action == null:
-		_next_entity()
-		return
+		active.end_turn()
+		return _next_entity()
 	yield(action.execute(target), "completed")
-	_next_entity()
+	active.end_turn()
+	return _next_entity()
 
 func _next_entity():
 	var count = get_child_count()

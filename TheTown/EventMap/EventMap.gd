@@ -29,7 +29,7 @@ func end_event():
 	print("Ending Event: %s" % name)
 
 func start_event():
-	queue.initialize()
+	queue.inti(grid)
 	queue.visible = true
 	self.is_active = true
 	print("Starting Event: %s" % name)
