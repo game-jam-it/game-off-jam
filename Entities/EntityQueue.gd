@@ -10,6 +10,7 @@ var _grid: EventGrid
 
 func inti(grid: EventGrid):
 	_grid = grid
+	_snap_entities()
 	_sort_entities()
 	if get_child_count() > 0: 
 		active = get_child(0)
@@ -44,6 +45,11 @@ func _next_entity():
 		var index = active.get_index()
 		active = get_child((index+1) % count)
 		emit_signal('active_changed', active)
+
+func _snap_entities():
+	for entity in get_children():
+		var hex = _grid.hexgrid.pixel_to_hex(entity.position)
+		entity.position = _grid.hexgrid.hex_to_pixel(hex)
 
 func _sort_entities():
 	var list = get_children()
