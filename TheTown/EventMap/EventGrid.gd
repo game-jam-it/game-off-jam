@@ -3,10 +3,20 @@ extends Node2D
 
 const radius: int = 32
 
+enum CellState {
+	Empty,
+	Entity,
+	Blocker,
+	Obstical,
+}
+
 export var size = 24
 
-var map = {}
 var hexgrid = null
+
+var map = {}
+var obj_map = {}
+var entity_map = {}
 
 var HexCell = preload("res://TheTown/HexMap/HexCell.gd")
 var HexGrid = preload("res://TheTown/HexMap/HexGrid.gd")
@@ -14,14 +24,74 @@ var HexGrid = preload("res://TheTown/HexMap/HexGrid.gd")
 var TownHex = preload("res://TheTown/EventMap/prefabs/EventHex.tscn")
 
 func _ready():
-	_draw_grid(position)
+	_init_grid()
+	_init_objects()
 
 
-func _draw_grid(location: Vector2):
+"""
+	Grid Lookups
+"""
+
+func get_coords(location: Vector2):
+	var hex = hexgrid.pixel_to_hex(location)
+	return hex.get_axial_coords()
+
+func get_location(coords: Vector2):
+	var hex = HexCell.new(coords)
+	return hexgrid.hex_to_pixel(hex)
+
+func get_cell_state(coords: Vector2):
+	for entity in entity_map:
+		if entity.coords == coords:
+			return {
+				"state": CellState.Entity,
+				"entity": entity
+			}
+	if obj_map.has(coords):
+		return obj_map[coords]
+	return {
+		"state": CellState.Empty
+	}
+
+
+"""
+	Grid State Updates
+"""
+
+func remove_entity(entity: Entity):
+	entity_map.erase(entity.index)
+
+func add_entity(entity: Entity):
+	entity_map[entity.index] = entity
+
+func remove_cell(coords: Vector2):
+	hexgrid.remove_path_obstacles([coords])
+	obj_map.erase(coords)
+
+func add_cell_blocker(coords: Vector2):
+	hexgrid.add_path_obstacles([coords], 0)
+	obj_map[coords] = {
+		"state": CellState.Blocker,
+	}
+
+func add_cell_obstical(coords: Vector2, cost: int):
+	hexgrid.add_path_obstacles([coords], cost)
+	obj_map[coords] = {
+		"state": CellState.Obstical,
+		"cost": cost
+	}
+
+
+"""
+	Grid State Initializer
+"""
+
+func _init_grid():
 	var length = size * 2
 	hexgrid = HexGrid.new(Vector2(radius, radius))
 	hexgrid.set_bounds(Vector2(-length, -length), Vector2(length, length))
 
+	var location = position
 	# FIXME: This depends on radius 
 	# being set to double tile size.
 	# print_debug(size / (radius * 0.5))
@@ -45,8 +115,43 @@ func _draw_grid(location: Vector2):
 			hex = HexCell.new(coords)
 			location = hexgrid.hex_to_pixel(hex)
 			var node = TownHex.instance()
-			node.set_color(Color.pink)
 			node.set_location(location)
 			node.set_coords(coords)
 			map[coords] = node
 			self.add_child(node)
+
+func _init_objects():
+	if $Objects == null:
+		return
+	for obj in $Objects.get_children():
+		match obj.obj_type:
+			GridObject.ObjType.Area:
+				_init_area_object(obj)
+			GridObject.ObjType.Path:
+				_init_path_object(obj)
+
+func _init_area_object(obj: GridObject):
+	var hex = hexgrid.pixel_to_hex(obj.position)
+	var hexes = hex.get_all_within(obj.obj_size)
+	self._init_hex_array_for(obj, hexes)
+
+func _init_path_object(obj: GridObject):
+	var end = hexgrid.pixel_to_hex(obj.get_end())
+	var start = hexgrid.pixel_to_hex(obj.get_start())
+	var path = start.line_to(end)
+	path.append(end)
+	path.append(start)
+	self._init_hex_array_for(obj, path)
+
+func _init_hex_array_for(obj: GridObject, hexes: Array):
+	match obj.obj_type:
+		GridObject.BlockType.Blocker:
+			for hex in hexes:
+				var coords = hex.get_axial_coords()
+				self.add_cell_blocker(coords)
+				if map.has(coords): map[coords].set_color(Color(0.64, 0.40, 0.64))
+		GridObject.BlockType.Obstical:
+			for hex in hexes:
+				var coords = hex.get_axial_coords()
+				self.add_cell_obstical(coords, obj.cell_cost)
+				if map.has(coords): map[coords].set_color(Color(0.40, 0.64, 0.64))

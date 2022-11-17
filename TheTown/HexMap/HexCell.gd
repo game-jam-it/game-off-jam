@@ -65,13 +65,13 @@ func _round_coords(vec):
 """
 
 func line_to(target):
+	var n = distance_to(target)
 	var to = target.get_cube_coords()
 	var from = self.get_cube_coords()
 	var nudge = to + Vector3(1e-6, 2e-6, -3e-6)
-	var steps = int((abs(to.x - from.x) + abs(to.y - from.y) + abs(to.z - from.z)) / 2)
 	var path = []
-	for dist in range(steps):
-		var vec = to.linear_interpolate(nudge, float(dist) / steps)
+	for step in range(n):
+		var vec = nudge.linear_interpolate(from, float(step) / n)
 		path.append(_new_cell(_round_coords(vec)))
 	path.append(target)
 	return path

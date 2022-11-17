@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://prototype/assets/maps/small-cematery-map.png" type="Texture" id=1]
 [ext_resource path="res://TheTown/EventMap/EventGrid.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Entities/EntityQueue.gd" type="Script" id=4]
 [ext_resource path="res://Actor/prefabs/TheNerd.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Actor/prefabs/Ratsie.tscn" type="PackedScene" id=6]
+[ext_resource path="res://TheTown/EventMap/GridObject.gd" type="Script" id=8]
 
 [node name="Cemetary" type="Node2D"]
 script = ExtResource( 3 )
@@ -14,6 +15,116 @@ script = ExtResource( 3 )
 script = ExtResource( 2 )
 size = 36
 
+[node name="Objects" type="Node2D" parent="Grid"]
+
+[node name="Blocked - 01" type="Node2D" parent="Grid/Objects"]
+script = ExtResource( 8 )
+obj_type = 1
+
+[node name="End" type="Position2D" parent="Grid/Objects/Blocked - 01"]
+position = Vector2( 125, -306 )
+
+[node name="Start" type="Position2D" parent="Grid/Objects/Blocked - 01"]
+position = Vector2( 439, -308 )
+
+[node name="Blocked - 02" type="Node2D" parent="Grid/Objects"]
+script = ExtResource( 8 )
+obj_type = 1
+
+[node name="End" type="Position2D" parent="Grid/Objects/Blocked - 02"]
+position = Vector2( 487, -228 )
+
+[node name="Start" type="Position2D" parent="Grid/Objects/Blocked - 02"]
+position = Vector2( 488, 31 )
+
+[node name="Blocked - 03" type="Node2D" parent="Grid/Objects"]
+script = ExtResource( 8 )
+obj_type = 1
+
+[node name="End" type="Position2D" parent="Grid/Objects/Blocked - 03"]
+position = Vector2( 488, 118 )
+
+[node name="Start" type="Position2D" parent="Grid/Objects/Blocked - 03"]
+position = Vector2( 489, 223 )
+
+[node name="Blocked - 04" type="Node2D" parent="Grid/Objects"]
+script = ExtResource( 8 )
+obj_type = 1
+
+[node name="End" type="Position2D" parent="Grid/Objects/Blocked - 04"]
+position = Vector2( 440, 310 )
+
+[node name="Start" type="Position2D" parent="Grid/Objects/Blocked - 04"]
+position = Vector2( 131, 309 )
+
+[node name="Blocked - 05" type="Node2D" parent="Grid/Objects"]
+script = ExtResource( 8 )
+obj_type = 1
+
+[node name="End" type="Position2D" parent="Grid/Objects/Blocked - 05"]
+position = Vector2( -129, 309 )
+
+[node name="Start" type="Position2D" parent="Grid/Objects/Blocked - 05"]
+position = Vector2( -436, 308 )
+
+[node name="Blocked - 06" type="Node2D" parent="Grid/Objects"]
+script = ExtResource( 8 )
+obj_type = 1
+
+[node name="End" type="Position2D" parent="Grid/Objects/Blocked - 06"]
+position = Vector2( -483, -228 )
+
+[node name="Start" type="Position2D" parent="Grid/Objects/Blocked - 06"]
+position = Vector2( -485, 227 )
+
+[node name="Blocked - 07" type="Node2D" parent="Grid/Objects"]
+script = ExtResource( 8 )
+obj_type = 1
+
+[node name="End" type="Position2D" parent="Grid/Objects/Blocked - 07"]
+position = Vector2( -437, -309 )
+
+[node name="Start" type="Position2D" parent="Grid/Objects/Blocked - 07"]
+position = Vector2( -220, -308 )
+
+[node name="Blocked - 08" type="Node2D" parent="Grid/Objects"]
+script = ExtResource( 8 )
+obj_type = 1
+
+[node name="End" type="Position2D" parent="Grid/Objects/Blocked - 08"]
+position = Vector2( -161, -309 )
+
+[node name="Start" type="Position2D" parent="Grid/Objects/Blocked - 08"]
+position = Vector2( -121, -307 )
+
+[node name="Obstical - 01" type="Node2D" parent="Grid/Objects"]
+position = Vector2( -84, -343 )
+script = ExtResource( 8 )
+obj_size = 1
+cell_cost = 4
+block_type = 1
+
+[node name="Obstical - 02" type="Node2D" parent="Grid/Objects"]
+position = Vector2( 87, -342 )
+script = ExtResource( 8 )
+obj_size = 1
+cell_cost = 4
+block_type = 1
+
+[node name="Obstical - 03" type="Node2D" parent="Grid/Objects"]
+position = Vector2( -93, 335 )
+script = ExtResource( 8 )
+obj_size = 1
+cell_cost = 4
+block_type = 1
+
+[node name="Obstical - 04" type="Node2D" parent="Grid/Objects"]
+position = Vector2( 92, 337 )
+script = ExtResource( 8 )
+obj_size = 1
+cell_cost = 4
+block_type = 1
+
 [node name="Queue" type="Node2D" parent="."]
 script = ExtResource( 4 )
 
@@ -21,6 +132,11 @@ script = ExtResource( 4 )
 initiative = 2.0
 
 [node name="Ratsie" parent="Queue" instance=ExtResource( 6 )]
+position = Vector2( -264, -192 )
+
+[node name="Ratsio" parent="Queue" instance=ExtResource( 6 )]
+position = Vector2( 264, 192 )
+scale = Vector2( -1, 1 )
 
 [node name="Spawns" type="Node2D" parent="."]
 

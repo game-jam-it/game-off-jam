@@ -61,6 +61,7 @@ func _round_coords(vec):
 		o.z = -o.x - o.y
 	return o
 
+
 """
 	Pathfinding Utilities
 """
@@ -77,6 +78,7 @@ func get_path_obstacles():
 	
 func add_path_obstacles(vals, cost=0):
 	# Store the given coordinate/s as obstacles
+	# Cost of zero blocks, higher is more dificult
 	if not typeof(vals) == TYPE_ARRAY:
 		vals = [vals]
 	for coords in vals:
