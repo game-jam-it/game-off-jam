@@ -8,10 +8,15 @@ onready var active: Entity
 
 var _grid: EventGrid
 
-func inti(grid: EventGrid):
+func disable():
+	for entity in get_children():
+		entity.disable()
+
+func enable(grid: EventGrid):
 	_grid = grid
-	_snap_entities()
 	_sort_entities()
+	for entity in get_children():
+		entity.enable(grid)
 	if get_child_count() > 0: 
 		active = get_child(0)
 		emit_signal('active_changed', active)
@@ -25,7 +30,7 @@ func skip_turn():
 	return _next_entity()
 
 func play_turn():
-	if active != null: active.start_turn(_grid)
+	if active != null: active.start_turn()
 	else: return skip_turn()
 	var target = yield(active.input.choose_target(), "completed")
 	if target == null:
@@ -45,11 +50,6 @@ func _next_entity():
 		var index = active.get_index()
 		active = get_child((index+1) % count)
 		emit_signal('active_changed', active)
-
-func _snap_entities():
-	for entity in get_children():
-		var hex = _grid.hexgrid.pixel_to_hex(entity.position)
-		entity.position = _grid.hexgrid.hex_to_pixel(hex)
 
 func _sort_entities():
 	var list = get_children()

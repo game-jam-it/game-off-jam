@@ -24,12 +24,13 @@ func _ready():
 """
 
 func end_event():
+	queue.disable()
 	queue.visible = false
 	self.is_active = false
 	print("Ending Event: %s" % name)
 
 func start_event():
-	queue.inti(grid)
+	queue.enable(grid)
 	queue.visible = true
 	self.is_active = true
 	print("Starting Event: %s" % name)

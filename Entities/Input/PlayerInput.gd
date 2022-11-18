@@ -84,7 +84,7 @@ func _enter_action_state():
 	# Thus no 'action selection' to show
 	# TODO If no enemy on target -> move to
 	# else show available attacks
-	print("%s choose action" % entity.name)
+	print("%s: choose action" % entity.name)
 
 
 """
@@ -97,18 +97,15 @@ func _target_input(event):
 		emit_signal("_target_selected", null)
 	if event.is_action_pressed("mouse_click"):
 		_exit_target_state()
+		# Note: this does not reset the target
 		emit_signal("_target_selected", target_cell)
 
 func _target_process(_delta):
 	var pos = get_global_mouse_position() - self.global_position
 	var hex = _grid.hexgrid.pixel_to_hex(pos)
 	if !hex.equals(target_cell):
-		print("mouse_position: %s" % [pos])
-		print("-self.position: %s" % [self.global_position])
-		print_debug("Update target: %s, %s" % [hex.q, hex.r])
 		target_hex.position = _grid.hexgrid.hex_to_pixel(hex)
 		target_cell = hex
-	# - TODO Setup Target Hex
 	pass
 
 func _exit_target_state():
@@ -116,7 +113,7 @@ func _exit_target_state():
 
 func _enter_target_state():
 	_goal = Goal.Target
-	print("%s choose target" % entity.name)
+	print("%s: choose target" % entity.name)
 
 
 """
