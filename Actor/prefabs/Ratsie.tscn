@@ -25,14 +25,12 @@ texture = ExtResource( 6 )
 script = ExtResource( 5 )
 
 [node name="ActorHex" type="Sprite" parent="Input"]
-visible = false
 modulate = Color( 1, 0.921569, 0.231373, 1 )
 scale = Vector2( 0.25, 0.25 )
 z_index = -2
 texture = ExtResource( 7 )
 
 [node name="TargetHex" type="Sprite" parent="Input"]
-visible = false
 modulate = Color( 1, 0.184314, 0.313726, 1 )
 scale = Vector2( 0.25, 0.25 )
 z_index = -1
@@ -41,14 +39,16 @@ texture = ExtResource( 7 )
 [node name="Actions" type="Node2D" parent="."]
 
 [node name="MoveTo" type="Node2D" parent="Actions"]
+unique_name_in_owner = true
 script = ExtResource( 4 )
 
 [node name="Tween" type="Tween" parent="Actions/MoveTo"]
 
-[node name="Attack" type="Node2D" parent="Actions"]
+[node name="AttackTo" type="Node2D" parent="Actions"]
+unique_name_in_owner = true
 script = ExtResource( 3 )
 
-[node name="Tween" type="Tween" parent="Actions/Attack"]
+[node name="Tween" type="Tween" parent="Actions/AttackTo"]
 
 [node name="SenseArea" type="Area2D" parent="."]
 position = Vector2( 0, -10 )

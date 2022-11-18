@@ -42,8 +42,10 @@ func get_location(coords: Vector2):
 	return hexgrid.hex_to_pixel(hex)
 
 func get_cell_state(coords: Vector2):
-	for entity in entity_map:
-		if entity.coords == coords:
+	for key in entity_map:
+		var entity = entity_map[key]
+		var hex = entity.get_grid_cell()
+		if coords == hex.get_axial_coords():
 			return {
 				"state": CellState.Entity,
 				"entity": entity
@@ -71,13 +73,13 @@ func get_line_of_sight_cover(start, target):
 """
 
 func add_entity(entity: Entity):
-	entity_map[entity.index] = entity
+	entity_map[entity.get_index()] = entity
 
 func clear_entity(entity: Entity):
-	entity_map.erase(entity.index)
+	entity_map.erase(entity.get_index())
 
 func add_cell_blocker(coords: Vector2):
-	hexgrid.add_path_obstacles([coords], 0)
+	hexgrid.add_path_obstacles([coords], 10)
 	obj_map[coords] = {
 		"state": CellState.Blocker,
 	}
@@ -154,13 +156,13 @@ func _init_area_object(obj: GridObject):
 func _init_path_object(obj: GridObject):
 	var end = hexgrid.pixel_to_hex(obj.get_end())
 	var start = hexgrid.pixel_to_hex(obj.get_start())
-	var path = start.line_to(end)
-	path.append(end)
-	path.append(start)
-	self._init_hex_array_for(obj, path)
+	var hexes = start.line_to(end)
+	hexes.append(end)
+	hexes.append(start)
+	self._init_hex_array_for(obj, hexes)
 
 func _init_hex_array_for(obj: GridObject, hexes: Array):
-	match obj.obj_type:
+	match obj.block_type:
 		GridObject.BlockType.Blocker:
 			for hex in hexes:
 				var coords = hex.get_axial_coords()

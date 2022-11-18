@@ -41,15 +41,17 @@ texture = ExtResource( 7 )
 [node name="Actions" type="Node2D" parent="."]
 
 [node name="MoveTo" type="Node2D" parent="Actions"]
+unique_name_in_owner = true
 script = ExtResource( 4 )
 
 [node name="Tween" type="Tween" parent="Actions/MoveTo"]
 
-[node name="Attack" type="Node2D" parent="Actions"]
+[node name="AttackTo" type="Node2D" parent="Actions"]
+unique_name_in_owner = true
 position = Vector2( 0, -1 )
 script = ExtResource( 3 )
 
-[node name="Tween" type="Tween" parent="Actions/Attack"]
+[node name="Tween" type="Tween" parent="Actions/AttackTo"]
 
 [node name="SenseArea" type="Area2D" parent="."]
 scale = Vector2( 0.06, 0.06 )

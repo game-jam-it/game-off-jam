@@ -19,6 +19,7 @@ size = 20
 
 [node name="Blocked - 01" type="Node2D" parent="Grid/Objects"]
 script = ExtResource( 7 )
+cell_cost = 0
 obj_type = 1
 
 [node name="End" type="Position2D" parent="Grid/Objects/Blocked - 01"]
@@ -29,6 +30,7 @@ position = Vector2( 195, -127 )
 
 [node name="Blocked - 02" type="Node2D" parent="Grid/Objects"]
 script = ExtResource( 7 )
+cell_cost = 0
 obj_type = 1
 
 [node name="End" type="Position2D" parent="Grid/Objects/Blocked - 02"]
@@ -39,6 +41,7 @@ position = Vector2( 195, -127 )
 
 [node name="Blocked - 03" type="Node2D" parent="Grid/Objects"]
 script = ExtResource( 7 )
+cell_cost = 0
 obj_type = 1
 
 [node name="End" type="Position2D" parent="Grid/Objects/Blocked - 03"]
@@ -49,6 +52,7 @@ position = Vector2( 200, 122 )
 
 [node name="Blocked - 04" type="Node2D" parent="Grid/Objects"]
 script = ExtResource( 7 )
+cell_cost = 0
 obj_type = 1
 
 [node name="End" type="Position2D" parent="Grid/Objects/Blocked - 04"]
@@ -59,6 +63,7 @@ position = Vector2( 58, 123 )
 
 [node name="Blocked - 05" type="Node2D" parent="Grid/Objects"]
 script = ExtResource( 7 )
+cell_cost = 0
 obj_type = 1
 
 [node name="End" type="Position2D" parent="Grid/Objects/Blocked - 05"]
@@ -69,6 +74,7 @@ position = Vector2( -204, -125 )
 
 [node name="Blocked - 06" type="Node2D" parent="Grid/Objects"]
 script = ExtResource( 7 )
+cell_cost = 0
 obj_type = 1
 
 [node name="End" type="Position2D" parent="Grid/Objects/Blocked - 06"]
@@ -78,7 +84,7 @@ position = Vector2( -203, -124 )
 position = Vector2( -134, -126 )
 
 [node name="Obstical - 01" type="Node2D" parent="Grid/Objects"]
-position = Vector2( 9, 7 )
+position = Vector2( -28, 382 )
 script = ExtResource( 7 )
 obj_size = 1
 cell_cost = 4
@@ -89,7 +95,7 @@ block_type = 1
 script = ExtResource( 4 )
 
 [node name="TheNerd" parent="Queue" instance=ExtResource( 6 )]
-position = Vector2( -12, -223 )
+position = Vector2( 282, -163 )
 
 [node name="Ratsie" parent="Queue" instance=ExtResource( 5 )]
 position = Vector2( -29, 28 )

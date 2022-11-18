@@ -78,7 +78,7 @@ func get_path_obstacles():
 	
 func add_path_obstacles(vals, cost=0):
 	# Store the given coordinate/s as obstacles
-	# Cost of zero blocks, higher is more dificult
+	# Cost of zero blocks, 1 is default and higher is more dificult
 	if not typeof(vals) == TYPE_ARRAY:
 		vals = [vals]
 	for coords in vals:

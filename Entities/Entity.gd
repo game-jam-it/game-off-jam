@@ -23,12 +23,14 @@ func _ready():
 		action.initialize(self)
 
 func disable():
-	_grid = null
-	sense_area.monitoring = false
 	sense_area.monitorable = false
+	sense_area.monitoring = false
+	_grid.clear_entity(self)
+	_grid = null
 
 func enable(grid):
 	_grid = grid
+	_grid.add_entity(self)
 	sense_area.monitoring = true
 	sense_area.monitorable = true
 	var hex = _grid.hexgrid.pixel_to_hex(position)

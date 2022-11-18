@@ -40,7 +40,7 @@ func play_turn():
 	if action == null:
 		active.end_turn()
 		return _next_entity()
-	yield(action.execute(target), "completed")
+	yield(action.execute(), "completed")
 	active.end_turn()
 	return _next_entity()
 

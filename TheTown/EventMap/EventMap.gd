@@ -33,6 +33,7 @@ func start_event():
 	queue.enable(grid)
 	queue.visible = true
 	self.is_active = true
+	yield(get_tree(), "idle_frame")
 	print("Starting Event: %s" % name)
 	yield(run_event(), "completed")
 
