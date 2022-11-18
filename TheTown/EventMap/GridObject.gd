@@ -13,6 +13,7 @@ enum BlockType {
 
 export(int) var obj_size = 0
 export(int) var cell_cost = 1
+export(int) var cell_cover = 100
 
 export(ObjType) var obj_type = ObjType.Area
 export(BlockType) var block_type = BlockType.Blocker

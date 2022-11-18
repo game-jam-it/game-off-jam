@@ -94,10 +94,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Items/Consumables/ConsumableEffects/Scripts/OneChallengeStatBoostEffect.gd"
 }, {
+"base": "Entity",
+"class": "RatEntity",
+"language": "GDScript",
+"path": "res://Actor/prefabs/Ratsie.gd"
+}, {
 "base": "WeaponEffect",
 "class": "ReductionBoostEffect",
 "language": "GDScript",
 "path": "res://Items/Weapons/WeaponEffects/Scripts/ReductionBoostEffect.gd"
+}, {
+"base": "Area2D",
+"class": "SniffBox",
+"language": "GDScript",
+"path": "res://Entities/Detectors/SniffBox.gd"
+}, {
+"base": "Area2D",
+"class": "StinkBox",
+"language": "GDScript",
+"path": "res://Entities/Detectors/StinkBox.gd"
 }, {
 "base": "ConsumableEffect",
 "class": "StressReductionEffect",
@@ -167,7 +182,10 @@ _global_script_class_icons={
 "HealingEffect": "",
 "Item": "",
 "OneChallengeStatBoostEffect": "",
+"RatEntity": "",
 "ReductionBoostEffect": "",
+"SniffBox": "",
+"StinkBox": "",
 "StressReductionEffect": "",
 "TownCreator": "",
 "TownEvents": "",
@@ -291,6 +309,11 @@ mouse_click={
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="General"
+2d_physics/layer_2="Detection"
 
 [physics]
 

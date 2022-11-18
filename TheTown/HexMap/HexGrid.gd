@@ -250,12 +250,3 @@ func remove_view_obstacles(vals):
 	for coords in vals:
 		coords = HexCell.new(coords).get_axial_coords()
 		path_obstacles.erase(coords)
-
-func get_line_of_sight(_start, _target):
-	# Returns a vector from start to target
-	# TODO Draw Line and check every hex along the way
-	pass
-
-func has_line_of_sight(_start, _target, _exceptions=[]):
-	# TODO Draw Line and check every hex along the way
-	pass
