@@ -1,0 +1,20 @@
+[
+  {
+    "Name": "Test",
+    "Text": "Some test dialogue to see if things work",
+    "PortraitLeft": "Nerd",
+    "PortraitRight": "",
+  },
+  {
+    "Name": "Someone else",
+    "Text": "Someone else can talk too",
+    "PortraitLeft": "",
+    "PortraitRight": "Nerd",
+  },
+  {
+    "Name": "Someone else",
+    "Text": "And you can keep adding more and more dialogue to the file",
+    "PortraitLeft": "",
+    "PortraitRight": "Nerd",
+  }
+]
