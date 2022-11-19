@@ -1,12 +1,14 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://Items/ConsumableItem.gd" type="Script" id=1]
 [ext_resource path="res://Items/Consumables/ConsumableEffects/BluntEffect.tres" type="Resource" id=2]
+[ext_resource path="res://Items/Assets/null_item.png" type="Texture" id=3]
 
 [resource]
 script = ExtResource( 1 )
 name = "Blunt"
 flavor = "Just chill out man. Enjoy it!"
+texture = ExtResource( 3 )
 effect_description = "Stress -1, can be used to exit panic."
 cost = 1
 consume_effects = [ ExtResource( 2 ) ]

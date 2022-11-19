@@ -11,23 +11,8 @@ Actor stats
 	Smarts
 """
 
-# Note: Can not preload, as cyclic refrences cause errors
-var item1 = load("res://Items/Consumables/Cleats.tres")
-var character1 = load("res://Characters/Nerd.tres")
-
-func _input(_event):
-	if Input.is_action_just_pressed("test"):
-		self.character = character1
-	if Input.is_action_just_pressed("test_2"):
-		print("consuming: " + item1.name)
-		item1.consume()
-	if Input.is_action_just_pressed("test_3"):
-		get_damage()
-		get_reduction()
-	if Input.is_action_just_pressed("test_4"):
-		var new_weapon: Weapon = load("res://Items/Weapons/Knife.tres")
-		print("Equipping new weapon: " + str(new_weapon.name))
-		ActorInventory.set_current_weapon(new_weapon)
+func _ready():
+	set_character(load("res://Characters/Nerd.tres"))
 
 # Base info
 var character: Character setget set_character
@@ -53,6 +38,9 @@ func set_character(new_character: Character) -> void:
 	# Reset inventory too
 	ActorInventory.ammo = 0
 	ActorInventory.money = 0
+	ActorInventory.clear_inventory()
+	for item in character.items:
+		ActorInventory.add_item(item)
 
 # Primary stats
 var current_hearts: int = 5 setget set_current_hearts
@@ -94,6 +82,18 @@ var base_smarts: int = 1
 var fortitude_boost: int = 0 setget set_fortitude_boost
 var daring_boost: int = 0 setget set_daring_boost
 var smarts_boost: int = 0 setget set_smarts_boost
+
+func take_damage(enemy: Enemy) -> void:
+	self.current_hearts -= enemy.damage
+	
+	# Check for death
+	if current_hearts <= 0:
+		on_death()
+
+func on_death() -> void:
+	# TODO
+	print("Player died")
+	return
 
 signal fortitude_changed(value)
 signal daring_changed(value)

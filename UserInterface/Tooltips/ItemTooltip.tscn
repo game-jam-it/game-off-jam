@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://UserInterface/Assets/ui_sub_background_nineslice.png" type="Texture" id=1]
+[ext_resource path="res://UserInterface/Tooltips/ItemTooltip.gd" type="Script" id=2]
+[ext_resource path="res://UserInterface/Fonts/poppins_ui_text.tres" type="DynamicFont" id=3]
+[ext_resource path="res://UserInterface/Fonts/poppins_description_text.tres" type="DynamicFont" id=4]
+
+[node name="Tooltip" type="Popup"]
+mouse_filter = 2
+script = ExtResource( 2 )
+headerLabelPath = NodePath("Description/Header")
+descriptionLabelPath = NodePath("Description")
+
+[node name="Description" type="Label" parent="."]
+margin_right = 250.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "<Description>"
+autowrap = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Description"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -4.0
+margin_top = -24.0
+margin_right = 4.0
+margin_bottom = 4.0
+texture = ExtResource( 1 )
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+
+[node name="Header" type="Label" parent="Description"]
+show_behind_parent = true
+margin_top = -22.0
+margin_right = 250.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "<Header>"
+align = 1

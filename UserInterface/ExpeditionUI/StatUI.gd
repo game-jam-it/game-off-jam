@@ -1,12 +1,12 @@
 extends Control
 
 # Secondary stats
-onready var fortitude_value_label = $HBoxContainer/FortitudeDisplay/HBoxContainer/Value
-onready var daring_value_label = $HBoxContainer/DaringDisplay/HBoxContainer/Value
-onready var smarts_value_label = $HBoxContainer/SmartsDisplay/HBoxContainer/Value
-onready var fortitude_boost_value_label = $HBoxContainer/FortitudeDisplay/HBoxContainer/ValueBoost
-onready var daring_boost_value_label = $HBoxContainer/DaringDisplay/HBoxContainer/ValueBoost
-onready var smarts_boost_value_label = $HBoxContainer/SmartsDisplay/HBoxContainer/ValueBoost
+onready var fortitude_value_label = $HBoxContainer/StatDisplay/HBoxContainer/Value
+onready var daring_value_label = $HBoxContainer/StatDisplay2/HBoxContainer/Value
+onready var smarts_value_label = $HBoxContainer/StatDisplay3/HBoxContainer/Value
+onready var fortitude_boost_value_label = $HBoxContainer/StatDisplay/HBoxContainer/ValueBoost
+onready var daring_boost_value_label = $HBoxContainer/StatDisplay2/HBoxContainer/ValueBoost
+onready var smarts_boost_value_label = $HBoxContainer/StatDisplay3/HBoxContainer/ValueBoost
 # Supplies
 onready var ammo_label = $AmmoLabel
 onready var money_label = $MoneyLabel

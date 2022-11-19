@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://UserInterface/ExpeditionUI/ItemSlot.gd" type="Script" id=2]
+
+[node name="ItemSlot" type="CenterContainer"]
+script = ExtResource( 2 )
+
+[node name="BackgroundTexture" type="TextureRect" parent="."]
+
+[node name="ItemTexture" type="TextureRect" parent="."]
+
+[connection signal="gui_input" from="." to="." method="_on_ItemSlot_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_ItemSlot_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_ItemSlot_mouse_exited"]

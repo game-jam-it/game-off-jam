@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Items/Weapons/WeaponEffects/Scripts/DamageBoostEffect.gd"
 }, {
+"base": "Node",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://Enemies/Enemy.gd"
+}, {
 "base": "Node2D",
 "class": "Entity",
 "language": "GDScript",
@@ -119,6 +124,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Items/Consumables/ConsumableEffects/Scripts/StressReductionEffect.gd"
 }, {
+"base": "Popup",
+"class": "Tooltip",
+"language": "GDScript",
+"path": "res://UserInterface/Tooltips/Tooltip.gd"
+}, {
 "base": "Node2D",
 "class": "TownCreator",
 "language": "GDScript",
@@ -170,6 +180,7 @@ _global_script_class_icons={
 "ConsumableEffect": "",
 "ConsumableItem": "",
 "DamageBoostEffect": "",
+"Enemy": "",
 "Entity": "",
 "EntityAction": "",
 "EntityInput": "",
@@ -187,6 +198,7 @@ _global_script_class_icons={
 "SniffBox": "",
 "StinkBox": "",
 "StressReductionEffect": "",
+"Tooltip": "",
 "TownCreator": "",
 "TownEvents": "",
 "TownGrid": "",

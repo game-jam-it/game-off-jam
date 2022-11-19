@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stress_bar_empty.png-b0917803ee2eaa5ec74c6fffa89742ad.stex"
+path="res://.import/daring_icon.png-a7c57e40da10bbfd97e1fae927bf7c25.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UserInterface/Assets/stress_bar_empty.png"
-dest_files=[ "res://.import/stress_bar_empty.png-b0917803ee2eaa5ec74c6fffa89742ad.stex" ]
+source_file="res://UserInterface/Assets/daring_icon.png"
+dest_files=[ "res://.import/daring_icon.png-a7c57e40da10bbfd97e1fae927bf7c25.stex" ]
 
 [params]
 
