@@ -84,7 +84,7 @@ position = Vector2( -203, -124 )
 position = Vector2( -134, -126 )
 
 [node name="Obstical - 01" type="Node2D" parent="Grid/Objects"]
-position = Vector2( -28, 382 )
+position = Vector2( 11, -8 )
 script = ExtResource( 7 )
 obj_size = 1
 cell_cost = 4

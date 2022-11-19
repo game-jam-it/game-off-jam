@@ -61,11 +61,15 @@ func get_line_of_sight(start, target):
 
 func get_line_of_sight_cover(start, target):
 	var path = start.line_to(target)
+	# pop the start tile off
+	path.pop_front()
 	var cover = 0
+	print("Size: %s" % path.size())
 	for hex in path:
 		var coords = hex.get_axial_coords()
 		if view_map.has(coords):
 			cover += view_map[coords]
+			print("%s > Add: %s" % [coords, view_map[coords]])
 	return cover
 
 """

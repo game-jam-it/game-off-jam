@@ -23,6 +23,7 @@ texture = ExtResource( 6 )
 
 [node name="Input" type="Node2D" parent="."]
 script = ExtResource( 5 )
+view_perseption = 75
 
 [node name="ActorHex" type="Sprite" parent="Input"]
 modulate = Color( 1, 0.921569, 0.231373, 1 )

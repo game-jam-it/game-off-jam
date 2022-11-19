@@ -101,44 +101,45 @@ position = Vector2( -121, -307 )
 position = Vector2( -84, -343 )
 script = ExtResource( 8 )
 obj_size = 1
-cell_cost = 4
-cell_cover = 50
+cell_cost = 2
+cell_cover = 30
 block_type = 1
 
 [node name="Obstical - 02" type="Node2D" parent="Grid/Objects"]
 position = Vector2( 87, -342 )
 script = ExtResource( 8 )
 obj_size = 1
-cell_cost = 4
-cell_cover = 50
+cell_cost = 2
+cell_cover = 30
 block_type = 1
 
 [node name="Obstical - 03" type="Node2D" parent="Grid/Objects"]
 position = Vector2( -93, 335 )
 script = ExtResource( 8 )
 obj_size = 1
-cell_cost = 4
-cell_cover = 50
+cell_cost = 2
+cell_cover = 30
 block_type = 1
 
 [node name="Obstical - 04" type="Node2D" parent="Grid/Objects"]
 position = Vector2( 92, 337 )
 script = ExtResource( 8 )
 obj_size = 1
-cell_cost = 4
-cell_cover = 50
+cell_cost = 2
+cell_cover = 30
 block_type = 1
 
 [node name="Queue" type="Node2D" parent="."]
 script = ExtResource( 4 )
 
 [node name="TheNerd" parent="Queue" instance=ExtResource( 5 )]
+position = Vector2( -30, 255 )
 
 [node name="Ratsie" parent="Queue" instance=ExtResource( 6 )]
 position = Vector2( -264, -192 )
 
 [node name="Ratsio" parent="Queue" instance=ExtResource( 6 )]
-position = Vector2( 264, 192 )
+position = Vector2( 57, 193 )
 scale = Vector2( -1, 1 )
 
 [node name="Spawns" type="Node2D" parent="."]

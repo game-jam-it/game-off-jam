@@ -1,5 +1,7 @@
 extends EntityInput
 
+export(int) var view_perseption = 50
+
 onready var actor_hex = $ActorHex
 onready var target_hex = $TargetHex
 
@@ -32,7 +34,9 @@ func choose_action():
 	var from = entity.get_grid_cell()
 	if from.distance_to(to) == 1:
 		return _attack_target(to, from)
-	if _grid.get_line_of_sight_cover(from, to) == 0:
+	var los = _grid.get_line_of_sight_cover(from, to)
+	print_debug("%s < %s" % [los, self.view_perseption])
+	if los < self.view_perseption:
 		return _move_to_target(to, from)
 	return _search_for_target()
 
@@ -66,8 +70,11 @@ func _move_to_target(to, from):
 
 	var hex = path[1]
 	var cell = _grid.get_cell_state(hex.get_axial_coords())
-	if cell.state != EventGrid.CellState.Empty:
+	if cell.state == EventGrid.CellState.Entity:
 		print("> %s: Out of my way, I want to eat it" % entity.name)
+		return null	
+	elif cell.state == EventGrid.CellState.Blocker:
+		print("> %s: Break this thing, it is in my way" % entity.name)
 		return null	
 	print("> %s: I'm comming for you, better hide" % entity.name)
 	var act = get_node("%MoveTo")

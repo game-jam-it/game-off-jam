@@ -70,10 +70,11 @@ func _action_process(_delta):
 		var cell = _grid.get_cell_state(to.get_axial_coords())
 		if cell.state == EventGrid.CellState.Entity:
 			action = _attack_target(to, cell.entity)
-		elif cell.state == EventGrid.CellState.Empty:
+		elif cell.state != EventGrid.CellState.Blocker:
 			action = _move_to(to)
+		# TODO else target is blocked, break it?
 	else:
-		action = _check_move_to(to, from)
+		action = _try_to_move(to, from)
 
 	_exit_action_state()
 	emit_signal("_action_selected", action)
@@ -124,7 +125,7 @@ func _enter_target_state():
 	Posible Actions
 """
 
-func _check_move_to(to, from):
+func _try_to_move(to, from):
 	var path = _grid.hexgrid.find_path(from, to)
 	if path.size() < 2: 
 		return null
@@ -132,7 +133,7 @@ func _check_move_to(to, from):
 	var cell = _grid.get_cell_state(hex.get_axial_coords())
 	if cell.state == EventGrid.CellState.Entity:
 		return _attack_target(hex, cell.entity)
-	elif cell.state == EventGrid.CellState.Empty:
+	elif cell.state != EventGrid.CellState.Blocker:
 		return _move_to(hex)
 
 func _attack_target(hex, target):
