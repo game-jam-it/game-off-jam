@@ -1,25 +1,55 @@
 class_name EventMap
 extends Node2D
 
-signal pause_explore_event(coords)
+# TODO On Ready
+# - Spawn player on to the map
+# - Add player to the queue**
 
-# Called when the node enters the scene tree for the first time.
+# TODO On Actor Moved -> update grid
+# TODO Put initial actors on ot the grid
+
+var is_active = false
+
+onready var grid = $Grid
+onready var queue = $Queue
+onready var spawns = $Spawns
+
 func _ready():
-	pass # Replace with function body.
+	queue.visible = false
+	queue.connect("queue_changed", self, "on_queue_changed")
+	queue.connect("active_changed", self, "on_active_changed")
 
-func handle_input(input):
-	if input.is_action_pressed("ui_cancel"):
-		print_debug("Eventmap -> pause_explore_event")
-		emit_signal("pause_explore_event")
+"""
+	Handle Event State
+"""
 
-func end_mode(_coords):
-	# TODO Expand System
-	# Rename to mode
-	visible = false
-	pass
+func end_event():
+	queue.disable()
+	queue.visible = false
+	self.is_active = false
+	print("Ending Event: %s" % name)
 
-func start_mode(_coords):
-	# TODO Expand System
-	# Rename to mode
-	visible = true
-	pass
+func start_event():
+	queue.enable(grid)
+	queue.visible = true
+	self.is_active = true
+	yield(get_tree(), "idle_frame")
+	print("Starting Event: %s" % name)
+	yield(run_event(), "completed")
+
+func run_event():
+	yield(queue.play_turn(), "completed")
+	if is_active: yield(run_event(), "completed")
+
+"""
+	Handle Queue Updates
+"""
+
+func on_queue_changed(list):
+		# TODO Update UI
+	for e in list:
+		print("List: %s (%s)" % [e.name, e.initiative])
+
+func on_active_changed(active):
+	if active != null:
+		print("Active: %s (%s)" % [active.name, active.initiative])

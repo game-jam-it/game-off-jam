@@ -13,10 +13,8 @@ func _process(_delta):
 	update()
 
 func _draw():
-	if !TheTown.draw_debug:
-		return
-
-	draw_arc(Vector2(0, 0), SIZE, 0, PI2, 32, color, 8)
+	if TheTown.draw_debug:
+		draw_arc(Vector2(0, 0), SIZE, 0, PI2, 32, color, 8)
 
 func set_color(value:Color):
 	color = value

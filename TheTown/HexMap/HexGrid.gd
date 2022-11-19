@@ -61,6 +61,7 @@ func _round_coords(vec):
 		o.z = -o.x - o.y
 	return o
 
+
 """
 	Pathfinding Utilities
 """
@@ -77,6 +78,7 @@ func get_path_obstacles():
 	
 func add_path_obstacles(vals, cost=0):
 	# Store the given coordinate/s as obstacles
+	# Cost of zero blocks, 1 is default and higher is more dificult
 	if not typeof(vals) == TYPE_ARRAY:
 		vals = [vals]
 	for coords in vals:
@@ -248,12 +250,3 @@ func remove_view_obstacles(vals):
 	for coords in vals:
 		coords = HexCell.new(coords).get_axial_coords()
 		path_obstacles.erase(coords)
-
-func get_line_of_sight(_start, _target):
-	# Returns a vector from start to target
-	# TODO Draw Line and check every hex along the way
-	pass
-
-func has_line_of_sight(_start, _target, _exceptions=[]):
-	# TODO Draw Line and check every hex along the way
-	pass
