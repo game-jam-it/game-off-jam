@@ -35,7 +35,6 @@ func choose_action():
 	if from.distance_to(to) == 1:
 		return _attack_target(to, from)
 	var los = _grid.get_line_of_sight_cover(from, to)
-	print_debug("%s < %s" % [los, self.view_perseption])
 	if los < self.view_perseption:
 		return _move_to_target(to, from)
 	return _search_for_target()
