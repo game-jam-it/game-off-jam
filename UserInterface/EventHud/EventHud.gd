@@ -3,6 +3,7 @@ extends Control
 func _ready():
 	pass
 
+
 func enable():
 	visible = true
 

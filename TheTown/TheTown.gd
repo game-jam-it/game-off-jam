@@ -48,9 +48,15 @@ enum TownState {
 	ExploreMode
 }
 
+signal town_restart
+signal town_generated
+
 signal event_clear(coords)
 signal event_focused(coords)
 signal event_selected(coords)
+
+signal stop_expedition
+signal start_expedition
 
 signal pause_expedition
 signal resume_expedition
@@ -113,7 +119,10 @@ func get_events():
 
 func build_the_town():
 	camera.zoom_reset()
-	yield(creator.create_town("GameOff 2022", map_cfg), "completed")
+	emit_signal("town_restart")
+	var seed_phrase = "GameOff 2022 - %s" % OS.get_unix_time()
+	yield(creator.create_town(seed_phrase, map_cfg), "completed")
+	emit_signal("town_generated")
 
 """
 	Prep-Phase Events & Logic
@@ -148,8 +157,9 @@ func start_selected_event(coords):
 	town_state = TownState.ExploreMode
 	emit_signal("event_focused", coords)
 	camera.set_zoom_to(grid.get_location(event_coords))
-	events.start_event(coords)
 	nodes.hide_mode(coords)
+	emit_signal("start_expedition", coords)
+	events.start_event(coords)
 	grid.visible = false
 
 func cancel_selected_event(coords):
@@ -158,13 +168,19 @@ func cancel_selected_event(coords):
 	# TODO Implement
 
 
+func stop_active_event():
+	# TODO Make sure this breaks the maps queue
+	town_state = TownState.PrepMode
+	events.end_event(event_coords)
+	emit_signal("stop_expedition", event_coords)
+	nodes.show_mode(event_coords)
+	camera.zoom_reset()
+	grid.visible = true
+
 func on_pause_explore_event():
 	print("Pause expedition: %s.%s" % [event_coords.x, event_coords.y])
 	emit_signal("pause_expedition")
 	# TODO Asjut pause behavior
 	# Current behavior is exit
-	town_state = TownState.PrepMode
-	events.end_event(event_coords)
-	nodes.show_mode(event_coords)
-	camera.zoom_reset()
-	grid.visible = true
+	stop_active_event()
+

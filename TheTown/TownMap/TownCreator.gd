@@ -155,10 +155,8 @@ func create_town(_seed_phrase:String, cfg = {
 	mapped = Events.build_maps()
 
 	rng = RandomNumberGenerator.new()
-	# FixMe: Add rndome seed_phrases
-	# rng.seed = hash(_seed_phrase)
+	rng.seed = hash(_seed_phrase)
 	seed_phrase = _seed_phrase
-	rng.randomize()
 
 	grid = TheTown.get_grid()
 	nodes = TheTown.get_nodes()
