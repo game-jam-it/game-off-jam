@@ -1,18 +1,30 @@
 class_name EventMap
 extends Node2D
 
-# TODO On Ready
-# - Spawn player on to the map
-# - Add player to the queue**
-
-# TODO On Actor Moved -> update grid
-# TODO Put initial actors on ot the grid
 
 var is_active = false
 
 onready var grid = $Grid
 onready var queue = $Queue
 onready var spawns = $Spawns
+
+export(String) var map_title = "Unknown"
+export(String, MULTILINE) var map_summary = "An unknown map"
+
+export var map_objectives = {
+	"lore": {
+		"done": 0,
+		"total": 1,
+	},
+	"relic": {
+		"done": 0,
+		"total": 2,
+	},
+	"banish": {
+		"done": 0,
+		"total": 4,
+	},
+}
 
 func _ready():
 	queue.visible = false

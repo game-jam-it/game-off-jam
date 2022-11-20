@@ -8,20 +8,20 @@ var center = []
 
 var country = [{
 	"size": 4,
-	"name": "Cemetary",
+	"name": "A Cemetary",
 	"descr": "You go here to find common sense.",
 	"scene": preload("res://Events/country/Cemetary.tscn"),
 },{
 	"size": 2,
-	"name": "Empty House",
-	"descr": "The introduction, auto starts ...",
+	"name": "Haunted House",
+	"descr": "You should not be here, yet you are.",
 	"scene": preload("res://Events/country/IntroHouse.tscn"),
 }]
 
 var outskirt = [{
 	"size": 3,
-	"name": "A Girls House",
-	"descr": "You need common sense to defeat the girl.",
+	"name": "The Girls House",
+	"descr": "Common sense tells you stay away, but you just have to save the town.",
 	"scene": preload("res://Events/outskirt/FinalHouse.tscn"),
 }]
 

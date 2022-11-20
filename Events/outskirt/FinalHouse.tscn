@@ -9,7 +9,24 @@
 [ext_resource path="res://TheTown/EventMap/GridObject.gd" type="Script" id=7]
 
 [node name="FinalHouse" type="Node2D"]
+modulate = Color( 0.458824, 0.458824, 0.458824, 1 )
 script = ExtResource( 3 )
+map_title = "The Girls House"
+map_summary = "Common sense tells you stay away, but you just have to save the town."
+map_objectives = {
+"banish": {
+"done": 0,
+"total": 5
+},
+"lore": {
+"done": 0,
+"total": 1
+},
+"relic": {
+"done": 0,
+"total": 1
+}
+}
 
 [node name="Grid" type="Node2D" parent="."]
 script = ExtResource( 2 )
