@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/expand_button_highlighted.png-25da06e13f6bd603b085f1fccf0f7952.stex"
+path="res://.import/heart.png-c909eec3a80891ebc83b5fffa92ff47a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UserInterface/Assets/expand_button_highlighted.png"
-dest_files=[ "res://.import/expand_button_highlighted.png-25da06e13f6bd603b085f1fccf0f7952.stex" ]
+source_file="res://UserInterface/assets/heart.png"
+dest_files=[ "res://.import/heart.png-c909eec3a80891ebc83b5fffa92ff47a.stex" ]
 
 [params]
 

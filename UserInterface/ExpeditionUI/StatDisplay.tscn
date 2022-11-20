@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UserInterface/ExpeditionUI/StatDisplay.gd" type="Script" id=1]
-[ext_resource path="res://UserInterface/Assets/ui_sub_background_nineslice.png" type="Texture" id=2]
-[ext_resource path="res://UserInterface/Fonts/Poppins-Bold.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://UserInterface/Fonts/poppins_ui_text.tres" type="DynamicFont" id=4]
+[ext_resource path="res://UserInterface/assets/ui_sub_background_nineslice.png" type="Texture" id=2]
+[ext_resource path="res://UserInterface/fonts/Poppins-Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://UserInterface/fonts/poppins_ui_text.tres" type="DynamicFont" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 8

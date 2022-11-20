@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://UserInterface/Assets/ui_sub_background_nineslice.png" type="Texture" id=1]
+[ext_resource path="res://UserInterface/assets/ui_sub_background_nineslice.png" type="Texture" id=1]
 [ext_resource path="res://UserInterface/ExpeditionUI/ItemGrid.tscn" type="PackedScene" id=2]
-[ext_resource path="res://UserInterface/Fonts/poppins_ui_text.tres" type="DynamicFont" id=3]
+[ext_resource path="res://UserInterface/fonts/poppins_ui_text.tres" type="DynamicFont" id=3]
 
 [node name="InventoryUI" type="Control"]
 margin_right = 40.0

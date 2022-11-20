@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://UserInterface/Assets/ui_sub_background_nineslice.png" type="Texture" id=1]
+[ext_resource path="res://UserInterface/assets/ui_sub_background_nineslice.png" type="Texture" id=1]
 [ext_resource path="res://UserInterface/Tooltips/ItemTooltip.gd" type="Script" id=2]
-[ext_resource path="res://UserInterface/Fonts/poppins_ui_text.tres" type="DynamicFont" id=3]
-[ext_resource path="res://UserInterface/Fonts/poppins_description_text.tres" type="DynamicFont" id=4]
+[ext_resource path="res://UserInterface/fonts/poppins_ui_text.tres" type="DynamicFont" id=3]
+[ext_resource path="res://UserInterface/fonts/poppins_description_text.tres" type="DynamicFont" id=4]
 
 [node name="Tooltip" type="Popup"]
 mouse_filter = 2

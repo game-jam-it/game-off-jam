@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stress_segment.png-7c1205bacbf5114d1bd89bfcea553ed3.stex"
+path="res://.import/portrait-frame.svg-5a9e7c7af784f2d7e2220c42c5f44c88.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UserInterface/Assets/stress_segment.png"
-dest_files=[ "res://.import/stress_segment.png-7c1205bacbf5114d1bd89bfcea553ed3.stex" ]
+source_file="res://prototype/assets/raw/portrait-frame.svg"
+dest_files=[ "res://.import/portrait-frame.svg-5a9e7c7af784f2d7e2220c42c5f44c88.stex" ]
 
 [params]
 

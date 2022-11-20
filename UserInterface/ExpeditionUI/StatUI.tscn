@@ -2,10 +2,10 @@
 
 [ext_resource path="res://UserInterface/ExpeditionUI/StatUI.gd" type="Script" id=1]
 [ext_resource path="res://UserInterface/ExpeditionUI/StatDisplay.tscn" type="PackedScene" id=2]
-[ext_resource path="res://UserInterface/Fonts/poppins_ui_text.tres" type="DynamicFont" id=3]
-[ext_resource path="res://UserInterface/Assets/fortitude_icon.png" type="Texture" id=4]
-[ext_resource path="res://UserInterface/Assets/smarts_icon.png" type="Texture" id=5]
-[ext_resource path="res://UserInterface/Assets/daring_icon.png" type="Texture" id=6]
+[ext_resource path="res://UserInterface/fonts/poppins_ui_text.tres" type="DynamicFont" id=3]
+[ext_resource path="res://UserInterface/assets/fortitude_icon.png" type="Texture" id=4]
+[ext_resource path="res://UserInterface/assets/smarts_icon.png" type="Texture" id=5]
+[ext_resource path="res://UserInterface/assets/daring_icon.png" type="Texture" id=6]
 
 [node name="StatUI" type="Control"]
 anchor_right = 1.0

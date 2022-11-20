@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fortitude_icon.png-eccb22ca46844dd2990fb0f63869bedd.stex"
+path="res://.import/heart_empty.png-c1665e0f34245e83c0456a852ec7d269.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UserInterface/Assets/fortitude_icon.png"
-dest_files=[ "res://.import/fortitude_icon.png-eccb22ca46844dd2990fb0f63869bedd.stex" ]
+source_file="res://UserInterface/assets/heart_empty.png"
+dest_files=[ "res://.import/heart_empty.png-c1665e0f34245e83c0456a852ec7d269.stex" ]
 
 [params]
 

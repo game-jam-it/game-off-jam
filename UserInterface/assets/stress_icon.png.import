@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/smarts_icon.png-7a7135ba122de9da98c32270312ef1fc.stex"
+path="res://.import/stress_icon.png-262f837cc6177bf7dfa96692d8dd23de.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UserInterface/Assets/smarts_icon.png"
-dest_files=[ "res://.import/smarts_icon.png-7a7135ba122de9da98c32270312ef1fc.stex" ]
+source_file="res://UserInterface/assets/stress_icon.png"
+dest_files=[ "res://.import/stress_icon.png-262f837cc6177bf7dfa96692d8dd23de.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/daring_icon.png-a7c57e40da10bbfd97e1fae927bf7c25.stex"
+path="res://.import/portrait_default_flip.png-6a34801119b9661e6a1f7fb29e4c6deb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UserInterface/Assets/daring_icon.png"
-dest_files=[ "res://.import/daring_icon.png-a7c57e40da10bbfd97e1fae927bf7c25.stex" ]
+source_file="res://UserInterface/assets/portrait_default_flip.png"
+dest_files=[ "res://.import/portrait_default_flip.png-6a34801119b9661e6a1f7fb29e4c6deb.stex" ]
 
 [params]
 

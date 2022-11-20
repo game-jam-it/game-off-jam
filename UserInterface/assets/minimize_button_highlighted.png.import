@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ui_sub_background_nineslice.png-6e59fe29c78e28442f87b4b6b12c34b1.stex"
+path="res://.import/minimize_button_highlighted.png-f7024a7925e6aef7f94ab91f29475dce.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UserInterface/Assets/ui_sub_background_nineslice.png"
-dest_files=[ "res://.import/ui_sub_background_nineslice.png-6e59fe29c78e28442f87b4b6b12c34b1.stex" ]
+source_file="res://UserInterface/assets/minimize_button_highlighted.png"
+dest_files=[ "res://.import/minimize_button_highlighted.png-f7024a7925e6aef7f94ab91f29475dce.stex" ]
 
 [params]
 

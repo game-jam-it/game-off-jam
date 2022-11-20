@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/minimize_button.png-69a2f4d0f75f5f705422f50aa35dee7f.stex"
+path="res://.import/daring_icon.png-b16e51c228b063053f79da4e531be129.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UserInterface/Assets/minimize_button.png"
-dest_files=[ "res://.import/minimize_button.png-69a2f4d0f75f5f705422f50aa35dee7f.stex" ]
+source_file="res://UserInterface/assets/daring_icon.png"
+dest_files=[ "res://.import/daring_icon.png-b16e51c228b063053f79da4e531be129.stex" ]
 
 [params]
 
