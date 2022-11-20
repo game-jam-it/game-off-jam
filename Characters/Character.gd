@@ -14,6 +14,11 @@ export(Array, Resource) var items
 # Resources for the advanced effects
 export(Array, Resource) var character_effects
 
+# UI Textures used as character portreits
+export(Texture) var portrait_base = preload("res://UserInterface/assets/portrait_default.png")
+export(Texture) var portrait_damaged = preload("res://UserInterface/assets/portrait_default.png")
+export(Texture) var portrait_stressed = preload("res://UserInterface/assets/portrait_default.png")
+
 func activate_effect() -> void:
 	for effect in character_effects:
 		if effect != null and effect.has_method("trigger_effect"):
