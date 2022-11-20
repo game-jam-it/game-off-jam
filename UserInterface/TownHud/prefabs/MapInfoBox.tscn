@@ -1,0 +1,101 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://UserInterface/fonts/poppins_description_text.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UserInterface/fonts/poppins_ui_text.tres" type="DynamicFont" id=2]
+[ext_resource path="res://UserInterface/TownHud/prefabs/MapInfoBox.gd" type="Script" id=3]
+
+[node name="MapInfoBox" type="MarginContainer"]
+margin_right = 236.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 220, 80 )
+mouse_filter = 2
+custom_constants/margin_right = 16
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 220.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 160, 0 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 220.0
+margin_bottom = 80.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InfoBox" type="MarginContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
+margin_right = 220.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/InfoBox"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 212.0
+margin_bottom = 72.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/InfoBox"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 212.0
+margin_bottom = 72.0
+mouse_filter = 2
+
+[node name="MapNameValue" type="Label" parent="HBoxContainer/InfoBox/VBoxContainer"]
+unique_name_in_owner = true
+margin_right = 204.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 16 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Unknown"
+align = 2
+valign = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/InfoBox/VBoxContainer"]
+margin_top = 34.0
+margin_right = 204.0
+margin_bottom = 64.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/InfoBox/VBoxContainer/HBoxContainer3"]
+margin_right = 164.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 28 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Objectives"
+align = 2
+valign = 1
+uppercase = true
+
+[node name="ObjectiveValue" type="Label" parent="HBoxContainer/InfoBox/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+margin_left = 168.0
+margin_right = 204.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 36, 28 )
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "0/0"
+align = 1
+valign = 1
