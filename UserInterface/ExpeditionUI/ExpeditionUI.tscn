@@ -133,7 +133,6 @@ custom_styles/disabled = SubResource( 8 )
 custom_styles/normal = SubResource( 9 )
 
 [node name="ExpandedUIBorder" type="NinePatchRect" parent="."]
-visible = false
 show_behind_parent = true
 margin_right = 372.0
 margin_bottom = 290.0

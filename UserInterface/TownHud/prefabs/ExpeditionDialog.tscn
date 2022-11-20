@@ -1,17 +1,17 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://UserInterface/TownHud/prefabs/ExpeditionDialog.gd" type="Script" id=1]
+[ext_resource path="res://UserInterface/Fonts/poppins_ui_text.tres" type="DynamicFont" id=2]
+[ext_resource path="res://UserInterface/Fonts/poppins_description_text.tres" type="DynamicFont" id=3]
 
-[node name="ExpeditionDialog" type="PopupDialog"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_top = -270.0
-margin_right = 320.0
-margin_bottom = 270.0
-rect_min_size = Vector2( 320, 540 )
+[node name="ExpeditionDialog" type="Popup"]
+visible = true
+anchor_bottom = 1.0
+rect_min_size = Vector2( 320, 720 )
 input_pass_on_modal_close_click = false
 size_flags_horizontal = 5
 size_flags_vertical = 5
+popup_exclusive = true
 script = ExtResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -19,75 +19,127 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 16
-custom_constants/margin_top = 8
-custom_constants/margin_left = 16
-custom_constants/margin_bottom = 8
+custom_constants/margin_right = 24
+custom_constants/margin_top = 128
+custom_constants/margin_left = 24
+custom_constants/margin_bottom = 84
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+margin_left = 24.0
+margin_top = 128.0
+margin_right = 296.0
+margin_bottom = 636.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 16.0
-margin_top = 8.0
-margin_right = 304.0
-margin_bottom = 532.0
+margin_left = 24.0
+margin_top = 128.0
+margin_right = 296.0
+margin_bottom = 636.0
 custom_constants/separation = 8
 
 [node name="TopMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 288.0
-margin_bottom = 22.0
+margin_right = 272.0
+margin_bottom = 36.0
+custom_constants/margin_right = 8
 custom_constants/margin_top = 8
 custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/TopMargin"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 264.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
 [node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/TopMargin"]
 unique_name_in_owner = true
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 288.0
-margin_bottom = 22.0
+margin_right = 264.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
 text = "Event Title Here"
 
 [node name="InfoMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 30.0
-margin_right = 288.0
-margin_bottom = 480.0
+margin_top = 44.0
+margin_right = 272.0
+margin_bottom = 458.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_top = 8
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/InfoMargin"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 256.0
+margin_bottom = 398.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
 [node name="DescrLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoMargin"]
 unique_name_in_owner = true
-margin_top = 8.0
-margin_right = 288.0
-margin_bottom = 450.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 256.0
+margin_bottom = 398.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 3 )
 text = "Some Info about the event goes here. In to a long text box that wraps,"
 autowrap = true
 
 [node name="OptionsMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 488.0
-margin_right = 288.0
-margin_bottom = 524.0
+margin_top = 466.0
+margin_right = 272.0
+margin_bottom = 508.0
 custom_constants/margin_right = 16
 custom_constants/margin_top = 8
+custom_constants/margin_left = 16
 custom_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/OptionsMargin"]
-margin_left = 154.0
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/OptionsMargin"]
+margin_left = 16.0
 margin_top = 8.0
-margin_right = 272.0
-margin_bottom = 28.0
-size_flags_horizontal = 8
-custom_constants/separation = 12
+margin_right = 256.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/OptionsMargin"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 256.0
+margin_bottom = 34.0
+size_flags_horizontal = 11
+size_flags_vertical = 3
+custom_constants/separation = 24
 
 [node name="LeaveButton" type="Button" parent="MarginContainer/VBoxContainer/OptionsMargin/HBoxContainer"]
 unique_name_in_owner = true
-margin_left = 72.0
-margin_right = 118.0
-margin_bottom = 20.0
+margin_right = 108.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
 text = "leave"
 
 [node name="ExploreButton" type="Button" parent="MarginContainer/VBoxContainer/OptionsMargin/HBoxContainer"]
 unique_name_in_owner = true
-margin_right = 60.0
-margin_bottom = 20.0
+margin_left = 132.0
+margin_right = 240.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
 text = "explore"

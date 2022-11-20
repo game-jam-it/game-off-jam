@@ -1,4 +1,4 @@
-extends PopupDialog
+extends Popup
 
 var coords = null
 
