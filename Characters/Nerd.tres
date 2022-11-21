@@ -2,9 +2,9 @@
 
 [ext_resource path="res://Characters/Character.gd" type="Script" id=1]
 [ext_resource path="res://UserInterface/assets/portrait_default.png" type="Texture" id=2]
-[ext_resource path="res://Characters/Assets/portrait_nerd_damaged.png" type="Texture" id=3]
+[ext_resource path="res://Characters/assets/portrait_nerd_damaged.png" type="Texture" id=3]
 [ext_resource path="res://Items/Consumables/CSForIdiots.tres" type="Resource" id=4]
-[ext_resource path="res://Characters/Assets/portrait_nerd_base.png" type="Texture" id=5]
+[ext_resource path="res://Characters/assets/portrait_nerd_base.png" type="Texture" id=5]
 
 [resource]
 script = ExtResource( 1 )

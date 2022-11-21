@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/portrait_nerd_damaged.png-7c1760a5940abee498f3daf91495a6ab.stex"
+path="res://.import/portrait_nerd_damaged.png-89e51dbaba12ee3673ccceda61408725.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/Assets/portrait_nerd_damaged.png"
-dest_files=[ "res://.import/portrait_nerd_damaged.png-7c1760a5940abee498f3daf91495a6ab.stex" ]
+source_file="res://Characters/assets/portrait_nerd_damaged.png"
+dest_files=[ "res://.import/portrait_nerd_damaged.png-89e51dbaba12ee3673ccceda61408725.stex" ]
 
 [params]
 
