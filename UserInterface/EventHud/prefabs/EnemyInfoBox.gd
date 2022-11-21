@@ -4,24 +4,28 @@ onready var _info_box = get_node("%InfoBox")
 
 onready var _name_label = get_node("%NameValue")
 onready var _index_label = get_node("%IndexValue")
-
 onready var _health_label = get_node("%HealthValue")
 onready var _portrait_texture = get_node("%PortraitTexture")
 
-var _portrait_default = preload("res://UserInterface/assets/portrait_default_flip.png")
-
 
 func _ready():
-	_name_label.text = "Unknown"
-	_index_label.text = " (0) "
-	_health_label.text = "0/0"
-	_portrait_texture.texture = _portrait_default
 	_info_box.connect("gui_input", self, "on_gui_input")
 	_info_box.connect("mouse_exited", self, "on_mouse_exited")
 	_info_box.connect("mouse_entered", self, "on_mouse_entered")
 
-func initialize(_enemy):
-	# TODO Initialize enemy box
+func initialize(enemy: EnemyEntity):
+	if _name_label == null:
+		_name_label = get_node("%NameValue")
+	if _index_label == null:
+		_index_label = get_node("%IndexValue")
+	if _health_label == null:
+		_health_label = get_node("%HealthValue")
+	if _portrait_texture == null:
+		_portrait_texture = get_node("%PortraitTexture")
+	_name_label.text = enemy.enemy_name
+	_index_label.text = "(%s)" % enemy.get_index()
+	_health_label.text = "%s/%s" % [enemy.current_hearts, enemy.max_hearts]
+	_portrait_texture.texture = enemy.portrait_base
 	pass
 
 

@@ -68,8 +68,5 @@ func setup_event_list():
 	var scenes = TheTown.get_events().scenes
 	for key in scenes:
 		var box = map_box.instance()
-		box.visible = false
-		yield(get_tree(), "idle_frame")
 		box.initialize(key, scenes[key])
 		map_list.add_child(box)
-		box.visible = true

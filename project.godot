@@ -34,10 +34,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Items/Weapons/WeaponEffects/Scripts/DamageBoostEffect.gd"
 }, {
-"base": "Node",
-"class": "Enemy",
+"base": "Entity",
+"class": "EnemyEntity",
 "language": "GDScript",
-"path": "res://Enemies/Enemy.gd"
+"path": "res://Enemies/EnemyEntity.gd"
 }, {
 "base": "Node2D",
 "class": "Entity",
@@ -99,7 +99,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Items/Consumables/ConsumableEffects/Scripts/OneChallengeStatBoostEffect.gd"
 }, {
-"base": "Entity",
+"base": "EnemyEntity",
 "class": "RatEntity",
 "language": "GDScript",
 "path": "res://Actor/prefabs/Ratsie.gd"
@@ -180,7 +180,7 @@ _global_script_class_icons={
 "ConsumableEffect": "",
 "ConsumableItem": "",
 "DamageBoostEffect": "",
-"Enemy": "",
+"EnemyEntity": "",
 "Entity": "",
 "EntityAction": "",
 "EntityInput": "",

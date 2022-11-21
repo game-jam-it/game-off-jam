@@ -15,6 +15,11 @@ func clear():
 	for node in self.get_children():
 		node.queue_free()
 
+func get_scene(coords):
+	if scenes.has(coords):
+		return scenes[coords]
+	return null
+
 func handle_input(input):
 	if active != null:
 		return

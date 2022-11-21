@@ -15,13 +15,10 @@ func _ready():
 
 func initialize(coords: Vector2, event: EventMap):
 	_coords = coords
-	print_debug(event.map_title)
 	if _map_name_label == null:
 		_map_name_label = get_node("%MapNameValue")
 	if _objective_label == null:
 		_objective_label = get_node("%ObjectiveValue")
-	print_debug(_map_name_label)
-	print_debug(_map_name_label.text)
 	_map_name_label.text = event.map_title
 	var count = 0
 	var total = 0

@@ -48,5 +48,5 @@ func on_event_ended(coords):
 func on_event_started(coords):
 	print("%s.on_event_started" % name)
 	town_hud.disable()
-	event_hud.enable()
+	event_hud.initialize(coords)
 	pass

@@ -61,14 +61,15 @@ rect_min_size = Vector2( 236, 612 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MainView/HBox - Main/MBox-QueueList/ScrollContainer"]
+[node name="EnemyList" type="VBoxContainer" parent="VBoxContainer/MainView/HBox - Main/MBox-QueueList/ScrollContainer"]
+unique_name_in_owner = true
 margin_right = 236.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 236, 0 )
 size_flags_horizontal = 3
 custom_constants/separation = 24
 
-[node name="EnemyInfo" parent="VBoxContainer/MainView/HBox - Main/MBox-QueueList/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
+[node name="EnemyInfo" parent="VBoxContainer/MainView/HBox - Main/MBox-QueueList/ScrollContainer/EnemyList" instance=ExtResource( 5 )]
 
 [node name="BottomBar" type="Control" parent="VBoxContainer"]
 margin_top = 664.0
