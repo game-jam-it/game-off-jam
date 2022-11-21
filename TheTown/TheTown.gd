@@ -158,8 +158,8 @@ func start_selected_event(coords):
 	emit_signal("event_focused", coords)
 	camera.set_zoom_to(grid.get_location(event_coords))
 	nodes.hide_mode(coords)
-	emit_signal("start_expedition", coords)
 	events.start_event(coords)
+	emit_signal("start_expedition", coords)
 	grid.visible = false
 
 func cancel_selected_event(coords):

@@ -78,6 +78,13 @@ margin_bottom = 724.0
 rect_min_size = Vector2( 0, 60 )
 size_flags_horizontal = 3
 
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/BottomBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
+
 [node name="HBox - Bottom Bar" type="HBoxContainer" parent="VBoxContainer/BottomBar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -93,34 +100,46 @@ custom_constants/margin_top = 16
 custom_constants/margin_left = 24
 custom_constants/margin_bottom = 16
 
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo"]
+margin_left = 24.0
+margin_top = 16.0
+margin_right = 296.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo"]
 margin_left = 24.0
 margin_top = 16.0
 margin_right = 296.0
 margin_bottom = 44.0
+size_flags_horizontal = 0
 custom_constants/separation = 16
 
-[node name="HBoxContainer1" type="HBoxContainer" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer"]
-margin_right = 80.0
+[node name="BanishGroup" type="HBoxContainer" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer"]
+unique_name_in_owner = true
+margin_right = 86.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="EventCoordsLabel" type="Label" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer/HBoxContainer1"]
-margin_right = 30.0
+[node name="BanishValue" type="Label" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer/BanishGroup"]
+unique_name_in_owner = true
+margin_right = 36.0
 margin_bottom = 28.0
-rect_min_size = Vector2( 0, 16 )
+rect_min_size = Vector2( 36, 16 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
-text = " 2/4"
+text = "0/0"
 align = 1
 valign = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer/HBoxContainer1"]
-margin_left = 34.0
-margin_right = 80.0
+[node name="Label" type="Label" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer/BanishGroup"]
+margin_left = 40.0
+margin_right = 86.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 0, 28 )
 size_flags_horizontal = 3
@@ -131,28 +150,30 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer"]
-margin_left = 96.0
-margin_right = 176.0
+[node name="RelicGroup" type="HBoxContainer" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 102.0
+margin_right = 185.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="EventCoordsLabel2" type="Label" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer/HBoxContainer2"]
-margin_right = 33.0
+[node name="RelicValue" type="Label" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer/RelicGroup"]
+unique_name_in_owner = true
+margin_right = 36.0
 margin_bottom = 28.0
-rect_min_size = Vector2( 0, 28 )
+rect_min_size = Vector2( 36, 28 )
 size_flags_horizontal = 11
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
-text = " 1/2"
+text = "0/0"
 align = 1
 valign = 1
 
-[node name="Label2" type="Label" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer/HBoxContainer2"]
-margin_left = 37.0
-margin_right = 80.0
+[node name="Label2" type="Label" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer/RelicGroup"]
+margin_left = 40.0
+margin_right = 83.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 0, 28 )
 size_flags_horizontal = 3
@@ -163,28 +184,30 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer"]
-margin_left = 192.0
+[node name="LoreGroup" type="HBoxContainer" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 201.0
 margin_right = 272.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="EventCoordsLabel" type="Label" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer/HBoxContainer3"]
-margin_right = 38.0
+[node name="LoreValue" type="Label" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer/LoreGroup"]
+unique_name_in_owner = true
+margin_right = 36.0
 margin_bottom = 28.0
-rect_min_size = Vector2( 0, 16 )
+rect_min_size = Vector2( 36, 16 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
-text = " 0/1"
+text = "0/0"
 align = 1
 valign = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer/HBoxContainer3"]
-margin_left = 42.0
-margin_right = 80.0
+[node name="Label" type="Label" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer/LoreGroup"]
+margin_left = 40.0
+margin_right = 71.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 0, 28 )
 size_flags_horizontal = 3
@@ -194,15 +217,6 @@ text = " Lore"
 align = 1
 valign = 1
 uppercase = true
-
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo"]
-margin_left = 24.0
-margin_top = 16.0
-margin_right = 296.0
-margin_bottom = 44.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
 [node name="MBox - ThreatMeter" type="MarginContainer" parent="VBoxContainer/BottomBar/HBox - Bottom Bar"]
 margin_left = 324.0
@@ -450,13 +464,6 @@ margin_left = 24.0
 margin_top = 16.0
 margin_right = 296.0
 margin_bottom = 44.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
-
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/BottomBar"]
-anchor_right = 1.0
-anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )

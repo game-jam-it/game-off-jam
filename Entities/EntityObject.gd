@@ -5,6 +5,9 @@ enum Group {
 	None,
 	Enemy,
 	Player,
+	Lore,
+	Pickup,
+	Challenge,
 }
 
 signal free_entity(entity)

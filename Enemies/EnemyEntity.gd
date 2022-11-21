@@ -1,6 +1,7 @@
 class_name EnemyEntity
 extends EntityObject
 
+signal enemy_died(entity)
 signal hearts_changed(entity)
 
 # This is messy, preferable this would be a resource
@@ -26,4 +27,6 @@ func take_damage(damage: int) -> void:
 func on_death() -> void:
 	self.free_entity()
 	print(">> %s died" % name)
-	# TODO Swap out texture and portrait
+	emit_signal("enemy_died", self)
+	# TODO Spawn death pile on entiry spot
+	print_debug("[%s] TODO Spawn splat on spot" % name)

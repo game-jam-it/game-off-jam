@@ -1,5 +1,7 @@
 extends Control
 
+# TODO: Setup and link global objectives
+
 onready var map_list = get_node("%MapList")
 onready var expedition_popup = $ExpeditionDialog
 onready var event_coords_label = get_node("%EventCoordsLabel")
