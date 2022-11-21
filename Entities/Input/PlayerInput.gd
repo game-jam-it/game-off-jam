@@ -8,7 +8,7 @@ enum Goal {
 	Target,
 }
 
-signal _action_selected
+signal _action_selected(action)
 signal _target_selected(target)
 
 onready var actor_hex = $ActorHex
@@ -23,16 +23,25 @@ var _grid: EventGrid
 	EntityInput Override
 """
 
+func disable():
+	_goal = Goal.None
+	yield(get_tree(), "idle_frame")
+	emit_signal("_target_selected", null)
+	yield(get_tree(), "idle_frame")
+	emit_signal("_action_selected", null)
+
+func enable(grid):
+	_grid = grid
+
 func end_turn():
 	target_hex.visible = false
 	actor_hex.visible = false
 	_goal = Goal.None
 
-func start_turn(grid: EventGrid):
+func start_turn():
 	target_hex.visible = true
 	actor_hex.visible = true
 	_goal = Goal.None
-	_grid = grid
 
 func choose_action():
 	_enter_action_state()
@@ -47,15 +56,14 @@ func choose_target():
 	Handle Player Input
 """
 
-func _input(event):
-	if _goal == Goal.Target:
-		_target_input(event)
-
 func _process(delta):
 	match _goal:
 		Goal.Action: _action_process(delta)
 		Goal.Target: _target_process(delta)
 
+func _unhandled_input(event):
+	if _goal == Goal.Target:
+		_target_input(event)
 
 """
 	Handle Action Input
@@ -99,8 +107,8 @@ func _enter_action_state():
 
 func _target_input(event):
 	if event.is_action_pressed("ui_cancel"):
-		# TODO Implement try to leave dialog
-		print_debug("[%s] TODO Implement try to leave dialog" % name)
+		print_debug("[%s] TODO Implement escape dialog" % name)
+		TheTown.stop_active_event()
 	if event.is_action_pressed("ui_focus_next"):
 		_exit_target_state()
 		emit_signal("_target_selected", null)

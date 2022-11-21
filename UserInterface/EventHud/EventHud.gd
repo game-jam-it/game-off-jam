@@ -3,6 +3,8 @@ extends Control
 # TODO: Move counts and totals into the event state 
 # it is required to save and restore the global state
 
+var _scene = null
+
 var _lore_cnt = 0
 var _lore_total = 0
 
@@ -39,6 +41,10 @@ func enable():
 
 func disable():
 	visible = false
+	if _scene == null: return null
+	for entity in _scene.queue.get_children():
+		_disconnect_entity(entity)
+	_scene = null
 
 func initialize(coords):
 	if visible:
@@ -50,13 +56,21 @@ func initialize(coords):
 func setup_event_data(coords):
 	for box in enemy_list.get_children():
 		box.queue_free()
-	var scene = TheTown.get_events().get_scene(coords)
-	if scene == null:
+	_scene = TheTown.get_events().get_scene(coords)
+	if _scene == null:
 		print_debug(">> %s: scene not found", name)
 		return
 
+	_lore_cnt = 0
+	_relic_cnt = 0
+	_banish_cnt = 0
+
+	_lore_total = 0
+	_relic_total = 0
+	_banish_total = 0
+
 	print_debug("[%s] TODO setup entity links" % name)
-	for entity in scene.queue.get_children():
+	for entity in _scene.queue.get_children():
 		match entity.group:
 			EntityObject.Group.Enemy:
 				entity.connect("enemy_died", self, "on_enemy_died")
@@ -88,12 +102,28 @@ func setup_event_data(coords):
 
 
 func on_enemy_died(entity: EnemyEntity):
-	if entity != null: _banish_cnt += 1
+	if entity == null: 
+		return
+	_banish_cnt += 1
+	_disconnect_entity(entity)
 	banish_label.text = "%s/%s" % [_banish_cnt, _banish_total]
 
 func on_picked_up(entity: PickupEntity):
-	if entity != null: 
+	_disconnect_entity(entity)
+	if entity == null: 
 		return
 	_pickups_cnt += 1
-	if entity.slot == PickupEntity.Slot.Relic: _relic_cnt
-	relic_label.text = "%s/%s" % [_relic_cnt, _relic_total]
+	if entity.slot == PickupEntity.Slot.Relic: 
+		_relic_cnt += 1
+		relic_label.text = "%s/%s" % [_relic_cnt, _relic_total]
+
+func on_escape_pressed():
+	print_debug("[%s] TODO Implement escape dialog" % name)
+	TheTown.stop_active_event()
+
+func _disconnect_entity(entity):
+	match entity.group:
+		EntityObject.Group.Enemy:
+			entity.disconnect("enemy_died", self, "on_enemy_died")
+		EntityObject.Group.Pickup:
+			entity.disconnect("picked_up", self, "on_picked_up")

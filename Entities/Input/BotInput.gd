@@ -15,20 +15,24 @@ func clear_target():
 func set_target(entity: EntityObject):
 	_target = entity
 
-
 """
 	EntityInput Override
 """
 
-func end_turn():
-	target_hex.visible = false
-	actor_hex.visible = false
-
-func start_turn(grid: EventGrid):
-	actor_hex.visible = true
+func enable(grid):
 	_grid = grid
 
+func end_turn():
+	actor_hex.visible = false
+	target_hex.visible = false
+
+func start_turn():
+	actor_hex.visible = true
+	target_hex.visible = true
+
 func choose_action():
+	if _target == null:
+		return yield(get_tree(), "idle_frame")
 	print("%s: choose action" % entity.name)
 	var to = _target.get_grid_cell()
 	var from = entity.get_grid_cell()
@@ -66,7 +70,6 @@ func _move_to_target(to, from):
 	yield(get_tree().create_timer(0.2), 'timeout')
 	var path = _grid.hexgrid.find_path(from, to)
 	if path.size() < 2: return null
-
 	var hex = path[1]
 	var cell = _grid.get_cell_state(hex.get_axial_coords())
 	if cell.state == EventGrid.CellState.Entity:
@@ -75,6 +78,7 @@ func _move_to_target(to, from):
 	elif cell.state == EventGrid.CellState.Blocker:
 		print("> %s: Break this thing, it is in my way" % entity.name)
 		return null	
+	target_hex.visible = false
 	print("> %s: I'm comming for you, better hide" % entity.name)
 	var act = get_node("%MoveTo")
 	act.location = _grid.hexgrid.hex_to_pixel(hex)

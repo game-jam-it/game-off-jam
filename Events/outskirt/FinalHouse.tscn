@@ -9,7 +9,6 @@
 [ext_resource path="res://TheTown/EventMap/GridObject.gd" type="Script" id=7]
 
 [node name="FinalHouse" type="Node2D"]
-modulate = Color( 0.458824, 0.458824, 0.458824, 1 )
 script = ExtResource( 3 )
 map_title = "The Girls House"
 map_summary = "Common sense tells you stay away, but you just have to save the town."
@@ -27,6 +26,46 @@ map_objectives = {
 "total": 1
 }
 }
+
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="Point 1" type="Node2D" parent="Spawns"]
+position = Vector2( 477, -283 )
+
+[node name="Point 2" type="Node2D" parent="Spawns"]
+position = Vector2( 508, 288 )
+
+[node name="Point 3" type="Node2D" parent="Spawns"]
+position = Vector2( 29, 458 )
+
+[node name="Point 4" type="Node2D" parent="Spawns"]
+position = Vector2( -465, 256 )
+
+[node name="Point 5" type="Node2D" parent="Spawns"]
+position = Vector2( -490, -297 )
+
+[node name="Point 6" type="Node2D" parent="Spawns"]
+position = Vector2( 66, -444 )
+
+[node name="Terrain" type="Sprite" parent="."]
+modulate = Color( 0.458824, 0.458824, 0.458824, 1 )
+z_index = -10
+texture = ExtResource( 1 )
+
+[node name="Queue" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="TheNerd" parent="Queue" instance=ExtResource( 6 )]
+position = Vector2( 101, 354 )
+
+[node name="Ratsie" parent="Queue" instance=ExtResource( 5 )]
+position = Vector2( 299, 68 )
+enemy_name = "Ratsie"
+
+[node name="Ratsio" parent="Queue" instance=ExtResource( 5 )]
+position = Vector2( -27, -165 )
+scale = Vector2( -1, 1 )
+enemy_name = "Ratsie"
 
 [node name="Grid" type="Node2D" parent="."]
 script = ExtResource( 2 )
@@ -153,42 +192,3 @@ position = Vector2( -90, 130 )
 
 [node name="Start" type="Position2D" parent="Grid/Objects/Blocked - 12"]
 position = Vector2( -92, 37 )
-
-[node name="Queue" type="Node2D" parent="."]
-script = ExtResource( 4 )
-
-[node name="TheNerd" parent="Queue" instance=ExtResource( 6 )]
-position = Vector2( 101, 354 )
-
-[node name="Ratsie" parent="Queue" instance=ExtResource( 5 )]
-position = Vector2( 299, 68 )
-enemy_name = "Ratsie"
-
-[node name="Ratsio" parent="Queue" instance=ExtResource( 5 )]
-position = Vector2( -27, -165 )
-scale = Vector2( -1, 1 )
-enemy_name = "Ratsie"
-
-[node name="Spawns" type="Node2D" parent="."]
-
-[node name="Point 1" type="Node2D" parent="Spawns"]
-position = Vector2( 477, -283 )
-
-[node name="Point 2" type="Node2D" parent="Spawns"]
-position = Vector2( 508, 288 )
-
-[node name="Point 3" type="Node2D" parent="Spawns"]
-position = Vector2( 29, 458 )
-
-[node name="Point 4" type="Node2D" parent="Spawns"]
-position = Vector2( -465, 256 )
-
-[node name="Point 5" type="Node2D" parent="Spawns"]
-position = Vector2( -490, -297 )
-
-[node name="Point 6" type="Node2D" parent="Spawns"]
-position = Vector2( 66, -444 )
-
-[node name="Terrain" type="Sprite" parent="."]
-z_index = -10
-texture = ExtResource( 1 )

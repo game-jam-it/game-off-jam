@@ -27,6 +27,42 @@ map_objectives = {
 }
 }
 
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="Point 1" type="Node2D" parent="Spawns"]
+position = Vector2( 277, -158 )
+
+[node name="Point 2" type="Node2D" parent="Spawns"]
+position = Vector2( 320, 196 )
+
+[node name="Point 3" type="Node2D" parent="Spawns"]
+position = Vector2( -48, 299 )
+
+[node name="Point 4" type="Node2D" parent="Spawns"]
+position = Vector2( -309, 188 )
+
+[node name="Point 5" type="Node2D" parent="Spawns"]
+position = Vector2( -286, -184 )
+
+[node name="Point 6" type="Node2D" parent="Spawns"]
+position = Vector2( -14, -309 )
+
+[node name="Terrain" type="Sprite" parent="."]
+modulate = Color( 0.458824, 0.458824, 0.458824, 1 )
+z_index = -10
+texture = ExtResource( 1 )
+
+[node name="Queue" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="TheNerd" parent="Queue" instance=ExtResource( 6 )]
+position = Vector2( 282, -163 )
+
+[node name="Ratsie" parent="Queue" instance=ExtResource( 5 )]
+position = Vector2( -29, 28 )
+scale = Vector2( -1, 1 )
+enemy_name = "Ratsie"
+
 [node name="Grid" type="Node2D" parent="."]
 script = ExtResource( 2 )
 size = 20
@@ -106,39 +142,3 @@ obj_size = 1
 cell_cost = 4
 cell_cover = 0
 block_type = 1
-
-[node name="Queue" type="Node2D" parent="."]
-script = ExtResource( 4 )
-
-[node name="TheNerd" parent="Queue" instance=ExtResource( 6 )]
-position = Vector2( 282, -163 )
-
-[node name="Ratsie" parent="Queue" instance=ExtResource( 5 )]
-position = Vector2( -29, 28 )
-scale = Vector2( -1, 1 )
-enemy_name = "Ratsie"
-
-[node name="Spawns" type="Node2D" parent="."]
-
-[node name="Point 1" type="Node2D" parent="Spawns"]
-position = Vector2( 277, -158 )
-
-[node name="Point 2" type="Node2D" parent="Spawns"]
-position = Vector2( 320, 196 )
-
-[node name="Point 3" type="Node2D" parent="Spawns"]
-position = Vector2( -48, 299 )
-
-[node name="Point 4" type="Node2D" parent="Spawns"]
-position = Vector2( -309, 188 )
-
-[node name="Point 5" type="Node2D" parent="Spawns"]
-position = Vector2( -286, -184 )
-
-[node name="Point 6" type="Node2D" parent="Spawns"]
-position = Vector2( -14, -309 )
-
-[node name="Terrain" type="Sprite" parent="."]
-modulate = Color( 0.458824, 0.458824, 0.458824, 1 )
-z_index = -10
-texture = ExtResource( 1 )

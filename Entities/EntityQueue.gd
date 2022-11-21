@@ -9,17 +9,24 @@ onready var active: EntityObject
 var _grid: EventGrid
 
 func disable():
+	visible = false
 	for entity in get_children():
 		entity.disable()
 
-func enable(grid: EventGrid):
-	_grid = grid
-	_sort_entities()
+func enable():
+	visible = true
 	for entity in get_children():
-		entity.enable(grid)
+		entity.enable()
 	if get_child_count() > 0: 
 		active = get_child(0)
 		emit_signal('active_changed', active)
+
+func initialize(grid: EventGrid):
+	_grid = grid
+	visible = false
+	_sort_entities()
+	for entity in get_children():
+		entity.initialize(grid)
 
 """
 	Handle queued turns

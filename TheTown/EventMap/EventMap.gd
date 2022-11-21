@@ -27,7 +27,7 @@ export var map_objectives = {
 }
 
 func _ready():
-	queue.visible = false
+	queue.initialize(grid)
 	queue.connect("queue_changed", self, "on_queue_changed")
 	queue.connect("active_changed", self, "on_active_changed")
 
@@ -37,19 +37,20 @@ func _ready():
 
 func end_event():
 	queue.disable()
-	queue.visible = false
 	self.is_active = false
 	print("Ending Event: %s" % name)
 
 func start_event():
-	queue.enable(grid)
-	queue.visible = true
+	queue.enable()
 	self.is_active = true
 	yield(get_tree(), "idle_frame")
 	print("Starting Event: %s" % name)
 	yield(run_event(), "completed")
 
 func run_event():
+	# Note: Clearing the Queue is critical
+	# Yield on events is not be cleared untill
+	# the event is triggered, check all children!
 	yield(queue.play_turn(), "completed")
 	if is_active: yield(run_event(), "completed")
 

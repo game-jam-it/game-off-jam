@@ -23,6 +23,9 @@ onready var sense_area = $SenseArea
 var _grid
 var _free: bool = false
 
+func is_free():
+	return _free
+
 
 func _ready():
 	input.initialize(self)
@@ -33,25 +36,25 @@ func _ready():
 func disable():
 	sense_area.monitorable = false
 	sense_area.monitoring = false
-	_grid.clear_entity(self)
-	_grid = null
+	input.disable()
 
-func enable(grid):
+func enable():
+	sense_area.monitoring = true
+	sense_area.monitorable = true
+	input.enable(_grid)
+
+
+func initialize(grid):
 	_grid = grid
 	_free = false;
 	_grid.add_entity(self)
-	sense_area.monitoring = true
-	sense_area.monitorable = true
 	var hex = _grid.hexgrid.pixel_to_hex(position)
 	self.position = _grid.hexgrid.hex_to_pixel(hex)
-
-
-func is_free():
-	return _free
 	
 func free_entity():
-	disable()
 	_free = true
+	self.disable()
+	_grid.clear_entity(self)
 	# Note: The Queue will free it
 	emit_signal("free_entity", self)
 
@@ -60,10 +63,9 @@ func end_turn():
 	input.end_turn()
 
 func start_turn():
-	input.start_turn(_grid)
+	input.start_turn()
 
 
 func get_grid_cell():
-	if _grid == null:
-		return
+	if _grid == null: return null
 	return _grid.hexgrid.pixel_to_hex(position)
