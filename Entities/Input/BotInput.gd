@@ -6,13 +6,13 @@ onready var actor_hex = $ActorHex
 onready var target_hex = $TargetHex
 
 var _grid: EventGrid
-var _target: Entity = null
+var _target: EntityObject = null
 
 
 func clear_target():
 	_target = null
 
-func set_target(entity: Entity):
+func set_target(entity: EntityObject):
 	_target = entity
 
 
@@ -54,7 +54,7 @@ func choose_target():
 	Posible Actions
 """
 
-func _attack_target(to, from):
+func _attack_target(to, _from):
 	print("> %s: Got you, I will chew you up" % entity.name)
 	yield(get_tree().create_timer(0.2), 'timeout')
 	var act = get_node("%AttackTo")

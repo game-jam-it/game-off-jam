@@ -4,7 +4,7 @@ extends Node2D
 signal queue_changed(list)
 signal active_changed(active)
 
-onready var active: Entity
+onready var active: EntityObject
 
 var _grid: EventGrid
 
@@ -63,5 +63,5 @@ func _sort_entities():
 	for entity in list: entity.raise()
 	emit_signal('queue_changed', get_children())
 
-static func sort_queue(a: Entity, b: Entity) -> bool:
+static func sort_queue(a: EntityObject, b: EntityObject) -> bool:
 	return a.initiative < b.initiative

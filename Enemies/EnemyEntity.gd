@@ -1,5 +1,5 @@
 class_name EnemyEntity
-extends Entity
+extends EntityObject
 
 signal hearts_changed(entity)
 

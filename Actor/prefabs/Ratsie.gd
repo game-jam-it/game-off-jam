@@ -1,14 +1,14 @@
 class_name RatEntity
 extends EnemyEntity
 
-func investigate_smell(entity: Entity):
+func investigate_smell(entity: EntityObject):
 	if _grid == null:
 		print("> %s: no grid set" % name)
 		return
 	if entity == null:
 		print("> %s: not an entity" % name)
 		return
-	if entity.group != Entity.Group.Player:
+	if entity.group != EntityObject.Group.Player:
 		print("> %s: not a player" % name)
 		return
 	print("> %s: It smells like some nerd" % name)

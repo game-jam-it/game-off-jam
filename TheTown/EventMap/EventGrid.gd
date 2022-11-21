@@ -74,10 +74,10 @@ func get_line_of_sight_cover(start, target):
 	Grid State Updates
 """
 
-func add_entity(entity: Entity):
+func add_entity(entity: EntityObject):
 	entity_map[entity.get_index()] = entity
 
-func clear_entity(entity: Entity):
+func clear_entity(entity: EntityObject):
 	entity_map.erase(entity.get_index())
 
 func add_cell_blocker(coords: Vector2):

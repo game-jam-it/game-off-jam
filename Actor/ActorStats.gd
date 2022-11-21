@@ -12,6 +12,8 @@ Actor stats
 """
 
 func _ready():
+	# TODO Replace with character selection
+	print_debug("[%s] TODO Replace with character selection" % name)
 	set_character(load("res://Characters/Nerd.tres"))
 
 # Base info

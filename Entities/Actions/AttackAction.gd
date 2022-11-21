@@ -1,6 +1,6 @@
 extends EntityAction
 
-var target: Entity
+var target: EntityObject
 var location: Vector2
 
 func execute():
@@ -11,9 +11,9 @@ func execute():
 	# Get direction and animate an attack move
 	# Damage the target and maybe kill it
 	# TODO Implement attack animation
-	if target.group == Entity.Group.Player:
+	if target.group == EntityObject.Group.Player:
 		return attack_player_target()
-	if target.group == Entity.Group.Enemy:
+	if target.group == EntityObject.Group.Enemy:
 		return attack_enemy_target()
 	yield(get_tree(), "idle_frame")
 	return false

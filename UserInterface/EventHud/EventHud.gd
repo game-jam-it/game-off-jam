@@ -29,7 +29,7 @@ func setup_event_data(coords):
 		print_debug(">> %s: scene not found", name)
 		return
 	for entity in scene.queue.get_children():
-		if entity.group != Entity.Group.Enemy:
+		if entity.group != EntityObject.Group.Enemy:
 			continue
 		var box = enemy_box.instance();
 		enemy_list.add_child(box)
