@@ -139,10 +139,12 @@ position = Vector2( -30, 255 )
 
 [node name="Ratsie" parent="Queue" instance=ExtResource( 6 )]
 position = Vector2( -264, -192 )
+enemy_name = "Ratsie"
 
 [node name="Ratsio" parent="Queue" instance=ExtResource( 6 )]
 position = Vector2( 57, 193 )
 scale = Vector2( -1, 1 )
+enemy_name = "Ratsie"
 
 [node name="Spawns" type="Node2D" parent="."]
 

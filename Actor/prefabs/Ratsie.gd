@@ -1,5 +1,5 @@
 class_name RatEntity
-extends Entity
+extends EnemyEntity
 
 func investigate_smell(entity: Entity):
 	if _grid == null:

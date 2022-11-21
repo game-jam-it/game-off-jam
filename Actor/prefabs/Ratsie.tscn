@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Entities/Detectors/SniffBox.gd" type="Script" id=1]
 [ext_resource path="res://Actor/prefabs/Ratsie.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Entities/Input/BotInput.gd" type="Script" id=5]
 [ext_resource path="res://prototype/assets/pg/ratsie.png" type="Texture" id=6]
 [ext_resource path="res://prototype/assets/hex-flat-256.png" type="Texture" id=7]
+[ext_resource path="res://Enemies/assets/portrait_ratsie.png" type="Texture" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 768.0
@@ -15,6 +16,9 @@ radius = 768.0
 script = ExtResource( 2 )
 group = 1
 initiative = 4.0
+portrait_base = ExtResource( 8 )
+portrait_damaged = ExtResource( 8 )
+portrait_stressed = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -10 )
