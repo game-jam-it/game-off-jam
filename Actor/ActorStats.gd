@@ -83,17 +83,19 @@ var fortitude_boost: int = 0 setget set_fortitude_boost
 var daring_boost: int = 0 setget set_daring_boost
 var smarts_boost: int = 0 setget set_smarts_boost
 
-func take_damage(enemy: EnemyEntity) -> void:
-	self.current_hearts -= enemy.damage
-	
-	# Check for death
-	if current_hearts <= 0:
-		on_death()
+signal player_died
+
+func take_damage(damage: int) -> void:
+	print(">> %s takes %s damage" % [character.name, damage])
+	self.current_hearts -= damage
+	if current_hearts <= 0: on_death()
 
 func on_death() -> void:
-	# TODO
-	print("Player died")
-	return
+	print(">> %s died" % character.name)
+	emit_signal("player_died", self)
+	# TODO Handle game over state
+	# TODO Swap out texture and portrait
+	print_debug("[%s] TODO Handle game over state change" % name)
 
 signal fortitude_changed(value)
 signal daring_changed(value)

@@ -27,11 +27,15 @@ func enable(grid: EventGrid):
 
 func skip_turn():
 	# Note: Do we want to exit?
+	yield(get_tree(), "idle_frame")
 	return _next_entity()
 
 func play_turn():
-	if active != null: active.start_turn()
-	else: return skip_turn()
+	if active == null:
+		return skip_turn()
+	if active.is_free():
+		return skip_turn()
+	active.start_turn()
 	var target = yield(active.input.choose_target(), "completed")
 	if target == null:
 		active.end_turn()
@@ -48,6 +52,8 @@ func _next_entity():
 	var count = get_child_count()
 	if count > 1: 
 		var index = active.get_index()
+		if active.is_free():
+			active.queue_free()
 		active = get_child((index+1) % count)
 		emit_signal('active_changed', active)
 

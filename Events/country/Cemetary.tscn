@@ -145,6 +145,8 @@ enemy_name = "Ratsie"
 position = Vector2( 57, 193 )
 scale = Vector2( -1, 1 )
 enemy_name = "Ratsie"
+current_hearts = 2
+max_hearts = 2
 
 [node name="Spawns" type="Node2D" parent="."]
 

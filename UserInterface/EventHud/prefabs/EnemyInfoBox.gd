@@ -27,6 +27,8 @@ func initialize(enemy: EnemyEntity):
 	_health_label.text = "%s/%s" % [enemy.current_hearts, enemy.max_hearts]
 	_portrait_texture.texture = enemy.portrait_base
 	pass
+	enemy.connect("free_entity", self, "on_free_entity")
+	enemy.connect("hearts_changed", self, "on_health_changed")
 
 
 func on_mouse_exited():
@@ -39,7 +41,11 @@ func on_gui_input(event):
 	if event is InputEventMouseButton and event.doubleclick:
 		print("Mouse Double Clicked %s" % name)
 
-func on_health_updated(_value):
-	var max_hearts = ActorStats.max_hearts
-	var current_hearts = ActorStats.current_hearts
-	_health_label.text = " %s/%s " % [current_hearts, max_hearts]
+
+func on_free_entity(entity):
+	self.queue_free()
+
+func on_health_changed(entity):
+	var max_hearts = entity.max_hearts
+	var current_hearts = entity.current_hearts
+	_health_label.text = "%s/%s" % [current_hearts, max_hearts]

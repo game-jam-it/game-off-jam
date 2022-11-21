@@ -8,7 +8,6 @@ var seed_phrase = "Godot Rocks"
 
 var grid: TownGrid
 
-# TODO Fix names here
 var nodes: TownNodes
 var events: TownEvents
 
