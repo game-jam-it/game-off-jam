@@ -25,6 +25,30 @@ var outskirt = [{
 	"scene": preload("res://Events/outskirt/FinalHouse.tscn"),
 }]
 
+
+func build_dev():
+	return {
+		"empty": [],
+		"center": build_event_map([{
+			"size": 2,
+			"name": "Small Center",
+			"descr": "You should not be here, yet you are.",
+			"scene": preload("res://Events/devroom/SmallDevRoom.tscn"),
+		}]),
+		"country": build_event_map([{
+			"size": 2,
+			"name": "Small County",
+			"descr": "You should not be here, yet you are.",
+			"scene": preload("res://Events/devroom/SmallDevRoom.tscn"),
+		}]),
+		"outskirt": build_event_map([{
+			"size": 2,
+			"name": "Small Outskirts",
+			"descr": "You should not be here, yet you are.",
+			"scene": preload("res://Events/devroom/SmallDevRoom.tscn"),
+		}]),
+	}
+
 func build_maps():
 	# Note: Rebuild to copy and reset the arrays
 	return {

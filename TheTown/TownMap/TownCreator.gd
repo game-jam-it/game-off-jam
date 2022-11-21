@@ -1,7 +1,7 @@
 class_name TownCreator
 extends Node2D
 
-var is_done = false
+var is_done = true
 var is_working = false
 
 var seed_phrase = "Godot Rocks"
@@ -151,7 +151,13 @@ func create_town(_seed_phrase:String, cfg = {
 	is_done = false
 	is_working = true
 
-	mapped = Events.build_maps()
+	var build_type
+	if _seed_phrase != "DEVOPS-SEEDS":
+		mapped = Events.build_maps()
+		build_type = "Town Map"
+	else:
+		mapped = Events.build_dev()
+		build_type = "Devops"
 
 	rng = RandomNumberGenerator.new()
 	rng.seed = hash(_seed_phrase)
@@ -175,11 +181,14 @@ func create_town(_seed_phrase:String, cfg = {
 	yield(_draw_paths(nodes.path), "completed")
 	yield(_draw_nodes(nodes.get_children()), "completed")
 
-	print("Create Town: Nodes: %s | Path: %s | Road: %s" % [
+
+	print("Create %s: Nodes: %s | Path: %s | Road: %s" % [
+		build_type,
 		nodes.get_children().size(), 
 		nodes.path.get_points().size(), 
 		nodes.road.get_points().size()
 	])
+
 	is_working = false
 	is_done = true
 
@@ -385,6 +394,8 @@ func _add_center_node(node):
 	nodes.events[node.coords] = info
 	#nodes.center_event[node.coords] = info
 	var scn = info.scene.instance()
+	scn.map_title = info.name
+	scn.map_summary = info.descr
 	scn.position = node.position
 	events.add_child(scn)
 	events.scenes[node.coords] = scn
@@ -403,6 +414,8 @@ func _add_country_node(node):
 	nodes.events[node.coords] = info
 	#nodes.country_event[node.coords] = info
 	var scn = info.scene.instance()
+	scn.map_title = info.name
+	scn.map_summary = info.descr
 	scn.position = node.position
 	events.add_child(scn)
 	events.scenes[node.coords] = scn
@@ -421,6 +434,8 @@ func _add_outskirt_node(node):
 	nodes.events[node.coords] = info
 	#nodes.outskirt_event[node.coords] = info
 	var scn = info.scene.instance()
+	scn.map_title = info.name
+	scn.map_summary = info.descr
 	scn.position = node.position
 	events.add_child(scn)
 	events.scenes[node.coords] = scn

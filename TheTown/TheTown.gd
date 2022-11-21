@@ -82,7 +82,7 @@ func _ready():
 	# TODO Move create-town-on-load 
 	# to new game event from menu
 	# events.visible = false
-	build_the_town()
+	build_town()
 
 func _input(input):
 	if input.is_action_pressed("ui_home"):
@@ -94,8 +94,10 @@ func _input(input):
 		map_cfg = SMALL_MAP
 
 	# TODO: Hook Up to the initial load
-	if creator.is_done && input.is_action_pressed("ui_select"):
-		build_the_town()
+	if creator.is_done && input.is_action_pressed("rebuild_town"):
+		build_town()
+	elif creator.is_done && input.is_action_pressed("rebuild_devops"):
+		build_devops()
 
 	if town_state == TownState.SetMode:
 		_input_set_mode(input)
@@ -117,11 +119,26 @@ func get_nodes():
 func get_events():
 	return events
 
-func build_the_town():
+func build_town():
+	if !creator.is_done:
+		return
+	if town_state != TownState.PrepMode:
+		return
 	camera.zoom_reset()
 	emit_signal("town_restart")
 	var seed_phrase = "GameOff 2022 - %s" % OS.get_unix_time()
 	yield(creator.create_town(seed_phrase, map_cfg), "completed")
+	emit_signal("town_generated")
+
+func build_devops():
+	if !creator.is_done:
+		return
+	if town_state != TownState.PrepMode:
+		return
+	camera.zoom_reset()
+	emit_signal("town_restart")
+	var seed_phrase = "DEVOPS-SEEDS"
+	yield(creator.create_town(seed_phrase, MICRO_MAP), "completed")
 	emit_signal("town_generated")
 
 """
