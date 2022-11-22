@@ -74,6 +74,14 @@ func get_line_of_sight_cover(start, target):
 	Grid State Updates
 """
 
+func add_object(object: GridObject):
+	if object != null:
+		match object.obj_type:
+			GridObject.ObjType.Area:
+				_init_area_object(object)
+			GridObject.ObjType.Path:
+				_init_path_object(object)
+
 func add_entity(entity: EntityObject):
 	entity_map[entity.get_index()] = entity
 
@@ -143,12 +151,13 @@ func _init_grid():
 			self.add_child(node)
 
 func _init_objects():
-	for obj in $Objects.get_children():
-		match obj.obj_type:
-			GridObject.ObjType.Area:
-				_init_area_object(obj)
-			GridObject.ObjType.Path:
-				_init_path_object(obj)
+	for obj in $Nodes.get_children():
+		if obj is GridObject:
+			match obj.obj_type:
+				GridObject.ObjType.Area:
+					_init_area_object(obj)
+				GridObject.ObjType.Path:
+					_init_path_object(obj)
 
 func _init_area_object(obj: GridObject):
 	var hex = hexgrid.pixel_to_hex(obj.position)

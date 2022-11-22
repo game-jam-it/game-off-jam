@@ -22,15 +22,16 @@ func initialize(coords: Vector2, event: EventMap):
 	_map_name_label.text = event.map_title
 	var count = 0
 	var total = 0
-	if event.map_objectives.has("lore"):
-		count += event.map_objectives.lore.done
-		total += event.map_objectives.lore.total
-	if event.map_objectives.has("relic"):
-		count += event.map_objectives.relic.done
-		total += event.map_objectives.relic.total
-	if event.map_objectives.has("banish"):
-		count += event.map_objectives.banish.done
-		total += event.map_objectives.banish.total
+	var goals = event. goals()
+	if goals.has("lore"):
+		count += goals.lore.done
+		total += goals.lore.total
+	if goals.has("relic"):
+		count += goals.relic.done
+		total += goals.relic.total
+	if goals.has("banish"):
+		count += goals.banish.done
+		total += goals.banish.total
 	_objective_label.text = "%s/%s" % [count, total]
 	# TODO Subscribe to event
 

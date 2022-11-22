@@ -1,32 +1,39 @@
 class_name EntityQueue
 extends Node2D
 
+var _grid: EventGrid
+var _active: QueueObject
+
 signal queue_changed(list)
 signal active_changed(active)
 
-onready var active: EntityObject
+var QueuePrefab = preload("res://Entities/QueueObject.tscn")
 
-var _grid: EventGrid
+func reset(grid: EventGrid):
+	visible = false
+	self._grid = grid
+	for obj in get_children():
+		obj.queue_free()
 
 func disable():
 	visible = false
-	for entity in get_children():
-		entity.disable()
+	for obj in get_children():
+		obj.disable()
 
 func enable():
 	visible = true
-	for entity in get_children():
-		entity.enable()
-	if get_child_count() > 0: 
-		active = get_child(0)
-		emit_signal('active_changed', active)
-
-func initialize(grid: EventGrid):
-	_grid = grid
-	visible = false
 	_sort_entities()
-	for entity in get_children():
-		entity.initialize(grid)
+	for obj in get_children():
+		obj.enable()
+	if get_child_count() > 0: 
+		_active = get_child(0)
+		emit_signal('active_changed', _active)
+
+func add_entity(entity: EntityObject):
+	var obj = QueuePrefab.instance()
+	obj.initialize(self, entity)
+	entity.initialize(_grid)
+	self.add_child(obj)
 
 """
 	Handle queued turns
@@ -38,37 +45,40 @@ func skip_turn():
 	return _next_entity()
 
 func play_turn():
-	if active == null:
+	if _active == null:
 		return skip_turn()
-	if active.is_free():
+	if _active.is_free():
 		return skip_turn()
-	active.start_turn()
-	var target = yield(active.input.choose_target(), "completed")
+	_active.start_turn()
+	var target = yield(_active.choose_target(), "completed")
 	if target == null:
-		active.end_turn()
+		_active.end_turn()
 		return _next_entity()
-	var action = yield(active.input.choose_action(), "completed")
+	var action = yield(_active.choose_action(), "completed")
 	if action == null:
-		active.end_turn()
+		_active.end_turn()
 		return _next_entity()
 	yield(action.execute(), "completed")
-	active.end_turn()
+	_active.end_turn()
 	return _next_entity()
 
 func _next_entity():
 	var count = get_child_count()
 	if count > 1: 
-		var index = active.get_index()
-		if active.is_free():
-			active.queue_free()
-		active = get_child((index+1) % count)
-		emit_signal('active_changed', active)
+		var index = _active.get_index()
+		if _active.is_free(): _active.clear()
+		_active = get_child((index+1) % count)
+		emit_signal('active_changed', _active)
+
+"""
+	Handle queued setup
+"""
 
 func _sort_entities():
 	var list = get_children()
 	list.sort_custom(self, 'sort_queue')
-	for entity in list: entity.raise()
+	for obj in list: obj.raise()
 	emit_signal('queue_changed', get_children())
 
-static func sort_queue(a: EntityObject, b: EntityObject) -> bool:
-	return a.initiative < b.initiative
+static func sort_queue(a, b) -> bool:
+	return a.initiative() < b.initiative()

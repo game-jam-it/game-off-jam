@@ -65,6 +65,11 @@ func end_turn():
 func start_turn():
 	input.start_turn()
 
+func choose_target():
+	return input.choose_target()
+
+func choose_action():
+	return input.choose_action()
 
 func get_grid_cell():
 	if _grid == null: return null

@@ -176,6 +176,7 @@ func start_selected_event(coords):
 	camera.set_zoom_to(grid.get_location(event_coords))
 	nodes.hide_mode(coords)
 	events.start_event(coords)
+	yield(get_tree(), "idle_frame")
 	emit_signal("start_expedition", coords)
 	grid.visible = false
 
