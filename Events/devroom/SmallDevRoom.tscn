@@ -12,20 +12,6 @@
 script = ExtResource( 3 )
 map_title = "Dev Room"
 map_summary = "You should not be here, yet you are."
-map_objectives = {
-"banish": {
-"done": 0,
-"total": 2
-},
-"lore": {
-"done": 0,
-"total": 1
-},
-"relic": {
-"done": 0,
-"total": 1
-}
-}
 
 [node name="Spawns" type="Node2D" parent="."]
 
@@ -55,90 +41,93 @@ texture = ExtResource( 1 )
 [node name="Queue" type="Node2D" parent="."]
 script = ExtResource( 4 )
 
-[node name="TheNerd" parent="Queue" instance=ExtResource( 6 )]
-position = Vector2( 282, -163 )
-
-[node name="Ratsie" parent="Queue" instance=ExtResource( 5 )]
-position = Vector2( -29, 28 )
-scale = Vector2( -1, 1 )
-enemy_name = "Ratsie"
-
 [node name="Grid" type="Node2D" parent="."]
 script = ExtResource( 2 )
 size = 20
 
-[node name="Objects" type="Node2D" parent="Grid"]
+[node name="Nodes" type="Node2D" parent="Grid"]
 
-[node name="Blocked - 01" type="Node2D" parent="Grid/Objects"]
+[node name="Blocked - 01" type="Node2D" parent="Grid/Nodes"]
 script = ExtResource( 7 )
 cell_cost = 0
 obj_type = 1
 
-[node name="End" type="Position2D" parent="Grid/Objects/Blocked - 01"]
+[node name="End" type="Position2D" parent="Grid/Nodes/Blocked - 01"]
 position = Vector2( -54, -127 )
 
-[node name="Start" type="Position2D" parent="Grid/Objects/Blocked - 01"]
+[node name="Start" type="Position2D" parent="Grid/Nodes/Blocked - 01"]
 position = Vector2( 195, -127 )
 
-[node name="Blocked - 02" type="Node2D" parent="Grid/Objects"]
+[node name="Blocked - 02" type="Node2D" parent="Grid/Nodes"]
 script = ExtResource( 7 )
 cell_cost = 0
 obj_type = 1
 
-[node name="End" type="Position2D" parent="Grid/Objects/Blocked - 02"]
+[node name="End" type="Position2D" parent="Grid/Nodes/Blocked - 02"]
 position = Vector2( 200, 121 )
 
-[node name="Start" type="Position2D" parent="Grid/Objects/Blocked - 02"]
+[node name="Start" type="Position2D" parent="Grid/Nodes/Blocked - 02"]
 position = Vector2( 195, -127 )
 
-[node name="Blocked - 03" type="Node2D" parent="Grid/Objects"]
+[node name="Blocked - 03" type="Node2D" parent="Grid/Nodes"]
 script = ExtResource( 7 )
 cell_cost = 0
 obj_type = 1
 
-[node name="End" type="Position2D" parent="Grid/Objects/Blocked - 03"]
+[node name="End" type="Position2D" parent="Grid/Nodes/Blocked - 03"]
 position = Vector2( 128, 126 )
 
-[node name="Start" type="Position2D" parent="Grid/Objects/Blocked - 03"]
+[node name="Start" type="Position2D" parent="Grid/Nodes/Blocked - 03"]
 position = Vector2( 200, 122 )
 
-[node name="Blocked - 04" type="Node2D" parent="Grid/Objects"]
+[node name="Blocked - 04" type="Node2D" parent="Grid/Nodes"]
 script = ExtResource( 7 )
 cell_cost = 0
 obj_type = 1
 
-[node name="End" type="Position2D" parent="Grid/Objects/Blocked - 04"]
+[node name="End" type="Position2D" parent="Grid/Nodes/Blocked - 04"]
 position = Vector2( -199, 126 )
 
-[node name="Start" type="Position2D" parent="Grid/Objects/Blocked - 04"]
+[node name="Start" type="Position2D" parent="Grid/Nodes/Blocked - 04"]
 position = Vector2( 58, 123 )
 
-[node name="Blocked - 05" type="Node2D" parent="Grid/Objects"]
+[node name="Blocked - 05" type="Node2D" parent="Grid/Nodes"]
 script = ExtResource( 7 )
 cell_cost = 0
 obj_type = 1
 
-[node name="End" type="Position2D" parent="Grid/Objects/Blocked - 05"]
+[node name="End" type="Position2D" parent="Grid/Nodes/Blocked - 05"]
 position = Vector2( -199, 127 )
 
-[node name="Start" type="Position2D" parent="Grid/Objects/Blocked - 05"]
+[node name="Start" type="Position2D" parent="Grid/Nodes/Blocked - 05"]
 position = Vector2( -204, -125 )
 
-[node name="Blocked - 06" type="Node2D" parent="Grid/Objects"]
+[node name="Blocked - 06" type="Node2D" parent="Grid/Nodes"]
 script = ExtResource( 7 )
 cell_cost = 0
 obj_type = 1
 
-[node name="End" type="Position2D" parent="Grid/Objects/Blocked - 06"]
+[node name="End" type="Position2D" parent="Grid/Nodes/Blocked - 06"]
 position = Vector2( -203, -124 )
 
-[node name="Start" type="Position2D" parent="Grid/Objects/Blocked - 06"]
+[node name="Start" type="Position2D" parent="Grid/Nodes/Blocked - 06"]
 position = Vector2( -134, -126 )
 
-[node name="Obstical - 01" type="Node2D" parent="Grid/Objects"]
+[node name="Obstical - 01" type="Node2D" parent="Grid/Nodes"]
 position = Vector2( 11, -8 )
 script = ExtResource( 7 )
 obj_size = 1
 cell_cost = 4
 cell_cover = 0
 block_type = 1
+
+[node name="Objects" type="YSort" parent="."]
+
+[node name="TheNerd" parent="Objects" instance=ExtResource( 6 )]
+position = Vector2( 282, -163 )
+
+[node name="Ratsie" parent="Objects" instance=ExtResource( 5 )]
+position = Vector2( -29, 28 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+enemy_name = "Ratsie"

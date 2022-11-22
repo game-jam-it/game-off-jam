@@ -25,7 +25,6 @@ var outskirt = [{
 	"scene": preload("res://Events/outskirt/FinalHouse.tscn"),
 }]
 
-
 func build_dev():
 	return {
 		"empty": [],
@@ -40,6 +39,11 @@ func build_dev():
 			"name": "Small County",
 			"descr": "You should not be here, yet you are.",
 			"scene": preload("res://Events/devroom/SmallDevRoom.tscn"),
+		},{
+			"size": 3,
+			"name": "Demo Cemetery",
+			"descr": "You should not be here, yet you are.",
+			"scene": preload("res://Events/devroom/DemoCemetery-S2.tscn"),
 		}]),
 		"outskirt": build_event_map([{
 			"size": 2,
