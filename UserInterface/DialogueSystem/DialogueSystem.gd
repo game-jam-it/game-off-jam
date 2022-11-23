@@ -36,22 +36,27 @@ func _input(event) -> void:
 	if event.is_action_pressed("dialogue_next"):
 		if phrase_finished:
 			if choice_phrase:
+				# Get the method to call
 				var choice_method: String
 				if selected_choice == 1:
 					choice_method = dialogue[current_phrase]["Choice1"][1]
-				else:
+				if selected_choice == 2:
 					choice_method = dialogue[current_phrase]["Choice2"][1]
-				call(choice_method)
+				if self.has_method(choice_method):
+					call(choice_method)
+				# If the dialogue should be cancelled call close_dialogue as the choice_method
 				next_phrase()
 			else:
 				next_phrase()
 		else:
 			text_label.visible_characters = len(text_label.text)
+	
+	# Selecting a choice
 	if choice_phrase:
 		if event.is_action_pressed("ui_up"):
-			self.selected_choice = 1
+			self.selected_choice -= 1
 		if event.is_action_pressed("ui_down"):
-			self.selected_choice = 2
+			self.selected_choice += 1
 
 func _process(_delta) -> void:
 	if choice_phrase:
@@ -81,6 +86,7 @@ func next_phrase() -> void:
 	
 	phrase_finished = false
 	
+	# Setting the dialogue box text and current speaker
 	name_label.text = dialogue[current_phrase]["Name"]
 	text_label.bbcode_text = dialogue[current_phrase]["Text"]
 	text_label.visible_characters = 0
@@ -100,6 +106,7 @@ func next_phrase() -> void:
 		choice_2_label.text = dialogue[current_phrase]["Choice2"][0]
 		choice_system.show()
 	
+	# Slowly increase text visibility
 	while text_label.visible_characters < len(text_label.text):
 		text_label.visible_characters += 1
 		
@@ -141,18 +148,17 @@ func set_portraits(portrait_left_texture: String, portrait_right_texture: String
 		portrait_right.material.set("shader_param/grayscale", false)
 
 func set_selected_choice(value: int) -> void:
+	# Currently 2 choices is the maximum
 	selected_choice = clamp(value, 1, 2)
+	
 	# Set the indicator on the correct choice
+	choice_1_indicator.modulate.a = 0
+	choice_2_indicator.modulate.a = 0
+	
 	if selected_choice == 1:
 		choice_1_indicator.modulate.a = 1
-		choice_2_indicator.modulate.a = 0
-	else:
-		choice_1_indicator.modulate.a = 0
+	if selected_choice == 2:
 		choice_2_indicator.modulate.a = 1
 
 func close_dialogue() -> void:
 	queue_free()
-
-func show_dialogue() -> void:
-	return
-	#TODO
