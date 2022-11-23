@@ -4,6 +4,7 @@ class_name Character
 export(String) var name = ""
 export(String) var unique_effect_description = ""
 export(int) var max_hp = 1
+export(int) var speed = 3
 export(int) var fortitude = 1
 export(int) var daring = 1
 export(int) var smarts = 1

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Characters/Character.gd" type="Script" id=1]
+[ext_resource path="res://UserInterface/assets/portrait_default.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "The Mean Girl (Stacy)"
+unique_effect_description = "When using Daring to cross a passage, gain +1"
+max_hp = 3
+speed = 4
+fortitude = 3
+daring = 6
+smarts = 2
+items = [  ]
+character_effects = [  ]
+portrait_base = ExtResource( 2 )
+portrait_damaged = ExtResource( 2 )
+portrait_stressed = ExtResource( 2 )
