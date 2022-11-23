@@ -183,4 +183,23 @@ func show_dialogue(filename: String) -> void:
 	
 	# After opening the new dialogue box close this one
 	queue_free()
-	
+
+func open_shop(shop_id: String) -> void:
+	# TODO
+	print("Opening shop with id " + shop_id)
+
+func purchase_item() -> void:
+	#TODO
+	print("Purchasing item")
+
+func increase_fortitude(value: String) -> void:
+	ActorStats.fortitude += int(value)
+
+func increase_daring(value: String) -> void:
+	ActorStats.daring += int(value)
+
+func increase_smarts(value: String) -> void:
+	ActorStats.smarts += int(value)
+
+func restore_health(value: String) -> void:
+	ActorStats.current_hearts += int(value)

@@ -1,0 +1,9 @@
+[
+  {
+    "Name": "Shopkeeper",
+    "Text": "Thank you so much! I hope you enjoy your new %s.",
+    "Speaking": "right",
+    "PortraitLeft": "",
+    "PortraitRight": "",
+    "Choice": false
+]

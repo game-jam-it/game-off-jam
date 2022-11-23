@@ -1,0 +1,10 @@
+[
+  {
+    "Name": "Cemetery Gates",
+    "Text": "You shouldn’t be here, not yet, at the very least.",
+    "Speaking": "left",
+    "PortraitLeft": "",
+    "PortraitRight": "",
+    "Choice": false
+  }
+]

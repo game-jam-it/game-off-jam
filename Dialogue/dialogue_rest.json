@@ -1,0 +1,20 @@
+[
+  {
+    "Name": "Home",
+    "Text": "You have some time to kill, how about a quick rest?",
+    "Speaking": "left",
+    "PortraitLeft": "",
+    "PortraitRight": "",
+    "Choice": true,
+    "Choice1": ["I should rest a bit (Rest)", "restore_health", "1"],
+    "Choice2": ["I should go", "close_dialogue"]
+  },
+  {
+    "Name": "Home",
+    "Text": "You spend some time resting and tending to your wounds, you also (Character Activity). you feel a bit better when you’re done. (+1 HP)",
+    "Speaking": "left",
+    "PortraitLeft": "",
+    "PortraitRight": "",
+    "Choice": false
+  },
+]

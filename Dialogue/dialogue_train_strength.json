@@ -1,0 +1,20 @@
+[
+  {
+    "Name": "Weights",
+    "Text": "Should I take these weights to train for a bit?",
+    "Speaking": "left",
+    "PortraitLeft": "",
+    "PortraitRight": "",
+    "Choice": true,
+    "Choice1": ["I have time for this (Train Strength)", "increase_fortitude", "1"],
+    "Choice2": ["I should go", "close_dialogue"]
+  },
+  {
+    "Name": "Weights",
+    "Text": "You bring some weights to the school’s field and begin lifting. You feel stronger. (+1 Fortitude)",
+    "Speaking": "left",
+    "PortraitLeft": "",
+    "PortraitRight": "",
+    "Choice": false
+  },
+]

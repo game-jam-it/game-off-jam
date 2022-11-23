@@ -1,0 +1,12 @@
+[
+  {
+    "Name": "Shopkeeper",
+    "Text": "You want %s? That’ll be %s.",
+    "Speaking": "right",
+    "PortraitLeft": "",
+    "PortraitRight": "",
+    "Choice": true,
+    "Choice1": ["Yes I’ll buy this (Purchase)", "purchase_item"],
+    "Choice2": ["No I don’t want it", "close_dialogue"]
+  }
+]
