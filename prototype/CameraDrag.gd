@@ -6,11 +6,14 @@ var zoom_in = Vector2(0.75, 0.75)
 var focus_on = Vector2(7.5, 7.5)
 var zoom_out = Vector2(15.0, 15.0)
 
+export var init_zoom = Vector2(20.0, 20.0)
+export var init_offset = Vector2(0.0, 256.0)
+
 onready var viewport_offset = get_viewport().size * 0.5
 onready var viewport_transform = get_viewport_transform()
 
 func _ready():
-	zoom_reset()
+	zoom_init()
 	
 func _input(event):
 	if event.is_action_pressed("mouse_pan"):
@@ -19,6 +22,12 @@ func _input(event):
 		panning = false
 	if panning == true && event is InputEventMouseMotion:
 		offset -= event.relative * zoom
+
+func zoom_init():
+	zoom = self.init_zoom
+	offset = self.init_offset + (get_viewport().size * 0.5)
+	viewport_offset = get_viewport().size * 0.5
+	viewport_transform = get_viewport_transform()
 
 func zoom_reset():
 	zoom = self.zoom_out

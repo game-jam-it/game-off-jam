@@ -7,7 +7,7 @@ onready var player_hud = $PlayerHud
 func _ready():
 	town_hud.disable()
 	event_hud.disable()
-	player_hud.disable()
+	player_hud.restart()
 	TheTown.connect("town_restart", self, "on_town_restart")
 	TheTown.connect("town_generated", self, "on_town_generated")
 
@@ -28,16 +28,16 @@ func _input(event):
 func on_town_restart():
 	town_hud.disable()
 	event_hud.disable()
-	player_hud.disable()
+	player_hud.restart()
 	pass
 
 func on_town_generated():
-	player_hud.initialize()
+	player_hud.open_actor_selection()
 
 func on_actor_selected():
 	town_hud.initialize()
 	event_hud.disable()
-	pass
+	TheTown.start()
 
 func on_event_ended(coords):
 	print("%s.on_event_ended" % name)

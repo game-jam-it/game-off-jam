@@ -71,7 +71,7 @@ onready var camera = $Camera
 onready var creator = $Creator
 
 ## TODO: Add initial set mode
-var town_state = TownState.PrepMode
+var town_state = TownState.SetMode
 var event_coords = null
 
 func _ready():
@@ -85,20 +85,6 @@ func _ready():
 	build_town()
 
 func _input(input):
-	if input.is_action_pressed("ui_home"):
-		draw_debug = !draw_debug
-
-	if input.is_action_pressed("big_map"):
-		map_cfg = BIG_MAP
-	if input.is_action_pressed("small_map"):
-		map_cfg = SMALL_MAP
-
-	# TODO: Hook Up to the initial load
-	if creator.is_done && input.is_action_pressed("rebuild_town"):
-		build_town()
-	elif creator.is_done && input.is_action_pressed("rebuild_devops"):
-		build_devops()
-
 	if town_state == TownState.SetMode:
 		_input_set_mode(input)
 	elif town_state == TownState.PrepMode:
@@ -106,9 +92,17 @@ func _input(input):
 	elif town_state == TownState.ExploreMode:
 		events.handle_input(input)
 
-func _input_set_mode(_input):
-	# TODO Implement _input_set_mode
-	pass
+func _input_set_mode(input):
+	if input.is_action_pressed("ui_home"):
+		draw_debug = !draw_debug
+	if input.is_action_pressed("big_map"):
+		map_cfg = BIG_MAP
+	if input.is_action_pressed("small_map"):
+		map_cfg = SMALL_MAP
+	if creator.is_done && input.is_action_pressed("rebuild_town"):
+		build_town()
+	elif creator.is_done && input.is_action_pressed("rebuild_devops"):
+		build_devops()
 
 func get_grid():
 	return grid
@@ -119,12 +113,17 @@ func get_nodes():
 func get_events():
 	return events
 
+func start():
+	town_state = TownState.PrepMode
+	camera.zoom_reset()
+
 func build_town():
 	if !creator.is_done:
 		return
-	if town_state != TownState.PrepMode:
+	if town_state != TownState.SetMode:
 		return
-	camera.zoom_reset()
+	# Only on select
+	# camera.zoom_reset()
 	emit_signal("town_restart")
 	var seed_phrase = "GameOff 2022 - %s" % OS.get_unix_time()
 	yield(creator.create_town(seed_phrase, map_cfg), "completed")
@@ -133,9 +132,10 @@ func build_town():
 func build_devops():
 	if !creator.is_done:
 		return
-	if town_state != TownState.PrepMode:
+	if town_state != TownState.SetMode:
 		return
-	camera.zoom_reset()
+	# Only on select
+	# camera.zoom_reset()
 	emit_signal("town_restart")
 	var seed_phrase = "DEVOPS-SEEDS"
 	yield(creator.create_town(seed_phrase, MICRO_MAP), "completed")
