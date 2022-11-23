@@ -8,7 +8,7 @@
 [ext_resource path="res://UserInterface/Fonts/Poppins-Regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://UserInterface/Assets/chat_next_indicator.png" type="Texture" id=7]
 [ext_resource path="res://UserInterface/DialogueSystem/grayscale.gdshader" type="Shader" id=8]
-[ext_resource path="res://UserInterface/DialogueSystem/DialogueSystem.gd" type="Script" id=9]
+[ext_resource path="res://UserInterface/DialogueSystem/DialogueBox.gd" type="Script" id=9]
 [ext_resource path="res://Dialogue/CharacterPortraits/portrait_nerd.png" type="Texture" id=10]
 
 [sub_resource type="ShaderMaterial" id=7]
@@ -69,12 +69,12 @@ font_data = ExtResource( 6 )
 use_filter = true
 font_data = ExtResource( 6 )
 
-[node name="DialogueSystem" type="Control"]
+[node name="DialogueBox" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 9 )
-dialogue_path = "res://Dialogue/dialogue0.json"
+dialogue_file = "dialogue0"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 margin_left = 283.0
