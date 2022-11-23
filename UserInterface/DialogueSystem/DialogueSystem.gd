@@ -4,5 +4,5 @@ var dialogue_box: Resource = preload("res://UserInterface/DialogueSystem/Dialogu
 
 func show_dialogue(filename: String) -> void:
 	var dialogue_box_instance = dialogue_box.instance()
-	dialogue_box_instance.filename = filename
+	dialogue_box_instance.dialogue_file = filename
 	Overlay.add_child(dialogue_box_instance)

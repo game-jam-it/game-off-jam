@@ -1,6 +1,6 @@
 extends Control
 
-export(String) var dialogue_file: String = ""
+var dialogue_file: String = ""
 var dialogue_path: String = "res://Dialogue/%s.json"
 export(float) var text_speed = 0.05
 
@@ -38,13 +38,25 @@ func _input(event) -> void:
 		if phrase_finished:
 			if choice_phrase:
 				# Get the method to call
+				var choice_array: Array
 				var choice_method: String
+				var choice_method_parameter: String = ""
 				if selected_choice == 1:
-					choice_method = dialogue[current_phrase]["Choice1"][1]
+					choice_array = dialogue[current_phrase]["Choice1"]
+					choice_method = choice_array[1]
+					if choice_array.size() >= 3:
+						choice_method_parameter = choice_array[2]
 				if selected_choice == 2:
-					choice_method = dialogue[current_phrase]["Choice2"][1]
+					choice_array = dialogue[current_phrase]["Choice2"]
+					choice_method = choice_array[1]
+					if choice_array.size() >= 3:
+						choice_method_parameter = choice_array[2]
 				if self.has_method(choice_method):
-					call(choice_method)
+					if choice_method_parameter != "":
+						print(str(choice_method) + " and parameter: " + str(choice_method_parameter))
+						call(choice_method, choice_method_parameter)
+					else:
+						call(choice_method)
 				# If the dialogue should be cancelled call close_dialogue as the choice_method
 				next_phrase()
 			else:

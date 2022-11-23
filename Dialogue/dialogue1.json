@@ -1,0 +1,10 @@
+[
+  {
+    "Name": "Nerd",
+    "Text": "This is another dialogue",
+    "Speaking": "left",
+    "PortraitLeft": "portrait_nerd",
+    "PortraitRight": "portrait_cheerleader",
+    "Choice": false
+  }
+]

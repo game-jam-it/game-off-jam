@@ -30,7 +30,7 @@
     "PortraitLeft": "portrait_nerd",
     "PortraitRight": "portrait_cheerleader",
     "Choice": true,
-    "Choice1": ["Keep talking", ""],
+    "Choice1": ["Keep talking", "show_dialogue", "dialogue1"],
     "Choice2": ["Walk away", "close_dialogue"]
   },
   {

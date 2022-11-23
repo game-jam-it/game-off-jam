@@ -12,6 +12,7 @@ func _ready():
 		self.character_name = ActorStats.character.name
 	
 	ActorStats.connect("character_changed", self, "on_character_changed")
+	DialogueSystem.show_dialogue("dialogue0")
 
 func set_character_name(name: String) -> void:
 	character_name = name
