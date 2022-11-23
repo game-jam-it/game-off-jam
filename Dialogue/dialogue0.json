@@ -5,6 +5,7 @@
     "Speaking": "left",
     "PortraitLeft": "portrait_nerd",
     "PortraitRight": "portrait_cheerleader",
+    "Choice": false
   },
   {
     "Name": "Cheerleader",
@@ -12,6 +13,7 @@
     "Speaking": "right",
     "PortraitLeft": "portrait_nerd",
     "PortraitRight": "portrait_cheerleader",
+    "Choice": false
   },
   {
     "Name": "Cheerleader",
@@ -19,5 +21,24 @@
     "Speaking": "right",
     "PortraitLeft": "portrait_nerd",
     "PortraitRight": "portrait_cheerleader",
-  }
+    "Choice": false
+  },
+  {
+    "Name": "Cheerleader",
+    "Text": "And we can give the player choices! What do you want to do?",
+    "Speaking": "right",
+    "PortraitLeft": "portrait_nerd",
+    "PortraitRight": "portrait_cheerleader",
+    "Choice": true,
+    "Choice1": ["Keep talking", "show_dialogue", 1],
+    "Choice2": ["Walk away", "close_dialogue"]
+  },
+  {
+    "Name": "Cheerleader",
+    "Text": "And the talking continues",
+    "Speaking": "right",
+    "PortraitLeft": "portrait_nerd",
+    "PortraitRight": "portrait_cheerleader",
+    "Choice": false
+  },
 ]
