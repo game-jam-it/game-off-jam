@@ -16,7 +16,8 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
-outline_color = Color( 0, 0, 0, 1 )
+outline_size = 3
+outline_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
 use_filter = true
 font_data = ExtResource( 8 )
 
@@ -76,7 +77,6 @@ margin_left = 127.0
 margin_top = 28.0
 margin_right = 367.0
 margin_bottom = 63.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "<ActorName>"
 
@@ -127,7 +127,6 @@ custom_styles/disabled = SubResource( 8 )
 custom_styles/normal = SubResource( 9 )
 
 [node name="ExpandedUIBorder" type="NinePatchRect" parent="."]
-visible = false
 show_behind_parent = true
 margin_right = 372.0
 margin_bottom = 290.0

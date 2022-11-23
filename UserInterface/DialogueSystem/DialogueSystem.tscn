@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://UserInterface/Assets/ui_background_nineslice.png" type="Texture" id=1]
 [ext_resource path="res://UserInterface/Assets/UIGradientTexture.tres" type="Texture" id=2]
@@ -6,10 +6,22 @@
 [ext_resource path="res://UserInterface/Fonts/Poppins-Bold.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://UserInterface/Fonts/Poppins-Regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://UserInterface/Assets/chat_next_indicator.png" type="Texture" id=7]
+[ext_resource path="res://UserInterface/DialogueSystem/grayscale.gdshader" type="Shader" id=8]
 [ext_resource path="res://UserInterface/DialogueSystem/DialogueSystem.gd" type="Script" id=9]
+[ext_resource path="res://Dialogue/CharacterPortraits/portrait_nerd.png" type="Texture" id=10]
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = ExtResource( 8 )
+shader_param/grayscale = true
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = ExtResource( 8 )
+shader_param/grayscale = true
 
 [sub_resource type="DynamicFont" id=5]
 size = 18
+outline_size = 3
+outline_color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
 use_filter = true
 font_data = ExtResource( 5 )
 
@@ -88,23 +100,23 @@ margin_top = -2.0
 margin_bottom = -2.0
 
 [node name="PortraitLeft" type="Sprite" parent="NinePatchRect/TextureRect/Portraits"]
+material = SubResource( 7 )
+texture = ExtResource( 10 )
 offset = Vector2( -255, -50 )
 
 [node name="PortraitRight" type="Sprite" parent="NinePatchRect/TextureRect/Portraits"]
+material = SubResource( 8 )
+texture = ExtResource( 10 )
 offset = Vector2( 255, -50 )
 flip_h = true
 
-[node name="NameLabel" type="RichTextLabel" parent="NinePatchRect"]
+[node name="NameLabel" type="Label" parent="NinePatchRect"]
 anchor_right = 1.0
-margin_left = 8.0
+margin_left = 12.0
 margin_top = 8.0
 margin_bottom = 38.0
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-custom_fonts/normal_font = SubResource( 5 )
-bbcode_enabled = true
-bbcode_text = "<Speaker name>"
+custom_fonts/font = SubResource( 5 )
 text = "<Speaker name>"
-scroll_active = false
 
 [node name="TextLabel" type="RichTextLabel" parent="NinePatchRect"]
 anchor_right = 1.0

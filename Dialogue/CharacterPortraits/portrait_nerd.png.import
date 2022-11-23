@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/nerd.png-0c7456ee2de6fc8d0ed84220d2152ad6.stex"
+path="res://.import/portrait_nerd.png-48c90616c70a9ab5ad8fdc31113718eb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Dialogue/CharacterPortraits/nerd.png"
-dest_files=[ "res://.import/nerd.png-0c7456ee2de6fc8d0ed84220d2152ad6.stex" ]
+source_file="res://Dialogue/CharacterPortraits/portrait_nerd.png"
+dest_files=[ "res://.import/portrait_nerd.png-48c90616c70a9ab5ad8fdc31113718eb.stex" ]
 
 [params]
 
