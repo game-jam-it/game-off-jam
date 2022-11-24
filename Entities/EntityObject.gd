@@ -21,13 +21,20 @@ onready var actions: Node2D = $Actions
 onready var sense_area = $SenseArea
 
 var _grid
+
+var _id: int = 0
 var _free: bool = false
+
+func id():
+	return _id
 
 func is_free():
 	return _free
 
-
 func _ready():
+	# Note: ID means all entities
+	# require the same parent node
+	self._id = self.get_index()
 	input.initialize(self)
 	for action in actions.get_children():
 		action.initialize(self)
