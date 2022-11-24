@@ -21,6 +21,10 @@ signal show_fps(value)
 signal set_brightness(value)
 signal update_fullscreen(value)
 
+signal volume_sfx_changed(value)
+signal volume_music_changed(value)
+signal volume_master_changed(value)
+
 func _ready():
 	_load_settings()
 
@@ -82,16 +86,19 @@ func update_master_volume(value):
 	# TODO Implement: Depends on FMOD Integration Setup
 	if settings.volume_master != value:
 		settings.volume_master = value
+		emit_signal("volume_master_changed")
 		_save_settings()
 
 func update_music_volume(value):
 	# TODO Implement: Depends on FMOD Integration Setup
 	if settings.volume_music != value:
 		settings.volume_music = value
+		emit_signal("volume_music_changed")
 		_save_settings()
 
 func update_sfx_volume(value):
 	# TODO Implement: Depends on FMOD Integration Setup
 	if settings.volume_sfx != value:
 		settings.volume_sfx = value
+		emit_signal("volume_sfx_changed")
 		_save_settings()
