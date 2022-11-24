@@ -1,0 +1,9 @@
+*.dll
+*.dll*
+*.a
+*.a*
+*.dylib
+*.dylib*
+*.so
+*.so*
+!libs/
