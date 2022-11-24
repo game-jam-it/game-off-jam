@@ -55,11 +55,15 @@ signal event_clear(coords)
 signal event_focused(coords)
 signal event_selected(coords)
 
+signal game_over
+signal game_pause
+signal game_resume
+
 signal stop_expedition
 signal start_expedition
 
-signal pause_expedition
-signal resume_expedition
+signal expedition_pause
+signal expedition_resume
 
 var map_cfg = MICRO_MAP
 var draw_debug = true
@@ -71,6 +75,7 @@ onready var camera = $Camera
 onready var creator = $Creator
 
 ## TODO: Add initial set mode
+var paused = false
 var town_state = TownState.SetMode
 var event_coords = null
 
@@ -85,6 +90,8 @@ func _ready():
 	build_town()
 
 func _input(input):
+	if paused:
+		return
 	if town_state == TownState.SetMode:
 		_input_set_mode(input)
 	elif town_state == TownState.PrepMode:
@@ -99,6 +106,10 @@ func _input_set_mode(input):
 		map_cfg = BIG_MAP
 	if input.is_action_pressed("small_map"):
 		map_cfg = SMALL_MAP
+	# TODO Fix State, paused is doubled in the hud
+	if !paused && input.is_action_pressed("ui_cancel"):
+		get_tree().set_input_as_handled()
+		self.pause_game()
 	if creator.is_done && input.is_action_pressed("rebuild_town"):
 		build_town()
 	elif creator.is_done && input.is_action_pressed("rebuild_devops"):
@@ -122,8 +133,6 @@ func build_town():
 		return
 	if town_state != TownState.SetMode:
 		return
-	# Only on select
-	# camera.zoom_reset()
 	emit_signal("town_restart")
 	var seed_phrase = "GameOff 2022 - %s" % OS.get_unix_time()
 	yield(creator.create_town(seed_phrase, map_cfg), "completed")
@@ -134,12 +143,33 @@ func build_devops():
 		return
 	if town_state != TownState.SetMode:
 		return
-	# Only on select
-	# camera.zoom_reset()
 	emit_signal("town_restart")
 	var seed_phrase = "DEVOPS-SEEDS"
 	yield(creator.create_town(seed_phrase, MICRO_MAP), "completed")
 	emit_signal("town_generated")
+
+
+"""
+	UI Callbacks
+"""
+
+func pause_game():
+	paused = true
+	emit_signal("game_pause")
+
+func resume_game():
+	paused = false
+	if town_state != TownState.ExploreMode:
+		emit_signal("expedition_resume")
+	else:
+		emit_signal("game_resume")
+
+func restart_game():
+	# TODO Setup restart_game
+	# TODO Destroy the old saves
+	town_state = TownState.SetMode
+	self.build_town()
+
 
 """
 	Prep-Phase Events & Logic
@@ -185,6 +215,9 @@ func cancel_selected_event(coords):
 	camera.zoom_reset()
 	# TODO Implement
 
+"""
+	Expedition Phase Events & Logic
+"""
 
 func stop_active_event():
 	# TODO Make sure this breaks the maps queue
@@ -197,7 +230,7 @@ func stop_active_event():
 
 func on_pause_explore_event():
 	print("Pause expedition: %s.%s" % [event_coords.x, event_coords.y])
-	emit_signal("pause_expedition")
+	emit_signal("expedition_pause")
 	# TODO Asjut pause behavior
 	# Current behavior is exit
 	stop_active_event()

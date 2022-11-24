@@ -2,9 +2,11 @@ extends Control
 
 signal actor_selected
 
+onready var _game_over = $GameOver
+onready var _game_pause = $GamePause
 onready var _player_info = $PlayerInfoBox
 
-onready var _actor_select = get_node("%ActorSelect")
+onready var _actor_select = get_node("%ActorSelector")
 onready var _actor_select_box = get_node("%ActorSelectBox")
 onready var _actor_select_list = get_node("%ActorSelectList")
 
@@ -17,6 +19,8 @@ var ActorBoxPrefab = preload("res://UserInterface/PlayerHud/prefabs/ActorViewBox
 func _ready():
 	self._setup_actors_list()
 	self._on_actor_hover(null)
+	_game_over.visible = false
+	_game_pause.visible = false
 	_player_info.visible = false
 	_actor_select.visible = false
 	_actor_select_box.visible = false
@@ -32,15 +36,39 @@ func restart():
 		return
 	_actor_select_box.visible = false
 	_actor_select.visible = true
+	_game_pause.visible = false
+	_game_over.visible = false
 	visible = true
-	# TODO Character selection
-	# emit_signal("actor_selected")
 
+
+"""
+	Game Over
+"""
+
+func open_game_over():
+	_game_pause.visible = false
+	_game_over.visible = true
+
+func close_game_over():
+	_game_over.visible = false
+
+"""
+	Game Paused
+"""
+
+func open_game_paused():
+	_game_pause.visible = true
+
+func close_game_paused():
+	_game_pause.visible = false
+
+"""
+	Actor Selection
+"""
 
 func open_actor_selection():
 	_actor_select_box.visible = true
 	_actor_select.visible = true
-
 
 func _setup_actors_list():
 	# FIXME: This a is fast cheat setup

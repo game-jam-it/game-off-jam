@@ -19,6 +19,7 @@ func _input(input):
 	if not self.visible:
 		return
 	if input.is_action_pressed("ui_cancel"):
+		get_tree().set_input_as_handled()
 		self.visible = false
 		emit_signal("cancel_expedition")
 

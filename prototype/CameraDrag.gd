@@ -1,5 +1,8 @@
 extends Camera2D
 
+const BASE_X = 1280.0
+const BASE_Y = 720.0
+
 var panning = false
 
 var zoom_in = Vector2(0.75, 0.75)
@@ -9,10 +12,12 @@ var zoom_out = Vector2(15.0, 15.0)
 export var init_zoom = Vector2(20.0, 20.0)
 export var init_offset = Vector2(0.0, 256.0)
 
+onready var viewport_ratio = Vector2.ONE
 onready var viewport_offset = get_viewport().size * 0.5
 onready var viewport_transform = get_viewport_transform()
 
 func _ready():
+	get_viewport().connect("size_changed", self, "_on_size_changed")
 	zoom_init()
 	
 func _input(event):
@@ -32,6 +37,10 @@ func zoom_init():
 func zoom_reset():
 	zoom = self.zoom_out
 	offset = get_viewport().size * 0.5
+	viewport_offset = get_viewport().size * 0.5
+	viewport_transform = get_viewport_transform()
+
+func _on_size_changed():
 	viewport_offset = get_viewport().size * 0.5
 	viewport_transform = get_viewport_transform()
 

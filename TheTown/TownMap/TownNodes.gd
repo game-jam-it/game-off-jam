@@ -66,6 +66,9 @@ func create(radius: int, size: float, location: Vector2):
 
 
 func handle_input(input):
+	if !TheTown.paused && input.is_action_pressed("ui_cancel"):
+		get_tree().set_input_as_handled()
+		TheTown.pause_game()
 	if event_coords != null && input.is_action_pressed("mouse_click"):
 		emit_signal("event_selected", event_coords)
 

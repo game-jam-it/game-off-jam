@@ -1,0 +1,265 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://UserInterface/fonts/poppins_ui_text.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UserInterface/fonts/poppins_description_text.tres" type="DynamicFont" id=2]
+[ext_resource path="res://UserInterface/style/panel-base-fb.tres" type="StyleBox" id=3]
+[ext_resource path="res://UserInterface/PlayerHud/prefabs/GamePause.gd" type="Script" id=4]
+
+[node name="GamePause" type="CenterContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 4 )
+
+[node name="TabContainer" type="TabContainer" parent="."]
+margin_left = 480.0
+margin_top = 90.0
+margin_right = 800.0
+margin_bottom = 630.0
+rect_min_size = Vector2( 320, 540 )
+custom_fonts/font = ExtResource( 1 )
+custom_styles/tab_fg = ExtResource( 3 )
+custom_styles/tab_disabled = ExtResource( 3 )
+custom_styles/tab_bg = ExtResource( 3 )
+custom_styles/panel = ExtResource( 3 )
+tab_align = 0
+
+[node name="Game" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 44.0
+margin_right = -8.0
+margin_bottom = -8.0
+tab_align = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Game"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MCGame" type="MarginContainer" parent="TabContainer/Game/VBoxContainer"]
+margin_right = 304.0
+margin_bottom = 426.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MCButtons" type="MarginContainer" parent="TabContainer/Game/VBoxContainer"]
+margin_top = 430.0
+margin_right = 304.0
+margin_bottom = 488.0
+custom_constants/margin_right = 64
+custom_constants/margin_top = 16
+custom_constants/margin_left = 64
+custom_constants/margin_bottom = 16
+
+[node name="ResumeGame" type="Button" parent="TabContainer/Game/VBoxContainer/MCButtons"]
+unique_name_in_owner = true
+margin_left = 64.0
+margin_top = 16.0
+margin_right = 240.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 1 )
+text = "Resume"
+
+[node name="Settings" type="Tabs" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 44.0
+margin_right = -8.0
+margin_bottom = -8.0
+custom_constants/hseparation = 8
+custom_constants/top_margin = 10
+tab_align = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Settings"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MCSettings" type="MarginContainer" parent="TabContainer/Settings/VBoxContainer"]
+margin_right = 304.0
+margin_bottom = 426.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Settings/VBoxContainer/MCSettings"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 288.0
+margin_bottom = 410.0
+
+[node name="VideoLabel" type="Label" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer"]
+margin_right = 272.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 1 )
+text = "Video"
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer"]
+margin_top = 24.0
+margin_right = 272.0
+margin_bottom = 154.0
+custom_constants/margin_top = 16
+custom_constants/margin_bottom = 0
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer"]
+margin_top = 16.0
+margin_right = 272.0
+margin_bottom = 130.0
+custom_constants/vseparation = 8
+custom_constants/hseparation = 8
+columns = 2
+
+[node name="VSyncLabel" type="Label" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer/GridContainer"]
+margin_right = 132.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "VSync"
+valign = 1
+
+[node name="VSyncCheck" type="CheckButton" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer/GridContainer"]
+unique_name_in_owner = true
+margin_left = 140.0
+margin_right = 272.0
+margin_bottom = 40.0
+pressed = true
+
+[node name="FullscreenLabel" type="Label" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer/GridContainer"]
+margin_top = 48.0
+margin_right = 132.0
+margin_bottom = 88.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Fullscreen"
+valign = 1
+
+[node name="FullscreenCheck" type="CheckButton" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer/GridContainer"]
+unique_name_in_owner = true
+margin_left = 140.0
+margin_top = 48.0
+margin_right = 272.0
+margin_bottom = 88.0
+
+[node name="BrightnessLabel" type="Label" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer/GridContainer"]
+margin_top = 96.0
+margin_right = 132.0
+margin_bottom = 114.0
+custom_fonts/font = ExtResource( 2 )
+text = "Brightness"
+
+[node name="BrightnessSlider" type="HSlider" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer/GridContainer"]
+unique_name_in_owner = true
+margin_left = 144.0
+margin_top = 96.0
+margin_right = 272.0
+margin_bottom = 114.0
+rect_min_size = Vector2( 128, 0 )
+size_flags_horizontal = 10
+size_flags_vertical = 3
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer"]
+margin_top = 158.0
+margin_right = 272.0
+margin_bottom = 190.0
+custom_constants/separation = 32
+
+[node name="AudioLabel" type="Label" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer"]
+margin_top = 194.0
+margin_right = 272.0
+margin_bottom = 214.0
+custom_fonts/font = ExtResource( 1 )
+text = "Audio"
+
+[node name="MarginContainer2" type="MarginContainer" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer"]
+margin_top = 218.0
+margin_right = 272.0
+margin_bottom = 388.0
+custom_constants/margin_top = 32
+custom_constants/margin_bottom = 32
+
+[node name="GridContainer2" type="GridContainer" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer2"]
+margin_top = 32.0
+margin_right = 272.0
+margin_bottom = 138.0
+custom_constants/vseparation = 26
+columns = 2
+
+[node name="MasterLabel" type="Label" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer2/GridContainer2"]
+margin_right = 134.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 2 )
+text = "Master Volume"
+
+[node name="MasterSlider" type="HSlider" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer2/GridContainer2"]
+unique_name_in_owner = true
+margin_left = 144.0
+margin_right = 272.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 128, 0 )
+size_flags_horizontal = 10
+size_flags_vertical = 3
+
+[node name="MusicLabel" type="Label" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer2/GridContainer2"]
+margin_top = 44.0
+margin_right = 134.0
+margin_bottom = 62.0
+custom_fonts/font = ExtResource( 2 )
+text = "Music Volume"
+
+[node name="MusicSlider" type="HSlider" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer2/GridContainer2"]
+unique_name_in_owner = true
+margin_left = 144.0
+margin_top = 44.0
+margin_right = 272.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 128, 0 )
+size_flags_horizontal = 10
+size_flags_vertical = 3
+
+[node name="SfxLabel" type="Label" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer2/GridContainer2"]
+margin_top = 88.0
+margin_right = 134.0
+margin_bottom = 106.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "SFX Volume"
+
+[node name="SfxSlider" type="HSlider" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer2/GridContainer2"]
+unique_name_in_owner = true
+margin_left = 144.0
+margin_top = 88.0
+margin_right = 272.0
+margin_bottom = 106.0
+rect_min_size = Vector2( 128, 0 )
+size_flags_horizontal = 10
+size_flags_vertical = 3
+
+[node name="MCButtons" type="MarginContainer" parent="TabContainer/Settings/VBoxContainer"]
+margin_top = 430.0
+margin_right = 304.0
+margin_bottom = 488.0
+custom_constants/margin_right = 64
+custom_constants/margin_top = 16
+custom_constants/margin_left = 64
+custom_constants/margin_bottom = 16
+
+[node name="ResumeSettings" type="Button" parent="TabContainer/Settings/VBoxContainer/MCButtons"]
+unique_name_in_owner = true
+margin_left = 64.0
+margin_top = 16.0
+margin_right = 240.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 1 )
+text = "Resume"

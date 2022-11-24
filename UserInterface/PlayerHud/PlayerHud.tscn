@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UserInterface/PlayerHud/prefabs/PlayerInfoBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UserInterface/PlayerHud/PlayerHud.gd" type="Script" id=2]
 [ext_resource path="res://UserInterface/fonts/poppins_ui_text.tres" type="DynamicFont" id=3]
 [ext_resource path="res://UserInterface/fonts/poppins_description_text.tres" type="DynamicFont" id=4]
+[ext_resource path="res://UserInterface/PlayerHud/prefabs/GamePause.tscn" type="PackedScene" id=5]
 
 [node name="PlayerHud" type="Control"]
 anchor_right = 1.0
@@ -17,14 +18,15 @@ margin_bottom = 660.0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 
-[node name="ActorSelect" type="VBoxContainer" parent="."]
+[node name="ActorSelector" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = 4.0
 mouse_filter = 2
 
-[node name="MainView" type="Control" parent="ActorSelect"]
+[node name="MainView" type="Control" parent="ActorSelector"]
 margin_right = 1280.0
 margin_bottom = 660.0
 rect_min_size = Vector2( 0, 660 )
@@ -32,7 +34,7 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ActorSelectBox" type="HBoxContainer" parent="ActorSelect/MainView"]
+[node name="ActorSelectBox" type="HBoxContainer" parent="ActorSelector/MainView"]
 unique_name_in_owner = true
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -41,7 +43,7 @@ mouse_filter = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MBox-MainBox" type="MarginContainer" parent="ActorSelect/MainView/ActorSelectBox"]
+[node name="MBox-MainBox" type="MarginContainer" parent="ActorSelector/MainView/ActorSelectBox"]
 margin_right = 1280.0
 margin_bottom = 660.0
 mouse_filter = 2
@@ -52,7 +54,7 @@ custom_constants/margin_top = 300
 custom_constants/margin_left = 192
 custom_constants/margin_bottom = 32
 
-[node name="ColorRect" type="ColorRect" parent="ActorSelect/MainView/ActorSelectBox/MBox-MainBox"]
+[node name="ColorRect" type="ColorRect" parent="ActorSelector/MainView/ActorSelectBox/MBox-MainBox"]
 margin_left = 192.0
 margin_top = 300.0
 margin_right = 1088.0
@@ -61,13 +63,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ActorSelect/MainView/ActorSelectBox/MBox-MainBox"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ActorSelector/MainView/ActorSelectBox/MBox-MainBox"]
 margin_left = 192.0
 margin_top = 300.0
 margin_right = 1088.0
 margin_bottom = 628.0
 
-[node name="MarginContainer" type="MarginContainer" parent="ActorSelect/MainView/ActorSelectBox/MBox-MainBox/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ActorSelector/MainView/ActorSelectBox/MBox-MainBox/VBoxContainer"]
 margin_right = 896.0
 margin_bottom = 64.0
 custom_constants/margin_right = 256
@@ -75,7 +77,7 @@ custom_constants/margin_top = 16
 custom_constants/margin_left = 256
 custom_constants/margin_bottom = 16
 
-[node name="ColorRect" type="ColorRect" parent="ActorSelect/MainView/ActorSelectBox/MBox-MainBox/VBoxContainer/MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="ActorSelector/MainView/ActorSelectBox/MBox-MainBox/VBoxContainer/MarginContainer"]
 margin_left = 256.0
 margin_top = 16.0
 margin_right = 640.0
@@ -84,7 +86,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
-[node name="Label" type="Label" parent="ActorSelect/MainView/ActorSelectBox/MBox-MainBox/VBoxContainer/MarginContainer"]
+[node name="Label" type="Label" parent="ActorSelector/MainView/ActorSelectBox/MBox-MainBox/VBoxContainer/MarginContainer"]
 margin_left = 256.0
 margin_top = 16.0
 margin_right = 640.0
@@ -97,7 +99,7 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="ActorSelectList" type="HBoxContainer" parent="ActorSelect/MainView/ActorSelectBox/MBox-MainBox/VBoxContainer"]
+[node name="ActorSelectList" type="HBoxContainer" parent="ActorSelector/MainView/ActorSelectBox/MBox-MainBox/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 68.0
 margin_right = 896.0
@@ -105,27 +107,27 @@ margin_bottom = 328.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="BottomBar" type="Control" parent="ActorSelect"]
+[node name="BottomBar" type="Control" parent="ActorSelector"]
 margin_top = 664.0
 margin_right = 1280.0
 margin_bottom = 724.0
 rect_min_size = Vector2( 0, 60 )
 size_flags_horizontal = 3
 
-[node name="ColorRect" type="ColorRect" parent="ActorSelect/BottomBar"]
+[node name="ColorRect" type="ColorRect" parent="ActorSelector/BottomBar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
-[node name="HBox - Bottom Bar" type="HBoxContainer" parent="ActorSelect/BottomBar"]
+[node name="HBox - Bottom Bar" type="HBoxContainer" parent="ActorSelector/BottomBar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 12
 
-[node name="MBox - ObjectiveInfo" type="MarginContainer" parent="ActorSelect/BottomBar/HBox - Bottom Bar"]
+[node name="MBox - ObjectiveInfo" type="MarginContainer" parent="ActorSelector/BottomBar/HBox - Bottom Bar"]
 margin_right = 320.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 320, 0 )
@@ -134,7 +136,7 @@ custom_constants/margin_top = 16
 custom_constants/margin_left = 24
 custom_constants/margin_bottom = 16
 
-[node name="ColorRect" type="ColorRect" parent="ActorSelect/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo"]
+[node name="ColorRect" type="ColorRect" parent="ActorSelector/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo"]
 margin_left = 24.0
 margin_top = 16.0
 margin_right = 296.0
@@ -143,14 +145,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ActorSelect/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ActorSelector/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo"]
 margin_left = 24.0
 margin_top = 16.0
 margin_right = 296.0
 margin_bottom = 44.0
 custom_constants/separation = 16
 
-[node name="BaseSkills" type="Label" parent="ActorSelect/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer"]
+[node name="BaseSkills" type="Label" parent="ActorSelector/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer"]
 unique_name_in_owner = true
 margin_right = 272.0
 margin_bottom = 28.0
@@ -160,7 +162,7 @@ custom_fonts/font = ExtResource( 4 )
 align = 1
 valign = 1
 
-[node name="MBox - SelectInfo" type="MarginContainer" parent="ActorSelect/BottomBar/HBox - Bottom Bar"]
+[node name="MBox - SelectInfo" type="MarginContainer" parent="ActorSelector/BottomBar/HBox - Bottom Bar"]
 margin_left = 324.0
 margin_right = 956.0
 margin_bottom = 60.0
@@ -170,19 +172,19 @@ custom_constants/margin_top = 16
 custom_constants/margin_left = 24
 custom_constants/margin_bottom = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ActorSelect/BottomBar/HBox - Bottom Bar/MBox - SelectInfo"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ActorSelector/BottomBar/HBox - Bottom Bar/MBox - SelectInfo"]
 margin_left = 24.0
 margin_top = 16.0
 margin_right = 608.0
 margin_bottom = 44.0
 
-[node name="HBoxContainer1" type="HBoxContainer" parent="ActorSelect/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer"]
+[node name="HBoxContainer1" type="HBoxContainer" parent="ActorSelector/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer"]
 margin_right = 144.0
 margin_bottom = 28.0
 custom_constants/separation = 16
 alignment = 2
 
-[node name="ColorRect1" type="ColorRect" parent="ActorSelect/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer/HBoxContainer1"]
+[node name="ColorRect1" type="ColorRect" parent="ActorSelector/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer/HBoxContainer1"]
 margin_top = 6.0
 margin_right = 16.0
 margin_bottom = 22.0
@@ -191,7 +193,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
-[node name="ColorRect2" type="ColorRect" parent="ActorSelect/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer/HBoxContainer1"]
+[node name="ColorRect2" type="ColorRect" parent="ActorSelector/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer/HBoxContainer1"]
 margin_left = 32.0
 margin_top = 6.0
 margin_right = 48.0
@@ -201,7 +203,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
-[node name="ColorRect3" type="ColorRect" parent="ActorSelect/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer/HBoxContainer1"]
+[node name="ColorRect3" type="ColorRect" parent="ActorSelector/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer/HBoxContainer1"]
 margin_left = 64.0
 margin_top = 6.0
 margin_right = 80.0
@@ -211,7 +213,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
-[node name="ColorRect4" type="ColorRect" parent="ActorSelect/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer/HBoxContainer1"]
+[node name="ColorRect4" type="ColorRect" parent="ActorSelector/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer/HBoxContainer1"]
 margin_left = 96.0
 margin_top = 6.0
 margin_right = 112.0
@@ -221,7 +223,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
-[node name="ColorRect5" type="ColorRect" parent="ActorSelect/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer/HBoxContainer1"]
+[node name="ColorRect5" type="ColorRect" parent="ActorSelector/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer/HBoxContainer1"]
 margin_left = 128.0
 margin_top = 6.0
 margin_right = 144.0
@@ -231,7 +233,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
-[node name="BaseName" type="Label" parent="ActorSelect/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer"]
+[node name="BaseName" type="Label" parent="ActorSelector/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer"]
 unique_name_in_owner = true
 margin_left = 148.0
 margin_right = 436.0
@@ -244,14 +246,14 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="ActorSelect/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="ActorSelector/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer"]
 margin_left = 440.0
 margin_right = 584.0
 margin_bottom = 28.0
 size_flags_vertical = 5
 custom_constants/separation = 16
 
-[node name="ColorRect1" type="ColorRect" parent="ActorSelect/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer/HBoxContainer2"]
+[node name="ColorRect1" type="ColorRect" parent="ActorSelector/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer/HBoxContainer2"]
 margin_top = 6.0
 margin_right = 16.0
 margin_bottom = 22.0
@@ -260,7 +262,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
-[node name="ColorRect2" type="ColorRect" parent="ActorSelect/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer/HBoxContainer2"]
+[node name="ColorRect2" type="ColorRect" parent="ActorSelector/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer/HBoxContainer2"]
 margin_left = 32.0
 margin_top = 6.0
 margin_right = 48.0
@@ -270,7 +272,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
-[node name="ColorRect3" type="ColorRect" parent="ActorSelect/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer/HBoxContainer2"]
+[node name="ColorRect3" type="ColorRect" parent="ActorSelector/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer/HBoxContainer2"]
 margin_left = 64.0
 margin_top = 6.0
 margin_right = 80.0
@@ -280,7 +282,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
-[node name="ColorRect4" type="ColorRect" parent="ActorSelect/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer/HBoxContainer2"]
+[node name="ColorRect4" type="ColorRect" parent="ActorSelector/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer/HBoxContainer2"]
 margin_left = 96.0
 margin_top = 6.0
 margin_right = 112.0
@@ -290,7 +292,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
-[node name="ColorRect5" type="ColorRect" parent="ActorSelect/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer/HBoxContainer2"]
+[node name="ColorRect5" type="ColorRect" parent="ActorSelector/BottomBar/HBox - Bottom Bar/MBox - SelectInfo/HBoxContainer/HBoxContainer2"]
 margin_left = 128.0
 margin_top = 6.0
 margin_right = 144.0
@@ -300,7 +302,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
-[node name="MBox - GlobalStats" type="MarginContainer" parent="ActorSelect/BottomBar/HBox - Bottom Bar"]
+[node name="MBox - GlobalStats" type="MarginContainer" parent="ActorSelector/BottomBar/HBox - Bottom Bar"]
 margin_left = 960.0
 margin_right = 1280.0
 margin_bottom = 60.0
@@ -310,7 +312,7 @@ custom_constants/margin_top = 16
 custom_constants/margin_left = 24
 custom_constants/margin_bottom = 16
 
-[node name="ColorRect" type="ColorRect" parent="ActorSelect/BottomBar/HBox - Bottom Bar/MBox - GlobalStats"]
+[node name="ColorRect" type="ColorRect" parent="ActorSelector/BottomBar/HBox - Bottom Bar/MBox - GlobalStats"]
 margin_left = 24.0
 margin_top = 16.0
 margin_right = 296.0
@@ -319,14 +321,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ActorSelect/BottomBar/HBox - Bottom Bar/MBox - GlobalStats"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ActorSelector/BottomBar/HBox - Bottom Bar/MBox - GlobalStats"]
 margin_left = 24.0
 margin_top = 16.0
 margin_right = 296.0
 margin_bottom = 44.0
 custom_constants/separation = 24
 
-[node name="BaseStats" type="Label" parent="ActorSelect/BottomBar/HBox - Bottom Bar/MBox - GlobalStats/HBoxContainer"]
+[node name="BaseStats" type="Label" parent="ActorSelector/BottomBar/HBox - Bottom Bar/MBox - GlobalStats/HBoxContainer"]
 unique_name_in_owner = true
 margin_right = 272.0
 margin_bottom = 28.0
@@ -335,3 +337,13 @@ size_flags_vertical = 3
 custom_fonts/font = ExtResource( 4 )
 align = 1
 valign = 1
+
+[node name="GamePause" parent="." instance=ExtResource( 5 )]
+
+[node name="GameOver" type="CenterContainer" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
