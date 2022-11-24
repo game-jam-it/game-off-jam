@@ -3,6 +3,7 @@ extends Control
 var _scene = null
 
 onready var enemy_list = get_node("%EnemyList")
+onready var escape_button = get_node("%EscapeButton")
 
 onready var lore_box = get_node("%LoreGroup")
 onready var relic_box = get_node("%RelicGroup")
@@ -15,7 +16,7 @@ onready var banish_label = get_node("%BanishValue")
 var enemy_box = preload("res://UserInterface/EventHud/prefabs/EnemyInfoBox.tscn")
 
 func _ready():
-	pass
+	escape_button.connect("pressed", self, "_on_escape_pressed")
 
 func enable():
 	visible = true
@@ -64,6 +65,9 @@ func _create_box(entity):
 	var box = enemy_box.instance()
 	enemy_list.add_child(box)
 	box.initialize(entity)
+
+func _on_escape_pressed():
+	if visible: TheTown.stop_active_event()
 
 func _on_goals_updated(goals):
 	lore_label.text = "%s/%s" % [goals.lore.done, goals.lore.total]
