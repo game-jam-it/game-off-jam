@@ -8,7 +8,7 @@
 script = ExtResource( 1 )
 name = "Mini weight"
 flavor = "You feel stronger, but only once."
+cost = 2
 texture = ExtResource( 3 )
 effect_description = "Gain +2 fortitude for the next fortitude challenge."
-cost = 2
 consume_effects = [ ExtResource( 2 ) ]

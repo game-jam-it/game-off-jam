@@ -1,7 +1,6 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=2 format=2]
 
 [ext_resource path="res://Characters/Character.gd" type="Script" id=1]
-[ext_resource path="res://Items/Consumables/CSForIdiots.tres" type="Resource" id=4]
 
 [resource]
 script = ExtResource( 1 )
@@ -11,5 +10,5 @@ max_hp = 3
 fortitude = 2
 daring = 3
 smarts = 5
-items = [ ExtResource( 4 ) ]
+items = [  ]
 character_effects = [  ]

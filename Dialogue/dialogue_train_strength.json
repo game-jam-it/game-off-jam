@@ -5,6 +5,7 @@
     "Speaking": "left",
     "PortraitLeft": "",
     "PortraitRight": "",
+    "ShowExtraInfo": "",
     "Choice": true,
     "Choice1": ["I have time for this (Train Strength)", "increase_fortitude", "1"],
     "Choice2": ["I should go", "close_dialogue"]
@@ -15,6 +16,7 @@
     "Speaking": "left",
     "PortraitLeft": "",
     "PortraitRight": "",
+    "ShowExtraInfo": "",
     "Choice": false
   },
 ]

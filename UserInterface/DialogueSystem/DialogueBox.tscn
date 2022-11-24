@@ -74,7 +74,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 9 )
-dialogue_file = "dialogue0"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 margin_left = 283.0

@@ -13,6 +13,8 @@ var choice_phrase: bool = false
 var selected_choice: int = 1 setget set_selected_choice
 var selected_choice_result_method: String = ""
 
+var shop_ui: Resource = preload("res://UserInterface/Shops/ShopUI.tscn")
+
 onready var name_label = $NinePatchRect/NameLabel
 onready var text_label = $NinePatchRect/TextLabel
 onready var text_timer = $TextSpeedTimer
@@ -53,7 +55,7 @@ func _input(event) -> void:
 						choice_method_parameter = choice_array[2]
 				if self.has_method(choice_method):
 					if choice_method_parameter != "":
-						print(str(choice_method) + " and parameter: " + str(choice_method_parameter))
+						print("Calling method: " + choice_method + " with parameter: " + choice_method_parameter)
 						call(choice_method, choice_method_parameter)
 					else:
 						call(choice_method)
@@ -101,9 +103,24 @@ func next_phrase() -> void:
 	
 	phrase_finished = false
 	
+	# Check if extra info needs to be displayed
+	var extra_info: String = dialogue[current_phrase]["ShowExtraInfo"]
+	var actual_string: String = ""
+	
+	if extra_info == "ItemWithCost":
+		var format_string = dialogue[current_phrase]["Text"]
+		actual_string = format_string % [DialogueSystem.selected_item.name, DialogueSystem.selected_item.cost]
+	if extra_info == "Item":
+		var format_string = dialogue[current_phrase]["Text"]
+		actual_string = format_string % DialogueSystem.selected_item.name
+	
+	if actual_string != "":
+		text_label.bbcode_text = actual_string
+	else:
+		text_label.bbcode_text = dialogue[current_phrase]["Text"]
+	
 	# Setting the dialogue box text and current speaker
 	name_label.text = dialogue[current_phrase]["Name"]
-	text_label.bbcode_text = dialogue[current_phrase]["Text"]
 	text_label.visible_characters = 0
 	
 	# Change portraits
@@ -179,18 +196,37 @@ func close_dialogue() -> void:
 	queue_free()
 
 func show_dialogue(filename: String) -> void:
-	DialogueSystem.show_dialogue(filename)
+	DialogueSystem.show_dialogue_unsafe(filename)
 	
 	# After opening the new dialogue box close this one
 	queue_free()
 
 func open_shop(shop_id: String) -> void:
-	# TODO
-	print("Opening shop with id " + shop_id)
+	var shop_instance = shop_ui.instance()
+	shop_instance.shop_id = shop_id
+	Overlay.add_child(shop_instance)
+
+func close_shop() -> void:
+	# Close the shop UI
+	var shop_node = Overlay.get_node_or_null("ShopUI")
+	if shop_node != null:
+		shop_node.queue_free()
+	
+	DialogueSystem.show_dialogue("dialogue_shop_leave")
 
 func purchase_item() -> void:
-	#TODO
-	print("Purchasing item")
+	var selected_item: Item = DialogueSystem.selected_item
+	if selected_item is Item:
+		# Check if the player has enough money first
+		if ActorInventory.money >= selected_item.cost:
+			if ActorInventory.inventory_has_room():
+				ActorInventory.add_item(selected_item)
+				ActorInventory.money -= selected_item.cost
+				DialogueSystem.show_dialogue_unsafe("dialogue_shop_successful_purchase")
+			else:
+				DialogueSystem.show_dialogue_unsafe("dialogue_shop_failed_purchase_inventory_full")
+		else:
+			DialogueSystem.show_dialogue_unsafe("dialogue_shop_failed_purchase_no_money")
 
 func increase_fortitude(value: String) -> void:
 	ActorStats.fortitude += int(value)

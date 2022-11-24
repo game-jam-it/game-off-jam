@@ -5,6 +5,7 @@
     "Speaking": "left",
     "PortraitLeft": "portrait_nerd",
     "PortraitRight": "portrait_cheerleader",
+    "ShowExtraInfo": "",
     "Choice": false
   },
   {
@@ -13,6 +14,7 @@
     "Speaking": "right",
     "PortraitLeft": "portrait_nerd",
     "PortraitRight": "portrait_cheerleader",
+    "ShowExtraInfo": "",
     "Choice": false
   },
   {
@@ -21,6 +23,7 @@
     "Speaking": "right",
     "PortraitLeft": "portrait_nerd",
     "PortraitRight": "portrait_cheerleader",
+    "ShowExtraInfo": "",
     "Choice": false
   },
   {
@@ -29,6 +32,7 @@
     "Speaking": "right",
     "PortraitLeft": "portrait_nerd",
     "PortraitRight": "portrait_cheerleader",
+    "ShowExtraInfo": "",
     "Choice": true,
     "Choice1": ["Keep talking", ""],
     "Choice2": ["Walk away", "close_dialogue"]
@@ -39,6 +43,7 @@
     "Speaking": "right",
     "PortraitLeft": "portrait_nerd",
     "PortraitRight": "portrait_cheerleader",
+    "ShowExtraInfo": "",
     "Choice": false
   }
 ]

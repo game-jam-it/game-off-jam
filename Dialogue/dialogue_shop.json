@@ -5,8 +5,9 @@
     "Speaking": "right",
     "PortraitLeft": "",
     "PortraitRight": "",
+    "ShowExtraInfo": "",
     "Choice": true,
     "Choice1": ["I would like this (Open shop)", "open_shop", "0"],
-    "Choice2": ["I don't need anything", "close_dialogue"]
+    "Choice2": ["I don't need anything", "show_dialogue", "dialogue_shop_leave"]
   }
 ]

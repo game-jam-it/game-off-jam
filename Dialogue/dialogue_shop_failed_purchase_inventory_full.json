@@ -1,11 +1,11 @@
 [
   {
     "Name": "Shopkeeper",
-    "Text": "Thank you so much! I hope you enjoy your new [color=blue]%s[/color].",
+    "Text": "You can’t carry this much stuff with you.",
     "Speaking": "right",
     "PortraitLeft": "",
     "PortraitRight": "",
-    "ShowExtraInfo": "Item",
+    "ShowExtraInfo": "",
     "Choice": false
   }
 ]

@@ -67,6 +67,12 @@ func clear_inventory() -> void:
 	inventory = [null, null, null, null, null]
 	emit_signal("inventory_changed", inventory)
 
+func inventory_has_room() -> bool:
+	for slot in inventory.size():
+		if inventory[slot] == null:
+			return true
+	return false
+
 # Supplies
 var money: int = 0 setget set_money
 var ammo: int = 0 setget set_ammo

@@ -5,8 +5,9 @@
     "Speaking": "right",
     "PortraitLeft": "",
     "PortraitRight": "",
+    "ShowExtraInfo": "",
     "Choice": true,
-    "Choice1": ["Yes I’ll buy something else", "open_shop", "0"],
-    "Choice2": ["No, I’ll be on my way", "close_dialogue"]
+    "Choice1": ["Yes, I’ll buy something else", ""],
+    "Choice2": ["No, I’ll be on my way", "close_shop"]
   }
 ]

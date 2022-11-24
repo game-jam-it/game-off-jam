@@ -1,12 +1,13 @@
 [
   {
     "Name": "Shopkeeper",
-    "Text": "You want %s? That’ll be %s.",
+    "Text": "You want [color=blue]%s[/color]? That’ll be [color=blue]%s[/color].",
     "Speaking": "right",
     "PortraitLeft": "",
     "PortraitRight": "",
+    "ShowExtraInfo": "ItemWithCost",
     "Choice": true,
     "Choice1": ["Yes I’ll buy this (Purchase)", "purchase_item"],
-    "Choice2": ["No I don’t want it", "close_dialogue"]
+    "Choice2": ["No I don’t want it", "show_dialogue", "dialogue_shop_purchase_cancel"]
   }
 ]
