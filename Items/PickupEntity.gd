@@ -12,4 +12,4 @@ enum Slot {
 
 signal picked_up(entity)
 
-# TODO: Implement Pickup Prefabs
+export var slot = Slot.None

@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Items/ConsumableItem.gd"
 }, {
+"base": "Reference",
+"class": "CrowEntity",
+"language": "GDScript",
+"path": "res://Enemies/prefabs/cemetery/Crow.gd"
+}, {
 "base": "WeaponEffect",
 "class": "DamageBoostEffect",
 "language": "GDScript",
@@ -94,6 +99,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Items/Item.gd"
 }, {
+"base": "EnemyEntity",
+"class": "MallusEntity",
+"language": "GDScript",
+"path": "res://Enemies/prefabs/cemetery/Mallus.gd"
+}, {
 "base": "ConsumableEffect",
 "class": "OneChallengeStatBoostEffect",
 "language": "GDScript",
@@ -109,10 +119,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Entities/QueueObject.gd"
 }, {
-"base": "EnemyEntity",
+"base": "Reference",
 "class": "RatEntity",
 "language": "GDScript",
-"path": "res://Actor/prefabs/Ratsie.gd"
+"path": "res://Enemies/prefabs/cemetery/Ratsie.gd"
 }, {
 "base": "WeaponEffect",
 "class": "ReductionBoostEffect",
@@ -189,6 +199,7 @@ _global_script_class_icons={
 "CharacterEffect": "",
 "ConsumableEffect": "",
 "ConsumableItem": "",
+"CrowEntity": "",
 "DamageBoostEffect": "",
 "EnemyEntity": "",
 "EntityAction": "",
@@ -202,6 +213,7 @@ _global_script_class_icons={
 "GridObject": "",
 "HealingEffect": "",
 "Item": "",
+"MallusEntity": "",
 "OneChallengeStatBoostEffect": "",
 "PickupEntity": "",
 "QueueObject": "",

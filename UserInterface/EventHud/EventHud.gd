@@ -49,9 +49,9 @@ func setup_event_data(coords):
 			var ent = obj.entity()
 			match ent.group:
 				EntityObject.Group.Enemy:
-					var box = enemy_box.instance()
-					enemy_list.add_child(box)
-					box.initialize(ent)
+					if !ent.hidden: self._create_box(ent)
+					else: ent.connect("enemy_unhide", self, "_on_enemy_unhide")
+
 	var goals = _scene.goals()
 	lore_box.visible = goals.lore.total > 0
 	relic_box.visible = goals.relic.total > 0
@@ -59,38 +59,17 @@ func setup_event_data(coords):
 	lore_label.text = "0/%s" % goals.lore.total
 	relic_label.text = "0/%s" % goals.relic.total
 	banish_label.text = "0/%s" % goals.banish.total
-	
+
+func _create_box(entity):
+	var box = enemy_box.instance()
+	enemy_list.add_child(box)
+	box.initialize(entity)
 
 func _on_goals_updated(goals):
 	lore_label.text = "%s/%s" % [goals.lore.done, goals.lore.total]
 	relic_label.text = "%s/%s" % [goals.relic.done, goals.relic.total]
 	banish_label.text = "%s/%s" % [goals.banish.done, goals.banish.total]
 
-# TODO These updates should not happen with scene events
-
-# func on_enemy_died(entity: EnemyEntity):
-# 	if entity == null: 
-# 		return
-# 	_banish_cnt += 1
-# 	_disconnect_entity(entity)
-# 	banish_label.text = "%s/%s" % [_banish_cnt, _banish_total]
-
-# func on_picked_up(entity: PickupEntity):
-# 	_disconnect_entity(entity)
-# 	if entity == null: 
-# 		return
-# 	_pickups_cnt += 1
-# 	if entity.slot == PickupEntity.Slot.Relic: 
-# 		_relic_cnt += 1
-# 		relic_label.text = "%s/%s" % [_relic_cnt, _relic_total]
-
-# func on_escape_pressed():
-# 	print_debug("[%s] TODO Implement escape dialog" % name)
-# 	TheTown.stop_active_event()
-
-# func _disconnect_entity(entity):
-# 	match entity.group:
-# 		EntityObject.Group.Enemy:
-# 			entity.disconnect("enemy_died", self, "on_enemy_died")
-# 		EntityObject.Group.Pickup:
-# 			entity.disconnect("picked_up", self, "on_picked_up")
+func _on_enemy_unhide(entity):
+	entity.disconnect("enemy_unhide", self, "_on_enemy_unhide")
+	self._create_box(entity)

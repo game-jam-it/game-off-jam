@@ -1,12 +1,22 @@
 class_name EnemyEntity
 extends EntityObject
 
+enum Slot {
+	None,
+	Boss,
+	Drone,
+}
+
 signal enemy_died(entity)
+signal enemy_unhide(entity)
 signal hearts_changed(entity)
 
 # This is messy, preferable this would be a resource
 # the behaviour is the same as the characters yet these 
 # usualy are not characters, and definitly do not have to be
+
+export(Slot) var slot = Slot.None
+export(bool) var hidden = false
 
 export(String) var enemy_name = "Unknown"
 export(int) var current_hearts = 1

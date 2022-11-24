@@ -4,7 +4,7 @@
 [ext_resource path="res://TheTown/EventMap/EventGrid.gd" type="Script" id=2]
 [ext_resource path="res://TheTown/EventMap/EventMap.gd" type="Script" id=3]
 [ext_resource path="res://Entities/EntityQueue.gd" type="Script" id=4]
-[ext_resource path="res://Actor/prefabs/Ratsie.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemies/prefabs/cemetery/Ratsie.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Actor/prefabs/TheNerd.tscn" type="PackedScene" id=6]
 [ext_resource path="res://TheTown/EventMap/GridObject.gd" type="Script" id=7]
 

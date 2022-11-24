@@ -1,10 +1,10 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://prototype/assets/maps/small-init-house-map.png" type="Texture" id=1]
 [ext_resource path="res://TheTown/EventMap/EventGrid.gd" type="Script" id=2]
 [ext_resource path="res://TheTown/EventMap/EventMap.gd" type="Script" id=3]
 [ext_resource path="res://Entities/EntityQueue.gd" type="Script" id=4]
-[ext_resource path="res://Actor/prefabs/Ratsie.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemies/prefabs/cemetery/Ratsie.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Actor/prefabs/TheNerd.tscn" type="PackedScene" id=6]
 [ext_resource path="res://TheTown/EventMap/GridObject.gd" type="Script" id=7]
 [ext_resource path="res://Events/assets/cemetery/fence-gate-b.png" type="Texture" id=8]
@@ -15,6 +15,8 @@
 [ext_resource path="res://Events/assets/cemetery/fence-horizontal-broken.png" type="Texture" id=13]
 [ext_resource path="res://prototype/assets/hex-event-small.png" type="Texture" id=14]
 [ext_resource path="res://Events/devroom/Light2D.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Enemies/prefabs/cemetery/Crow.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Enemies/prefabs/cemetery/Mallus.tscn" type="PackedScene" id=17]
 
 [node name="IntroHouse" type="Node2D"]
 script = ExtResource( 3 )
@@ -314,11 +316,17 @@ script = ExtResource( 7 )
 cell_cover = 10
 block_type = 1
 
+[node name="Crow" parent="Objects" instance=ExtResource( 16 )]
+position = Vector2( -121, -246 )
+
 [node name="Ratsie" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( -28, 29 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
 enemy_name = "Ratsie"
 
+[node name="Header" parent="Objects" instance=ExtResource( 17 )]
+position = Vector2( 249, -32 )
+
 [node name="TheNerd" parent="Objects" instance=ExtResource( 6 )]
-position = Vector2( 2, 389 )
+position = Vector2( 62, 93 )
