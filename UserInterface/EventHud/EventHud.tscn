@@ -47,7 +47,8 @@ custom_constants/margin_top = 24
 custom_constants/margin_left = 24
 custom_constants/margin_bottom = 24
 
-[node name="Button" type="Button" parent="VBoxContainer/MainView/HBox - Main/MBox-MainBox"]
+[node name="EscapeButton" type="Button" parent="VBoxContainer/MainView/HBox - Main/MBox-MainBox"]
+unique_name_in_owner = true
 margin_left = 24.0
 margin_top = 616.0
 margin_right = 80.0
@@ -59,7 +60,7 @@ enabled_focus_mode = 1
 text = "Escape"
 flat = true
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MainView/HBox - Main/MBox-MainBox/Button"]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MainView/HBox - Main/MBox-MainBox/EscapeButton"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -513,5 +514,3 @@ custom_fonts/font = ExtResource( 2 )
 text = " $242"
 align = 1
 valign = 1
-
-[connection signal="pressed" from="VBoxContainer/MainView/HBox - Main/MBox-MainBox/Button" to="." method="on_escape_pressed"]
