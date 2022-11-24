@@ -92,6 +92,8 @@ func _ready():
 func _input(input):
 	if paused:
 		return
+	if input.is_action_pressed("ui_home"):
+		draw_debug = !draw_debug
 	if town_state == TownState.SetMode:
 		_input_set_mode(input)
 	elif town_state == TownState.PrepMode:
@@ -100,8 +102,6 @@ func _input(input):
 		events.handle_input(input)
 
 func _input_set_mode(input):
-	if input.is_action_pressed("ui_home"):
-		draw_debug = !draw_debug
 	if input.is_action_pressed("big_map"):
 		map_cfg = BIG_MAP
 	if input.is_action_pressed("small_map"):
@@ -234,4 +234,5 @@ func on_pause_explore_event():
 	# TODO Asjut pause behavior
 	# Current behavior is exit
 	stop_active_event()
+	#pause_active_event()
 

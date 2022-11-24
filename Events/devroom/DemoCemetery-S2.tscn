@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://prototype/assets/maps/small-init-house-map.png" type="Texture" id=1]
+[ext_resource path="res://Events/assets/cemetery/map-medium-a.png" type="Texture" id=1]
 [ext_resource path="res://TheTown/EventMap/EventGrid.gd" type="Script" id=2]
 [ext_resource path="res://TheTown/EventMap/EventMap.gd" type="Script" id=3]
 [ext_resource path="res://Entities/EntityQueue.gd" type="Script" id=4]
@@ -44,11 +44,13 @@ position = Vector2( -286, -184 )
 position = Vector2( -14, -309 )
 
 [node name="Terrain" type="Sprite" parent="."]
-modulate = Color( 0.458824, 0.458824, 0.458824, 1 )
+modulate = Color( 0.752941, 0.752941, 0.752941, 1 )
+scale = Vector2( 0.5, 0.5 )
 z_index = -10
 texture = ExtResource( 1 )
 
 [node name="DevOps-Grid" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 14 )
 
 [node name="Queue" type="Node2D" parent="."]
@@ -316,20 +318,16 @@ cell_cover = 10
 block_type = 1
 
 [node name="Crow" parent="Objects" instance=ExtResource( 16 )]
-visible = false
 position = Vector2( -121, -246 )
 
 [node name="Ratsie" parent="Objects" instance=ExtResource( 5 )]
-visible = false
 position = Vector2( -28, 29 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
 enemy_name = "Ratsie"
 
 [node name="Header" parent="Objects" instance=ExtResource( 17 )]
-visible = false
 position = Vector2( 249, -32 )
 
 [node name="TheNerd" parent="Objects" instance=ExtResource( 6 )]
-visible = false
 position = Vector2( 62, 93 )
