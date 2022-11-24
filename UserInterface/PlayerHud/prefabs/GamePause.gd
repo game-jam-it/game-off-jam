@@ -10,6 +10,7 @@ onready var brightness_slider = get_node("%BrightnessSlider")
 onready var vsync_check_button = get_node("%VSyncCheck")
 onready var screen_check_button = get_node("%FullscreenCheck")
 
+
 func _ready():
 	sfx_slider.value = AppState.settings.volume_sfx
 	music_slider.value = AppState.settings.volume_music

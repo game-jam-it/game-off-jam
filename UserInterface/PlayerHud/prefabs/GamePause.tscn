@@ -106,20 +106,20 @@ text = "Video"
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer"]
 margin_top = 24.0
 margin_right = 272.0
-margin_bottom = 154.0
+margin_bottom = 128.0
 custom_constants/margin_top = 16
 custom_constants/margin_bottom = 0
 
 [node name="GridContainer" type="GridContainer" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer"]
 margin_top = 16.0
 margin_right = 272.0
-margin_bottom = 130.0
+margin_bottom = 104.0
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
 columns = 2
 
 [node name="VSyncLabel" type="Label" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer/GridContainer"]
-margin_right = 132.0
+margin_right = 188.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -129,14 +129,14 @@ valign = 1
 
 [node name="VSyncCheck" type="CheckButton" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer/GridContainer"]
 unique_name_in_owner = true
-margin_left = 140.0
+margin_left = 196.0
 margin_right = 272.0
 margin_bottom = 40.0
 pressed = true
 
 [node name="FullscreenLabel" type="Label" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer/GridContainer"]
 margin_top = 48.0
-margin_right = 132.0
+margin_right = 188.0
 margin_bottom = 88.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -146,12 +146,13 @@ valign = 1
 
 [node name="FullscreenCheck" type="CheckButton" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer/GridContainer"]
 unique_name_in_owner = true
-margin_left = 140.0
+margin_left = 196.0
 margin_top = 48.0
 margin_right = 272.0
 margin_bottom = 88.0
 
 [node name="BrightnessLabel" type="Label" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer/GridContainer"]
+visible = false
 margin_top = 96.0
 margin_right = 132.0
 margin_bottom = 114.0
@@ -160,6 +161,7 @@ text = "Brightness"
 
 [node name="BrightnessSlider" type="HSlider" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer/MarginContainer/GridContainer"]
 unique_name_in_owner = true
+visible = false
 margin_left = 144.0
 margin_top = 96.0
 margin_right = 272.0
@@ -169,22 +171,22 @@ size_flags_horizontal = 10
 size_flags_vertical = 3
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer"]
-margin_top = 158.0
+margin_top = 132.0
 margin_right = 272.0
-margin_bottom = 190.0
+margin_bottom = 164.0
 custom_constants/separation = 32
 
 [node name="AudioLabel" type="Label" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer"]
-margin_top = 194.0
+margin_top = 168.0
 margin_right = 272.0
-margin_bottom = 214.0
+margin_bottom = 188.0
 custom_fonts/font = ExtResource( 1 )
 text = "Audio"
 
 [node name="MarginContainer2" type="MarginContainer" parent="TabContainer/Settings/VBoxContainer/MCSettings/VBoxContainer"]
-margin_top = 218.0
+margin_top = 192.0
 margin_right = 272.0
-margin_bottom = 388.0
+margin_bottom = 362.0
 custom_constants/margin_top = 32
 custom_constants/margin_bottom = 32
 
