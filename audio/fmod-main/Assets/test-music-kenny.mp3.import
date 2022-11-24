@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/test-music-kenny.mp3-4ebbb0c95c66de03afbfbbac8d10ebc1.mp3str"
+
+[deps]
+
+source_file="res://audio/fmod-main/Assets/test-music-kenny.mp3"
+dest_files=[ "res://.import/test-music-kenny.mp3-4ebbb0c95c66de03afbfbbac8d10ebc1.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

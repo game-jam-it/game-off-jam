@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{e24cf030-874f-4243-abbb-93b4c0eabb82}">
+		<property name="assetPath">
+			<value>test-music-kenny.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>117.96897959183673</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{60f73275-0e62-40be-ba80-94b9800da906}</destination>
+		</relationship>
+	</object>
+</objects>
