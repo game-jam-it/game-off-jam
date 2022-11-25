@@ -66,7 +66,7 @@ signal expedition_pause
 signal expedition_resume
 
 var map_cfg = MICRO_MAP
-var draw_debug = true
+var draw_debug = false
 
 onready var grid = $Grid
 onready var nodes = $Nodes
@@ -123,6 +123,9 @@ func get_nodes():
 
 func get_events():
 	return events
+
+func is_ready():
+	return creator.is_done
 
 func start():
 	town_state = TownState.PrepMode

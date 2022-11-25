@@ -20,7 +20,6 @@ size_flags_vertical = 1
 
 [node name="ActorSelector" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = 4.0
@@ -339,6 +338,7 @@ align = 1
 valign = 1
 
 [node name="GamePause" parent="." instance=ExtResource( 5 )]
+visible = false
 
 [node name="GameOver" type="CenterContainer" parent="."]
 unique_name_in_owner = true
