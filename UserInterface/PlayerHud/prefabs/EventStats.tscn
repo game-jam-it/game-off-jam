@@ -1,0 +1,332 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://UserInterface/fonts/poppins_ui_text.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UserInterface/fonts/poppins_description_text.tres" type="DynamicFont" id=2]
+[ext_resource path="res://UserInterface/PlayerHud/prefabs/EventStats.gd" type="Script" id=3]
+
+[node name="EventStats" type="MarginContainer"]
+margin_right = 304.0
+margin_bottom = 428.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+script = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 288.0
+margin_bottom = 412.0
+
+[node name="MainStats" type="Label" parent="VBoxContainer"]
+margin_right = 272.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 1 )
+text = "Event Stats"
+
+[node name="LoreStats" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 24.0
+margin_right = 272.0
+margin_bottom = 50.0
+custom_constants/margin_top = 8
+custom_constants/margin_left = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/LoreStats"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 272.0
+margin_bottom = 26.0
+
+[node name="LoreLabel" type="Label" parent="VBoxContainer/LoreStats/HBoxContainer"]
+margin_right = 160.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Lore"
+valign = 1
+
+[node name="LoreValue" type="Label" parent="VBoxContainer/LoreStats/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 164.0
+margin_right = 256.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 92, 0 )
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "0/0"
+valign = 1
+
+[node name="BanishStats" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 54.0
+margin_right = 272.0
+margin_bottom = 132.0
+custom_constants/margin_top = 8
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/BanishStats"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 272.0
+margin_bottom = 78.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BanishStats/VBoxContainer"]
+margin_right = 256.0
+margin_bottom = 18.0
+
+[node name="BanishLabel" type="Label" parent="VBoxContainer/BanishStats/VBoxContainer/HBoxContainer"]
+margin_right = 160.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Banish"
+
+[node name="BanishValue" type="Label" parent="VBoxContainer/BanishStats/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 164.0
+margin_right = 256.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 92, 0 )
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "0/0"
+valign = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/BanishStats/VBoxContainer"]
+margin_top = 22.0
+margin_right = 256.0
+margin_bottom = 70.0
+custom_constants/margin_top = 8
+custom_constants/margin_left = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/BanishStats/VBoxContainer/MarginContainer"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 256.0
+margin_bottom = 48.0
+
+[node name="BossStats" type="HBoxContainer" parent="VBoxContainer/BanishStats/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_right = 240.0
+margin_bottom = 18.0
+
+[node name="BossLabel" type="Label" parent="VBoxContainer/BanishStats/VBoxContainer/MarginContainer/VBoxContainer/BossStats"]
+margin_right = 144.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Bosses"
+valign = 1
+
+[node name="BossValue" type="Label" parent="VBoxContainer/BanishStats/VBoxContainer/MarginContainer/VBoxContainer/BossStats"]
+unique_name_in_owner = true
+margin_left = 148.0
+margin_right = 240.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 92, 0 )
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "0/0"
+valign = 1
+
+[node name="DroneStats" type="HBoxContainer" parent="VBoxContainer/BanishStats/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 22.0
+margin_right = 240.0
+margin_bottom = 40.0
+
+[node name="DroneLabel" type="Label" parent="VBoxContainer/BanishStats/VBoxContainer/MarginContainer/VBoxContainer/DroneStats"]
+margin_right = 144.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Enemies"
+valign = 1
+
+[node name="DroneValue" type="Label" parent="VBoxContainer/BanishStats/VBoxContainer/MarginContainer/VBoxContainer/DroneStats"]
+unique_name_in_owner = true
+margin_left = 148.0
+margin_right = 240.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 92, 0 )
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "0/0"
+valign = 1
+
+[node name="PickupStats" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 136.0
+margin_right = 272.0
+margin_bottom = 280.0
+custom_constants/margin_top = 8
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PickupStats"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 272.0
+margin_bottom = 144.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PickupStats/VBoxContainer"]
+margin_right = 256.0
+margin_bottom = 18.0
+
+[node name="PickupLabel" type="Label" parent="VBoxContainer/PickupStats/VBoxContainer/HBoxContainer"]
+margin_right = 160.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Pickups"
+
+[node name="PickupValue" type="Label" parent="VBoxContainer/PickupStats/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 164.0
+margin_right = 256.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 92, 0 )
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "0/0"
+valign = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PickupStats/VBoxContainer"]
+margin_top = 22.0
+margin_right = 256.0
+margin_bottom = 136.0
+custom_constants/margin_top = 8
+custom_constants/margin_left = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PickupStats/VBoxContainer/MarginContainer"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 256.0
+margin_bottom = 114.0
+
+[node name="RelicStats" type="HBoxContainer" parent="VBoxContainer/PickupStats/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_right = 240.0
+margin_bottom = 18.0
+
+[node name="RelicLabel" type="Label" parent="VBoxContainer/PickupStats/VBoxContainer/MarginContainer/VBoxContainer/RelicStats"]
+margin_right = 144.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Relic"
+valign = 1
+
+[node name="RelicValue" type="Label" parent="VBoxContainer/PickupStats/VBoxContainer/MarginContainer/VBoxContainer/RelicStats"]
+unique_name_in_owner = true
+margin_left = 148.0
+margin_right = 240.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 92, 0 )
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "0/0"
+valign = 1
+
+[node name="MoneyStats" type="HBoxContainer" parent="VBoxContainer/PickupStats/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 22.0
+margin_right = 240.0
+margin_bottom = 40.0
+
+[node name="MoneyLabel" type="Label" parent="VBoxContainer/PickupStats/VBoxContainer/MarginContainer/VBoxContainer/MoneyStats"]
+margin_right = 144.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Money"
+valign = 1
+
+[node name="MoneyValue" type="Label" parent="VBoxContainer/PickupStats/VBoxContainer/MarginContainer/VBoxContainer/MoneyStats"]
+unique_name_in_owner = true
+margin_left = 148.0
+margin_right = 240.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 92, 0 )
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "0/0"
+valign = 1
+
+[node name="TrinketStats" type="HBoxContainer" parent="VBoxContainer/PickupStats/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 44.0
+margin_right = 240.0
+margin_bottom = 62.0
+
+[node name="TrinketLabel" type="Label" parent="VBoxContainer/PickupStats/VBoxContainer/MarginContainer/VBoxContainer/TrinketStats"]
+margin_right = 144.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Trinkets"
+valign = 1
+
+[node name="TrinketValue" type="Label" parent="VBoxContainer/PickupStats/VBoxContainer/MarginContainer/VBoxContainer/TrinketStats"]
+unique_name_in_owner = true
+margin_left = 148.0
+margin_right = 240.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 92, 0 )
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "0/0"
+valign = 1
+
+[node name="WeaponStats" type="HBoxContainer" parent="VBoxContainer/PickupStats/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 66.0
+margin_right = 240.0
+margin_bottom = 84.0
+
+[node name="WeaponLabel" type="Label" parent="VBoxContainer/PickupStats/VBoxContainer/MarginContainer/VBoxContainer/WeaponStats"]
+margin_right = 144.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Weapons"
+valign = 1
+
+[node name="WeaponValue" type="Label" parent="VBoxContainer/PickupStats/VBoxContainer/MarginContainer/VBoxContainer/WeaponStats"]
+unique_name_in_owner = true
+margin_left = 148.0
+margin_right = 240.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 92, 0 )
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "0/0"
+valign = 1
+
+[node name="ConsumableStats" type="HBoxContainer" parent="VBoxContainer/PickupStats/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 88.0
+margin_right = 240.0
+margin_bottom = 106.0
+
+[node name="ConsumableLabel" type="Label" parent="VBoxContainer/PickupStats/VBoxContainer/MarginContainer/VBoxContainer/ConsumableStats"]
+margin_right = 144.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Consumables"
+valign = 1
+
+[node name="ConsumableValue" type="Label" parent="VBoxContainer/PickupStats/VBoxContainer/MarginContainer/VBoxContainer/ConsumableStats"]
+unique_name_in_owner = true
+margin_left = 148.0
+margin_right = 240.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 92, 0 )
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "0/0"
+valign = 1

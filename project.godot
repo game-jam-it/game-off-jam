@@ -248,8 +248,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Events="*res://Events/Events.gd"
 AppState="*res://AppState.gd"
+Events="*res://Events/Events.gd"
 TheTown="*res://TheTown/TheTown.tscn"
 Overlay="*res://UserInterface/Overlay.tscn"
 ActorStats="*res://Actor/ActorStats.gd"

@@ -24,7 +24,10 @@ var hover_color = Color(0.72, 0.72, 0.72)
 
 var mouse_hover = false
 
-func _process(_delta):	
+func _process(_delta):
+	if !TheTown.is_ready():
+		return
+
 	var offset = Vector2(size, size)
 	var bounds = Rect2(global_position - offset, offset * 2.0)
 	if bounds.has_point(get_global_mouse_position()):
@@ -39,10 +42,13 @@ func _process(_delta):
 	update()
 
 func _draw():
-	if !TheTown.draw_debug:
-		return
+	# FixMe: Untill we have an other indicator
+	# the debug box is the only way to show hovers
+	# if !TheTown.draw_debug:
+	# 	return
 
-	var offset = Vector2(size, size)
+	var offset = $Shape.shape.extents
+	#var offset = Vector2(size, size)
 	var bounds = Rect2(global_position - offset, offset * 2.0)
 	var render = Rect2($Shape.position - offset, offset * 2.0)
 
@@ -71,7 +77,7 @@ func set_colors(base:Color, hover:Color):
 func set_radius(value:int, scale:float):
 	var s = RectangleShape2D.new()
 	s.custom_solver_bias = 0.72
-	s.extents = Vector2(scale, scale)
+	s.extents = Vector2(scale+1, scale+1)
 	$Shape.shape = s
 	radius = value
 	size = scale

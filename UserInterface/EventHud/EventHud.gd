@@ -26,14 +26,13 @@ func disable():
 	for box in enemy_list.get_children():
 		box.queue_free()
 	if _scene != null:
-		_scene.disconnect("goals_updated", self, "_on_goals_updated")
+		_scene.disconnect("stats_update", self, "_on_stats_update")
 		_scene = null
 
 func initialize(coords):
 	if visible:
 		return
 	visible = true
-	print_debug(">>> Init Event Hud: %s" % coords)
 	setup_event_data(coords)
 
 
@@ -44,7 +43,7 @@ func setup_event_data(coords):
 	if _scene == null:
 		print_debug(">> %s: scene not found", name)
 		return
-	_scene.connect("goals_updated", self, "_on_goals_updated")
+	_scene.connect("stats_update", self, "_on_stats_update")
 	for obj in _scene.queue().get_children():
 		if obj is QueueObject:
 			var ent = obj.entity()
@@ -55,10 +54,10 @@ func setup_event_data(coords):
 
 	var goals = _scene.goals()
 	lore_box.visible = goals.lore.total > 0
-	relic_box.visible = goals.relic.total > 0
+	relic_box.visible = goals.pickup.relic.total > 0
 	banish_box.visible = goals.banish.total > 0
 	lore_label.text = "0/%s" % goals.lore.total
-	relic_label.text = "0/%s" % goals.relic.total
+	relic_label.text = "0/%s" % goals.pickup.relic.total
 	banish_label.text = "0/%s" % goals.banish.total
 
 func _create_box(entity):
@@ -69,10 +68,10 @@ func _create_box(entity):
 func _on_escape_pressed():
 	if visible: TheTown.stop_active_event()
 
-func _on_goals_updated(goals):
-	lore_label.text = "%s/%s" % [goals.lore.done, goals.lore.total]
-	relic_label.text = "%s/%s" % [goals.relic.done, goals.relic.total]
-	banish_label.text = "%s/%s" % [goals.banish.done, goals.banish.total]
+func _on_stats_update(stats):
+	lore_label.text = "%s/%s" % [stats.lore.done, stats.lore.total]
+	relic_label.text = "%s/%s" % [stats.pickup.relic.done, stats.pickup.relic.total]
+	banish_label.text = "%s/%s" % [stats.banish.done, stats.banish.total]
 
 func _on_enemy_unhide(entity):
 	entity.disconnect("enemy_unhide", self, "_on_enemy_unhide")

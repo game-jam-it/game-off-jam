@@ -24,10 +24,13 @@ var HexGrid = preload("res://TheTown/HexMap/HexGrid.gd")
 
 var TownHex = preload("res://TheTown/EventMap/prefabs/EventHex.tscn")
 
-func _ready():
+# func _ready():
+# 	_init_grid()
+# 	_init_objects()
+
+func clear():
 	_init_grid()
 	_init_objects()
-
 
 """
 	Grid Lookups

@@ -6,7 +6,7 @@ enum Slot {
 	Relic,
 	Money,
 	Weapon,
-	Tricket,
+	Trinket,
 	Consumable,
 }
 

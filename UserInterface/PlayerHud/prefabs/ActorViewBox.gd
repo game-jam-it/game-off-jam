@@ -43,7 +43,9 @@ func on_mouse_entered():
 		actor_rect.modulate = Color(0.48, 0.48, 0.48)
 		actor_label.modulate = Color(0.58, 0.58, 0.58)
 
-func on_gui_input(event):  
+func on_gui_input(event):
+	if !TheTown.is_ready():
+		return
 	if event is InputEventMouseButton and event.doubleclick:
 		emit_signal("actor_selected", _info)
 

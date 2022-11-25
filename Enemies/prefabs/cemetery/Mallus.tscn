@@ -12,6 +12,7 @@
 radius = 443.971
 
 [node name="Mallus" type="Node2D"]
+light_mask = 32
 script = ExtResource( 7 )
 group = 1
 initiative = 9.0
@@ -23,6 +24,7 @@ max_hearts = 2
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
+light_mask = 32
 position = Vector2( 0, -10 )
 scale = Vector2( 0.05, 0.05 )
 texture = ExtResource( 4 )
@@ -34,12 +36,14 @@ view_perseption = 75
 
 [node name="ActorHex" type="Sprite" parent="Input"]
 modulate = Color( 1, 0.921569, 0.231373, 1 )
+light_mask = 32
 scale = Vector2( 0.25, 0.25 )
 z_index = -2
 texture = ExtResource( 6 )
 
 [node name="TargetHex" type="Sprite" parent="Input"]
 modulate = Color( 1, 0.184314, 0.313726, 1 )
+light_mask = 32
 scale = Vector2( 0.25, 0.25 )
 z_index = -1
 texture = ExtResource( 6 )
@@ -66,4 +70,5 @@ monitorable = false
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SenseArea"]
+visible = false
 shape = SubResource( 1 )

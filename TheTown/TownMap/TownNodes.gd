@@ -70,7 +70,7 @@ func handle_input(input):
 		get_tree().set_input_as_handled()
 		TheTown.pause_game()
 	if event_coords != null && input.is_action_pressed("mouse_click"):
-		emit_signal("event_selected", event_coords)
+			emit_signal("event_selected", event_coords)
 
 func on_mouse_exited_event(coords):
 	if !self.visible:
