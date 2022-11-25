@@ -6,7 +6,7 @@ var _goals = {}
 var is_saved = false
 var is_active = false
 
-signal goals_updated(goals)
+signal stats_update(stats)
 
 onready var _grid = $Grid
 onready var _queue = $Queue
@@ -23,17 +23,9 @@ func goals():
 	return self._goals
 
 func _ready():
+	self._init_goals()
 	_queue.connect("queue_changed", self, "on_queue_changed")
 	_queue.connect("active_changed", self, "on_active_changed")
-
-func _reset_goals():
-	self._goals = {
-		"lore": {"done": 0, "total": 0,},
-		"relic": {"done": 0, "total": 0,},
-		"banish": {"done": 0, "total": 0,},
-		"pickups": {"done": 0, "total": 0,},
-		"challenge": {"done": 0, "total": 0,},
-	}
 
 """
 	Handle Event State
@@ -43,11 +35,13 @@ func end_event():
 	# TODO: Save State
 	_queue.disable()
 	self.is_active = false
+	_objects.visible = false
 	print("%s ending" % name)
 	yield(get_tree(), "idle_frame")
 	self._save_map_state()
 
 func start_event():
+	_grid.clear()
 	_queue.reset(_grid)
 	yield(get_tree(), "idle_frame")
 	self._load_map_state()
@@ -55,14 +49,16 @@ func start_event():
 	yield(get_tree(), "idle_frame")
 	_queue.enable()
 	self.is_active = true
+	_objects.visible = true
 	print("%s starting" % name)
+	emit_signal("stats_update", _goals)
 	yield(get_tree(), "idle_frame")
 	yield(run_event(), "completed")
 
 func run_event():
 	# Note: Clearing the Queue is critical
-	# Yield on events is not be cleared untill
-	# the event is triggered, check all children!
+	# Yield on events is not cleared untill
+	# the event is triggered, check children!
 	yield(_queue.play_turn(), "completed")
 	if is_active: yield(run_event(), "completed")
 
@@ -83,9 +79,72 @@ func on_active_changed(active):
 	Event Map state
 """
 
+static func new_goals():
+	return {
+		"lore": {"done": 0, "total": 0,},
+		"banish": {
+			"done": 0, "total": 0,
+			"boss": {"done": 0, "total": 0,},
+			"drone": {"done": 0, "total": 0,},
+		},
+		"pickup": {
+			"done": 0, "total": 0,
+			"relic": {"done": 0, "total": 0,},
+			"money": {"done": 0, "total": 0,},
+			"weapon": {"done": 0, "total": 0,},
+			"trinket": {"done": 0, "total": 0,},
+			"consumable": {"done": 0, "total": 0,},
+		},
+		"challenge": {
+			"done": 0, "total": 0,
+			"hide": {"done": 0, "total": 0,},
+			"escape": {"done": 0, "total": 0,},
+		},
+	}
+
+
+func _init_goals():
+	# TODO Has save file? else:
+	self.is_saved = false
+	_build_map_goals()
+
+func _build_map_goals():
+	self._goals = self.new_goals()
+	for ent in self._objects.get_children():
+		if ent is EntityObject:
+			match ent.group:
+				EntityObject.Group.Enemy:
+					self._build_enemy_goals(ent)
+				EntityObject.Group.Lore:
+					self._build_lore_goals()
+				EntityObject.Group.Pickup:
+					self._build_pickup_goals(ent)
+
+func _build_enemy_goals(ent):
+	_goals.banish.total += 1
+	match ent.slot:
+		EnemyEntity.Slot.Boss: _goals.banish.boss.total += 1
+		EnemyEntity.Slot.Drone: _goals.banish.drone.total += 1
+
+func _build_lore_goals():
+	_goals.lore.total += 1
+
+func _build_pickup_goals(ent):
+	_goals.pickup.total += 1
+	match ent.slot:
+		PickupEntity.Slot.Relic: _goals.pickup.relic.total += 1
+		PickupEntity.Slot.Money: _goals.pickup.money.total += 1
+		PickupEntity.Slot.Weapon: _goals.pickup.weapon.total += 1
+		PickupEntity.Slot.Trinket: _goals.pickup.trinket.total += 1
+		PickupEntity.Slot.Consumable: _goals.pickup.consumable.total += 1
+
+
+"""
+	Event Map state
+"""
+
 func _load_map_state():
 	self.is_saved = false
-	self._reset_goals()
 	# TODO: If Savefile: 
 	# is_saved = true
 	# - Load State
@@ -104,6 +163,7 @@ func _save_map_state():
 					continue
 				EntityObject.Group.Pickup:
 					obj.disconnect("picked_up", self, "_on_picked_up")
+
 
 func _setup_map_objects():
 	# TODO Loop and sort objects
@@ -128,8 +188,6 @@ func _setup_entity_object(ent):
 			self._setup_challenge_entity(ent)
 
 func _setup_enemy_entity(ent):
-	if !self.is_saved: 
-		_goals.banish.total += 1
 	_queue.add_entity(ent)
 	ent.connect("enemy_died", self, "_on_enemy_died")
 
@@ -138,21 +196,16 @@ func _setup_player_entity(ent):
 	# TODO Link up player
 
 func _setup_lore_entity(ent):
-	if !self.is_saved: 
-		_goals.lore.total += 1
 	# TODO Link up lore
+	pass
 
-func _setup_pickup_entity(ent):
-	if !self.is_saved: 
-		_goals.pickups.total += 1
-		if ent.slot == PickupEntity.Slot.Relic:
-			_goals.relic.total += 1
+func _setup_pickup_entity(ent):		
 	ent.connect("picked_up", self, "_on_picked_up")
 
 func _setup_challenge_entity(ent):
-	if !self.is_saved: 
-		_goals.challenge.total += 1
 	# TODO Link up challenge
+	pass
+
 
 """
 	Entity Events
@@ -161,12 +214,19 @@ func _setup_challenge_entity(ent):
 func _on_enemy_died(ent: EnemyEntity):
 	ent.disconnect("enemy_died", self, "_on_enemy_died")
 	_goals.banish.done += 1
-	emit_signal("goals_updated", _goals)
+	match ent.slot:
+		EnemyEntity.Slot.Boss: _goals.banish.boss.done += 1
+		EnemyEntity.Slot.Drone: _goals.banish.drone.done += 1
+	emit_signal("stats_update", _goals)
 
 
 func _on_picked_up(ent: PickupEntity):
 	ent.disconnect("picked_up", self, "_on_picked_up")
-	if ent.slot == PickupEntity.Slot.Relic:
-		_goals.relic.done += 1
-	_goals.pickups.done += 1
-	emit_signal("goals_updated", _goals)
+	_goals.pickup.done += 1
+	match ent.slot:
+		PickupEntity.Slot.Relic: _goals.pickup.relic.done += 1
+		PickupEntity.Slot.Money: _goals.pickup.money.done += 1
+		PickupEntity.Slot.Weapon: _goals.pickup.weapon.done += 1
+		PickupEntity.Slot.Trinket: _goals.pickup.trinket.done += 1
+		PickupEntity.Slot.Consumable: _goals.pickup.consumable.done += 1
+	emit_signal("stats_update", _goals)
