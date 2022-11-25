@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Events/assets/cemetery/map-medium-a.png" type="Texture" id=1]
 [ext_resource path="res://TheTown/EventMap/EventGrid.gd" type="Script" id=2]
@@ -17,39 +17,41 @@
 [ext_resource path="res://Events/prefabs/Light2D.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Enemies/prefabs/cemetery/Crow.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Enemies/prefabs/cemetery/Mallus.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Events/assets/cemetery/fountain-a-red.png" type="Texture" id=18]
 
 [node name="IntroHouse" type="Node2D"]
 script = ExtResource( 3 )
 map_title = "Dev Room"
 map_summary = "You should not be here, yet you are."
 
-[node name="Spawns" type="Node2D" parent="."]
+[node name="Connects" type="Node2D" parent="."]
 
-[node name="Point 1" type="Node2D" parent="Spawns"]
-position = Vector2( 277, -158 )
+[node name="Point 1" type="Node2D" parent="Connects"]
+position = Vector2( 429, -254 )
 
-[node name="Point 2" type="Node2D" parent="Spawns"]
-position = Vector2( 320, 196 )
+[node name="Point 2" type="Node2D" parent="Connects"]
+position = Vector2( 431, 251 )
 
-[node name="Point 3" type="Node2D" parent="Spawns"]
-position = Vector2( -48, 299 )
+[node name="Point 3" type="Node2D" parent="Connects"]
+position = Vector2( 1, 386 )
 
-[node name="Point 4" type="Node2D" parent="Spawns"]
-position = Vector2( -309, 188 )
+[node name="Point 4" type="Node2D" parent="Connects"]
+position = Vector2( -427, 250 )
 
-[node name="Point 5" type="Node2D" parent="Spawns"]
-position = Vector2( -286, -184 )
+[node name="Point 5" type="Node2D" parent="Connects"]
+position = Vector2( -425, -253 )
 
-[node name="Point 6" type="Node2D" parent="Spawns"]
-position = Vector2( -14, -309 )
+[node name="Point 6" type="Node2D" parent="Connects"]
+position = Vector2( 1, -447 )
 
 [node name="Terrain" type="Sprite" parent="."]
-modulate = Color( 0.752941, 0.752941, 0.752941, 1 )
+modulate = Color( 0.447059, 0.447059, 0.447059, 1 )
 scale = Vector2( 0.5, 0.5 )
 z_index = -10
 texture = ExtResource( 1 )
+flip_h = true
 
-[node name="DevOps-Grid" type="Sprite" parent="."]
+[node name="-- Test Grid2" type="Sprite" parent="."]
 visible = false
 texture = ExtResource( 14 )
 
@@ -68,10 +70,10 @@ cell_cost = 0
 obj_type = 1
 
 [node name="End" type="Position2D" parent="Grid/Nodes/Blocked - 01"]
-position = Vector2( -48, -151 )
+position = Vector2( -51, -293 )
 
 [node name="Start" type="Position2D" parent="Grid/Nodes/Blocked - 01"]
-position = Vector2( -279, -152 )
+position = Vector2( -277, -294 )
 
 [node name="Blocked - 02" type="Node2D" parent="Grid/Nodes"]
 script = ExtResource( 7 )
@@ -79,10 +81,10 @@ cell_cost = 0
 obj_type = 1
 
 [node name="End" type="Position2D" parent="Grid/Nodes/Blocked - 02"]
-position = Vector2( 279, -152 )
+position = Vector2( 276, -289 )
 
 [node name="Start" type="Position2D" parent="Grid/Nodes/Blocked - 02"]
-position = Vector2( 48, -149 )
+position = Vector2( 49, -296 )
 
 [node name="Blocked - 03" type="Node2D" parent="Grid/Nodes"]
 script = ExtResource( 7 )
@@ -90,10 +92,10 @@ cell_cost = 0
 obj_type = 1
 
 [node name="End" type="Position2D" parent="Grid/Nodes/Blocked - 03"]
-position = Vector2( 329, 191 )
+position = Vector2( 329, 243 )
 
 [node name="Start" type="Position2D" parent="Grid/Nodes/Blocked - 03"]
-position = Vector2( 330, -90 )
+position = Vector2( 327, -190 )
 
 [node name="Blocked - 04" type="Node2D" parent="Grid/Nodes"]
 script = ExtResource( 7 )
@@ -101,10 +103,10 @@ cell_cost = 0
 obj_type = 1
 
 [node name="End" type="Position2D" parent="Grid/Nodes/Blocked - 04"]
-position = Vector2( -332, 185 )
+position = Vector2( -332, 245 )
 
 [node name="Start" type="Position2D" parent="Grid/Nodes/Blocked - 04"]
-position = Vector2( -333, -89 )
+position = Vector2( -333, -195 )
 
 [node name="Blocked - 05" type="Node2D" parent="Grid/Nodes"]
 script = ExtResource( 7 )
@@ -112,10 +114,10 @@ cell_cost = 0
 obj_type = 1
 
 [node name="End" type="Position2D" parent="Grid/Nodes/Blocked - 05"]
-position = Vector2( -139, 179 )
+position = Vector2( -140, 234 )
 
 [node name="Start" type="Position2D" parent="Grid/Nodes/Blocked - 05"]
-position = Vector2( -239, 179 )
+position = Vector2( -237, 234 )
 
 [node name="Blocked - 06" type="Node2D" parent="Grid/Nodes"]
 script = ExtResource( 7 )
@@ -123,67 +125,68 @@ cell_cost = 0
 obj_type = 1
 
 [node name="End" type="Position2D" parent="Grid/Nodes/Blocked - 06"]
-position = Vector2( 235, 178 )
+position = Vector2( 236, 232 )
 
 [node name="Start" type="Position2D" parent="Grid/Nodes/Blocked - 06"]
-position = Vector2( 142, 179 )
+position = Vector2( 142, 234 )
 
 [node name="Obstical - 01" type="Node2D" parent="Grid/Nodes"]
-position = Vector2( 2, -170 )
+position = Vector2( 0, -293 )
 script = ExtResource( 7 )
 cell_cost = 2
 cell_cover = 0
 block_type = 1
 
 [node name="Obstical - 02" type="Node2D" parent="Grid/Nodes"]
-position = Vector2( 1, 164 )
+position = Vector2( 0, 221 )
 script = ExtResource( 7 )
 cell_cost = 2
 cell_cover = 0
 block_type = 1
 
 [node name="Obstical - 03" type="Node2D" parent="Grid/Nodes"]
-position = Vector2( -49, 192 )
+position = Vector2( -49, 254 )
 script = ExtResource( 7 )
 cell_cost = 2
 cell_cover = 0
 
 [node name="Obstical - 04" type="Node2D" parent="Grid/Nodes"]
-position = Vector2( 49, 195 )
+position = Vector2( 51, 253 )
 script = ExtResource( 7 )
 cell_cost = 2
 cell_cover = 0
 
 [node name="Obstical - 05" type="Node2D" parent="Grid/Nodes"]
-position = Vector2( -93, 167 )
+position = Vector2( -90, 226 )
 script = ExtResource( 7 )
 cell_cover = 0
 block_type = 1
 
 [node name="Obstical - 06" type="Node2D" parent="Grid/Nodes"]
-position = Vector2( 93, 167 )
+position = Vector2( 97, 222 )
 script = ExtResource( 7 )
 cell_cover = 0
 block_type = 1
 
 [node name="Obstical - 07" type="Node2D" parent="Grid/Nodes"]
-position = Vector2( -285, 168 )
+position = Vector2( -282, 219 )
 script = ExtResource( 7 )
 cell_cost = 3
 cell_cover = 0
 block_type = 1
 
 [node name="Obstical - 08" type="Node2D" parent="Grid/Nodes"]
-position = Vector2( 286, 166 )
 script = ExtResource( 7 )
-cell_cost = 3
+obj_size = 1
+cell_cost = 6
 cell_cover = 0
 block_type = 1
 
 [node name="Objects" type="YSort" parent="."]
+modulate = Color( 0.613281, 0.613281, 0.613281, 1 )
 
 [node name="Fence - Top" type="Node2D" parent="Objects"]
-position = Vector2( 0, -146 )
+position = Vector2( 0, -269 )
 
 [node name="Fence-horizontal" type="Sprite" parent="Objects/Fence - Top"]
 position = Vector2( -230, -40 )
@@ -215,21 +218,35 @@ texture = ExtResource( 8 )
 [node name="Light2D" parent="Objects/Fence - Top/Fence-gate-b" instance=ExtResource( 15 )]
 position = Vector2( -587.5, -500 )
 scale = Vector2( 11.8281, 11.6328 )
+energy = 1.8
+mode = 2
 
 [node name="Light2D2" parent="Objects/Fence - Top/Fence-gate-b" instance=ExtResource( 15 )]
 position = Vector2( 525, -525 )
 scale = Vector2( 11.8281, 11.6328 )
+energy = 1.8
+mode = 2
 
 [node name="Fence - Left" type="Node2D" parent="Objects"]
-position = Vector2( -330, 40 )
+position = Vector2( -330, 97 )
 
 [node name="Fence-vertical" type="Sprite" parent="Objects/Fence - Left"]
-position = Vector2( 5, 0 )
+position = Vector2( 5, 4 )
 scale = Vector2( 0.08, 0.08 )
 texture = ExtResource( 11 )
 
 [node name="Fence-vertical2" type="Sprite" parent="Objects/Fence - Left"]
-position = Vector2( 5, -90 )
+position = Vector2( 5, -85 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 11 )
+
+[node name="Fence-vertical3" type="Sprite" parent="Objects/Fence - Left"]
+position = Vector2( 5, -185 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 11 )
+
+[node name="Fence-vertical4" type="Sprite" parent="Objects/Fence - Left"]
+position = Vector2( 5, -245 )
 scale = Vector2( 0.08, 0.08 )
 texture = ExtResource( 11 )
 
@@ -239,7 +256,7 @@ scale = Vector2( 0.08, 0.08 )
 texture = ExtResource( 9 )
 
 [node name="Fence - Right" type="Node2D" parent="Objects"]
-position = Vector2( 330, 40 )
+position = Vector2( 330, 97 )
 
 [node name="Fence-vertical" type="Sprite" parent="Objects/Fence - Right"]
 position = Vector2( -10, 0 )
@@ -248,7 +265,19 @@ texture = ExtResource( 11 )
 flip_h = true
 
 [node name="Fence-vertical2" type="Sprite" parent="Objects/Fence - Right"]
-position = Vector2( -10, -90 )
+position = Vector2( -10, -111 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 11 )
+flip_h = true
+
+[node name="Fence-vertical3" type="Sprite" parent="Objects/Fence - Right"]
+position = Vector2( -10, -220 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 11 )
+flip_h = true
+
+[node name="Fence-vertical4" type="Sprite" parent="Objects/Fence - Right"]
+position = Vector2( -10, -245 )
 scale = Vector2( 0.08, 0.08 )
 texture = ExtResource( 11 )
 flip_h = true
@@ -260,7 +289,7 @@ texture = ExtResource( 9 )
 flip_h = true
 
 [node name="Fence - Bottom" type="Node2D" parent="Objects"]
-position = Vector2( 0, 195 )
+position = Vector2( 0, 252 )
 
 [node name="Fence-horizontal" type="Sprite" parent="Objects/Fence - Bottom"]
 visible = false
@@ -294,10 +323,14 @@ texture = ExtResource( 12 )
 [node name="Light2D" parent="Objects/Fence - Bottom/Fence-gate-a" instance=ExtResource( 15 )]
 position = Vector2( -700, -275 )
 scale = Vector2( 11.8281, 11.6328 )
+energy = 1.8
+mode = 2
 
 [node name="Light2D2" parent="Objects/Fence - Bottom/Fence-gate-a" instance=ExtResource( 15 )]
 position = Vector2( 725, -287.5 )
 scale = Vector2( 11.8281, 11.6328 )
+energy = 1.8
+mode = 2
 
 [node name="Fence-horizontal3" type="Sprite" parent="Objects/Fence - Bottom"]
 position = Vector2( 150, -41 )
@@ -311,23 +344,113 @@ scale = Vector2( 0.08, 0.08 )
 texture = ExtResource( 13 )
 flip_h = true
 
-[node name="Gate - 01" type="Node2D" parent="Objects"]
-position = Vector2( 2, -142 )
-script = ExtResource( 7 )
-cell_cover = 10
-block_type = 1
+[node name="Crow - 01" parent="Objects" instance=ExtResource( 16 )]
+position = Vector2( -276, -447 )
 
-[node name="Crow" parent="Objects" instance=ExtResource( 16 )]
-position = Vector2( -121, -246 )
+[node name="Crow - 02" parent="Objects" instance=ExtResource( 16 )]
+position = Vector2( 192, -331 )
 
-[node name="Ratsie" parent="Objects" instance=ExtResource( 5 )]
-position = Vector2( -28, 29 )
+[node name="Ratsie - 01" parent="Objects" instance=ExtResource( 5 )]
+position = Vector2( -261, -68 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
 enemy_name = "Ratsie"
 
+[node name="Ratsie - 02" parent="Objects" instance=ExtResource( 5 )]
+position = Vector2( 192, 168 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+enemy_name = "Ratsie"
+
+[node name="TheNerd" parent="Objects" instance=ExtResource( 6 )]
+position = Vector2( -32, 421 )
+
 [node name="Header" parent="Objects" instance=ExtResource( 17 )]
 position = Vector2( 249, -32 )
 
-[node name="TheNerd" parent="Objects" instance=ExtResource( 6 )]
-position = Vector2( 62, 93 )
+[node name="Fountain" type="Node2D" parent="Objects"]
+
+[node name="Fountain-a-red" type="Sprite" parent="Objects/Fountain"]
+position = Vector2( 0, -15 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 18 )
+
+[node name="Fountain-Lights" type="Node2D" parent="Objects"]
+position = Vector2( 0, -80 )
+
+[node name="Light2D3" parent="Objects/Fountain-Lights" instance=ExtResource( 15 )]
+position = Vector2( -31.6, 120.8 )
+scale = Vector2( 0.2, 0.4 )
+energy = 1.8
+mode = 2
+speed = 200
+
+[node name="Light2D4" parent="Objects/Fountain-Lights" instance=ExtResource( 15 )]
+position = Vector2( 37.4, 113.8 )
+scale = Vector2( 0.2, 0.4 )
+energy = 1.8
+mode = 2
+speed = 200
+
+[node name="Light2D8" parent="Objects/Fountain-Lights" instance=ExtResource( 15 )]
+position = Vector2( 45.4, 107.8 )
+scale = Vector2( 0.2, 0.4 )
+energy = 1.8
+mode = 2
+speed = 200
+
+[node name="Light2D9" parent="Objects/Fountain-Lights" instance=ExtResource( 15 )]
+position = Vector2( 59.4, 80.8 )
+scale = Vector2( 0.2, 0.4 )
+energy = 1.8
+mode = 2
+speed = 200
+
+[node name="Light2D5" parent="Objects/Fountain-Lights" instance=ExtResource( 15 )]
+position = Vector2( -14.6, 120.8 )
+scale = Vector2( 0.2, 0.4 )
+energy = 1.8
+mode = 2
+speed = 200
+
+[node name="Light2D6" parent="Objects/Fountain-Lights" instance=ExtResource( 15 )]
+position = Vector2( -45.6, 95.8 )
+scale = Vector2( 0.2, 0.4 )
+energy = 1.8
+mode = 2
+speed = 200
+
+[node name="Light2D7" parent="Objects/Fountain-Lights" instance=ExtResource( 15 )]
+position = Vector2( -62.6, 88.8 )
+scale = Vector2( 0.2, 0.4 )
+energy = 1.8
+mode = 2
+speed = 200
+
+[node name="Light2DS 01" parent="Objects/Fountain-Lights" instance=ExtResource( 15 )]
+position = Vector2( -35.6, 122.8 )
+scale = Vector2( 0.1, 0.2 )
+energy = 1.8
+mode = 2
+speed = 200
+
+[node name="Light2DS 02" parent="Objects/Fountain-Lights" instance=ExtResource( 15 )]
+position = Vector2( -58.6, 93.8 )
+scale = Vector2( 0.1, 0.2 )
+energy = 1.8
+mode = 2
+speed = 200
+
+[node name="Light2DS 03" parent="Objects/Fountain-Lights" instance=ExtResource( 15 )]
+position = Vector2( 52.4, 112.8 )
+scale = Vector2( 0.1, 0.2 )
+energy = 1.8
+mode = 2
+speed = 200
+
+[node name="Light2DS 04" parent="Objects/Fountain-Lights" instance=ExtResource( 15 )]
+position = Vector2( 65.4, 87.8 )
+scale = Vector2( 0.1, 0.2 )
+energy = 1.8
+mode = 2
+speed = 200
