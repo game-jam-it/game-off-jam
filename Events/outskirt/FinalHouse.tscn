@@ -13,24 +13,24 @@ script = ExtResource( 3 )
 map_title = "The Girls House"
 map_summary = "Common sense tells you stay away, but you just have to save the town."
 
-[node name="Spawns" type="Node2D" parent="."]
+[node name="Connects" type="Node2D" parent="."]
 
-[node name="Point 1" type="Node2D" parent="Spawns"]
+[node name="Point 1" type="Node2D" parent="Connects"]
 position = Vector2( 477, -283 )
 
-[node name="Point 2" type="Node2D" parent="Spawns"]
+[node name="Point 2" type="Node2D" parent="Connects"]
 position = Vector2( 508, 288 )
 
-[node name="Point 3" type="Node2D" parent="Spawns"]
+[node name="Point 3" type="Node2D" parent="Connects"]
 position = Vector2( 29, 458 )
 
-[node name="Point 4" type="Node2D" parent="Spawns"]
+[node name="Point 4" type="Node2D" parent="Connects"]
 position = Vector2( -465, 256 )
 
-[node name="Point 5" type="Node2D" parent="Spawns"]
+[node name="Point 5" type="Node2D" parent="Connects"]
 position = Vector2( -490, -297 )
 
-[node name="Point 6" type="Node2D" parent="Spawns"]
+[node name="Point 6" type="Node2D" parent="Connects"]
 position = Vector2( 66, -444 )
 
 [node name="Terrain" type="Sprite" parent="."]

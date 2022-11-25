@@ -10,8 +10,8 @@ signal goals_updated(goals)
 
 onready var _grid = $Grid
 onready var _queue = $Queue
-onready var _spawns = $Spawns
 onready var _objects = $Objects
+onready var _connects = $Connects
 
 export(String) var map_title = "Unknown"
 export(String, MULTILINE) var map_summary = "An unknown map"
