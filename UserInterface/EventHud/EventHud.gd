@@ -26,6 +26,11 @@ func disable():
 	for box in enemy_list.get_children():
 		box.queue_free()
 	if _scene != null:
+		for obj in _scene.queue().get_children():
+			if obj is QueueObject:
+				var ent = obj.entity()
+				if ent.group == EntityObject.Group.Enemy && ent.hidden: 
+					ent.disconnect("enemy_unhide", self, "_on_enemy_unhide")
 		_scene.disconnect("stats_update", self, "_on_stats_update")
 		_scene = null
 

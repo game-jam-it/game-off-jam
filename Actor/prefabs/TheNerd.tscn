@@ -19,7 +19,7 @@ initiative = 2.0
 
 [node name="Sprite" type="Sprite" parent="."]
 light_mask = 32
-position = Vector2( 1, -10 )
+position = Vector2( 1, -16 )
 scale = Vector2( 0.06, 0.06 )
 texture = ExtResource( 1 )
 

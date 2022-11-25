@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Events/assets/cemetery/fence-gate-b.png" type="Texture" id=1]
 [ext_resource path="res://TheTown/EventMap/EventGrid.gd" type="Script" id=2]
@@ -18,6 +18,21 @@
 [ext_resource path="res://Events/assets/cemetery/fountain-a-red.png" type="Texture" id=16]
 [ext_resource path="res://Enemies/prefabs/cemetery/Crow.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Enemies/prefabs/cemetery/Mallus.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Events/assets/cemetery/grave-closed.png" type="Texture" id=19]
+[ext_resource path="res://Events/assets/cemetery/tomb-c.png" type="Texture" id=20]
+[ext_resource path="res://Events/assets/cemetery/tombstone-d.png" type="Texture" id=21]
+[ext_resource path="res://Events/assets/cemetery/tree-b.png" type="Texture" id=22]
+[ext_resource path="res://Events/assets/cemetery/deamon-b.png" type="Texture" id=23]
+[ext_resource path="res://Events/assets/cemetery/tombstone-a.png" type="Texture" id=24]
+[ext_resource path="res://Events/assets/cemetery/tomb-a.png" type="Texture" id=25]
+[ext_resource path="res://Events/assets/cemetery/tree-a.png" type="Texture" id=26]
+[ext_resource path="res://Events/assets/cemetery/tombstone-c.png" type="Texture" id=27]
+[ext_resource path="res://Events/assets/cemetery/tombstone-b.png" type="Texture" id=28]
+[ext_resource path="res://Events/assets/cemetery/tombstone-e.png" type="Texture" id=29]
+[ext_resource path="res://Events/assets/cemetery/rubble-a.png" type="Texture" id=30]
+[ext_resource path="res://Events/assets/cemetery/deamon-c.png" type="Texture" id=31]
+[ext_resource path="res://Events/assets/cemetery/grave-open.png" type="Texture" id=32]
+[ext_resource path="res://Events/assets/cemetery/tomb-b.png" type="Texture" id=33]
 
 [node name="IntroHouse" type="Node2D"]
 script = ExtResource( 3 )
@@ -45,7 +60,7 @@ position = Vector2( -425, -253 )
 position = Vector2( 1, -447 )
 
 [node name="Terrain" type="Sprite" parent="."]
-modulate = Color( 0.447059, 0.447059, 0.447059, 1 )
+modulate = Color( 0.315476, 0.369115, 0.40625, 1 )
 scale = Vector2( 0.5, 0.5 )
 z_index = -10
 texture = ExtResource( 9 )
@@ -182,8 +197,111 @@ cell_cost = 6
 cell_cover = 0
 block_type = 1
 
+[node name="Obstical - 09" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( -238, 81 )
+script = ExtResource( 8 )
+obj_size = 1
+cell_cost = 6
+cell_cover = 0
+
+[node name="Obstical - 10" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( -188, -6 )
+script = ExtResource( 8 )
+obj_size = 1
+cell_cost = 6
+cell_cover = 0
+
+[node name="Obstical - 11" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( -143, -192 )
+script = ExtResource( 8 )
+obj_size = 1
+cell_cost = 6
+cell_cover = 0
+
+[node name="Obstical - 12" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( 93, -163 )
+script = ExtResource( 8 )
+obj_size = 1
+cell_cost = 6
+cell_cover = 0
+
+[node name="Obstical - 13" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( 144, 142 )
+script = ExtResource( 8 )
+obj_size = 1
+cell_cost = 6
+cell_cover = 0
+
+[node name="Obstical - 14" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( 240, -88 )
+script = ExtResource( 8 )
+obj_size = 1
+cell_cost = 6
+cell_cover = 0
+
+[node name="Obstical - 15" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( -230, -85 )
+script = ExtResource( 8 )
+obj_size = 1
+cell_cost = 6
+cell_cover = 0
+
+[node name="Obstical - 16" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( -141, 128 )
+script = ExtResource( 8 )
+obj_size = 1
+cell_cost = 4
+cell_cover = 0
+block_type = 1
+
+[node name="Obstical - 17" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( 242, 72 )
+script = ExtResource( 8 )
+obj_size = 1
+cell_cost = 4
+cell_cover = 0
+block_type = 1
+
+[node name="Obstical - 18" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( -189, -384 )
+script = ExtResource( 8 )
+obj_size = 1
+cell_cost = 4
+cell_cover = 0
+block_type = 1
+
+[node name="Obstical - 19" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( -107, -136 )
+script = ExtResource( 8 )
+obj_size = 1
+cell_cost = 2
+cell_cover = 0
+block_type = 1
+
+[node name="Obstical - 20" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( 243, -236 )
+script = ExtResource( 8 )
+obj_size = 1
+cell_cost = 2
+cell_cover = 0
+block_type = 1
+
+[node name="Obstical - 21" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( -234, 417 )
+script = ExtResource( 8 )
+obj_size = 1
+cell_cost = 2
+cell_cover = 0
+
+[node name="Obstical - 22" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( 184, 1 )
+script = ExtResource( 8 )
+obj_size = 1
+cell_cost = 2
+cell_cover = 0
+
 [node name="Objects" type="YSort" parent="."]
-modulate = Color( 0.613281, 0.613281, 0.613281, 1 )
+modulate = Color( 0.588235, 0.654902, 0.701961, 1 )
 
 [node name="Fence - Top" type="Node2D" parent="Objects"]
 position = Vector2( 0, -269 )
@@ -355,22 +473,22 @@ position = Vector2( -276, -447 )
 position = Vector2( 192, -331 )
 
 [node name="Ratsie - 01" parent="Objects" instance=ExtResource( 6 )]
-position = Vector2( -261, -68 )
+position = Vector2( -274, -5 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
 enemy_name = "Ratsie"
 
 [node name="Ratsie - 02" parent="Objects" instance=ExtResource( 6 )]
-position = Vector2( 192, 168 )
+position = Vector2( 238, 139 )
 rotation = 3.14159
-scale = Vector2( 1, -1 )
+scale = Vector2( -1, -1 )
 enemy_name = "Ratsie"
 
 [node name="TheNerd" parent="Objects" instance=ExtResource( 5 )]
-position = Vector2( 27, 393 )
+position = Vector2( 2, 334 )
 
 [node name="Header" parent="Objects" instance=ExtResource( 18 )]
-position = Vector2( 249, -32 )
+position = Vector2( 183, 12 )
 
 [node name="Fountain" type="Node2D" parent="Objects"]
 
@@ -447,3 +565,242 @@ position = Vector2( 65.4, 87.8 )
 scale = Vector2( 0.1, 0.2 )
 energy = 1.8
 speed = 200
+
+[node name="Tomb-a" type="Node2D" parent="Objects"]
+position = Vector2( 237, 65 )
+scale = Vector2( 0.999999, 0.999999 )
+
+[node name="Tomb-a" type="Sprite" parent="Objects/Tomb-a"]
+position = Vector2( 0, -1 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 25 )
+
+[node name="Tomb-b" type="Node2D" parent="Objects"]
+position = Vector2( -143, 117 )
+scale = Vector2( 1, 1 )
+
+[node name="Tomb-b" type="Sprite" parent="Objects/Tomb-b"]
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 33 )
+
+[node name="Tomb-c" type="Node2D" parent="Objects"]
+position = Vector2( -189, -395 )
+scale = Vector2( 1, 1 )
+
+[node name="Tomb-c" type="Sprite" parent="Objects/Tomb-c"]
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 20 )
+
+[node name="Tombstone-a" type="Node2D" parent="Objects"]
+position = Vector2( -135, -204 )
+scale = Vector2( 1, 1 )
+
+[node name="Tombstone-a" type="Sprite" parent="Objects/Tombstone-a"]
+position = Vector2( -1, -19 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 24 )
+
+[node name="Tombstone-b" type="Node2D" parent="Objects"]
+position = Vector2( -223, 85 )
+scale = Vector2( 1, 1 )
+
+[node name="Tombstone-b" type="Sprite" parent="Objects/Tombstone-b"]
+position = Vector2( -5, -22 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 28 )
+
+[node name="Tombstone-c" type="Node2D" parent="Objects"]
+position = Vector2( -184, -2 )
+scale = Vector2( 1, 1 )
+
+[node name="Tombstone-c" type="Sprite" parent="Objects/Tombstone-c"]
+position = Vector2( -1, -20 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 27 )
+
+[node name="Light2D3" parent="Objects/Tombstone-c" instance=ExtResource( 15 )]
+position = Vector2( 13, -3 )
+scale = Vector2( 0.1625, 0.309375 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D6" parent="Objects/Tombstone-c" instance=ExtResource( 15 )]
+position = Vector2( -27, -2 )
+scale = Vector2( 0.1625, 0.309375 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D4" parent="Objects/Tombstone-c" instance=ExtResource( 15 )]
+position = Vector2( 19, -11 )
+scale = Vector2( 0.2, 0.4 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D7" parent="Objects/Tombstone-c" instance=ExtResource( 15 )]
+position = Vector2( -21, -8 )
+scale = Vector2( 0.2, 0.4 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D5" parent="Objects/Tombstone-c" instance=ExtResource( 15 )]
+position = Vector2( 24.0001, 0 )
+scale = Vector2( 0.178125, 0.309375 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D8" parent="Objects/Tombstone-c" instance=ExtResource( 15 )]
+position = Vector2( -14, -5 )
+scale = Vector2( 0.178125, 0.309375 )
+energy = 1.8
+speed = 200
+
+[node name="Tombstone-d" type="Node2D" parent="Objects"]
+position = Vector2( 147, 133 )
+scale = Vector2( 1, 1 )
+
+[node name="Tombstone-d" type="Sprite" parent="Objects/Tombstone-d"]
+position = Vector2( 0, -23 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 21 )
+
+[node name="Light2D8" parent="Objects/Tombstone-d" instance=ExtResource( 15 )]
+position = Vector2( 4, -14 )
+scale = Vector2( 0.135938, 0.202344 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D9" parent="Objects/Tombstone-d" instance=ExtResource( 15 )]
+position = Vector2( -9, -15 )
+scale = Vector2( 0.135938, 0.202344 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D10" parent="Objects/Tombstone-d" instance=ExtResource( 15 )]
+position = Vector2( -4.675, -13.2625 )
+scale = Vector2( 0.114844, 0.179296 )
+energy = 1.8
+speed = 200
+
+[node name="Tombstone-e" type="Node2D" parent="Objects"]
+position = Vector2( 92, -165 )
+scale = Vector2( 1, 1 )
+
+[node name="Tombstone-e" type="Sprite" parent="Objects/Tombstone-e"]
+position = Vector2( 0, -20 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 29 )
+
+[node name="Light2D7" parent="Objects/Tombstone-e" instance=ExtResource( 15 )]
+position = Vector2( -19, 3 )
+scale = Vector2( 0.2, 0.4 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D5" parent="Objects/Tombstone-e" instance=ExtResource( 15 )]
+position = Vector2( 14, 5 )
+scale = Vector2( 0.178125, 0.309375 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D8" parent="Objects/Tombstone-e" instance=ExtResource( 15 )]
+position = Vector2( 8, 12 )
+scale = Vector2( 0.135938, 0.202344 )
+energy = 1.8
+speed = 200
+
+[node name="Tree-a" type="Node2D" parent="Objects"]
+position = Vector2( 218, -85 )
+scale = Vector2( 1, 1 )
+
+[node name="Tree-a" type="Sprite" parent="Objects/Tree-a"]
+modulate = Color( 0.737255, 0.709804, 0.666667, 1 )
+position = Vector2( -3, -38 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 26 )
+
+[node name="Tree-a2" type="Node2D" parent="Objects"]
+position = Vector2( -251, 415 )
+scale = Vector2( 1, 1 )
+
+[node name="Tree-a" type="Sprite" parent="Objects/Tree-a2"]
+modulate = Color( 0.737255, 0.709804, 0.666667, 1 )
+position = Vector2( -3, -38 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 26 )
+
+[node name="Tree-b" type="Node2D" parent="Objects"]
+position = Vector2( -233, -92 )
+
+[node name="Tree-b" type="Sprite" parent="Objects/Tree-b"]
+modulate = Color( 0.737255, 0.709804, 0.666667, 1 )
+position = Vector2( -2, -39 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 22 )
+
+[node name="Rubble-a" type="Node2D" parent="Objects"]
+position = Vector2( 240, -266 )
+
+[node name="Rubble-a" type="Sprite" parent="Objects/Rubble-a"]
+modulate = Color( 0.611765, 0.52549, 0.517647, 0.862745 )
+position = Vector2( 2, 18 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 30 )
+
+[node name="Rubble-a2" type="Node2D" parent="Objects"]
+position = Vector2( -96, -144 )
+
+[node name="Rubble-a" type="Sprite" parent="Objects/Rubble-a2"]
+modulate = Color( 0.611765, 0.52549, 0.517647, 0.862745 )
+position = Vector2( 2, 18 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 30 )
+
+[node name="Rubble-a3" type="Node2D" parent="Objects"]
+position = Vector2( -283, 208 )
+
+[node name="Rubble-a" type="Sprite" parent="Objects/Rubble-a3"]
+modulate = Color( 0.611765, 0.52549, 0.517647, 0.862745 )
+position = Vector2( 2, 18 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 30 )
+
+[node name="Rubble-a4" type="Node2D" parent="Objects"]
+position = Vector2( 425, 111 )
+
+[node name="Rubble-a" type="Sprite" parent="Objects/Rubble-a4"]
+modulate = Color( 0.611765, 0.52549, 0.517647, 0.862745 )
+position = Vector2( 2, 18 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 30 )
+
+[node name="Grave-closed" type="Node2D" parent="Objects"]
+position = Vector2( 180, -12 )
+
+[node name="Grave-open" type="Sprite" parent="Objects/Grave-closed"]
+visible = false
+position = Vector2( 0, 12 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 32 )
+
+[node name="Grave-closed" type="Sprite" parent="Objects/Grave-closed"]
+position = Vector2( 0, 12 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 19 )
+
+[node name="Deamon-b" type="Node2D" parent="Objects"]
+visible = false
+position = Vector2( 663, 156 )
+
+[node name="Deamon-b" type="Sprite" parent="Objects/Deamon-b"]
+position = Vector2( -1, -32 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 23 )
+
+[node name="Deamon-c" type="Node2D" parent="Objects"]
+visible = false
+position = Vector2( 673, 283 )
+
+[node name="Deamon-c" type="Sprite" parent="Objects/Deamon-c"]
+position = Vector2( 0, -20 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 31 )
