@@ -29,7 +29,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Items/ConsumableItem.gd"
 }, {
-"base": "Reference",
+"base": "EnemyEntity",
 "class": "CrowEntity",
 "language": "GDScript",
 "path": "res://Enemies/prefabs/cemetery/Crow.gd"
@@ -119,7 +119,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Entities/QueueObject.gd"
 }, {
-"base": "Reference",
+"base": "EnemyEntity",
 "class": "RatEntity",
 "language": "GDScript",
 "path": "res://Enemies/prefabs/cemetery/Ratsie.gd"

@@ -28,6 +28,9 @@ export(Texture) var portrait_base = preload("res://UserInterface/assets/portrait
 export(Texture) var portrait_damaged = preload("res://UserInterface/assets/portrait_default_flip.png")
 export(Texture) var portrait_stressed = preload("res://UserInterface/assets/portrait_default_flip.png")
 
+func get_damage():
+	return damage
+
 func take_damage(damage: int) -> void:
 	print(">> %s takes %s damage" % [name, damage])
 	current_hearts -= damage

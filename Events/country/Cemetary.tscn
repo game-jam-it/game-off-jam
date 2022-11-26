@@ -44,9 +44,9 @@ period = 34.2
 persistence = 0.684
 lacunarity = 1.69
 
-[node name="IntroHouse" type="Node2D"]
+[node name="Cemetary" type="Node2D"]
 script = ExtResource( 3 )
-map_title = "Dev Room"
+map_title = "The Cemetary"
 map_summary = "You should not be here, yet you are."
 
 [node name="Connects" type="Node2D" parent="."]
@@ -210,56 +210,48 @@ block_type = 1
 [node name="Obstical - 09" type="Node2D" parent="Grid/Nodes"]
 position = Vector2( -238, 81 )
 script = ExtResource( 8 )
-obj_size = 1
 cell_cost = 6
 cell_cover = 0
 
 [node name="Obstical - 10" type="Node2D" parent="Grid/Nodes"]
 position = Vector2( -188, -6 )
 script = ExtResource( 8 )
-obj_size = 1
 cell_cost = 6
 cell_cover = 0
 
 [node name="Obstical - 11" type="Node2D" parent="Grid/Nodes"]
 position = Vector2( -143, -192 )
 script = ExtResource( 8 )
-obj_size = 1
 cell_cost = 6
 cell_cover = 0
 
 [node name="Obstical - 12" type="Node2D" parent="Grid/Nodes"]
 position = Vector2( 93, -163 )
 script = ExtResource( 8 )
-obj_size = 1
 cell_cost = 6
 cell_cover = 0
 
 [node name="Obstical - 13" type="Node2D" parent="Grid/Nodes"]
 position = Vector2( 144, 142 )
 script = ExtResource( 8 )
-obj_size = 1
 cell_cost = 6
 cell_cover = 0
 
 [node name="Obstical - 14" type="Node2D" parent="Grid/Nodes"]
 position = Vector2( 240, -88 )
 script = ExtResource( 8 )
-obj_size = 1
 cell_cost = 6
 cell_cover = 0
 
 [node name="Obstical - 15" type="Node2D" parent="Grid/Nodes"]
 position = Vector2( -230, -85 )
 script = ExtResource( 8 )
-obj_size = 1
 cell_cost = 6
 cell_cover = 0
 
 [node name="Obstical - 16" type="Node2D" parent="Grid/Nodes"]
 position = Vector2( -141, 128 )
 script = ExtResource( 8 )
-obj_size = 1
 cell_cost = 4
 cell_cover = 0
 block_type = 1
@@ -267,7 +259,6 @@ block_type = 1
 [node name="Obstical - 17" type="Node2D" parent="Grid/Nodes"]
 position = Vector2( 242, 72 )
 script = ExtResource( 8 )
-obj_size = 1
 cell_cost = 4
 cell_cover = 0
 block_type = 1
@@ -275,7 +266,6 @@ block_type = 1
 [node name="Obstical - 18" type="Node2D" parent="Grid/Nodes"]
 position = Vector2( -189, -384 )
 script = ExtResource( 8 )
-obj_size = 1
 cell_cost = 4
 cell_cover = 0
 block_type = 1
@@ -283,7 +273,6 @@ block_type = 1
 [node name="Obstical - 19" type="Node2D" parent="Grid/Nodes"]
 position = Vector2( -107, -136 )
 script = ExtResource( 8 )
-obj_size = 1
 cell_cost = 2
 cell_cover = 0
 block_type = 1
@@ -291,7 +280,6 @@ block_type = 1
 [node name="Obstical - 20" type="Node2D" parent="Grid/Nodes"]
 position = Vector2( 243, -236 )
 script = ExtResource( 8 )
-obj_size = 1
 cell_cost = 2
 cell_cover = 0
 block_type = 1
@@ -299,14 +287,12 @@ block_type = 1
 [node name="Obstical - 21" type="Node2D" parent="Grid/Nodes"]
 position = Vector2( -234, 417 )
 script = ExtResource( 8 )
-obj_size = 1
 cell_cost = 2
 cell_cover = 0
 
 [node name="Obstical - 22" type="Node2D" parent="Grid/Nodes"]
 position = Vector2( 184, 1 )
 script = ExtResource( 8 )
-obj_size = 1
 cell_cost = 16
 cell_cover = 0
 block_type = 1
@@ -611,7 +597,6 @@ texture = ExtResource( 25 )
 
 [node name="Tomb-b" type="Node2D" parent="Objects"]
 position = Vector2( -143, 117 )
-scale = Vector2( 1, 1 )
 
 [node name="Tomb-b" type="Sprite" parent="Objects/Tomb-b"]
 scale = Vector2( 0.06, 0.06 )
@@ -619,7 +604,6 @@ texture = ExtResource( 33 )
 
 [node name="Tomb-c" type="Node2D" parent="Objects"]
 position = Vector2( -189, -395 )
-scale = Vector2( 1, 1 )
 
 [node name="Tomb-c" type="Sprite" parent="Objects/Tomb-c"]
 scale = Vector2( 0.06, 0.06 )
@@ -627,7 +611,6 @@ texture = ExtResource( 20 )
 
 [node name="Tombstone-a" type="Node2D" parent="Objects"]
 position = Vector2( -135, -204 )
-scale = Vector2( 1, 1 )
 
 [node name="Tombstone-a" type="Sprite" parent="Objects/Tombstone-a"]
 position = Vector2( -1, -19 )
@@ -636,7 +619,6 @@ texture = ExtResource( 24 )
 
 [node name="Tombstone-b" type="Node2D" parent="Objects"]
 position = Vector2( -223, 85 )
-scale = Vector2( 1, 1 )
 
 [node name="Tombstone-b" type="Sprite" parent="Objects/Tombstone-b"]
 position = Vector2( -5, -22 )
@@ -645,7 +627,6 @@ texture = ExtResource( 28 )
 
 [node name="Tombstone-c" type="Node2D" parent="Objects"]
 position = Vector2( -184, -2 )
-scale = Vector2( 1, 1 )
 
 [node name="Tombstone-c" type="Sprite" parent="Objects/Tombstone-c"]
 position = Vector2( -1, -20 )
@@ -690,7 +671,6 @@ speed = 200
 
 [node name="Tombstone-d" type="Node2D" parent="Objects"]
 position = Vector2( 147, 133 )
-scale = Vector2( 1, 1 )
 
 [node name="Tombstone-d" type="Sprite" parent="Objects/Tombstone-d"]
 position = Vector2( 0, -23 )
@@ -717,7 +697,6 @@ speed = 200
 
 [node name="Tombstone-e" type="Node2D" parent="Objects"]
 position = Vector2( 92, -165 )
-scale = Vector2( 1, 1 )
 
 [node name="Tombstone-e" type="Sprite" parent="Objects/Tombstone-e"]
 position = Vector2( 0, -20 )
@@ -744,7 +723,6 @@ speed = 200
 
 [node name="Tree-a" type="Node2D" parent="Objects"]
 position = Vector2( 218, -85 )
-scale = Vector2( 1, 1 )
 
 [node name="Tree-a" type="Sprite" parent="Objects/Tree-a"]
 modulate = Color( 0.737255, 0.709804, 0.666667, 1 )
@@ -754,7 +732,6 @@ texture = ExtResource( 26 )
 
 [node name="Tree-a2" type="Node2D" parent="Objects"]
 position = Vector2( -251, 415 )
-scale = Vector2( 1, 1 )
 
 [node name="Tree-a" type="Sprite" parent="Objects/Tree-a2"]
 modulate = Color( 0.737255, 0.709804, 0.666667, 1 )

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chat_next_indicator.png-b61770a68974ce847dbe073c181c7383.stex"
+path="res://.import/chat_choice_indicator.png-3897bad2d5f62f175ceaa13b2c72e4c4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UserInterface/Assets/chat_next_indicator.png"
-dest_files=[ "res://.import/chat_next_indicator.png-b61770a68974ce847dbe073c181c7383.stex" ]
+source_file="res://UserInterface/assets/chat_choice_indicator.png"
+dest_files=[ "res://.import/chat_choice_indicator.png-3897bad2d5f62f175ceaa13b2c72e4c4.stex" ]
 
 [params]
 

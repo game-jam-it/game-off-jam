@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://UserInterface/Fonts/poppins_description_text.tres" type="DynamicFont" id=3]
+[ext_resource path="res://UserInterface/fonts/poppins_description_text.tres" type="DynamicFont" id=3]
 [ext_resource path="res://UserInterface/Shops/ItemSlot.gd" type="Script" id=4]
 
 [node name="ItemSlot" type="CenterContainer"]

@@ -7,12 +7,12 @@
 [ext_resource path="res://UserInterface/ExpeditionUI/StatUI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UserInterface/ExpeditionUI/ExpeditionUI.gd" type="Script" id=6]
 [ext_resource path="res://UserInterface/ExpeditionUI/InventoryUI.tscn" type="PackedScene" id=7]
-[ext_resource path="res://UserInterface/Fonts/Poppins-Bold.ttf" type="DynamicFontData" id=8]
-[ext_resource path="res://UserInterface/Assets/minimize_button_highlighted.png" type="Texture" id=9]
-[ext_resource path="res://UserInterface/Assets/minimize_button.png" type="Texture" id=10]
-[ext_resource path="res://UserInterface/Assets/expand_button_highlighted.png" type="Texture" id=11]
-[ext_resource path="res://UserInterface/Assets/expand_button.png" type="Texture" id=12]
-[ext_resource path="res://UserInterface/Assets/UIGradientTexture.tres" type="Texture" id=13]
+[ext_resource path="res://UserInterface/fonts/Poppins-Bold.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://UserInterface/assets/minimize_button_highlighted.png" type="Texture" id=9]
+[ext_resource path="res://UserInterface/assets/minimize_button.png" type="Texture" id=10]
+[ext_resource path="res://UserInterface/assets/expand_button_highlighted.png" type="Texture" id=11]
+[ext_resource path="res://UserInterface/assets/expand_button.png" type="Texture" id=12]
+[ext_resource path="res://UserInterface/assets/UIGradientTexture.tres" type="Texture" id=13]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
