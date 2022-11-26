@@ -1,3 +1,4 @@
+class_name DialogueBox
 extends Control
 
 var dialogue_file: String = ""
@@ -14,6 +15,9 @@ var selected_choice: int = 1 setget set_selected_choice
 var selected_choice_result_method: String = ""
 
 var shop_ui: Resource = preload("res://UserInterface/Shops/ShopUI.tscn")
+
+signal dialogue_event(value)
+signal dialogue_closed()
 
 onready var name_label = $NinePatchRect/NameLabel
 onready var text_label = $NinePatchRect/TextLabel
@@ -33,6 +37,7 @@ func _ready():
 	text_timer.wait_time = text_speed
 	dialogue = get_dialogue(dialogue_file)
 	assert(dialogue, "No dialogue found")
+	self.connect("tree_exiting", self, "_on_tree_exiting")
 	next_phrase()
 
 func _input(event) -> void:
@@ -78,6 +83,18 @@ func _process(_delta) -> void:
 		indicator.visible = false
 		return
 	indicator.visible = phrase_finished
+
+func _on_tree_exiting():
+	self.disconnect("tree_exiting", self, "_on_tree_exiting")
+	emit_signal("dialogue_closed")
+
+func connect_signals(target: Node2D):
+	if target == null:
+		return
+	if target.has_method("on_dialogue_event"):
+		self.connect("dialogue_event", target, "on_dialogue_event")
+	if target.has_method("on_dialogue_closed"):
+		self.connect("dialogue_closed", target, "on_dialogue_closed")
 
 func get_dialogue(filename: String) -> Array:
 	var dialogue_file_path: String = dialogue_path % filename
@@ -197,7 +214,8 @@ func close_dialogue() -> void:
 
 func show_dialogue(filename: String) -> void:
 	DialogueSystem.show_dialogue_unsafe(filename)
-	
+	# FixMe: Reconnect signals
+
 	# After opening the new dialogue box close this one
 	queue_free()
 
@@ -213,6 +231,7 @@ func close_shop() -> void:
 		shop_node.queue_free()
 	
 	DialogueSystem.show_dialogue("dialogue_shop_leave")
+	# FixMe: Reconnect signals
 
 func purchase_item() -> void:
 	var selected_item: Item = DialogueSystem.selected_item
@@ -223,10 +242,13 @@ func purchase_item() -> void:
 				ActorInventory.add_item(selected_item)
 				ActorInventory.money -= selected_item.cost
 				DialogueSystem.show_dialogue_unsafe("dialogue_shop_successful_purchase")
+				# FixMe: Reconnect signals
 			else:
 				DialogueSystem.show_dialogue_unsafe("dialogue_shop_failed_purchase_inventory_full")
+				# FixMe: Reconnect signals
 		else:
 			DialogueSystem.show_dialogue_unsafe("dialogue_shop_failed_purchase_no_money")
+			# FixMe: Reconnect signals
 
 func increase_fortitude(value: String) -> void:
 	ActorStats.fortitude += int(value)
@@ -239,3 +261,6 @@ func increase_smarts(value: String) -> void:
 
 func restore_health(value: String) -> void:
 	ActorStats.current_hearts += int(value)
+
+func dialogue_event(value: String) -> void:
+	emit_signal("dialogue_event", value)

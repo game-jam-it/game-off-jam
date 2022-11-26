@@ -5,22 +5,24 @@ var dialogue_box: Resource = preload("res://UserInterface/DialogueSystem/Dialogu
 var shop_items: Array = []
 var selected_item: Item = null
 
-func show_dialogue(filename: String) -> void:
+func show_dialogue(filename: String) -> DialogueBox:
 	var open_dialogue = Overlay.get_node_or_null("DialogueBox")
 	if open_dialogue != null:
 		print("Already have a dialogue box opened!")
-		return
+		return null
 	
 	# Show the dialogue box
 	var dialogue_box_instance = dialogue_box.instance()
 	dialogue_box_instance.dialogue_file = filename
 	Overlay.add_child(dialogue_box_instance)
+	return dialogue_box_instance
 
-func show_dialogue_unsafe(filename: String) -> void:
+func show_dialogue_unsafe(filename: String) -> DialogueBox:
 	# Open a new dialogue box even if one is already open
 	var dialogue_box_instance = dialogue_box.instance()
 	dialogue_box_instance.dialogue_file = filename
 	Overlay.add_child(dialogue_box_instance)
+	return dialogue_box_instance
 
 func is_dialogue_open() -> bool:
 	var open_dialogue = Overlay.get_node_or_null("DialogueBox")
