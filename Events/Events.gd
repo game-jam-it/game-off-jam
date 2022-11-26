@@ -3,7 +3,12 @@ extends Node2D
 var empty = []
 
 
-var center = []
+var center = [{
+	"size": 2,
+	"name": "A Home",
+	"descr": "A small dweling, you have a room in the atic.",
+	"scene": preload("res://Events/Norman/StartDialog.tscn"),
+}]
 
 
 var country = [{

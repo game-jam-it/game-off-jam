@@ -1,0 +1,31 @@
+[
+  {
+    "Name": "Nerd",
+    "Text": "Finaly home, finaly time for bed!",
+    "Speaking": "left",
+    "PortraitLeft": "portrait_nerd",
+    "PortraitRight": "",
+    "ShowExtraInfo": "",
+    "Choice": false
+  },
+  {
+    "Name": "Strange Voice",
+    "Text": "As you walk up the a red glow becomes visible trough the window.",
+    "Speaking": "right",
+    "PortraitLeft": "portrait_nerd",
+    "PortraitRight": "",
+    "ShowExtraInfo": "",
+    "Choice": false
+  },
+  {
+    "Name": "Nerd",
+    "Text": "Hmmh that looks strange. Maybe I should go and check it out?",
+    "Speaking": "right",
+    "PortraitLeft": "portrait_nerd",
+    "PortraitRight": "",
+    "ShowExtraInfo": "",
+    "Choice": true,
+    "Choice1": ["Ignore the red glow and go to bed.", "dialogue_event", "go_sleep"],
+    "Choice2": ["Put your shoes back on and head out.", "dialogue_event", "move_out"]
+  }
+]
