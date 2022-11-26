@@ -59,6 +59,9 @@ signal game_over
 signal game_pause
 signal game_resume
 
+signal stop_dialogue
+signal start_dialogue
+
 signal stop_expedition
 signal start_expedition
 
@@ -233,13 +236,16 @@ func on_event_selected(coords):
 func start_selected_event(coords):
 	print("Start expedition: %s.%s" % [coords.x, coords.y])
 	event_coords = coords
-	self._set_town_state(TownState.ExploreMode)
 	emit_signal("event_focused", coords)
+	self._set_town_state(TownState.ExploreMode)
 	camera.set_zoom_to(grid.get_location(event_coords))
 	nodes.hide_mode(coords)
-	events.start_event(coords)
 	yield(get_tree(), "idle_frame")
-	emit_signal("start_expedition", coords)
+	var type = events.start_event(coords)
+	if type == EventMap.Type.Expedition:
+		emit_signal("start_expedition", coords)
+	elif type == EventMap.Type.Dialogue:
+		emit_signal("start_dialogue", coords)
 	grid.visible = false
 
 func cancel_selected_event(coords):

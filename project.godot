@@ -39,6 +39,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Items/Weapons/WeaponEffects/Scripts/DamageBoostEffect.gd"
 }, {
+"base": "Control",
+"class": "DialogueBox",
+"language": "GDScript",
+"path": "res://UserInterface/DialogueSystem/DialogueBox.gd"
+}, {
+"base": "EventMap",
+"class": "DialogueEvent",
+"language": "GDScript",
+"path": "res://Events/DialogueEvent.gd"
+}, {
 "base": "EntityObject",
 "class": "EnemyEntity",
 "language": "GDScript",
@@ -78,6 +88,11 @@ _global_script_classes=[ {
 "class": "EventMap",
 "language": "GDScript",
 "path": "res://TheTown/EventMap/EventMap.gd"
+}, {
+"base": "EventMap",
+"class": "ExpeditionEvent",
+"language": "GDScript",
+"path": "res://Events/ExpeditionEvent.gd"
 }, {
 "base": "ConsumableEffect",
 "class": "GainRandomAmmoEffect",
@@ -201,6 +216,8 @@ _global_script_class_icons={
 "ConsumableItem": "",
 "CrowEntity": "",
 "DamageBoostEffect": "",
+"DialogueBox": "",
+"DialogueEvent": "",
 "EnemyEntity": "",
 "EntityAction": "",
 "EntityInput": "",
@@ -209,6 +226,7 @@ _global_script_class_icons={
 "EventGrid": "",
 "EventHex": "",
 "EventMap": "",
+"ExpeditionEvent": "",
 "GainRandomAmmoEffect": "",
 "GridObject": "",
 "HealingEffect": "",

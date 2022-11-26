@@ -20,20 +20,9 @@ func initialize(coords: Vector2, event: EventMap):
 	if _objective_label == null:
 		_objective_label = get_node("%ObjectiveValue")
 	_map_name_label.text = event.map_title
-	var count = 0
-	var total = 0
-	var goals = event. goals()
-	if goals.has("lore"):
-		count += goals.lore.done
-		total += goals.lore.total
-	if goals.has("relic"):
-		count += goals.relic.done
-		total += goals.relic.total
-	if goals.has("banish"):
-		count += goals.banish.done
-		total += goals.banish.total
-	_objective_label.text = "%s/%s" % [count, total]
-	# TODO Subscribe to event
+	if event.has_goals():
+		self._on_stats_update(event.goals())
+		event.connect("stats_update", self, "_on_stats_update")
 
 
 func on_mouse_exited():
@@ -47,3 +36,19 @@ func on_gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
 		TheTown.cancel_selected_event(_coords)
 		TheTown.on_event_selected(_coords)
+
+
+func _on_stats_update(stats):
+	var count = 0
+	var total = 0
+	if stats.has("lore"):
+		count += stats.lore.done
+		total += stats.lore.total
+	if stats.has("banish"):
+		count += stats.banish.done
+		total += stats.banish.total
+	if stats.has("pickup"):
+		count += stats.pickup.done
+		total += stats.pickup.total
+	_objective_label.text = "%s/%s" % [count, total]
+	# EXTEND: Achivement tracker all done event
