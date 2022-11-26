@@ -1,0 +1,11 @@
+[
+  {
+    "Name": "Shopkeeper",
+    "Text": "You don’t have enough money.",
+    "Speaking": "right",
+    "PortraitLeft": "",
+    "PortraitRight": "",
+    "ShowExtraInfo": "",
+    "Choice": false
+  }
+]

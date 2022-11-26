@@ -1,0 +1,11 @@
+[
+  {
+    "Name": "Shopkeeper",
+    "Text": "You can’t carry this much stuff with you.",
+    "Speaking": "right",
+    "PortraitLeft": "",
+    "PortraitRight": "",
+    "ShowExtraInfo": "",
+    "Choice": false
+  }
+]

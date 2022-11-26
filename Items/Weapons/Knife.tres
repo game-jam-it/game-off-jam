@@ -7,6 +7,7 @@
 script = ExtResource( 1 )
 name = "Knife"
 flavor = ""
+cost = 1
 base_damage = 2
 base_reduction = 0
 other_effect_description = "Gains 5% reduction for every Daring a character has."

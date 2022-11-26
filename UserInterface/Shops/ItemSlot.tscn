@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UserInterface/Fonts/poppins_description_text.tres" type="DynamicFont" id=3]
+[ext_resource path="res://UserInterface/Shops/ItemSlot.gd" type="Script" id=4]
+
+[node name="ItemSlot" type="CenterContainer"]
+margin_right = 60.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 50, 50 )
+script = ExtResource( 4 )
+
+[node name="VBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 5.0
+margin_top = 27.0
+margin_right = 55.0
+margin_bottom = 45.0
+
+[node name="ItemTexture" type="TextureRect" parent="VBoxContainer"]
+margin_bottom = 18.0
+stretch_mode = 4
+
+[node name="CostDisplay" type="HBoxContainer" parent="VBoxContainer"]
+margin_left = 4.0
+margin_right = 50.0
+margin_bottom = 18.0
+
+[node name="MoneyTexture" type="TextureRect" parent="VBoxContainer/CostDisplay"]
+margin_bottom = 18.0
+stretch_mode = 4
+
+[node name="CostLabel" type="Label" parent="VBoxContainer/CostDisplay"]
+margin_left = 4.0
+margin_right = 46.0
+margin_bottom = 18.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "<Cost>"
+
+[connection signal="gui_input" from="." to="." method="_on_ItemSlot_gui_input"]

@@ -1,12 +1,20 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UserInterface/ExpeditionUI/StatDisplay.gd" type="Script" id=1]
-[ext_resource path="res://UserInterface/assets/ui_sub_background_nineslice.png" type="Texture" id=2]
-[ext_resource path="res://UserInterface/fonts/Poppins-Bold.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://UserInterface/fonts/poppins_ui_text.tres" type="DynamicFont" id=4]
+[ext_resource path="res://UserInterface/Assets/ui_sub_background_nineslice.png" type="Texture" id=2]
+[ext_resource path="res://UserInterface/Fonts/Poppins-Bold.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=2]
+size = 12
+outline_size = 2
+outline_color = Color( 0.0352941, 0.0352941, 0.0352941, 1 )
+use_filter = true
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 8
+outline_size = 2
+outline_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
 use_filter = true
 font_data = ExtResource( 3 )
 
@@ -37,11 +45,10 @@ stretch_mode = 4
 
 [node name="Value" type="Label" parent="HBoxContainer"]
 margin_left = 4.0
-margin_top = 3.0
+margin_top = 4.0
 margin_right = 9.0
-margin_bottom = 23.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 4 )
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 2 )
 text = "1"
 align = 1
 
@@ -50,7 +57,6 @@ margin_left = 13.0
 margin_top = 7.0
 margin_right = 33.0
 margin_bottom = 19.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "(+0)"
 

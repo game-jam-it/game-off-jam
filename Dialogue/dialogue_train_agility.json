@@ -1,0 +1,22 @@
+[
+  {
+    "Name": "Running track",
+    "Text": "Should I take a run on the school’s track?",
+    "Speaking": "left",
+    "PortraitLeft": "",
+    "PortraitRight": "",
+    "ShowExtraInfo": "",
+    "Choice": true,
+    "Choice1": ["I have time for this (Train Agility)", "increase_daring", "1"],
+    "Choice2": ["I should go", "close_dialogue"]
+  },
+  {
+    "Name": "Running track",
+    "Text": "You take a run on the school’s track, you feel more agile. (+1 Daring)",
+    "Speaking": "left",
+    "PortraitLeft": "",
+    "PortraitRight": "",
+    "ShowExtraInfo": "",
+    "Choice": false
+  },
+]

@@ -8,7 +8,7 @@
 script = ExtResource( 2 )
 name = "Common Sense For Idiots"
 flavor = "You feel smarter, but only once."
+cost = 2
 texture = ExtResource( 1 )
 effect_description = "Gain +2 smarts during the next smarts challenge."
-cost = 2
 consume_effects = [ ExtResource( 3 ) ]

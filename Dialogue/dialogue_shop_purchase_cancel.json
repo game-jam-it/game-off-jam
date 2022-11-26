@@ -1,0 +1,13 @@
+[
+  {
+    "Name": "Shopkeeper",
+    "Text": "That’s fine, anything else you’re interested in?",
+    "Speaking": "right",
+    "PortraitLeft": "",
+    "PortraitRight": "",
+    "ShowExtraInfo": "",
+    "Choice": true,
+    "Choice1": ["Yes, I’ll buy something else", ""],
+    "Choice2": ["No, I’ll be on my way", "close_shop"]
+  }
+]

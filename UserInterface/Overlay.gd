@@ -49,7 +49,6 @@ func on_event_started(coords):
 	pass
 
 
-func on_game_over():
 	player_hud.open_game_over()
 
 func on_game_pause():
@@ -64,3 +63,5 @@ func on_expedition_pause():
 
 func on_expedition_resume():
 	player_hud.close_game_paused()
+
+func on_game_over():

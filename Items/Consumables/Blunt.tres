@@ -8,7 +8,7 @@
 script = ExtResource( 1 )
 name = "Blunt"
 flavor = "Just chill out man. Enjoy it!"
+cost = 1
 texture = ExtResource( 3 )
 effect_description = "Stress -1, can be used to exit panic."
-cost = 1
 consume_effects = [ ExtResource( 2 ) ]

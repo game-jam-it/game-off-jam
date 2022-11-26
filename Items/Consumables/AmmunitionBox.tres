@@ -8,7 +8,7 @@
 script = ExtResource( 1 )
 name = "Ammunition Box"
 flavor = ""
+cost = 3
 texture = ExtResource( 3 )
 effect_description = "Gain 6-8 AMMO"
-cost = 3
 consume_effects = [ ExtResource( 2 ) ]

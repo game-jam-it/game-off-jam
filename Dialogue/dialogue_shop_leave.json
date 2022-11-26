@@ -1,0 +1,11 @@
+[
+  {
+    "Name": "Shopkeeper",
+    "Text": "Come again!",
+    "Speaking": "right",
+    "PortraitLeft": "",
+    "PortraitRight": "",
+    "ShowExtraInfo": "",
+    "Choice": false
+  }
+]

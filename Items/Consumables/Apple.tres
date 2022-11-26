@@ -8,7 +8,7 @@
 script = ExtResource( 1 )
 name = "Apple"
 flavor = "An apple a day keeps the doctor away."
+cost = 1
 texture = ExtResource( 3 )
 effect_description = "Gain One HP"
-cost = 1
 consume_effects = [ ExtResource( 2 ) ]

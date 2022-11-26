@@ -1,0 +1,22 @@
+[
+  {
+    "Name": "Ritual remnants",
+    "Text": "This is the ritual that has been conducted, should I study it?",
+    "Speaking": "left",
+    "PortraitLeft": "",
+    "PortraitRight": "",
+    "ShowExtraInfo": "",
+    "Choice": true,
+    "Choice1": ["I have time to study this (Study)", "increase_smarts", "1"],
+    "Choice2": ["I should go", "close_dialogue"]
+  },
+  {
+    "Name": "Ritual remnants",
+    "Text": "You study the occult blasphemies and oddities that make up the ritual that has been conducted, you know a bit more about this town and how it works. (+1 Smarts)",
+    "Speaking": "left",
+    "PortraitLeft": "",
+    "PortraitRight": "",
+    "ShowExtraInfo": "",
+    "Choice": false
+  },
+]

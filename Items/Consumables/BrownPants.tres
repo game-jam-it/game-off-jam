@@ -8,7 +8,7 @@
 script = ExtResource( 1 )
 name = "Brown Pants"
 flavor = "\"This will be our little secret.\""
+cost = 5
 texture = ExtResource( 3 )
 effect_description = "-4 Stress"
-cost = 5
 consume_effects = [ ExtResource( 2 ) ]

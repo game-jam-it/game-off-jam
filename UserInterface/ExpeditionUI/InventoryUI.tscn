@@ -20,7 +20,6 @@ patch_margin_bottom = 9
 [node name="Header" type="Label" parent="InventoryBorder"]
 anchor_right = 1.0
 margin_bottom = 20.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 3 )
 text = "Items"
 align = 1
