@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Events/assets/cemetery/fence-gate-b.png" type="Texture" id=1]
 [ext_resource path="res://TheTown/EventMap/EventGrid.gd" type="Script" id=2]
@@ -33,6 +33,16 @@
 [ext_resource path="res://Events/assets/cemetery/deamon-c.png" type="Texture" id=31]
 [ext_resource path="res://Events/assets/cemetery/grave-open.png" type="Texture" id=32]
 [ext_resource path="res://Events/assets/cemetery/tomb-b.png" type="Texture" id=33]
+[ext_resource path="res://Events/assets/cemetery/fountain-base-lights.png" type="Texture" id=34]
+[ext_resource path="res://Events/prefabs/Light2D.gd" type="Script" id=35]
+[ext_resource path="res://Events/assets/cemetery/fountain-actor-lights.png" type="Texture" id=36]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+seed = 1337
+octaves = 4
+period = 34.2
+persistence = 0.684
+lacunarity = 1.69
 
 [node name="IntroHouse" type="Node2D"]
 script = ExtResource( 3 )
@@ -297,8 +307,9 @@ cell_cover = 0
 position = Vector2( 184, 1 )
 script = ExtResource( 8 )
 obj_size = 1
-cell_cost = 2
+cell_cost = 16
 cell_cover = 0
+block_type = 1
 
 [node name="Objects" type="YSort" parent="."]
 modulate = Color( 0.588235, 0.654902, 0.701961, 1 )
@@ -485,12 +496,35 @@ scale = Vector2( -1, -1 )
 enemy_name = "Ratsie"
 
 [node name="TheNerd" parent="Objects" instance=ExtResource( 5 )]
-position = Vector2( 2, 334 )
+position = Vector2( -68, 22 )
 
 [node name="Header" parent="Objects" instance=ExtResource( 18 )]
 position = Vector2( 183, 12 )
 
 [node name="Fountain" type="Node2D" parent="Objects"]
+
+[node name="Light-Base" type="Light2D" parent="Objects/Fountain"]
+position = Vector2( 1, -5 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 34 )
+color = Color( 0.321569, 0.0431373, 0.0431373, 1 )
+energy = 6.25
+range_height = -169.6
+script = ExtResource( 35 )
+noise = SubResource( 1 )
+speed = 20
+
+[node name="Light-Actor" type="Light2D" parent="Objects/Fountain"]
+position = Vector2( 1, -5 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 36 )
+color = Color( 0.321569, 0.0431373, 0.0431373, 1 )
+energy = 3.01
+range_height = -169.6
+range_item_cull_mask = 32
+script = ExtResource( 35 )
+noise = SubResource( 1 )
+speed = 20
 
 [node name="Fountain-a-red" type="Sprite" parent="Objects/Fountain"]
 position = Vector2( 0, -15 )

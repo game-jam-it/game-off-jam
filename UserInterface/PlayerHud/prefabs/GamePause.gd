@@ -40,9 +40,26 @@ func _unhandled_input(input):
 		TheTown.resume_game()
 
 func _on_exit_game():
-	# TODO: Reset to character select
-	# FixMe Hard exit here?
+	match TheTown.get_state():
+		TheTown.TownState.ExploreMode:
+			self._on_exit_explore()
+		TheTown.TownState.PrepMode:
+			self._on_exit_prep()
+		TheTown.TownState.SetMode:
+			self._on_exit_set()
+
+func _on_exit_set():
 	get_tree().quit()
+
+func _on_exit_prep():
+	# TODO: Reset to character select
+	# FixMe Optional soft exit here?
+	get_tree().quit()
+
+func _on_exit_explore():
+	# TODO: Reset to character select
+	# FixMe Optional hard exit here?
+	TheTown.stop_active_event()
 
 func _on_resume_game():
 	TheTown.resume_game()

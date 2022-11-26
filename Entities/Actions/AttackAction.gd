@@ -24,6 +24,6 @@ func attack_enemy_target():
 	return true
 
 func attack_player_target():
-	ActorStats.take_damage(entity.damage)
+	ActorStats.take_damage(entity.get_damage())
 	yield(get_tree(), "idle_frame")
 	return true
