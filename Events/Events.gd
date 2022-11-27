@@ -1,22 +1,28 @@
 extends Node2D
 
-var empty = []
+# TODO Setup an acceptable offset array. Goal
+# create more randomized logical loccation for.
 
-
-var center = [{
+var key = [{
 	"size": 2,
+	"offset": Vector2(55.0,-10.0),
 	"name": "A Home",
 	"descr": "A small dweling, you have a room in the atic.",
 	"scene": preload("res://Events/Norman/StartDialog.tscn"),
-}]
-
-
-var country = [{
+},{
 	"size": 4,
+	"offset": Vector2(45.0,-15.0),
 	"name": "A Cemetary",
 	"descr": "You go here to find common sense.",
 	"scene": preload("res://Events/country/Cemetary.tscn"),
-},{
+}]
+
+
+var empty = []
+
+var center = []
+
+var country = [{
 	"size": 2,
 	"name": "Haunted House",
 	"descr": "You should not be here, yet you are.",
@@ -56,6 +62,7 @@ func build_dev():
 func build_maps():
 	# Note: Rebuild to copy and reset the arrays
 	return {
+		"key": key,
 		"empty": build_event_map(empty),
 		"center": build_event_map(center),
 		"country": build_event_map(country),

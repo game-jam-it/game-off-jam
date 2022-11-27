@@ -8,12 +8,13 @@ enum Type {
 	Outskirt,
 }
 
-signal mouse_entered_node(coords)
 signal mouse_exited_node(coords)
+signal mouse_entered_node(coords)
 
 const PI2 = PI*2
 
 var type = 0
+var info = null
 
 var size = 0
 var radius = 1

@@ -45,7 +45,20 @@ func clear():
 	for node in self.get_children():
 		node.queue_free()
 
-func create(radius: int, size: float, location: Vector2):
+
+func create_key(info, size: float):
+	# TODO Validate info map or setup a type object/resource for it
+	var node = self._make_mode(info, info.size, size, info.offset)
+	nodes[node.coords] = node
+	self.add_child(node)
+
+
+func create_empty(radius: int, size: float, location: Vector2):
+	var node = self._make_mode(null, radius, size, location)
+	nodes[node.coords] = node
+	self.add_child(node)
+
+func _make_mode(info, radius: int, size: float, location: Vector2):
 	# Note: Creator expects these to be in position 0.8 seconds after
 	# they where created, once passed it wil lock them on to the grid.
 	var scale = 5 * size
@@ -61,8 +74,8 @@ func create(radius: int, size: float, location: Vector2):
 	node.connect("mouse_exited_node", self, "on_mouse_exited_event")
 	node.set_radius(radius, scale)
 	node.set_location(location)
-	nodes[node.coords] = node
-	self.add_child(node)
+	node.info = info
+	return node
 
 
 func handle_input(input):

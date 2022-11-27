@@ -49,6 +49,7 @@ func start_event(coords):
 		active = scenes[coords]
 		active.connect("stats_update", self, "_on_stats_update")
 		active.start_event()
+		return active.type()
 
 
 func _on_stats_update(stats):

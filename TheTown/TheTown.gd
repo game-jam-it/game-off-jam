@@ -30,7 +30,7 @@ const SMALL_MAP = {
 
 const MICRO_MAP = {
 	"zoom": 14,
-	"nodes": 32,
+	"nodes": 28,
 	"culler": 0.25,
 	"spread": Vector2(60.0, 10.0),
 	"grid_size": Vector2(1024.0, 576.0),
