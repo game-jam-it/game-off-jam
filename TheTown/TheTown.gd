@@ -220,7 +220,7 @@ func on_event_clear(coords):
 func on_event_focused(coords):
 	if !creator.is_done:
 		return
-	if event_coords != coords:
+	if event_coords == null:
 		event_coords = coords
 		emit_signal("event_focused", coords)
 

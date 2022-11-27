@@ -82,6 +82,9 @@ func handle_input(input):
 		get_tree().set_input_as_handled()
 		TheTown.pause_game()
 	if event_coords != null && input.is_action_pressed("mouse_click"):
+		# This is a mess but we need the updated locked value
+		var scene = TheTown.get_events().get_scene(event_coords)
+		if scene != null && !scene.is_locked(): 
 			emit_signal("event_selected", event_coords)
 
 func on_mouse_exited_event(coords):

@@ -310,25 +310,30 @@ func _set_node_region(type, cull, node, list):
 	if node.info == null && rng.randf() < cull:
 		node.queue_free()
 		return
-	node.type = type
-	if type == TownNode.Type.Center:
-		## Add to center nodes
-		node.set_colors(
-			Color(0, 0.60, 0.60),
-			Color(0, 0.85, 0.85)
-		)
-	elif type == TownNode.Type.Outskirt:
-		## Add to outskirt nodes
-		node.set_colors(
-			Color(0, 0.40, 0.40),
-			Color(0, 0.75, 0.75)
-		)
-	elif type == TownNode.Type.Country:
-		## Add to country nodes
-		node.set_colors(
-			Color(0, 0.20, 0.20),
-			Color(0, 0.55, 0.55)
-		)
+	# TODO Implement regional colors again
+	# node.type = type
+	# if type == TownNode.Type.Center:
+	# 	## Add to center nodes
+	# 	node.set_colors(
+	# 		Color(0, 0.60, 0.60),
+	# 		Color(0, 0.85, 0.85)
+	# 	)
+	# elif type == TownNode.Type.Outskirt:
+	# 	## Add to outskirt nodes
+	# 	node.set_colors(
+	# 		Color(0, 0.40, 0.40),
+	# 		Color(0, 0.75, 0.75)
+	# 	)
+	# elif type == TownNode.Type.Country:
+	# 	## Add to country nodes
+	# 	node.set_colors(
+	# 		Color(0, 0.20, 0.20),
+	# 		Color(0, 0.55, 0.55)
+	# 	)
+	node.set_colors(
+		Color(0, 0.20, 0.20),
+		Color(0, 0.55, 0.55)
+	)
 	list.append(Vector3(node.position.x, node.position.y, 0))
 
 

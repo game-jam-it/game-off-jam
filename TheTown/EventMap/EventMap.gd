@@ -7,6 +7,9 @@ enum Type {
 	Expedition
 }
 
+# FixMe The map stats, locked is in 3 places
+# but only this one gets updated with events
+
 var order = 0
 var locked = true
 
@@ -27,6 +30,9 @@ func goals():
 
 func has_goals():
 	return self._goals != null
+
+func is_locked():
+	return locked
 
 func end_event():
 	print("%s missing overwrite of the EventMap.end_event method" % name)
