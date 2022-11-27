@@ -89,7 +89,9 @@ func select_focus():
 			emit_signal("event_selected", event_coords)
 
 func handle_input(input):
-	if !TheTown.paused && input.is_action_pressed("ui_cancel"):
+	if TheTown.is_paused():
+		return
+	if input.is_action_pressed("ui_cancel"):
 		get_tree().set_input_as_handled()
 		TheTown.pause_game()
 	if input.is_action_pressed("mouse_click"):

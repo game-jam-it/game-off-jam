@@ -140,6 +140,8 @@ func get_state():
 func is_ready():
 	return creator.is_done
 
+func is_paused():
+	return paused
 
 func start():
 	self._set_town_state(TownState.PrepMode)

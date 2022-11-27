@@ -52,6 +52,8 @@ func on_gui_input(event):
 	if _locked:
 		# TODO [AUDIO]: Play locked sound
 		return
+	if TheTown.is_paused():
+		return
 	if event is InputEventMouseButton and event.pressed:
 		TheTown.cancel_selected_event(_coords)
 		TheTown.on_event_selected(_coords)

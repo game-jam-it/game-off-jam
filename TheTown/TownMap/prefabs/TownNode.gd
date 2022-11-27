@@ -26,7 +26,7 @@ var hover_color = Color(0.72, 0.72, 0.72)
 var mouse_hover = false
 
 func _process(_delta):
-	if !TheTown.is_ready():
+	if TheTown.is_paused() || !TheTown.is_ready():
 		return
 
 	var offset = Vector2(size, size)
@@ -49,6 +49,9 @@ func _draw():
 	# 	return
 	var offset = $Shape.shape.extents
 	var render = Rect2($Shape.position - offset, offset * 2.0)
+	if TheTown.is_paused():
+		draw_rect(render, base_color, false)
+		return
 	if TheTown.get_state() != TheTown.TownState.PrepMode:
 		draw_rect(render, base_color, false)
 		return
