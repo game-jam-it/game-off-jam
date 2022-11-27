@@ -52,14 +52,13 @@ func create_key(info, size: float):
 	nodes[node.coords] = node
 	self.add_child(node)
 
-
 func create_empty(radius: int, size: float, location: Vector2):
 	var node = self._make_mode(null, radius, size, location)
 	nodes[node.coords] = node
 	self.add_child(node)
 
 func _make_mode(info, radius: int, size: float, location: Vector2):
-	# Note: Creator expects these to be in position 0.8 seconds after
+	# Note: Creator expects these to be in position 1.2 seconds after
 	# they where created, once passed it wil lock them on to the grid.
 	var scale = 5 * size
 	

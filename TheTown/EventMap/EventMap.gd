@@ -7,9 +7,13 @@ enum Type {
 	Expedition
 }
 
+var order = 0
+var locked = true
+
 var _type = Type.None
 var _goals = null
 
+signal map_unlock(map)
 signal stats_update(stats)
 
 export(String) var map_title = "Unknown"
@@ -30,6 +34,12 @@ func end_event():
 func start_event():
 	print("%s missing overwrite of the EventMap.start_event method" % name)
 
+func set_info(node):
+	order = node.info.order
+	locked = node.info.locked
+	map_title = node.info.name
+	map_summary = node.info.descr
+	self.position = node.position
 
 """
 	Event Map Base Goals

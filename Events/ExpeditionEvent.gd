@@ -18,6 +18,8 @@ func goals():
 func _ready():
 	self._init_goals()
 	_type = Type.Expedition
+	_objects.visible = false
+	# TODO Only hide the actors leave some of the map up
 	_queue.connect("queue_changed", self, "on_queue_changed")
 	_queue.connect("active_changed", self, "on_active_changed")
 

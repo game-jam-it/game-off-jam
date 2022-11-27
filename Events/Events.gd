@@ -5,14 +5,18 @@ extends Node2D
 
 var key = [{
 	"size": 2,
+	"order": 90,
+	"locked": false,
 	"offset": Vector2(55.0,-10.0),
 	"name": "A Home",
 	"descr": "A small dweling, you have a room in the atic.",
 	"scene": preload("res://Events/Norman/StartDialog.tscn"),
 },{
 	"size": 4,
+	"order": 80,
+	"locked": true,
 	"offset": Vector2(45.0,-15.0),
-	"name": "A Cemetary",
+	"name": "The Cemetary",
 	"descr": "You go here to find common sense.",
 	"scene": preload("res://Events/country/Cemetary.tscn"),
 }]
@@ -24,13 +28,17 @@ var center = []
 
 var country = [{
 	"size": 2,
-	"name": "Haunted House",
+	"order": 0,
+	"locked": true,
+	"name": "Some Haunted House",
 	"descr": "You should not be here, yet you are.",
 	"scene": preload("res://Events/country/IntroHouse.tscn"),
 }]
 
 var outskirt = [{
 	"size": 3,
+	"order": 0,
+	"locked": true,
 	"name": "The Girls House",
 	"descr": "Common sense tells you stay away, but you just have to save the town.",
 	"scene": preload("res://Events/outskirt/FinalHouse.tscn"),
@@ -41,18 +49,24 @@ func build_dev():
 		"empty": [],
 		"center": build_event_map([{
 			"size": 2,
+			"order": 0,
+			"locked": false,
 			"name": "Small Center",
 			"descr": "You should not be here, yet you are.",
 			"scene": preload("res://Events/devroom/SmallDevRoom.tscn"),
 		}]),
 		"country": build_event_map([{
 			"size": 2,
+			"order": 0,
+			"locked": false,
 			"name": "Small County",
 			"descr": "You should not be here, yet you are.",
 			"scene": preload("res://Events/devroom/SmallDevRoom.tscn"),
 		}]),
 		"outskirt": build_event_map([{
 			"size": 2,
+			"order": 0,
+			"locked": false,
 			"name": "Small Outskirts",
 			"descr": "You should not be here, yet you are.",
 			"scene": preload("res://Events/devroom/SmallDevRoom.tscn"),

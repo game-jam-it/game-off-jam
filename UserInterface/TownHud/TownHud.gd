@@ -72,3 +72,10 @@ func setup_event_list():
 		var box = map_box.instance()
 		box.initialize(key, scenes[key])
 		map_list.add_child(box)
+	var list = map_list.get_children()
+	list.sort_custom(self, 'map_sort')
+	for object in list: object.raise()
+
+
+static func map_sort(a, b) -> bool:
+	return a._order > b._order

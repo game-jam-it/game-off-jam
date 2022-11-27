@@ -1,8 +1,13 @@
 extends MarginContainer
 
+var _order = 0
+var _locked = 0
 var _coords = Vector2.ZERO
 
 onready var _info_box = get_node("%InfoBox")
+
+onready var _locked_box = get_node("%LockedBox")
+onready var _objective_box = get_node("%ObjectiveBox")
 
 onready var _map_name_label = get_node("%MapNameValue")
 onready var _objective_label = get_node("%ObjectiveValue")
@@ -13,16 +18,28 @@ func _ready():
 	_info_box.connect("mouse_exited", self, "on_mouse_exited")
 	_info_box.connect("mouse_entered", self, "on_mouse_entered")
 
-func initialize(coords: Vector2, event: EventMap):
+func initialize(coords: Vector2, map: EventMap):
 	_coords = coords
-	if _map_name_label == null:
-		_map_name_label = get_node("%MapNameValue")
-	if _objective_label == null:
-		_objective_label = get_node("%ObjectiveValue")
-	_map_name_label.text = event.map_title
-	if event.has_goals():
-		self._on_stats_update(event.goals())
-		event.connect("stats_update", self, "_on_stats_update")
+	self._order = map.order
+	self._locked = map.locked
+	# This can be called before it is ready
+	_locked_box = get_node("%LockedBox")
+	_objective_box = get_node("%ObjectiveBox")
+	_map_name_label = get_node("%MapNameValue")
+	_objective_label = get_node("%ObjectiveValue")
+	_map_name_label.text = map.map_title
+	if self._locked:
+		map.connect("map_unlock", self, "_on_map_unlock")
+		self.modulate = Color(0.6, 0.6, 0.6)
+		_objective_box.visible = false
+		_locked_box.visible = true
+	else:
+		self.modulate = Color(1.0, 1.0, 1.0)
+		_objective_box.visible = true
+		_locked_box.visible = false
+	if map.has_goals():
+		map.connect("stats_update", self, "_on_stats_update")
+		self._on_stats_update(map.goals())
 
 
 func on_mouse_exited():
@@ -30,13 +47,22 @@ func on_mouse_exited():
 
 func on_mouse_entered():
 	TheTown.on_event_focused(_coords)
-	print("Mouse Enter: %s" % name)
 
 func on_gui_input(event):
+	if _locked:
+		# TODO [AUDIO]: Play locked sound
+		return
 	if event is InputEventMouseButton and event.pressed:
 		TheTown.cancel_selected_event(_coords)
 		TheTown.on_event_selected(_coords)
 
+
+func _on_map_unlock(map):
+	map.disconnect("map_unlock", self, "_on_map_unlock")
+	_locked = false
+	_locked_box.visible = false
+	_objective_box.visible = true
+	self.modulate = Color(1.0, 1.0, 1.0)
 
 func _on_stats_update(stats):
 	var count = 0

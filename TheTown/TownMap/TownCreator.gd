@@ -433,12 +433,11 @@ func _add_story_node(node):
 		node.queue_free()
 		return
 	self._initialize_node_scene(node)
+	nodes.events[node.coords] = node.info
 	print("Story: %s on: %s" % [node.info.name, node.radius])
 
 func _initialize_node_scene(node):
 	var scn = node.info.scene.instance()
-	scn.map_title = node.info.name
-	scn.map_summary = node.info.descr
-	scn.position = node.position
+	scn.set_info(node)
 	events.add_child(scn)
 	events.scenes[node.coords] = scn
