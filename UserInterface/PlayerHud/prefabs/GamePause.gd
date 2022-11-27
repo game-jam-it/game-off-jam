@@ -41,11 +41,11 @@ func _unhandled_input(input):
 
 func _on_exit_game():
 	match TheTown.get_state():
-		TheTown.TownState.ExploreMode:
+		TheTown.State.ExploreMode:
 			self._on_exit_explore()
-		TheTown.TownState.PrepMode:
+		TheTown.State.PrepMode:
 			self._on_exit_prep()
-		TheTown.TownState.SetMode:
+		TheTown.State.SetMode:
 			self._on_exit_set()
 
 func _on_exit_set():
@@ -67,7 +67,7 @@ func _on_resume_game():
 
 func _on_town_state_chaged(state):
 	# TODO Update button
-	if state == TheTown.TownState.ExploreMode:
+	if state == TheTown.State.ExploreMode:
 		exit_game.disabled = true
 		game_stats.visible = false
 		event_stats.visible = true

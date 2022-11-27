@@ -52,7 +52,7 @@ func _draw():
 	if TheTown.is_paused():
 		draw_rect(render, base_color, false)
 		return
-	if TheTown.get_state() != TheTown.TownState.PrepMode:
+	if TheTown.get_state() != TheTown.State.PrepMode:
 		draw_rect(render, base_color, false)
 		return
 	# This is a mess but we need the updated locked value

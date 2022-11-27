@@ -42,7 +42,12 @@ const MICRO_MAP = {
 	"edge_offset": 256,
 }
 
-enum TownState {
+enum Act {
+	One,
+	Two
+}
+
+enum State {
 	SetMode,
 	PrepMode,
 	ExploreMode
@@ -82,9 +87,9 @@ onready var events = $Events
 onready var camera = $Camera
 onready var creator = $Creator
 
-## TODO: Add initial set mode
+var act = Act.One
+var state = State.SetMode
 var paused = false
-var town_state = TownState.SetMode
 var event_coords = null
 
 func _ready():
@@ -104,11 +109,11 @@ func _unhandled_input(input):
 		return
 	if input.is_action_pressed("ui_home"):
 		draw_debug = !draw_debug
-	if town_state == TownState.SetMode:
+	if state == State.SetMode:
 		_input_set_mode(input)
-	elif town_state == TownState.PrepMode:
+	elif state == State.PrepMode:
 		nodes.handle_input(input)
-	elif town_state == TownState.ExploreMode:
+	elif state == State.ExploreMode:
 		events.handle_input(input)
 
 func _input_set_mode(input):
@@ -135,7 +140,7 @@ func get_events():
 	return events
 
 func get_state():
-	return town_state
+	return state
 
 func is_ready():
 	return creator.is_done
@@ -144,18 +149,19 @@ func is_paused():
 	return paused
 
 func start():
-	self._set_town_state(TownState.PrepMode)
+	self._set_town_state(State.PrepMode)
 	camera.zoom_reset()
 
-func _set_town_state(state):
-	town_state = state
-	emit_signal("state_chaged", state)
+func _set_town_state(value):
+	if self.state != value:
+		self.state = value
+		emit_signal("state_chaged", value)
 	
 
 func build_town():
 	if !creator.is_done:
 		return
-	if town_state != TownState.SetMode:
+	if state != State.SetMode:
 		return
 	emit_signal("town_restart")
 	var seed_phrase = "GameOff 2022 - %s" % OS.get_unix_time()
@@ -166,7 +172,7 @@ func build_town():
 func build_devops():
 	if !creator.is_done:
 		return
-	if town_state != TownState.SetMode:
+	if state != State.SetMode:
 		return
 	emit_signal("town_restart")
 	var seed_phrase = "DEVOPS-SEEDS"
@@ -187,7 +193,7 @@ func pause_game():
 
 func resume_game():
 	paused = false
-	if town_state != TownState.ExploreMode:
+	if state != State.ExploreMode:
 		emit_signal("expedition_resume")
 	else:
 		emit_signal("game_resume")
@@ -195,7 +201,7 @@ func resume_game():
 func restart_game():
 	# TODO Setup restart_game
 	# TODO Destroy the old saves
-	self._set_town_state(TownState.SetNode)
+	self._set_town_state(State.SetNode)
 	self.build_town()
 
 """
@@ -239,7 +245,7 @@ func start_selected_event(coords):
 	print("Start expedition: %s.%s" % [coords.x, coords.y])
 	event_coords = coords
 	emit_signal("event_focused", coords)
-	self._set_town_state(TownState.ExploreMode)
+	self._set_town_state(State.ExploreMode)
 	camera.set_zoom_to(grid.get_location(event_coords))
 	nodes.hide_mode(coords)
 	yield(get_tree(), "idle_frame")
@@ -261,7 +267,7 @@ func cancel_selected_event(coords):
 
 func stop_active_event():
 	# TODO Make sure this breaks the maps queue
-	self._set_town_state(TownState.PrepMode)
+	self._set_town_state(State.PrepMode)
 	events.end_event(event_coords)
 	emit_signal("stop_expedition", event_coords)
 	nodes.show_mode(event_coords)
