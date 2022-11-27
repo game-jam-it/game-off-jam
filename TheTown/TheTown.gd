@@ -70,8 +70,8 @@ signal expedition_resume
 
 signal state_chaged(state)
 
-signal game_stats_update(stats)
-signal event_stats_update(stats)
+signal game_stats_updated(stats)
+signal event_stats_updated(stats)
 
 var map_cfg = MICRO_MAP
 var draw_debug = false
@@ -91,8 +91,8 @@ func _ready():
 	nodes.connect("event_clear", self, "on_event_clear")
 	nodes.connect("event_focused", self, "on_event_focused")
 	nodes.connect("event_selected", self, "on_event_selected")
-	events.connect("game_stats_update", self, "_on_game_stats_update")
-	events.connect("event_stats_update", self, "_on_event_stats_update")
+	events.connect("game_stats_updated", self, "_on_game_stats_updated")
+	events.connect("event_stats_updated", self, "_on_event_stats_updated")
 	events.connect("pause_explore_event", self, "on_pause_explore_event")
 	# TODO Move create-town-on-load 
 	# to new game event from menu
@@ -140,14 +140,14 @@ func get_state():
 func is_ready():
 	return creator.is_done
 
-func _set_town_state(state):
-	town_state = state
-	emit_signal("state_chaged", state)
-
 
 func start():
 	self._set_town_state(TownState.PrepMode)
 	camera.zoom_reset()
+
+func _set_town_state(state):
+	town_state = state
+	emit_signal("state_chaged", state)
 	
 
 func build_town():
@@ -200,11 +200,11 @@ func restart_game():
 	Global Events & Logic
 """
 
-func _on_game_stats_update(stats):
-	emit_signal("game_stats_update", stats)
+func _on_game_stats_updated(stats):
+	emit_signal("game_stats_updated", stats)
 
-func _on_event_stats_update(stats):
-	emit_signal("event_stats_update", stats)
+func _on_event_stats_updated(stats):
+	emit_signal("event_stats_updated", stats)
 
 """
 	Prep-Phase Events & Logic
@@ -220,7 +220,7 @@ func on_event_clear(coords):
 func on_event_focused(coords):
 	if !creator.is_done:
 		return
-	if event_coords == null:
+	if event_coords != coords:
 		event_coords = coords
 		emit_signal("event_focused", coords)
 

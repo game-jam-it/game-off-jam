@@ -1,8 +1,8 @@
 class_name TownEvents
 extends Node2D
 
-signal game_stats_update(stats)
-signal event_stats_update(stats)
+signal game_stats_updated(stats)
+signal event_stats_updated(stats)
 
 signal pause_explore_event(coords)
 
@@ -37,7 +37,7 @@ func initialize_stats():
 
 func end_event(_coords):
 	if active != null:
-		active.disconnect("stats_update", self, "_on_stats_update")
+		active.disconnect("stats_updated", self, "_on_stats_updated")
 		active.end_event()
 		active = null
 
@@ -47,13 +47,13 @@ func start_event(coords):
 		active = null
 	if scenes.has(coords):
 		active = scenes[coords]
-		active.connect("stats_update", self, "_on_stats_update")
+		active.connect("stats_updated", self, "_on_stats_updated")
 		active.start_event()
 		return active.type()
 
 
-func _on_stats_update(stats):
-	emit_signal("event_stats_update", stats)
+func _on_stats_updated(stats):
+	emit_signal("event_stats_updated", stats)
 	# TODO: Check map finished state ...
 	self._compute_total_stats()
 
@@ -94,4 +94,4 @@ func _compute_total_stats():
 				self.stats.challenge.escape.done += goals.challenge.escape.done
 				self.stats.challenge.escape.total += goals.challenge.escape.total
 
-	emit_signal("game_stats_update", self.stats)
+	emit_signal("game_stats_updated", self.stats)

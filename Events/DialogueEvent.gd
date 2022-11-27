@@ -8,14 +8,17 @@ export(String) var dialog_name = "unknown"
 
 func _ready():
 	# TODO self._init_goals()
-	_type = Type.Dialogue
+	self._type = Type.Dialogue
 
 func end_event():
-	print("%s ending" % name)
 	yield(get_tree(), "idle_frame")
+	print("%s ending" % name)
 
 func start_event():
-	print("%s starting" % name)
 	yield(get_tree(), "idle_frame")
+	print("%s starting" % name)
+	self.open_dialog()
+
+func open_dialog():
 	var box = DialogueSystem.show_dialogue(dialog_name)
-	box.connect_signals(self)
+	if box != null: box.connect_signals(self)

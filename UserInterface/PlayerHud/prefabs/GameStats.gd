@@ -18,9 +18,9 @@ onready var challenge_hide = get_node("%HideValue")
 onready var challenge_escape = get_node("%EscapeValue")
 
 func _ready():
-	TheTown.connect("game_stats_update", self, "_on_game_stats_update")
+	TheTown.connect("game_stats_updated", self, "_on_game_stats_updated")
 
-func _on_game_stats_update(stats):
+func _on_game_stats_updated(stats):
 	lore.text = "%s/%s" % [stats.lore.done, stats.lore.total]
 
 	banish.text = "%s/%s" % [stats.banish.done, stats.banish.total]

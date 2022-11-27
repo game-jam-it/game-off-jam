@@ -47,7 +47,7 @@ func start_event():
 	self.is_active = true
 	_objects.visible = true
 	print("%s starting" % name)
-	emit_signal("stats_update", _goals)
+	emit_signal("stats_updated", _goals)
 	yield(get_tree(), "idle_frame")
 	yield(run_event(), "completed")
 
@@ -213,7 +213,7 @@ func _on_enemy_died(ent: EnemyEntity):
 	match ent.slot:
 		EnemyEntity.Slot.Boss: _goals.banish.boss.done += 1
 		EnemyEntity.Slot.Drone: _goals.banish.drone.done += 1
-	emit_signal("stats_update", _goals)
+	emit_signal("stats_updated", _goals)
 
 
 func _on_picked_up(ent: PickupEntity):
@@ -225,4 +225,4 @@ func _on_picked_up(ent: PickupEntity):
 		PickupEntity.Slot.Weapon: _goals.pickup.weapon.done += 1
 		PickupEntity.Slot.Trinket: _goals.pickup.trinket.done += 1
 		PickupEntity.Slot.Consumable: _goals.pickup.consumable.done += 1
-	emit_signal("stats_update", _goals)
+	emit_signal("stats_updated", _goals)

@@ -100,7 +100,10 @@ func get_dialogue(filename: String) -> Array:
 	var dialogue_file_path: String = dialogue_path % filename
 	
 	var file = File.new()
-	assert(file.file_exists(dialogue_file_path), "Couldn't load dialogue file")
+	assert(
+		file.file_exists(dialogue_file_path), 
+		"Couldn't load dialogue file: %s" % dialogue_file_path
+	)
 	
 	file.open(dialogue_file_path, File.READ)
 	var json = file.get_as_text()
@@ -250,6 +253,9 @@ func purchase_item() -> void:
 			DialogueSystem.show_dialogue_unsafe("dialogue_shop_failed_purchase_no_money")
 			# FixMe: Reconnect signals
 
+func dialogue_event(value: String) -> void:
+	emit_signal("dialogue_event", value)
+
 func increase_fortitude(value: String) -> void:
 	ActorStats.fortitude += int(value)
 
@@ -261,6 +267,9 @@ func increase_smarts(value: String) -> void:
 
 func restore_health(value: String) -> void:
 	ActorStats.current_hearts += int(value)
+	if ActorStats.current_hearts > ActorStats.max_hearts:
+		ActorStats.current_stress = ActorStats.max_hearts
 
-func dialogue_event(value: String) -> void:
-	emit_signal("dialogue_event", value)
+func do_long_rest() -> void:
+	ActorStats.current_hearts = ActorStats.max_hearts
+	if ActorStats.current_stress > 0: ActorStats.current_stress = -1

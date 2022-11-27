@@ -10,7 +10,7 @@ var key = [{
 	"offset": Vector2(55.0,-10.0),
 	"name": "A Home",
 	"descr": "A small dweling, you have a room in the atic.",
-	"scene": preload("res://Events/Norman/StartDialog.tscn"),
+	"scene": preload("res://Events/Norman/HomeDialog.tscn"),
 },{
 	"size": 4,
 	"order": 80,

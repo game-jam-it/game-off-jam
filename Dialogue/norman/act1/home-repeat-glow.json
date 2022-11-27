@@ -1,0 +1,11 @@
+[
+  {
+    "Name": "Narrator",
+    "Text": "As you walk up the stairs again you see that same red glow, it seems to stay in place.",
+    "Speaking": "left",
+    "PortraitLeft": "portrait_nerd",
+    "PortraitRight": "",
+    "ShowExtraInfo": "",
+    "Choice": false
+  }
+]

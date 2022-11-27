@@ -21,7 +21,7 @@ func _ready():
 func initialize(coords: Vector2, map: EventMap):
 	_coords = coords
 	self._order = map.order
-	self._locked = map.locked
+	self._locked = map.is_locked()
 	# This can be called before it is ready
 	_locked_box = get_node("%LockedBox")
 	_objective_box = get_node("%ObjectiveBox")
@@ -29,7 +29,7 @@ func initialize(coords: Vector2, map: EventMap):
 	_objective_label = get_node("%ObjectiveValue")
 	_map_name_label.text = map.map_title
 	if self._locked:
-		map.connect("map_unlock", self, "_on_map_unlock")
+		map.connect("map_unlocked", self, "_on_map_unlocked")
 		self.modulate = Color(0.6, 0.6, 0.6)
 		_objective_box.visible = false
 		_locked_box.visible = true
@@ -38,8 +38,8 @@ func initialize(coords: Vector2, map: EventMap):
 		_objective_box.visible = true
 		_locked_box.visible = false
 	if map.has_goals():
-		map.connect("stats_update", self, "_on_stats_update")
-		self._on_stats_update(map.goals())
+		map.connect("stats_updated", self, "_on_stats_updated")
+		self._on_stats_updated(map.goals())
 
 
 func on_mouse_exited():
@@ -57,14 +57,14 @@ func on_gui_input(event):
 		TheTown.on_event_selected(_coords)
 
 
-func _on_map_unlock(map):
-	map.disconnect("map_unlock", self, "_on_map_unlock")
+func _on_map_unlocked(map):
+	map.disconnect("map_unlocked", self, "_on_map_unlocked")
 	_locked = false
 	_locked_box.visible = false
 	_objective_box.visible = true
 	self.modulate = Color(1.0, 1.0, 1.0)
 
-func _on_stats_update(stats):
+func _on_stats_updated(stats):
 	var count = 0
 	var total = 0
 	if stats.has("lore"):

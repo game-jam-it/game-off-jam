@@ -1,0 +1,29 @@
+[
+  {
+    "Name": "Norman",
+    "Text": "Hope that that does not becomes an every day thing! Time to get some sleep.",
+    "Speaking": "left",
+    "PortraitLeft": "portrait_nerd",
+    "PortraitRight": "",
+    "ShowExtraInfo": "",
+    "Choice": false
+  },
+  {
+    "Name": "Nightly Slasher",
+    "Text": "Creeps up behind normar and lifts his hands only to bring it down in one fast move.",
+    "Speaking": "right",
+    "PortraitLeft": "portrait_nerd",
+    "PortraitRight": "",
+    "ShowExtraInfo": "",
+    "Choice": false
+  },
+  {
+    "Name": "Norman",
+    "Text": "You hear 'Swoosh' but then nothin, only darkness.",
+    "Speaking": "left",
+    "PortraitLeft": "portrait_nerd",
+    "PortraitRight": "",
+    "ShowExtraInfo": "",
+    "Choice": false
+  }
+]

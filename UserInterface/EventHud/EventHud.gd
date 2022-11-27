@@ -31,7 +31,7 @@ func disable():
 				var ent = obj.entity()
 				if ent.group == EntityObject.Group.Enemy && ent.hidden: 
 					ent.disconnect("enemy_unhide", self, "_on_enemy_unhide")
-		_scene.disconnect("stats_update", self, "_on_stats_update")
+		_scene.disconnect("stats_updated", self, "_on_stats_updated")
 		_scene = null
 
 func initialize(coords):
@@ -48,7 +48,7 @@ func setup_event_data(coords):
 	if _scene == null:
 		print_debug(">> %s: scene not found", name)
 		return
-	_scene.connect("stats_update", self, "_on_stats_update")
+	_scene.connect("stats_updated", self, "_on_stats_updated")
 	for obj in _scene.queue().get_children():
 		if obj is QueueObject:
 			var ent = obj.entity()
@@ -73,7 +73,7 @@ func _create_box(entity):
 func _on_escape_pressed():
 	if visible: TheTown.stop_active_event()
 
-func _on_stats_update(stats):
+func _on_stats_updated(stats):
 	lore_label.text = "%s/%s" % [stats.lore.done, stats.lore.total]
 	relic_label.text = "%s/%s" % [stats.pickup.relic.done, stats.pickup.relic.total]
 	banish_label.text = "%s/%s" % [stats.banish.done, stats.banish.total]

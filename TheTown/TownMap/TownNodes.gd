@@ -77,15 +77,23 @@ func _make_mode(info, radius: int, size: float, location: Vector2):
 	return node
 
 
-func handle_input(input):
-	if !TheTown.paused && input.is_action_pressed("ui_cancel"):
-		get_tree().set_input_as_handled()
-		TheTown.pause_game()
-	if event_coords != null && input.is_action_pressed("mouse_click"):
+func set_focus(coords):
+	event_coords = coords
+	emit_signal("event_focused", coords)
+
+func select_focus():
+	if event_coords != null:
 		# This is a mess but we need the updated locked value
 		var scene = TheTown.get_events().get_scene(event_coords)
 		if scene != null && !scene.is_locked(): 
 			emit_signal("event_selected", event_coords)
+
+func handle_input(input):
+	if !TheTown.paused && input.is_action_pressed("ui_cancel"):
+		get_tree().set_input_as_handled()
+		TheTown.pause_game()
+	if input.is_action_pressed("mouse_click"):
+		self.select_focus()
 
 func on_mouse_exited_event(coords):
 	if !self.visible:
@@ -96,9 +104,7 @@ func on_mouse_exited_event(coords):
 	# TODO Clear Event Info
 
 func on_mouse_entered_event(coords):
-	if self.visible:
-		event_coords = coords
-		emit_signal("event_focused", coords)
+	if self.visible: self.set_focus(coords)
 
 func show_mode(_coords):
 	# TODO Expand System
