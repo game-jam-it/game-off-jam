@@ -1,11 +1,15 @@
 class_name ExpeditionEvent
 extends EventMap
 
+# FixMe _static objects are copies and a hack,
+# it was added to make the Townmap more filled.
+
 var is_saved = false
 var is_active = false
 
 onready var _grid = $Grid
 onready var _queue = $Queue
+onready var _static = $Static
 onready var _objects = $Objects
 onready var _connects = $Connects
 
@@ -34,11 +38,13 @@ func end_event():
 	_objects.visible = false
 	print("%s ending" % name)
 	yield(get_tree(), "idle_frame")
+	_static.visible = true
 	self._save_map_state()
 
 func start_event():
 	_grid.clear()
 	_queue.reset(_grid)
+	_static.visible = false
 	yield(get_tree(), "idle_frame")
 	self._load_map_state()
 	self._setup_map_objects()

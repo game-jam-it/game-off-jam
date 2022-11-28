@@ -45,8 +45,8 @@ func choose_action():
 
 func choose_target():
 	#print("%s: choose target" % entity.name)
-	yield(get_tree().create_timer(0.2), 'timeout')
-
+	#yield(get_tree().create_timer(0.2), 'timeout')
+	yield(get_tree(), "idle_frame")
 	if _target == null:
 		return null
 
@@ -60,14 +60,16 @@ func choose_target():
 
 func _attack_target(to, _from):
 	#print("> %s: Got you, I will chew you up" % entity.name)
-	yield(get_tree().create_timer(0.2), 'timeout')
+	#yield(get_tree().create_timer(0.2), 'timeout')
+	yield(get_tree(), "idle_frame")
 	var act = get_node("%AttackTo")
 	act.target = _target
 	act.location = _grid.hexgrid.hex_to_pixel(to)
 	return act
 
 func _move_to_target(to, from):
-	yield(get_tree().create_timer(0.2), 'timeout')
+	#yield(get_tree().create_timer(0.2), 'timeout')
+	yield(get_tree(), "idle_frame")
 	var path = _grid.hexgrid.find_path(from, to)
 	if path.size() < 2: return null
 	var hex = path[1]
@@ -86,6 +88,7 @@ func _move_to_target(to, from):
 
 func _search_for_target():
 	#print("> %s: I will find your stinking behind" % entity.name)
-	yield(get_tree().create_timer(0.2), 'timeout')
+	#yield(get_tree().create_timer(0.2), 'timeout')
+	yield(get_tree(), "idle_frame")
 	# TODO Implement
 	return null

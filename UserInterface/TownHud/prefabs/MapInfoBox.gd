@@ -72,11 +72,9 @@ func _on_stats_updated(stats):
 	if stats.has("lore"):
 		count += stats.lore.done
 		total += stats.lore.total
-	if stats.has("banish"):
-		count += stats.banish.done
-		total += stats.banish.total
-	if stats.has("pickup"):
-		count += stats.pickup.done
-		total += stats.pickup.total
+	if stats.has("banish"): 
+		if stats.banish.has("boss"):
+			count += stats.banish.boss.done
+			total += stats.banish.boss.total
 	_objective_label.text = "%s/%s" % [count, total]
 	# EXTEND: Achivement tracker all done event

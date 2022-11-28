@@ -3,7 +3,7 @@ extends Control
 
 var dialogue_file: String = ""
 var dialogue_path: String = "res://Dialogue/%s.json"
-export(float) var text_speed = 0.05
+export(float) var text_speed = 0.025
 
 var dialogue: Array
 
