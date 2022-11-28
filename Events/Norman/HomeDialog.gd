@@ -2,6 +2,8 @@ extends DialogueEvent
 
 # Note: Hardcoded value in event name here
 const REWARD_MAP = "Cemetary"
+# Note: Cliche: do not bump a rock three times
+const MAX_REMINDERS = 3
 
 enum State {
 	Base,
@@ -26,7 +28,7 @@ var state = State.Start
 # run after the dialog is closed.
 var action = Action.None
 
-# Repeat counter causes stress as
+# Repeat counter causes stress for
 # the player if he repeats to often.
 var _repeat_count = 0;
 var _remember_count = 0;
@@ -61,13 +63,13 @@ func _base_check():
 			self._home_closer()
 		else:
 			_remember_count +=1
-			if _remember_count < 4:
+			if _remember_count < MAX_REMINDERS:
 				self._home_remember_glow()
 			else:
 				self._home_game_over()
 	else:
 		_repeat_count +=1
-		if _repeat_count < 4:
+		if _repeat_count < MAX_REMINDERS:
 			self._home_remember_glow()
 		else:
 			self._home_game_over()
@@ -135,9 +137,7 @@ func _run_close_act():
 	TheTown.stop_active_event()
 
 func _run_close_game():
-	# TODO: Game over, reset to start screen
-	print_debug("[%s] TODO Game over, reset to start screen" % name)
-	TheTown.stop_active_event()
+	TheTown.game_over()
 
 func _run_focus_reward():
 	TheTown.stop_active_event()

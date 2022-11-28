@@ -63,6 +63,7 @@ signal event_selected(coords)
 signal game_over
 signal game_pause
 signal game_resume
+signal game_restart
 
 signal stop_dialogue
 signal start_dialogue
@@ -89,7 +90,9 @@ onready var creator = $Creator
 
 var act = Act.One
 var state = State.SetMode
+
 var paused = false
+var gameover = false
 var event_coords = null
 
 func _ready():
@@ -133,14 +136,14 @@ func _input_set_mode(input):
 func get_grid():
 	return grid
 
+func get_state():
+	return state
+
 func get_nodes():
 	return nodes
 
 func get_events():
 	return events
-
-func get_state():
-	return state
 
 func is_ready():
 	return creator.is_done
@@ -187,11 +190,17 @@ func build_devops():
 	UI Callbacks
 """
 
-func pause_game():
+func game_over():
 	paused = true
+	gameover = true
+	emit_signal("game_over")
+
+func pause_game():
 	emit_signal("game_pause")
 
 func resume_game():
+	if gameover:
+		return
 	paused = false
 	if state != State.ExploreMode:
 		emit_signal("expedition_resume")
@@ -199,10 +208,17 @@ func resume_game():
 		emit_signal("game_resume")
 
 func restart_game():
-	# TODO Setup restart_game
+	# TODO Fade to black ...
 	# TODO Destroy the old saves
-	self._set_town_state(State.SetNode)
+	if self.state == State.ExploreMode:
+		TheTown.stop_active_event()
+	self._set_town_state(State.SetMode)
+	yield(get_tree(), "idle_frame")
+	emit_signal("game_restart")
+	self.camera.zoom_init()
 	self.build_town()
+	gameover = false
+	paused = false
 
 """
 	Global Events & Logic

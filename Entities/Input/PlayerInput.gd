@@ -109,9 +109,8 @@ func _target_input(event):
 	if TheTown.paused:
 		return
 	if event.is_action_pressed("ui_cancel"):
-		print_debug("[%s] TODO Event Pause/Unpause" % name)
-		#TheTown.stop_active_event()
-		TheTown.pause_game()
+		if !TheTown.is_paused():TheTown.pause_game()
+		else: TheTown.resume_game()
 	if event.is_action_pressed("ui_focus_next"):
 		_exit_target_state()
 		emit_signal("_target_selected", null)
