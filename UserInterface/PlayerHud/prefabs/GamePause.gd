@@ -35,7 +35,7 @@ func _ready():
 	screen_check_button.connect("toggled", self, "_on_fullscreen_check_toggled")
 
 func _unhandled_input(input):
-	if TheTown.paused and input.is_action_pressed("ui_cancel"):
+	if TheTown.is_paused() and input.is_action_pressed("ui_cancel"):
 		get_tree().set_input_as_handled()
 		TheTown.resume_game()
 

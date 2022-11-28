@@ -106,19 +106,18 @@ func _enter_action_state():
 """
 
 func _target_input(event):
-	if TheTown.paused:
-		return
 	if event.is_action_pressed("ui_cancel"):
-		if !TheTown.is_paused():TheTown.pause_game()
+		if !TheTown.is_paused(): TheTown.pause_game()
 		else: TheTown.resume_game()
-	if event.is_action_pressed("ui_focus_next"):
-		_exit_target_state()
-		emit_signal("_target_selected", null)
-	if event.is_action_pressed("mouse_click"):
-		_exit_target_state()
-		# Note: this does not reset the target
-		var target = _grid.hexgrid.pixel_to_hex(target_hex.position)
-		emit_signal("_target_selected", target)
+	if !TheTown.is_paused():
+		if event.is_action_pressed("ui_focus_next"):
+			_exit_target_state()
+			emit_signal("_target_selected", null)
+		if event.is_action_pressed("mouse_click"):
+			_exit_target_state()
+			# Note: this does not reset the target
+			var target = _grid.hexgrid.pixel_to_hex(target_hex.position)
+			emit_signal("_target_selected", target)
 
 func _target_process(_delta):
 	var pos = get_global_mouse_position() - self.global_position

@@ -63,7 +63,7 @@ func _draw():
 	# TODO Next: This should not just hover, it needs to be the coords
 	# var bounds = Rect2(global_position - offset, offset * 2.0)
 	# if !bounds.has_point(get_global_mouse_position()):
-	if TheTown.event_coords != coords:
+	if TheTown.event_coords() != coords:
 		draw_rect(render, base_color, false)
 		return
 	draw_rect(render, hover_color, false)
