@@ -33,7 +33,9 @@ func on_town_restart():
 	pass
 
 func on_town_generated():
-	player_hud.open_actor_selection()
+	match TheTown.get_act():
+		TheTown.Act.Into: player_hud.open_actor_selection()
+		TheTown.Act.Teens: _run_teens_intro_dialog()
 
 func on_actor_selected():
 	town_hud.initialize()
@@ -65,7 +67,6 @@ func on_game_restart():
 	town_hud.disable()
 	event_hud.disable()
 	player_hud.restart()
-	pass	
 
 
 func on_expedition_pause():
@@ -73,3 +74,19 @@ func on_expedition_pause():
 
 func on_expedition_resume():
 	player_hud.close_game_paused()
+
+
+func _run_teens_intro_dialog():
+	var actor_path = "norman"
+	# TODO Fix Hardcoded path variable,
+	# works because only one is available
+	var box = DialogueSystem.show_dialogue(
+		"%s/act2/intro-teens" % actor_path
+	)
+	if box != null: box.connect_signals(self)
+
+func on_dialogue_closed():
+	player_hud.show_actor_info()
+	town_hud.initialize()
+	event_hud.disable()
+	TheTown.start()

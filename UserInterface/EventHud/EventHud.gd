@@ -36,6 +36,7 @@ func disable():
 
 func initialize(coords):
 	if visible:
+		print_debug("%s [WARN] initialize blocked" % name)
 		return
 	visible = true
 	setup_event_data(coords)

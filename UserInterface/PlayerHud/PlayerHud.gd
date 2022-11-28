@@ -42,6 +42,11 @@ func restart():
 	_game_over.visible = false
 	visible = true
 
+func show_actor_info():
+	_actor_select_box.visible = false
+	_actor_select.visible = false
+	_player_info.visible = true
+
 """
 	Game Over
 """

@@ -88,7 +88,7 @@ func _on_tree_exiting():
 	self.disconnect("tree_exiting", self, "_on_tree_exiting")
 	emit_signal("dialogue_closed")
 
-func connect_signals(target: Node2D):
+func connect_signals(target: Node):
 	if target == null:
 		return
 	if target.has_method("on_dialogue_event"):

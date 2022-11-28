@@ -135,6 +135,7 @@ func _run_close_act():
 	# TODO: Reset the map start act2
 	print_debug("[%s] TODO Reset the map start act2" % name)
 	TheTown.stop_active_event()
+	TheTown.restart(TheTown.Act.Teens)
 
 func _run_close_game():
 	TheTown.game_over()

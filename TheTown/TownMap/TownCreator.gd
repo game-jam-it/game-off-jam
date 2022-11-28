@@ -132,7 +132,7 @@ func _save_roads():
 """
 
 # Generate a town map, default cfg set as small map
-func create_town(_seed_phrase:String, cfg = {
+func create_town(act, _seed_phrase: String, cfg = {
 	"zoom": 20,
 	"nodes": 96,
 	"culler": 0.25,
@@ -153,7 +153,7 @@ func create_town(_seed_phrase:String, cfg = {
 
 	var build_type
 	if _seed_phrase != "DEVOPS-SEEDS":
-		mapped = Events.build_maps()
+		mapped = Events.build_events(act)
 		build_type = "Town Map"
 	else:
 		mapped = Events.build_dev()

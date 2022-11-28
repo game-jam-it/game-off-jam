@@ -1,0 +1,817 @@
+[gd_scene load_steps=38 format=2]
+
+[ext_resource path="res://TheTown/EventMap/EventGrid.gd" type="Script" id=1]
+[ext_resource path="res://Events/assets/cemetery/fence-gate-a.png" type="Texture" id=2]
+[ext_resource path="res://Actor/prefabs/TheNerd.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Events/assets/cemetery/fence-gate-b.png" type="Texture" id=4]
+[ext_resource path="res://Enemies/prefabs/cemetery/Ratsie.tscn" type="PackedScene" id=5]
+[ext_resource path="res://TheTown/EventMap/GridObject.gd" type="Script" id=6]
+[ext_resource path="res://Events/assets/cemetery/fountain-a-red.png" type="Texture" id=7]
+[ext_resource path="res://Entities/EntityQueue.gd" type="Script" id=8]
+[ext_resource path="res://Events/assets/cemetery/map-medium-a.png" type="Texture" id=9]
+[ext_resource path="res://Events/assets/cemetery/fence-horizontal.png" type="Texture" id=10]
+[ext_resource path="res://Events/prefabs/Light2D.gd" type="Script" id=11]
+[ext_resource path="res://Events/assets/cemetery/fence-vertical-angle.png" type="Texture" id=12]
+[ext_resource path="res://Events/assets/cemetery/fence-vertical.png" type="Texture" id=13]
+[ext_resource path="res://Events/assets/cemetery/tomb-c.png" type="Texture" id=14]
+[ext_resource path="res://Events/assets/cemetery/tombstone-d.png" type="Texture" id=15]
+[ext_resource path="res://Events/assets/cemetery/grave-closed.png" type="Texture" id=16]
+[ext_resource path="res://Events/assets/cemetery/tree-b.png" type="Texture" id=17]
+[ext_resource path="res://Events/assets/cemetery/deamon-b.png" type="Texture" id=18]
+[ext_resource path="res://Events/assets/cemetery/fence-horizontal-broken.png" type="Texture" id=19]
+[ext_resource path="res://prototype/assets/hex-event-small.png" type="Texture" id=20]
+[ext_resource path="res://Events/assets/cemetery/tombstone-a.png" type="Texture" id=21]
+[ext_resource path="res://Events/assets/cemetery/tombstone-c.png" type="Texture" id=22]
+[ext_resource path="res://Events/assets/cemetery/tomb-a.png" type="Texture" id=23]
+[ext_resource path="res://Events/assets/cemetery/tree-a.png" type="Texture" id=24]
+[ext_resource path="res://Events/assets/cemetery/tombstone-b.png" type="Texture" id=25]
+[ext_resource path="res://Events/assets/cemetery/tombstone-e.png" type="Texture" id=26]
+[ext_resource path="res://Events/assets/cemetery/rubble-a.png" type="Texture" id=27]
+[ext_resource path="res://Events/assets/cemetery/deamon-c.png" type="Texture" id=28]
+[ext_resource path="res://Events/assets/cemetery/tomb-b.png" type="Texture" id=29]
+[ext_resource path="res://Events/assets/cemetery/fountain-actor-lights.png" type="Texture" id=30]
+[ext_resource path="res://Events/assets/cemetery/grave-open.png" type="Texture" id=31]
+[ext_resource path="res://Events/assets/cemetery/fountain-base-lights.png" type="Texture" id=32]
+[ext_resource path="res://Events/prefabs/Light2D.tscn" type="PackedScene" id=33]
+[ext_resource path="res://Enemies/prefabs/cemetery/Crow.tscn" type="PackedScene" id=34]
+[ext_resource path="res://Enemies/prefabs/cemetery/Mallus.tscn" type="PackedScene" id=35]
+[ext_resource path="res://Events/ExpeditionEvent.gd" type="Script" id=36]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+seed = 1337
+octaves = 4
+period = 34.2
+persistence = 0.684
+lacunarity = 1.69
+
+[node name="Cemetary" type="Node2D"]
+script = ExtResource( 36 )
+map_title = "The Cemetary"
+map_summary = "You should not be here, yet you are."
+
+[node name="Connects" type="Node2D" parent="."]
+
+[node name="Point 1" type="Node2D" parent="Connects"]
+position = Vector2( 429, -254 )
+
+[node name="Point 2" type="Node2D" parent="Connects"]
+position = Vector2( 431, 251 )
+
+[node name="Point 3" type="Node2D" parent="Connects"]
+position = Vector2( 1, 386 )
+
+[node name="Point 4" type="Node2D" parent="Connects"]
+position = Vector2( -427, 250 )
+
+[node name="Point 5" type="Node2D" parent="Connects"]
+position = Vector2( -425, -253 )
+
+[node name="Point 6" type="Node2D" parent="Connects"]
+position = Vector2( 1, -447 )
+
+[node name="Terrain" type="Sprite" parent="."]
+modulate = Color( 0.315476, 0.369115, 0.40625, 1 )
+scale = Vector2( 0.5, 0.5 )
+z_index = -10
+texture = ExtResource( 9 )
+flip_h = true
+
+[node name="-- Test Grid2" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 20 )
+
+[node name="Queue" type="Node2D" parent="."]
+script = ExtResource( 8 )
+
+[node name="Grid" type="Node2D" parent="."]
+script = ExtResource( 1 )
+size = 20
+
+[node name="Nodes" type="Node2D" parent="Grid"]
+
+[node name="Blocked - 01" type="Node2D" parent="Grid/Nodes"]
+script = ExtResource( 6 )
+cell_cost = 0
+obj_type = 1
+
+[node name="End" type="Position2D" parent="Grid/Nodes/Blocked - 01"]
+position = Vector2( -51, -293 )
+
+[node name="Start" type="Position2D" parent="Grid/Nodes/Blocked - 01"]
+position = Vector2( -277, -294 )
+
+[node name="Blocked - 02" type="Node2D" parent="Grid/Nodes"]
+script = ExtResource( 6 )
+cell_cost = 0
+obj_type = 1
+
+[node name="End" type="Position2D" parent="Grid/Nodes/Blocked - 02"]
+position = Vector2( 276, -289 )
+
+[node name="Start" type="Position2D" parent="Grid/Nodes/Blocked - 02"]
+position = Vector2( 49, -296 )
+
+[node name="Blocked - 03" type="Node2D" parent="Grid/Nodes"]
+script = ExtResource( 6 )
+cell_cost = 0
+obj_type = 1
+
+[node name="End" type="Position2D" parent="Grid/Nodes/Blocked - 03"]
+position = Vector2( 329, 243 )
+
+[node name="Start" type="Position2D" parent="Grid/Nodes/Blocked - 03"]
+position = Vector2( 327, -190 )
+
+[node name="Blocked - 04" type="Node2D" parent="Grid/Nodes"]
+script = ExtResource( 6 )
+cell_cost = 0
+obj_type = 1
+
+[node name="End" type="Position2D" parent="Grid/Nodes/Blocked - 04"]
+position = Vector2( -332, 245 )
+
+[node name="Start" type="Position2D" parent="Grid/Nodes/Blocked - 04"]
+position = Vector2( -333, -195 )
+
+[node name="Blocked - 05" type="Node2D" parent="Grid/Nodes"]
+script = ExtResource( 6 )
+cell_cost = 0
+obj_type = 1
+
+[node name="End" type="Position2D" parent="Grid/Nodes/Blocked - 05"]
+position = Vector2( -140, 234 )
+
+[node name="Start" type="Position2D" parent="Grid/Nodes/Blocked - 05"]
+position = Vector2( -237, 234 )
+
+[node name="Blocked - 06" type="Node2D" parent="Grid/Nodes"]
+script = ExtResource( 6 )
+cell_cost = 0
+obj_type = 1
+
+[node name="End" type="Position2D" parent="Grid/Nodes/Blocked - 06"]
+position = Vector2( 236, 232 )
+
+[node name="Start" type="Position2D" parent="Grid/Nodes/Blocked - 06"]
+position = Vector2( 142, 234 )
+
+[node name="Obstical - 01" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( 0, -293 )
+script = ExtResource( 6 )
+cell_cost = 2
+cell_cover = 0
+block_type = 1
+
+[node name="Obstical - 02" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( 0, 221 )
+script = ExtResource( 6 )
+cell_cost = 2
+cell_cover = 0
+block_type = 1
+
+[node name="Obstical - 03" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( -49, 254 )
+script = ExtResource( 6 )
+cell_cost = 2
+cell_cover = 0
+
+[node name="Obstical - 04" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( 51, 253 )
+script = ExtResource( 6 )
+cell_cost = 2
+cell_cover = 0
+
+[node name="Obstical - 05" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( -90, 226 )
+script = ExtResource( 6 )
+cell_cover = 0
+block_type = 1
+
+[node name="Obstical - 06" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( 97, 222 )
+script = ExtResource( 6 )
+cell_cover = 0
+block_type = 1
+
+[node name="Obstical - 07" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( -282, 219 )
+script = ExtResource( 6 )
+cell_cost = 3
+cell_cover = 0
+block_type = 1
+
+[node name="Obstical - 08" type="Node2D" parent="Grid/Nodes"]
+script = ExtResource( 6 )
+obj_size = 1
+cell_cost = 6
+cell_cover = 0
+block_type = 1
+
+[node name="Obstical - 09" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( -238, 81 )
+script = ExtResource( 6 )
+cell_cost = 6
+cell_cover = 0
+
+[node name="Obstical - 10" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( -188, -6 )
+script = ExtResource( 6 )
+cell_cost = 6
+cell_cover = 0
+
+[node name="Obstical - 11" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( -143, -192 )
+script = ExtResource( 6 )
+cell_cost = 6
+cell_cover = 0
+
+[node name="Obstical - 12" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( 93, -163 )
+script = ExtResource( 6 )
+cell_cost = 6
+cell_cover = 0
+
+[node name="Obstical - 13" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( 144, 142 )
+script = ExtResource( 6 )
+cell_cost = 6
+cell_cover = 0
+
+[node name="Obstical - 14" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( 240, -88 )
+script = ExtResource( 6 )
+cell_cost = 6
+cell_cover = 0
+
+[node name="Obstical - 15" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( -230, -85 )
+script = ExtResource( 6 )
+cell_cost = 6
+cell_cover = 0
+
+[node name="Obstical - 16" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( -141, 128 )
+script = ExtResource( 6 )
+cell_cost = 4
+cell_cover = 0
+block_type = 1
+
+[node name="Obstical - 17" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( 242, 72 )
+script = ExtResource( 6 )
+cell_cost = 4
+cell_cover = 0
+block_type = 1
+
+[node name="Obstical - 18" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( -189, -384 )
+script = ExtResource( 6 )
+cell_cost = 4
+cell_cover = 0
+block_type = 1
+
+[node name="Obstical - 19" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( -107, -136 )
+script = ExtResource( 6 )
+cell_cost = 2
+cell_cover = 0
+block_type = 1
+
+[node name="Obstical - 20" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( 243, -236 )
+script = ExtResource( 6 )
+cell_cost = 2
+cell_cover = 0
+block_type = 1
+
+[node name="Obstical - 21" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( -234, 417 )
+script = ExtResource( 6 )
+cell_cost = 2
+cell_cover = 0
+
+[node name="Obstical - 22" type="Node2D" parent="Grid/Nodes"]
+position = Vector2( 184, 1 )
+script = ExtResource( 6 )
+cell_cost = 16
+cell_cover = 0
+block_type = 1
+
+[node name="Objects" type="YSort" parent="."]
+modulate = Color( 0.588235, 0.654902, 0.701961, 1 )
+
+[node name="Fence - Top" type="Node2D" parent="Objects"]
+position = Vector2( 0, -269 )
+
+[node name="Fence-horizontal" type="Sprite" parent="Objects/Fence - Top"]
+position = Vector2( -230, -40 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 10 )
+
+[node name="Fence-horizontal2" type="Sprite" parent="Objects/Fence - Top"]
+position = Vector2( -115, -40 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 10 )
+
+[node name="Fence-horizontal3" type="Sprite" parent="Objects/Fence - Top"]
+position = Vector2( 115, -40 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 10 )
+flip_h = true
+
+[node name="Fence-horizontal4" type="Sprite" parent="Objects/Fence - Top"]
+position = Vector2( 230, -40 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 10 )
+flip_h = true
+
+[node name="Fence-gate-b" type="Sprite" parent="Objects/Fence - Top"]
+position = Vector2( 0, -20 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 4 )
+
+[node name="Light2D" parent="Objects/Fence - Top/Fence-gate-b" instance=ExtResource( 33 )]
+position = Vector2( -587.5, -500 )
+scale = Vector2( 11.8281, 11.6328 )
+energy = 1.8
+mode = 2
+range_item_cull_mask = 33
+
+[node name="Light2D2" parent="Objects/Fence - Top/Fence-gate-b" instance=ExtResource( 33 )]
+position = Vector2( 525, -525 )
+scale = Vector2( 11.8281, 11.6328 )
+energy = 1.8
+mode = 2
+range_item_cull_mask = 33
+
+[node name="Fence - Left" type="Node2D" parent="Objects"]
+position = Vector2( -330, 97 )
+
+[node name="Fence-vertical" type="Sprite" parent="Objects/Fence - Left"]
+position = Vector2( 5, 4 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 13 )
+
+[node name="Fence-vertical2" type="Sprite" parent="Objects/Fence - Left"]
+position = Vector2( 5, -85 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 13 )
+
+[node name="Fence-vertical3" type="Sprite" parent="Objects/Fence - Left"]
+position = Vector2( 5, -185 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 13 )
+
+[node name="Fence-vertical4" type="Sprite" parent="Objects/Fence - Left"]
+position = Vector2( 5, -245 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 13 )
+
+[node name="Fence-vertical-angle" type="Sprite" parent="Objects/Fence - Left"]
+position = Vector2( 5, 114 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 12 )
+
+[node name="Fence - Right" type="Node2D" parent="Objects"]
+position = Vector2( 330, 97 )
+
+[node name="Fence-vertical" type="Sprite" parent="Objects/Fence - Right"]
+position = Vector2( -10, 0 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 13 )
+flip_h = true
+
+[node name="Fence-vertical2" type="Sprite" parent="Objects/Fence - Right"]
+position = Vector2( -10, -111 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 13 )
+flip_h = true
+
+[node name="Fence-vertical3" type="Sprite" parent="Objects/Fence - Right"]
+position = Vector2( -10, -220 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 13 )
+flip_h = true
+
+[node name="Fence-vertical4" type="Sprite" parent="Objects/Fence - Right"]
+position = Vector2( -10, -245 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 13 )
+flip_h = true
+
+[node name="Fence-vertical-angle" type="Sprite" parent="Objects/Fence - Right"]
+position = Vector2( -10, 114 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 12 )
+flip_h = true
+
+[node name="Fence - Bottom" type="Node2D" parent="Objects"]
+position = Vector2( 0, 252 )
+
+[node name="Fence-horizontal" type="Sprite" parent="Objects/Fence - Bottom"]
+visible = false
+position = Vector2( -230, -41 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 10 )
+
+[node name="Fence-horizontal-broken" type="Sprite" parent="Objects/Fence - Bottom"]
+position = Vector2( -270, -41 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 19 )
+
+[node name="Fence-horizontal2" type="Sprite" parent="Objects/Fence - Bottom"]
+position = Vector2( -150, -41 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 10 )
+flip_h = true
+
+[node name="Fence-horizontal4" type="Sprite" parent="Objects/Fence - Bottom"]
+visible = false
+position = Vector2( 230, -41 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 10 )
+flip_h = true
+
+[node name="Fence-gate-a" type="Sprite" parent="Objects/Fence - Bottom"]
+position = Vector2( 0, -35 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 2 )
+
+[node name="Light2D" parent="Objects/Fence - Bottom/Fence-gate-a" instance=ExtResource( 33 )]
+position = Vector2( -700, -275 )
+scale = Vector2( 11.8281, 11.6328 )
+energy = 1.8
+mode = 2
+range_item_cull_mask = 33
+
+[node name="Light2D2" parent="Objects/Fence - Bottom/Fence-gate-a" instance=ExtResource( 33 )]
+position = Vector2( 725, -287.5 )
+scale = Vector2( 11.8281, 11.6328 )
+energy = 1.8
+mode = 2
+range_item_cull_mask = 33
+
+[node name="Fence-horizontal3" type="Sprite" parent="Objects/Fence - Bottom"]
+position = Vector2( 150, -41 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 10 )
+flip_h = true
+
+[node name="Fence-horizontal-broken2" type="Sprite" parent="Objects/Fence - Bottom"]
+position = Vector2( 265, -41 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 19 )
+flip_h = true
+
+[node name="Crow - 01" parent="Objects" instance=ExtResource( 34 )]
+position = Vector2( -276, -447 )
+
+[node name="Crow - 02" parent="Objects" instance=ExtResource( 34 )]
+position = Vector2( 192, -331 )
+
+[node name="Ratsie - 01" parent="Objects" instance=ExtResource( 5 )]
+position = Vector2( -274, -5 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+enemy_name = "Ratsie"
+
+[node name="Ratsie - 02" parent="Objects" instance=ExtResource( 5 )]
+position = Vector2( 238, 139 )
+rotation = 3.14159
+scale = Vector2( -1, -1 )
+enemy_name = "Ratsie"
+
+[node name="TheNerd" parent="Objects" instance=ExtResource( 3 )]
+position = Vector2( -68, 22 )
+
+[node name="Header" parent="Objects" instance=ExtResource( 35 )]
+position = Vector2( 183, 12 )
+
+[node name="Fountain" type="Node2D" parent="Objects"]
+
+[node name="Light-Base" type="Light2D" parent="Objects/Fountain"]
+position = Vector2( 1, -5 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 32 )
+color = Color( 0.321569, 0.0431373, 0.0431373, 1 )
+energy = 6.25
+range_height = -169.6
+script = ExtResource( 11 )
+noise = SubResource( 1 )
+speed = 20
+
+[node name="Light-Actor" type="Light2D" parent="Objects/Fountain"]
+position = Vector2( 1, -5 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 30 )
+color = Color( 0.321569, 0.0431373, 0.0431373, 1 )
+energy = 3.01
+range_height = -169.6
+range_item_cull_mask = 32
+script = ExtResource( 11 )
+noise = SubResource( 1 )
+speed = 20
+
+[node name="Fountain-a-red" type="Sprite" parent="Objects/Fountain"]
+position = Vector2( 0, -15 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 7 )
+
+[node name="Fountain-Lights" type="Node2D" parent="Objects"]
+position = Vector2( 0, -80 )
+
+[node name="Light2D3" parent="Objects/Fountain-Lights" instance=ExtResource( 33 )]
+position = Vector2( -31.6, 120.8 )
+scale = Vector2( 0.2, 0.4 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D4" parent="Objects/Fountain-Lights" instance=ExtResource( 33 )]
+position = Vector2( 37.4, 113.8 )
+scale = Vector2( 0.2, 0.4 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D8" parent="Objects/Fountain-Lights" instance=ExtResource( 33 )]
+position = Vector2( 45.4, 107.8 )
+scale = Vector2( 0.2, 0.4 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D9" parent="Objects/Fountain-Lights" instance=ExtResource( 33 )]
+position = Vector2( 59.4, 80.8 )
+scale = Vector2( 0.2, 0.4 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D5" parent="Objects/Fountain-Lights" instance=ExtResource( 33 )]
+position = Vector2( -14.6, 120.8 )
+scale = Vector2( 0.2, 0.4 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D6" parent="Objects/Fountain-Lights" instance=ExtResource( 33 )]
+position = Vector2( -45.6, 95.8 )
+scale = Vector2( 0.2, 0.4 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D7" parent="Objects/Fountain-Lights" instance=ExtResource( 33 )]
+position = Vector2( -62.6, 88.8 )
+scale = Vector2( 0.2, 0.4 )
+energy = 1.8
+speed = 200
+
+[node name="Light2DS 01" parent="Objects/Fountain-Lights" instance=ExtResource( 33 )]
+position = Vector2( -35.6, 122.8 )
+scale = Vector2( 0.1, 0.2 )
+energy = 1.8
+speed = 200
+
+[node name="Light2DS 02" parent="Objects/Fountain-Lights" instance=ExtResource( 33 )]
+position = Vector2( -58.6, 93.8 )
+scale = Vector2( 0.1, 0.2 )
+energy = 1.8
+speed = 200
+
+[node name="Light2DS 03" parent="Objects/Fountain-Lights" instance=ExtResource( 33 )]
+position = Vector2( 52.4, 112.8 )
+scale = Vector2( 0.1, 0.2 )
+energy = 1.8
+speed = 200
+
+[node name="Light2DS 04" parent="Objects/Fountain-Lights" instance=ExtResource( 33 )]
+position = Vector2( 65.4, 87.8 )
+scale = Vector2( 0.1, 0.2 )
+energy = 1.8
+speed = 200
+
+[node name="Tomb-a" type="Node2D" parent="Objects"]
+position = Vector2( 237, 65 )
+scale = Vector2( 0.999999, 0.999999 )
+
+[node name="Tomb-a" type="Sprite" parent="Objects/Tomb-a"]
+position = Vector2( 0, -1 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 23 )
+
+[node name="Tomb-b" type="Node2D" parent="Objects"]
+position = Vector2( -143, 117 )
+
+[node name="Tomb-b" type="Sprite" parent="Objects/Tomb-b"]
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 29 )
+
+[node name="Tomb-c" type="Node2D" parent="Objects"]
+position = Vector2( -189, -395 )
+
+[node name="Tomb-c" type="Sprite" parent="Objects/Tomb-c"]
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 14 )
+
+[node name="Tombstone-a" type="Node2D" parent="Objects"]
+position = Vector2( -135, -204 )
+
+[node name="Tombstone-a" type="Sprite" parent="Objects/Tombstone-a"]
+position = Vector2( -1, -19 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 21 )
+
+[node name="Tombstone-b" type="Node2D" parent="Objects"]
+position = Vector2( -223, 85 )
+
+[node name="Tombstone-b" type="Sprite" parent="Objects/Tombstone-b"]
+position = Vector2( -5, -22 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 25 )
+
+[node name="Tombstone-c" type="Node2D" parent="Objects"]
+position = Vector2( -184, -2 )
+
+[node name="Tombstone-c" type="Sprite" parent="Objects/Tombstone-c"]
+position = Vector2( -1, -20 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 22 )
+
+[node name="Light2D3" parent="Objects/Tombstone-c" instance=ExtResource( 33 )]
+position = Vector2( 13, -3 )
+scale = Vector2( 0.1625, 0.309375 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D6" parent="Objects/Tombstone-c" instance=ExtResource( 33 )]
+position = Vector2( -27, -2 )
+scale = Vector2( 0.1625, 0.309375 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D4" parent="Objects/Tombstone-c" instance=ExtResource( 33 )]
+position = Vector2( 19, -11 )
+scale = Vector2( 0.2, 0.4 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D7" parent="Objects/Tombstone-c" instance=ExtResource( 33 )]
+position = Vector2( -21, -8 )
+scale = Vector2( 0.2, 0.4 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D5" parent="Objects/Tombstone-c" instance=ExtResource( 33 )]
+position = Vector2( 24.0001, 0 )
+scale = Vector2( 0.178125, 0.309375 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D8" parent="Objects/Tombstone-c" instance=ExtResource( 33 )]
+position = Vector2( -14, -5 )
+scale = Vector2( 0.178125, 0.309375 )
+energy = 1.8
+speed = 200
+
+[node name="Tombstone-d" type="Node2D" parent="Objects"]
+position = Vector2( 147, 133 )
+
+[node name="Tombstone-d" type="Sprite" parent="Objects/Tombstone-d"]
+position = Vector2( 0, -23 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 15 )
+
+[node name="Light2D8" parent="Objects/Tombstone-d" instance=ExtResource( 33 )]
+position = Vector2( 4, -14 )
+scale = Vector2( 0.135938, 0.202344 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D9" parent="Objects/Tombstone-d" instance=ExtResource( 33 )]
+position = Vector2( -9, -15 )
+scale = Vector2( 0.135938, 0.202344 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D10" parent="Objects/Tombstone-d" instance=ExtResource( 33 )]
+position = Vector2( -4.675, -13.2625 )
+scale = Vector2( 0.114844, 0.179296 )
+energy = 1.8
+speed = 200
+
+[node name="Tombstone-e" type="Node2D" parent="Objects"]
+position = Vector2( 92, -165 )
+
+[node name="Tombstone-e" type="Sprite" parent="Objects/Tombstone-e"]
+position = Vector2( 0, -20 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 26 )
+
+[node name="Light2D7" parent="Objects/Tombstone-e" instance=ExtResource( 33 )]
+position = Vector2( -19, 3 )
+scale = Vector2( 0.2, 0.4 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D5" parent="Objects/Tombstone-e" instance=ExtResource( 33 )]
+position = Vector2( 14, 5 )
+scale = Vector2( 0.178125, 0.309375 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D8" parent="Objects/Tombstone-e" instance=ExtResource( 33 )]
+position = Vector2( 8, 12 )
+scale = Vector2( 0.135938, 0.202344 )
+energy = 1.8
+speed = 200
+
+[node name="Tree-a" type="Node2D" parent="Objects"]
+position = Vector2( 218, -85 )
+
+[node name="Tree-a" type="Sprite" parent="Objects/Tree-a"]
+modulate = Color( 0.737255, 0.709804, 0.666667, 1 )
+position = Vector2( -3, -38 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 24 )
+
+[node name="Tree-a2" type="Node2D" parent="Objects"]
+position = Vector2( -251, 415 )
+
+[node name="Tree-a" type="Sprite" parent="Objects/Tree-a2"]
+modulate = Color( 0.737255, 0.709804, 0.666667, 1 )
+position = Vector2( -3, -38 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 24 )
+
+[node name="Tree-b" type="Node2D" parent="Objects"]
+position = Vector2( -233, -92 )
+
+[node name="Tree-b" type="Sprite" parent="Objects/Tree-b"]
+modulate = Color( 0.737255, 0.709804, 0.666667, 1 )
+position = Vector2( -2, -39 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 17 )
+
+[node name="Rubble-a" type="Node2D" parent="Objects"]
+position = Vector2( 240, -266 )
+
+[node name="Rubble-a" type="Sprite" parent="Objects/Rubble-a"]
+modulate = Color( 0.611765, 0.52549, 0.517647, 0.862745 )
+position = Vector2( 2, 18 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 27 )
+
+[node name="Rubble-a2" type="Node2D" parent="Objects"]
+position = Vector2( -96, -144 )
+
+[node name="Rubble-a" type="Sprite" parent="Objects/Rubble-a2"]
+modulate = Color( 0.611765, 0.52549, 0.517647, 0.862745 )
+position = Vector2( 2, 18 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 27 )
+
+[node name="Rubble-a3" type="Node2D" parent="Objects"]
+position = Vector2( -283, 208 )
+
+[node name="Rubble-a" type="Sprite" parent="Objects/Rubble-a3"]
+modulate = Color( 0.611765, 0.52549, 0.517647, 0.862745 )
+position = Vector2( 2, 18 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 27 )
+
+[node name="Rubble-a4" type="Node2D" parent="Objects"]
+position = Vector2( 425, 111 )
+
+[node name="Rubble-a" type="Sprite" parent="Objects/Rubble-a4"]
+modulate = Color( 0.611765, 0.52549, 0.517647, 0.862745 )
+position = Vector2( 2, 18 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 27 )
+
+[node name="Grave-closed" type="Node2D" parent="Objects"]
+position = Vector2( 180, -12 )
+
+[node name="Grave-open" type="Sprite" parent="Objects/Grave-closed"]
+visible = false
+position = Vector2( 0, 12 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 31 )
+
+[node name="Grave-closed" type="Sprite" parent="Objects/Grave-closed"]
+position = Vector2( 0, 12 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 16 )
+
+[node name="Deamon-b" type="Node2D" parent="Objects"]
+visible = false
+position = Vector2( 663, 156 )
+
+[node name="Deamon-b" type="Sprite" parent="Objects/Deamon-b"]
+position = Vector2( -1, -32 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 18 )
+
+[node name="Deamon-c" type="Node2D" parent="Objects"]
+visible = false
+position = Vector2( 673, 283 )
+
+[node name="Deamon-c" type="Sprite" parent="Objects/Deamon-c"]
+position = Vector2( 0, -20 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 28 )

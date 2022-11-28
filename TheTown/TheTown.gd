@@ -44,7 +44,7 @@ const MICRO_MAP = {
 
 enum Act {
 	Into,
-	Girls,
+	Teens,
 	Extend
 }
 
@@ -106,7 +106,7 @@ func _ready():
 	# TODO Move create-town-on-load 
 	# to new game event from menu
 	# events.visible = false
-	build_town()
+	build_town(self._act)
 
 func _unhandled_input(input):
 	if _paused:
@@ -130,7 +130,7 @@ func _input_set_mode(input):
 		get_tree().set_input_as_handled()
 		self.pause_game()
 	if creator.is_done && input.is_action_pressed("rebuild_town"):
-		build_town()
+		build_town(self._act)
 	elif creator.is_done && input.is_action_pressed("rebuild_devops"):
 		build_devops()
 
@@ -168,14 +168,15 @@ func _set_town_state(value):
 		emit_signal("state_chaged", value)
 	
 
-func build_town():
+func build_town(act):
 	if !creator.is_done:
 		return
 	if _state != State.SetMode:
 		return
+	self._act = act
 	emit_signal("town_restart")
 	var seed_phrase = "GameOff 2022 - %s" % OS.get_unix_time()
-	yield(creator.create_town(seed_phrase, map_cfg), "completed")
+	yield(creator.create_town(_act, seed_phrase, map_cfg), "completed")
 	self.events.initialize_stats()
 	emit_signal("town_generated")
 
@@ -184,9 +185,10 @@ func build_devops():
 		return
 	if _state != State.SetMode:
 		return
+	self._act = Act.Into
 	emit_signal("town_restart")
 	var seed_phrase = "DEVOPS-SEEDS"
-	yield(creator.create_town(seed_phrase, MICRO_MAP), "completed")
+	yield(creator.create_town(_act, seed_phrase, MICRO_MAP), "completed")
 	# TODO Compute and set the initial stats
 	yield(get_tree(), "idle_frame")
 	self.events.initialize_stats()
@@ -223,13 +225,24 @@ func restart_game():
 	yield(get_tree(), "idle_frame")
 	emit_signal("game_restart")
 	self.camera.zoom_init()
-	self.build_town()
+	self.build_town(_act)
 	_gameover = false
 	_paused = false
 
 """
 	Global Events & Logic
 """
+
+func restart(act):
+	# TODO Fade to black ...
+	if self._state == State.ExploreMode:
+		TheTown.stop_active_event()
+	self._set_town_state(State.SetMode)
+	yield(get_tree(), "idle_frame")
+	emit_signal("town_restart")
+	self.build_town(act)
+	_gameover = false
+	_paused = false
 
 func _on_game_stats_updated(value):
 	emit_signal("game_stats_updated", value)
