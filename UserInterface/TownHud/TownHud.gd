@@ -2,6 +2,10 @@ extends Control
 
 # TODO: Setup and link global objectives
 
+onready var maps_label = get_node("%MapsValue")
+onready var lore_label = get_node("%LoreValue")
+onready var boss_label = get_node("%BossValue")
+
 onready var map_list = get_node("%MapList")
 onready var expedition_popup = $ExpeditionDialog
 onready var event_coords_label = get_node("%EventCoordsLabel")
@@ -12,10 +16,12 @@ func _ready():
 	TheTown.connect("event_clear", self, "on_event_clear")
 	TheTown.connect("event_focused", self, "on_event_focused")
 	TheTown.connect("event_selected", self, "on_event_selected")
+	
+	var events = TheTown.get_events()
+	events.connect("game_stats_updated", self, "_on_game_stats_updated")
 
 	expedition_popup.connect("start_expedition", self, "on_start_expedition")
 	expedition_popup.connect("cancel_expedition", self, "on_cancel_expedition")
-
 
 func enable():
 	visible = true
@@ -76,6 +82,15 @@ func setup_event_list():
 	var list = map_list.get_children()
 	list.sort_custom(self, 'map_sort')
 	for object in list: object.raise()
+
+
+func _on_game_stats_updated(stats):
+	# if maps_label == null: maps_label = get_node("%MapsValue")
+	# if lore_label == null: lore_label = get_node("%LoreValue")
+	# if boss_label == null: boss_label = get_node("%BossValue")
+	maps_label.text = "%s/%s" % [stats.maps.done, stats.maps.total]
+	lore_label.text = "%s/%s" % [stats.lore.done, stats.lore.total]
+	boss_label.text = "%s/%s" % [stats.banish.boss.done, stats.banish.boss.total]
 
 
 static func map_sort(a, b) -> bool:

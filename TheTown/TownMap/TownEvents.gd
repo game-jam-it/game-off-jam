@@ -54,13 +54,18 @@ func start_event(coords):
 
 func _on_stats_updated(stats):
 	emit_signal("event_stats_updated", stats)
-	# TODO: Check map finished state ...
 	self._compute_total_stats()
 
 func _compute_total_stats():
 	self.stats = EventMap.new_goals()
+	self.stats.merge({
+		"maps": {"done": 0, "total": 0}
+	})
 	for scn in self.get_children():
 		if scn is EventMap:
+			if scn.is_complete():
+				self.stats.maps.done += 1
+			self.stats.maps.total += 1
 			var goals = scn.goals()
 			if goals != null:
 				# FixMe Cleaner events can fix this

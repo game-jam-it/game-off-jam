@@ -205,6 +205,7 @@ func game_over():
 	emit_signal("game_over")
 
 func pause_game():
+	_paused = true
 	emit_signal("game_pause")
 
 func resume_game():
