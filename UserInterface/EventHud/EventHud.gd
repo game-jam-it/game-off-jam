@@ -50,7 +50,11 @@ func setup_event_data(coords):
 		print_debug(">> %s: scene not found", name)
 		return
 	_scene.connect("stats_updated", self, "_on_stats_updated")
-	for obj in _scene.queue().get_children():
+	var list = _scene.queue().get_children()
+	# FixMe See: call order yields, it pushes it back but is bug prone
+	if list == null: print_debug("[WARN] %s: entity list is null" % name)
+	if list.size() == 0: print_debug("[WARN] %s: entity list empty" % name)
+	for obj in list:
 		if obj is QueueObject:
 			var ent = obj.entity()
 			match ent.group:
@@ -72,7 +76,8 @@ func _create_box(entity):
 	box.initialize(entity)
 
 func _on_escape_pressed():
-	if visible: TheTown.stop_active_event()
+	if !TheTown.is_paused() && visible: 
+		TheTown.stop_active_event()
 
 func _on_stats_updated(stats):
 	lore_label.text = "%s/%s" % [stats.lore.done, stats.lore.total]

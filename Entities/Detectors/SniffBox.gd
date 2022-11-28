@@ -15,13 +15,13 @@ func _on_area_exited(stinkbox: StinkBox):
 	if stinkbox == null: 
 		return
 	if owner.has_method("clear_smell"):
-		print("> %s: That smell seems to have cleared" % owner.name)	
+		#print("> %s: That smell seems to have cleared" % owner.name)	
 		owner.clear_smell(stinkbox.entity)
 
 func _on_area_entered(stinkbox: StinkBox):
 	if stinkbox == null: 
 		return
-	print("> %s: Something stinks" % owner.name)
+	#print("> %s: Something stinks" % owner.name)
 	if owner.has_method("investigate_smell"):
-		print("> %s: I have to investigate" % owner.name)	
+		#print("> %s: I have to investigate" % owner.name)	
 		owner.investigate_smell(stinkbox.entity)

@@ -86,11 +86,9 @@ func add_object(object: GridObject):
 				_init_path_object(object)
 
 func add_entity(entity: EntityObject):
-	print(">> Add entity %s" % entity.id())
 	entity_map[entity.id()] = entity
 
 func clear_entity(entity: EntityObject):
-	print(">> clear entity %s" % entity.id())
 	entity_map.erase(entity.id())
 
 func add_cell_blocker(coords: Vector2):

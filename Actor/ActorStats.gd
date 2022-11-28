@@ -95,7 +95,7 @@ func take_damage(damage: int) -> void:
 func on_death() -> void:
 	print(">> %s died" % character.name)
 	emit_signal("player_died", self)
-	# TODO Handle game over state
+	TheTown.game_over()
 	# TODO Swap out texture and portrait
 	print_debug("[%s] TODO Handle game over state change" % name)
 

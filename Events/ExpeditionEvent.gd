@@ -16,9 +16,6 @@ func goals():
 	return self._goals
 
 func _ready():
-	self._setup()
-
-func _setup():
 	self._init_goals()
 	_type = Type.Expedition
 	_objects.visible = false
@@ -66,9 +63,10 @@ func run_event():
 """
 
 func on_queue_changed(list):
-		# TODO Update UI
-	for e in list:
-		print("List: %s (%s)" % [e.name(), e.initiative()])
+	# TODO Update UI
+	# for e in list:
+	# 	print("List: %s (%s)" % [e.name(), e.initiative()])
+	pass
 
 func on_active_changed(active):
 	if active != null:

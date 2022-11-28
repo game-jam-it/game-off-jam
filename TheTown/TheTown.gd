@@ -287,6 +287,7 @@ func start_selected_event(coords):
 	nodes.hide_mode(coords)
 	yield(get_tree(), "idle_frame")
 	var type = events.start_event(coords)
+	yield(get_tree(), "idle_frame")
 	if type == EventMap.Type.Expedition:
 		emit_signal("start_expedition", coords)
 	elif type == EventMap.Type.Dialogue:

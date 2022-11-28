@@ -3,7 +3,6 @@ extends ExpeditionEvent
 onready var mallus = get_node("%Mallus")
 
 func _ready():
-	self._setup()
 	mallus.connect("enemy_died", self, "_on_mallus_died")
 
 func _on_mallus_died(entity):
