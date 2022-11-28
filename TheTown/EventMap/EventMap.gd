@@ -50,8 +50,8 @@ func unlock():
 		self._locked = false
 		emit_signal("map_unlocked", self)
 
-func complete():
-	if self._complete:
+func mark_complete():
+	if !self._complete:
 		self._complete = true
 		emit_signal("map_conpleted", self)
 

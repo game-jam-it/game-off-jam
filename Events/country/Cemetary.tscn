@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Events/assets/cemetery/fence-gate-b.png" type="Texture" id=1]
 [ext_resource path="res://TheTown/EventMap/EventGrid.gd" type="Script" id=2]
-[ext_resource path="res://Events/ExpeditionEvent.gd" type="Script" id=3]
+[ext_resource path="res://Events/country/Cemetary.gd" type="Script" id=3]
 [ext_resource path="res://Entities/EntityQueue.gd" type="Script" id=4]
 [ext_resource path="res://Actor/prefabs/TheNerd.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/prefabs/cemetery/Ratsie.tscn" type="PackedScene" id=6]
@@ -484,7 +484,8 @@ enemy_name = "Ratsie"
 [node name="TheNerd" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( -68, 22 )
 
-[node name="Header" parent="Objects" instance=ExtResource( 18 )]
+[node name="Mallus" parent="Objects" instance=ExtResource( 18 )]
+unique_name_in_owner = true
 position = Vector2( 183, 12 )
 
 [node name="Fountain" type="Node2D" parent="Objects"]

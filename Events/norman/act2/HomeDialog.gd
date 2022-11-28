@@ -16,11 +16,13 @@ var state = State.Base
 # run after the dialog is closed.
 var action = Action.None
 
-# Repeat counter causes stress for
-# the player if he repeats to often.
-var _repeat_count = 0;
-var _remember_count = 0;
+func _ready():
+	self._init_goals()
+	self._type = Type.Dialogue
 
+func _init_goals():
+	self._goals =  EventMap.new_goals()
+	self._goals.lore.total = 1
 
 func open_dialog():
 	match state:

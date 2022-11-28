@@ -35,7 +35,7 @@
 [ext_resource path="res://Events/prefabs/Light2D.tscn" type="PackedScene" id=33]
 [ext_resource path="res://Enemies/prefabs/cemetery/Crow.tscn" type="PackedScene" id=34]
 [ext_resource path="res://Enemies/prefabs/cemetery/Mallus.tscn" type="PackedScene" id=35]
-[ext_resource path="res://Events/ExpeditionEvent.gd" type="Script" id=36]
+[ext_resource path="res://Events/country/act2/Cemetary.gd" type="Script" id=36]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 seed = 1337
@@ -484,7 +484,8 @@ enemy_name = "Ratsie"
 [node name="TheNerd" parent="Objects" instance=ExtResource( 3 )]
 position = Vector2( -68, 22 )
 
-[node name="Header" parent="Objects" instance=ExtResource( 35 )]
+[node name="Mallus" parent="Objects" instance=ExtResource( 35 )]
+unique_name_in_owner = true
 position = Vector2( 183, 12 )
 
 [node name="Fountain" type="Node2D" parent="Objects"]

@@ -4,6 +4,9 @@ extends EventMap
 # TODO Swap out event dialogs, 
 # depending on game progression.
 
+# TODO For dialogs _init_goals() is
+# critical so enforce it as an overide.
+
 export(String) var dialog_name = "unknown"
 
 func _ready():
@@ -15,6 +18,7 @@ func end_event():
 	print("%s ending" % name)
 
 func start_event():
+	emit_signal("stats_updated", _goals)
 	yield(get_tree(), "idle_frame")
 	print("%s starting" % name)
 	self.open_dialog()

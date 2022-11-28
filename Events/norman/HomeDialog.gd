@@ -33,6 +33,13 @@ var action = Action.None
 var _repeat_count = 0;
 var _remember_count = 0;
 
+func _ready():
+	self._init_goals()
+	self._type = Type.Dialogue
+
+func _init_goals():
+	self._goals =  EventMap.new_goals()
+	self._goals.lore.total = 1
 
 func open_dialog():
 	match state:
@@ -47,7 +54,7 @@ func on_dialogue_closed():
 		Action.MoveOut: self._run_move_out()
 		Action.CloseAct: self._run_close_act()
 		Action.CloseGame: self._run_close_game()
-		Action.FocusReward: self._run_focus_reward()
+		Action.FocusReward: self._focus_on_reward_map()
 
 func on_dialogue_event(value: String):
 	print("%s Dialogue_event: %s" % [name, value])
@@ -127,9 +134,12 @@ func _run_sleep():
 	self._home_closer()
 
 func _run_move_out():
-	self.action = Action.None
+	self._complete = true
+	self._goals.lore.done = 1
+	emit_signal("stats_updated", _goals)
 	self.state = State.Base
-	self._run_focus_reward()
+	self.action = Action.None
+	self._focus_on_reward_map()
 
 func _run_close_act():
 	# TODO: Reset the map start act2
@@ -140,7 +150,7 @@ func _run_close_act():
 func _run_close_game():
 	TheTown.game_over()
 
-func _run_focus_reward():
+func _focus_on_reward_map():
 	TheTown.stop_active_event()
 	var event = TheTown.get_events().get_node(REWARD_MAP)
 	if event != null: 

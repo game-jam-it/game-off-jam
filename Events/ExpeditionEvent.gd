@@ -16,6 +16,9 @@ func goals():
 	return self._goals
 
 func _ready():
+	self._setup()
+
+func _setup():
 	self._init_goals()
 	_type = Type.Expedition
 	_objects.visible = false
