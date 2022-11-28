@@ -1,7 +1,16 @@
 [
   {
     "Name": "Norman",
-    "Text": "Finaly home, finaly time for bed!",
+    "Text": "Well, I've arrived, not much to do left but unpack and sleep through the night, it's pretty late.",
+    "Speaking": "left",
+    "PortraitLeft": "portrait_nerd",
+    "PortraitRight": "",
+    "ShowExtraInfo": "",
+    "Choice": false
+  },
+  {
+    "Name": "Norman",
+    "Text": "My room's upstairs, best get to it.",
     "Speaking": "left",
     "PortraitLeft": "portrait_nerd",
     "PortraitRight": "",
@@ -19,13 +28,13 @@
   },
   {
     "Name": "Norman",
-    "Text": "Hmmh that looks strange. Maybe I should go and check it out?",
+    "Text": "That's odd, perhaps it's related to the goings on in the town.",
     "Speaking": "left",
     "PortraitLeft": "portrait_nerd",
     "PortraitRight": "",
     "ShowExtraInfo": "",
     "Choice": true,
-    "Choice1": ["Put your shoes back on and head out.", "dialogue_event", "MoveOut"],
-    "Choice2": ["Ignore the red glow and go to bed.", "dialogue_event", "Sleep"]
+    "Choice1": ["Investigate, the town's more important than my sleep schedule.", "dialogue_event", "MoveOut"],
+    "Choice2": ["Not much can be done, Imma sleep.", "dialogue_event", "Sleep"]
   }
 ]
