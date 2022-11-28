@@ -22,7 +22,7 @@ func investigate_smell(entity: EntityObject):
 	if entity.group != EntityObject.Group.Player:
 		#print("> %s: not a player" % name)
 		return
-	print("> %s: It smells like something living" % name)
+	#print("> %s: It smells like something living" % name)
 	smelled_it = entity
 
 func _process(_delta):

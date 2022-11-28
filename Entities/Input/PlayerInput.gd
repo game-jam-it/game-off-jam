@@ -131,7 +131,7 @@ func _exit_target_state():
 
 func _enter_target_state():
 	_goal = Goal.Target
-	print("%s: choose target" % entity.name)
+	#print("%s: choose target" % entity.name)
 
 """
 	Posible Actions
@@ -149,14 +149,14 @@ func _try_to_move(to, from):
 		return _move_to(hex)
 
 func _attack_target(hex, target):
-	print("> %s: I will purge you, beat you" % entity.name)
+	#print("> %s: I will purge you, beat you" % entity.name)
 	var act = get_node("%AttackTo")
 	act.target = target
 	act.location = _grid.hexgrid.hex_to_pixel(hex)
 	return act
 	
 func _move_to(hex):
-	print("> %s: Not scared, get over here rat" % entity.name)
+	#print("> %s: Not scared, get over here rat" % entity.name)
 	var action = get_node("%MoveTo")
 	action.location = _grid.hexgrid.hex_to_pixel(hex)
 	return action
