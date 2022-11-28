@@ -1,7 +1,7 @@
 [
   {
     "Name": "Norman",
-    "Text": "Hope that that does not becomes an every day thing! Time to get some sleep.",
+    "Text": "Can't think too much about it, time to sleep...",
     "Speaking": "left",
     "PortraitLeft": "portrait_nerd",
     "PortraitRight": "",
@@ -9,8 +9,8 @@
     "Choice": false
   },
   {
-    "Name": "Nightly Slasher",
-    "Text": "Creeps up behind normar and lifts his hands only to bring it down in one fast move.",
+    "Name": "Narrator",
+    "Text": "As you go through your nightly routines, you can't help but feel something's off...",
     "Speaking": "right",
     "PortraitLeft": "portrait_nerd",
     "PortraitRight": "",
@@ -18,8 +18,26 @@
     "Choice": false
   },
   {
-    "Name": "Norman",
-    "Text": "You hear 'Swoosh' but then nothin, only darkness.",
+    "Name": "Narrator",
+    "Text": "You feel like something's creeping up on you, something's hiding in the corner ready to strike...",
+    "Speaking": "right",
+    "PortraitLeft": "portrait_nerd",
+    "PortraitRight": "",
+    "ShowExtraInfo": "",
+    "Choice": false
+  },
+  {
+    "Name": "Narrator",
+    "Text": "It uneases you, but you still have no clue what there even is to worry about...",
+    "Speaking": "right",
+    "PortraitLeft": "portrait_nerd",
+    "PortraitRight": "",
+    "ShowExtraInfo": "",
+    "Choice": false
+  },
+  {
+    "Name": "Narrator",
+    "Text": "... and then it hits you...",
     "Speaking": "left",
     "PortraitLeft": "portrait_nerd",
     "PortraitRight": "",
