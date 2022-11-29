@@ -46,6 +46,10 @@ func set_grid(grid):
 func free_entity():
 	_free = true
 	self.disable()
+	var list = get_children()
+	for node in list:
+		if node is GridObject:
+			_grid.clear_object(node)
 	_grid.clear_entity(self)
 	# Note: The Queue will free it
 	emit_signal("free_entity", self)

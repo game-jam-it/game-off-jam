@@ -77,7 +77,7 @@ func _action_process(_delta):
 		if cell.state == EventGrid.CellState.Entity:
 			action = _handle_entity(to, cell.entity)
 		elif cell.state != EventGrid.CellState.Blocker:
-			action = _move_to(to)
+			action = self.move_to(to)
 		# TODO else target is blocked, break it?
 	else:
 		action = _try_to_move(to, from)
@@ -134,6 +134,12 @@ func _enter_target_state():
 	Move Actions
 """
 
+func move_to(hex):
+	#print("> %s: Not scared, get over here rat" % entity.name)
+	var action = get_node("%MoveTo")
+	action.location = _grid.hexgrid.hex_to_pixel(hex)
+	return action
+
 func _try_to_move(to, from):
 	var path = _grid.hexgrid.find_path(from, to)
 	if path.size() < 2: 
@@ -143,13 +149,7 @@ func _try_to_move(to, from):
 	if cell.state == EventGrid.CellState.Entity:
 		return _handle_entity(hex, cell.entity)
 	elif cell.state != EventGrid.CellState.Blocker:
-		return _move_to(hex)
-	
-func _move_to(hex):
-	#print("> %s: Not scared, get over here rat" % entity.name)
-	var action = get_node("%MoveTo")
-	action.location = _grid.hexgrid.hex_to_pixel(hex)
-	return action
+		return self.move_to(hex)
 
 """
 	Entity Actions
@@ -169,6 +169,9 @@ func _attack_target(hex, target):
 	act.location = _grid.hexgrid.hex_to_pixel(hex)
 	return act
 
-func _setup_challange(hex, _target):
+func _setup_challange(hex, target):
 	# TODO Implement chalange action
-	return _move_to(hex)
+	if target is Challange:
+		print(">>> Check challange: '%s'" % target.name)
+		return target.check(self.entity)
+	return null
