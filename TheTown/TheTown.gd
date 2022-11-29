@@ -69,6 +69,8 @@ signal game_restart
 signal stop_dialogue
 signal start_dialogue
 
+signal next_round(count)
+
 signal stop_expedition
 signal start_expedition
 
@@ -290,6 +292,8 @@ func start_selected_event(coords):
 	var type = events.start_event(coords)
 	yield(get_tree(), "idle_frame")
 	if type == EventMap.Type.Expedition:
+		var queue = events.active.queue()
+		queue.connect("next_round", self, "_on_next_round")
 		emit_signal("start_expedition", coords)
 	elif type == EventMap.Type.Dialogue:
 		emit_signal("start_dialogue", coords)
@@ -299,6 +303,9 @@ func cancel_selected_event(coords):
 	print("Cancel expedition: %s.%s" % [coords.x, coords.y])
 	camera.zoom_reset()
 	# TODO Implement
+
+func _on_next_round(count):
+	emit_signal("next_round", count)
 
 """
 	Expedition Phase Events & Logic

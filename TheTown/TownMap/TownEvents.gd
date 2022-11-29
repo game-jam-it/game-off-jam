@@ -50,6 +50,7 @@ func start_event(coords):
 		active.connect("stats_updated", self, "_on_stats_updated")
 		active.start_event()
 		return active.type()
+	return EventMap.Type.None
 
 
 func _on_stats_updated(stats):

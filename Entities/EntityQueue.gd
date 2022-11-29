@@ -3,7 +3,9 @@ extends Node2D
 
 var _grid: EventGrid
 var _active: QueueObject
+var _counter: int = 0
 
+signal next_round(count)
 signal queue_changed(list)
 signal active_changed(active)
 
@@ -70,8 +72,12 @@ func _next_entity():
 	if count > 1: 
 		var index = _active.get_index()
 		if _active.is_free(): _active.clear()
-		_active = get_child((index+1) % count)
+		var next = (index+1) % count
+		_active = get_child(next)
 		emit_signal('active_changed', _active)
+		if next <= index: 
+			_counter += 1
+			emit_signal("next_round", _counter)
 
 """
 	Handle queued setup
