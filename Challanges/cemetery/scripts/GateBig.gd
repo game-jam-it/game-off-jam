@@ -1,7 +1,9 @@
 extends Challange
 
-func reward():
-	print("[%s] TODO Implement challange.reward() method" % name)
+func reward(player: PlayerActor) -> EntityAction:
+	print("%s missing overwrite of the challange.reward() method" % name)
+	return null
 
-func penalty():
-	print("[%s] TODO Implement challange.penalty() method" % name)
+func penalty(player: PlayerActor) -> EntityAction:
+	print("%s missing overwrite of the challange.penalty() method" % name)
+	return null

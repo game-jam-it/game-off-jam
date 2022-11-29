@@ -1,9 +1,14 @@
 extends Challange
 
-func reward():
-	# Remove blocked tile, player move in
-	print("[%s] TODO Implement challange.reward() method" % name)
+func reward(player: PlayerActor) -> EntityAction:
+	if player == null: 
+		return null
+	var hex = self.get_grid_cell()
+	return player.get_move_to(hex)
 
-func penalty():
-	# Player takes 1 damage
-	print("[%s] TODO Implement challange.penalty() method" % name)
+func penalty(player: PlayerActor) -> EntityAction:
+	if player == null: 
+		return null
+	player.take_damage(1)
+	var hex = self.get_grid_cell()
+	return player.get_move_to(hex)

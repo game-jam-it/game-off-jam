@@ -674,9 +674,11 @@ max_range = 8
 
 [node name="Crow - 03" parent="Objects" instance=ExtResource( 17 )]
 position = Vector2( 96, 445 )
+max_range = 8
 
 [node name="Crow - 04" parent="Objects" instance=ExtResource( 17 )]
 position = Vector2( 94, 394 )
+max_range = 8
 
 [node name="GraveCross-c 02" parent="Objects" instance=ExtResource( 20 )]
 position = Vector2( 190, 385 )

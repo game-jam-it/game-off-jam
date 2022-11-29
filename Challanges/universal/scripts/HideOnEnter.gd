@@ -3,10 +3,10 @@ extends Challange
 # Note: This is a Hide Spot, and it is always open
 # Note: The player is not informed unless he is found.
 
-func reward():
-	# You are fully hidden
-	print("[%s] TODO Implement challange.reward() method" % name)
+func reward(player: PlayerActor) -> EntityAction:
+	print("%s missing overwrite of the challange.reward() method" % name)
+	return null
 
-func penalty():
-	# You are partialy hidden
-	print("[%s] TODO Implement challange.penalty() method" % name)
+func penalty(player: PlayerActor) -> EntityAction:
+	print("%s missing overwrite of the challange.penalty() method" % name)
+	return null
