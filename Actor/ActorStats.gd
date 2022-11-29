@@ -11,10 +11,12 @@ Actor stats
 	Smarts
 """
 
+onready var norman = preload("res://Characters/Norman.tres")
+
 func _ready():
 	# TODO Replace with character selection
 	print_debug("[%s] TODO Replace with character selection" % name)
-	set_character(load("res://Characters/Norman.tres"))
+	set_character(norman)
 
 # Base info
 var character: Character setget set_character
