@@ -310,8 +310,8 @@ func _set_node_region(type, cull, node, list):
 	if node.info == null && rng.randf() < cull:
 		node.queue_free()
 		return
+	node.type = type
 	# TODO Implement regional colors again
-	# node.type = type
 	# if type == TownNode.Type.Center:
 	# 	## Add to center nodes
 	# 	node.set_colors(
@@ -349,15 +349,16 @@ func _draw_nodes(list:Array):
 		grid.draw_node(node.position, node.size)
 		if node.info != null:
 			_add_story_node(node)
-		else: match node.type:
-			TownNode.Type.None:
-				_add_empty_node(node)
-			TownNode.Type.Center:
-				_add_center_node(node)
-			TownNode.Type.Country:
-				_add_country_node(node)
-			TownNode.Type.Outskirt:
-				_add_outskirt_node(node)
+		else:
+			match node.type:
+				TownNode.Type.None:
+					_add_empty_node(node)
+				TownNode.Type.Center:
+					_add_center_node(node)
+				TownNode.Type.Country:
+					_add_country_node(node)
+				TownNode.Type.Outskirt:
+					_add_outskirt_node(node)
 		yield(get_tree(), "idle_frame")
 	yield(get_tree(), "idle_frame")
 

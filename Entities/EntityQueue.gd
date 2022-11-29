@@ -29,11 +29,14 @@ func enable():
 		_active = get_child(0)
 		emit_signal('active_changed', _active)
 
-func add_entity(entity: EntityObject):
-	var obj = QueuePrefab.instance()
-	obj.initialize(self, entity)
-	entity.initialize(_grid)
-	self.add_child(obj)
+func add_entity(entity: EntityActor):
+	if entity != null:
+		var obj = QueuePrefab.instance()
+		obj.initialize(self, entity)
+		self.add_child(obj)
+		return
+	print_debug("[%s] CRIT: Queued a null entity" % name)
+
 
 """
 	Handle queued turns

@@ -314,7 +314,7 @@ func stop_active_event():
 
 func on_pause_explore_event():
 	#print("Pause expedition: %s.%s" % [_event_coords.x, _event_coords.y])
-	print("%s [TODO] Fix expedition pauses here!" % [name])
+	print("[%s] TODO Fix expedition pauses here!" % [name])
 	emit_signal("expedition_pause")
 	# TODO Asjut pause behavior
 	# Current behavior is exit

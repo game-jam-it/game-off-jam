@@ -6,13 +6,13 @@ onready var actor_hex = $ActorHex
 onready var target_hex = $TargetHex
 
 var _grid: EventGrid
-var _target: EntityObject = null
+var _target: EntityActor = null
 
 
 func clear_target():
 	_target = null
 
-func set_target(entity: EntityObject):
+func set_target(entity: EntityActor):
 	_target = entity
 
 """

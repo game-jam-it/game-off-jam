@@ -1,6 +1,6 @@
 extends EntityAction
 
-var target: EntityObject
+var target: EntityActor
 var location: Vector2
 
 func execute():

@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "EntityObject",
+"class": "Challange",
+"language": "GDScript",
+"path": "res://Challanges/Challange.gd"
+}, {
 "base": "Resource",
 "class": "Character",
 "language": "GDScript",
@@ -29,11 +34,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Items/ConsumableItem.gd"
 }, {
-"base": "EnemyEntity",
-"class": "CrowEntity",
-"language": "GDScript",
-"path": "res://Enemies/prefabs/cemetery/Crow.gd"
-}, {
 "base": "WeaponEffect",
 "class": "DamageBoostEffect",
 "language": "GDScript",
@@ -49,7 +49,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Events/DialogueEvent.gd"
 }, {
-"base": "EntityObject",
+"base": "EntityActor",
 "class": "EnemyEntity",
 "language": "GDScript",
 "path": "res://Enemies/EnemyEntity.gd"
@@ -58,6 +58,11 @@ _global_script_classes=[ {
 "class": "EntityAction",
 "language": "GDScript",
 "path": "res://Entities/EntityAction.gd"
+}, {
+"base": "EntityObject",
+"class": "EntityActor",
+"language": "GDScript",
+"path": "res://Entities/EntityActor.gd"
 }, {
 "base": "Node2D",
 "class": "EntityInput",
@@ -210,16 +215,17 @@ _global_script_classes=[ {
 "path": "res://Items/Weapons/WeaponEffects/Scripts/WeaponEffect.gd"
 } ]
 _global_script_class_icons={
+"Challange": "",
 "Character": "",
 "CharacterEffect": "",
 "ConsumableEffect": "",
 "ConsumableItem": "",
-"CrowEntity": "",
 "DamageBoostEffect": "",
 "DialogueBox": "",
 "DialogueEvent": "",
 "EnemyEntity": "",
 "EntityAction": "",
+"EntityActor": "",
 "EntityInput": "",
 "EntityObject": "",
 "EntityQueue": "",

@@ -15,11 +15,6 @@ signal free_entity(entity)
 export(Group) var group = Group.None
 export(float) var initiative = 1.0
 
-onready var input: EntityInput = $Input
-onready var actions: Node2D = $Actions
-
-onready var sense_area = $SenseArea
-
 var _grid
 
 var _id: int = 0
@@ -31,33 +26,23 @@ func id():
 func is_free():
 	return _free
 
+
 func _ready():
 	# Note: ID means all entities
 	# require the same parent node
 	self._id = self.get_index()
-	input.initialize(self)
-	for action in actions.get_children():
-		action.initialize(self)
 
-
-func disable():
-	sense_area.monitorable = false
-	sense_area.monitoring = false
-	input.disable()
-
-func enable():
-	sense_area.monitoring = true
-	sense_area.monitorable = true
-	input.enable(_grid)
-
-
-func initialize(grid):
+func set_grid(grid):
 	_grid = grid
 	_free = false;
 	_grid.add_entity(self)
+	var list = get_children()
+	for node in list:
+		if node is GridObject:
+			_grid.add_object(node)
 	var hex = _grid.hexgrid.pixel_to_hex(position)
 	self.position = _grid.hexgrid.hex_to_pixel(hex)
-	
+
 func free_entity():
 	_free = true
 	self.disable()
@@ -66,17 +51,8 @@ func free_entity():
 	emit_signal("free_entity", self)
 
 
-func end_turn():
-	input.end_turn()
-
-func start_turn():
-	input.start_turn()
-
-func choose_target():
-	return input.choose_target()
-
-func choose_action():
-	return input.choose_action()
+func disable():
+	pass
 
 func get_grid_cell():
 	if _grid == null: return null
