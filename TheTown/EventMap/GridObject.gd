@@ -1,5 +1,5 @@
-extends Node2D
 class_name GridObject
+extends Node2D
 
 enum ObjType {
 	Area,
@@ -13,10 +13,10 @@ enum BlockType {
 
 export(int) var obj_size = 0
 export(int) var cell_cost = 1
-export(int) var cell_cover = 100
+export(int) var cell_cover = 0
 
 export(ObjType) var obj_type = ObjType.Area
-export(BlockType) var block_type = BlockType.Blocker
+export(BlockType) var block_type = BlockType.Obstical
 
 
 func get_end():

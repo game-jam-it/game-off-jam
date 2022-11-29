@@ -178,6 +178,7 @@ func _setup_map_objects():
 			_setup_entity_object(obj)
 
 func _setup_entity_object(ent):
+	ent.set_grid(self._grid)
 	match ent.group:
 		EntityObject.Group.Enemy:
 			self._setup_enemy_entity(ent)

@@ -43,30 +43,9 @@ func _build_teens_event_list():
 func build_dev():
 	return {
 		"empty": [],
-		"center": _build_event_map([{
-			"size": 2,
-			"order": 0,
-			"locked": false,
-			"name": "Small Center",
-			"descr": "You should not be here, yet you are.",
-			"scene": preload("res://Events/devroom/SmallDevRoom.tscn"),
-		}], []),
-		"country": _build_event_map([{
-			"size": 2,
-			"order": 0,
-			"locked": false,
-			"name": "Small County",
-			"descr": "You should not be here, yet you are.",
-			"scene": preload("res://Events/devroom/SmallDevRoom.tscn"),
-		}], []),
-		"outskirt": _build_event_map([{
-			"size": 2,
-			"order": 0,
-			"locked": false,
-			"name": "Small Outskirts",
-			"descr": "You should not be here, yet you are.",
-			"scene": preload("res://Events/devroom/SmallDevRoom.tscn"),
-		}], []),
+		"center": _build_event_map([], []),
+		"country": _build_event_map([], []),
+		"outskirt": _build_event_map([], []),
 	}
 
 
@@ -119,23 +98,6 @@ var _teens_key = [{
 """
 
 var _empty_base = []
-
 var _center_base = []
-
-var _country_base = [{
-	"size": 2,
-	"order": 0,
-	"locked": true,
-	"name": "Some Haunted House",
-	"descr": "You should not be here, yet you are.",
-	"scene": preload("res://Events/country/IntroHouse.tscn"),
-}]
-
-var _outskirt_base = [{
-	"size": 3,
-	"order": 0,
-	"locked": true,
-	"name": "The Girls House",
-	"descr": "Common sense tells you stay away, but you just have to save the town.",
-	"scene": preload("res://Events/outskirt/FinalHouse.tscn"),
-}]
+var _country_base = []
+var _outskirt_base = []

@@ -61,7 +61,6 @@ func choose_target():
 func _attack_target(to, _from):
 	#print("> %s: Got you, I will chew you up" % entity.name)
 	#yield(get_tree().create_timer(0.2), 'timeout')
-	yield(get_tree(), "idle_frame")
 	var act = get_node("%AttackTo")
 	act.target = _target
 	act.location = _grid.hexgrid.hex_to_pixel(to)

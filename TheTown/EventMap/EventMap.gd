@@ -57,10 +57,10 @@ func mark_complete():
 
 
 func end_event():
-	print("%s missing overwrite of the EventMap.end_event method" % name)
+	print("%s missing overwrite of the EventMap.end_event() method" % name)
 
 func start_event():
-	print("%s missing overwrite of the EventMap.start_event method" % name)
+	print("%s missing overwrite of the EventMap.start_event() method" % name)
 
 func set_info(node):
 	order = node.info.order

@@ -163,7 +163,7 @@ func _init_objects():
 					_init_path_object(obj)
 
 func _init_area_object(obj: GridObject):
-	var hex = hexgrid.pixel_to_hex(obj.position)
+	var hex = hexgrid.pixel_to_hex(obj.global_position - get_parent().position)
 	var hexes = hex.get_all_within(obj.obj_size)
 	self._init_hex_array_for(obj, hexes)
 

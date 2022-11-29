@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://TheTown/EventMap/GridObject.gd" type="Script" id=1]
+[ext_resource path="res://Events/assets/cemetery/tombstone-d.png" type="Texture" id=2]
+[ext_resource path="res://Challanges/cemetery/scripts/GraveStone.gd" type="Script" id=3]
+[ext_resource path="res://Events/prefabs/Light2D.tscn" type="PackedScene" id=4]
+
+[node name="GraveStone-d" type="Node2D"]
+script = ExtResource( 3 )
+group = 5
+difficulty = 18
+attribute = 1
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -23 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 2 )
+
+[node name="Light2D8" parent="Sprite" instance=ExtResource( 4 )]
+position = Vector2( 66.6665, 150 )
+scale = Vector2( 2.26563, 3.3724 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D9" parent="Sprite" instance=ExtResource( 4 )]
+position = Vector2( -150, 133.333 )
+scale = Vector2( 2.26563, 3.3724 )
+energy = 1.8
+speed = 200
+
+[node name="Light2D10" parent="Sprite" instance=ExtResource( 4 )]
+position = Vector2( -77.9167, 162.292 )
+scale = Vector2( 1.91407, 2.98827 )
+energy = 1.8
+speed = 200
+
+[node name="Obstical" type="Node2D" parent="."]
+script = ExtResource( 1 )
+cell_cost = 6
+cell_cover = 20
