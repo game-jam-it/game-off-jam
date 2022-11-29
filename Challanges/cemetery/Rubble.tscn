@@ -12,7 +12,7 @@ attribute = 2
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.611765, 0.52549, 0.517647, 0.862745 )
-position = Vector2( 2, 18 )
+position = Vector2( 2, 13 )
 scale = Vector2( 0.06, 0.06 )
 texture = ExtResource( 1 )
 

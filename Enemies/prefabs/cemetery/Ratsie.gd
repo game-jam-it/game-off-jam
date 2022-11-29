@@ -14,3 +14,7 @@ func investigate_smell(entity: EntityActor):
 	#print("> %s: It smells like some nerd" % name)
 	if self.input.has_method("set_target"):
 		self.input.set_target(entity)
+
+func noise_trigger(entity: EntityObject):
+	print(">>> Set '%s' Noise tiggert to: '%s'" % [name, entity.name])
+	self.input.set_trigger(entity)

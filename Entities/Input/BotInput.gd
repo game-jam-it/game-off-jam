@@ -7,13 +7,24 @@ onready var target_hex = $TargetHex
 
 var _grid: EventGrid
 var _target: EntityActor = null
+var _trigger: EntityObject = null
 
 
 func clear_target():
 	_target = null
 
+
 func set_target(entity: EntityActor):
 	_target = entity
+
+func set_trigger(entity: EntityObject):
+	if _trigger != null: _trigger.disconnect("free_entity", self, "_on_free_trigger")
+	entity.connect("free_entity", self, "_on_free_trigger")
+	_trigger = entity
+
+func _on_free_trigger(entity):
+	entity.disconnect("free_entity", self, "_on_free_trigger")
+	_trigger = null
 
 """
 	EntityInput Override
@@ -24,17 +35,33 @@ func enable(grid):
 
 func end_turn():
 	actor_hex.visible = false
-	target_hex.visible = false
+	# target_hex.visible = false
 
 func start_turn():
 	actor_hex.visible = true
-	target_hex.visible = true
+	# target_hex.visible = true
 
 func choose_action():
+	if _target != null:
+		return self._check_target()
+	elif _trigger != null:
+		return self._check_trigger()
+	yield(get_tree(), "idle_frame")
+	return null	
+
+func choose_target():
+	#print("%s: choose target" % entity.name)
+	#yield(get_tree().create_timer(0.2), 'timeout')
 	if _target == null:
 		yield(get_tree(), "idle_frame")
-		return null
-	#print("%s: choose action" % entity.name)
+		return _trigger
+
+	# target_hex.global_position = _target.global_position
+	# target_hex.visible = true
+	yield(get_tree(), "idle_frame")
+	return _target
+
+func _check_target():
 	var to = _target.get_grid_cell()
 	var from = entity.get_grid_cell()
 	if from.distance_to(to) == 1:
@@ -44,17 +71,10 @@ func choose_action():
 		return _move_to_target(to, from)
 	return _search_for_target()
 
-func choose_target():
-	#print("%s: choose target" % entity.name)
-	#yield(get_tree().create_timer(0.2), 'timeout')
-	if _target == null:
-		yield(get_tree(), "idle_frame")
-		return null
-
-	target_hex.global_position = _target.global_position
-	target_hex.visible = true
-	yield(get_tree(), "idle_frame")
-	return _target
+func _check_trigger():
+	var to = _trigger.get_grid_cell()
+	var from = entity.get_grid_cell()
+	return _move_to_target(to, from)
 
 """
 	Posible Actions

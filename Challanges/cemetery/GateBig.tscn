@@ -15,7 +15,7 @@ attribute = 3
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -50 )
-scale = Vector2( 0.08, 0.08 )
+scale = Vector2( 0.085, 0.085 )
 texture = ExtResource( 4 )
 
 [node name="Light2D" parent="Sprite" instance=ExtResource( 1 )]

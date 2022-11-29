@@ -33,6 +33,7 @@ script = ExtResource( 5 )
 view_perseption = 75
 
 [node name="ActorHex" type="Light2D" parent="Input"]
+visible = false
 modulate = Color( 1, 0.921569, 0.231373, 1 )
 light_mask = 32
 scale = Vector2( 0.25, 0.25 )
@@ -43,6 +44,7 @@ energy = 1.8
 mode = 2
 
 [node name="TargetHex" type="Light2D" parent="Input"]
+visible = false
 modulate = Color( 1, 0.184314, 0.313726, 1 )
 light_mask = 32
 scale = Vector2( 0.25, 0.25 )
