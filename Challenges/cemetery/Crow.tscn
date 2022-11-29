@@ -3,7 +3,7 @@
 [ext_resource path="res://Events/assets/cemetery/beast-a.png" type="Texture" id=1]
 [ext_resource path="res://TheTown/EventMap/GridObject.gd" type="Script" id=2]
 [ext_resource path="res://Events/assets/cemetery/beast-a-trig.png" type="Texture" id=4]
-[ext_resource path="res://Challanges/cemetery/scripts/Crow.gd" type="Script" id=7]
+[ext_resource path="res://Challenges/cemetery/scripts/Crow.gd" type="Script" id=7]
 
 [node name="Crow" type="Node2D"]
 light_mask = 32

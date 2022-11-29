@@ -1,4 +1,4 @@
-extends Challange
+extends Challenge
 
 var _counter: int = 0
 

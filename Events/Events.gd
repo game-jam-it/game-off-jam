@@ -64,7 +64,7 @@ var _into_key = [{
 },{
 	"size": 4,
 	"order": 80,
-	"locked": true,
+	"locked": false,
 	"offset": Vector2(45.0,-15.0),
 	"name": "The Cemetary",
 	"descr": "You go here to find common sense.",

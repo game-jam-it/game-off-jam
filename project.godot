@@ -10,9 +10,9 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "EntityObject",
-"class": "Challange",
+"class": "Challenge",
 "language": "GDScript",
-"path": "res://Challanges/Challange.gd"
+"path": "res://Challenges/Challenge.gd"
 }, {
 "base": "Resource",
 "class": "Character",
@@ -220,7 +220,7 @@ _global_script_classes=[ {
 "path": "res://Items/Weapons/WeaponEffects/Scripts/WeaponEffect.gd"
 } ]
 _global_script_class_icons={
-"Challange": "",
+"Challenge": "",
 "Character": "",
 "CharacterEffect": "",
 "ConsumableEffect": "",

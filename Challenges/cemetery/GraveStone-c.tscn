@@ -2,7 +2,7 @@
 
 [ext_resource path="res://TheTown/EventMap/GridObject.gd" type="Script" id=1]
 [ext_resource path="res://Events/prefabs/Light2D.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Challanges/cemetery/scripts/GraveStone.gd" type="Script" id=3]
+[ext_resource path="res://Challenges/cemetery/scripts/GraveStone.gd" type="Script" id=3]
 [ext_resource path="res://Events/assets/cemetery/tombstone-c.png" type="Texture" id=4]
 
 [node name="GraveStone-c" type="Node2D"]

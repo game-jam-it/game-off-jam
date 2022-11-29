@@ -45,6 +45,9 @@ func get_location(coords: Vector2):
 	return hexgrid.hex_to_pixel(hex)
 
 func get_cell_state(coords: Vector2):
+	# FixMe: New entity types might need a list
+	# as they could be hiding enemies that moved
+	# A solution would be to split static from dynamic
 	for key in entity_map:
 		var entity = entity_map[key]
 		var hex = entity.get_grid_cell()
@@ -84,6 +87,14 @@ func add_object(object: GridObject):
 				_init_area_object(object)
 			GridObject.ObjType.Path:
 				_init_path_object(object)
+
+func clear_object(object: GridObject):
+	if object != null:
+		match object.obj_type:
+			GridObject.ObjType.Area:
+				_clear_area_object(object)
+			GridObject.ObjType.Path:
+				_clear_path_object(object)
 
 func add_entity(entity: EntityObject):
 	entity_map[entity.id()] = entity
@@ -189,3 +200,22 @@ func _init_hex_array_for(obj: GridObject, hexes: Array):
 				self.add_cell_obstical(coords, obj.cell_cost)
 				if map.has(coords): map[coords].set_color(Color(0.40, 0.64, 0.64))
 				if obj.cell_cover > 0: self.add_cell_cover(coords, obj.cell_cover)
+
+func _clear_area_object(obj: GridObject):
+	var center = hexgrid.pixel_to_hex(obj.global_position - get_parent().position)
+	var hexes = center.get_all_within(obj.obj_size)
+	for hex in hexes:
+		var coords = hex.get_axial_coords()
+		self.clear_cell(coords)
+		map.erase(coords)
+
+func _clear_path_object(obj: GridObject):
+	var end = hexgrid.pixel_to_hex(obj.get_end())
+	var start = hexgrid.pixel_to_hex(obj.get_start())
+	var hexes = start.line_to(end)
+	hexes.append(start)
+	hexes.append(end)
+	for hex in hexes:
+		var coords = hex.get_axial_coords()
+		self.clear_cell(coords)
+		if map.has(coords): map[coords].set_color(Color(0.16, 0.16, 0.16))
