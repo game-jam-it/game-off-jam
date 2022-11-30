@@ -286,7 +286,9 @@ func start_selected_event(coords):
 	_event_coords = coords
 	emit_signal("event_focused", coords)
 	self._set_town_state(State.ExploreMode)
-	camera.set_zoom_to(grid.get_location(_event_coords))
+	#var cam_target = grid.get_location(_event_coords)
+	var cam_target = events.get_cam_target(coords)
+	camera.set_zoom_to(cam_target)
 	nodes.hide_mode(coords)
 	yield(get_tree(), "idle_frame")
 	var type = events.start_event(coords)

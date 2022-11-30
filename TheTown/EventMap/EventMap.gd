@@ -44,6 +44,8 @@ func is_locked():
 func is_complete():
 	return self._complete
 
+func get_cam_target():
+	return global_position
 
 func unlock():
 	if self._locked:

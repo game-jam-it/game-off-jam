@@ -52,6 +52,11 @@ func start_event(coords):
 		return active.type()
 	return EventMap.Type.None
 
+func get_cam_target(coords) -> Vector2:
+	if scenes.has(coords):
+		var scene = scenes[coords]
+		return scene.get_cam_target()
+	return Vector2.ZERO
 
 func _on_stats_updated(stats):
 	emit_signal("event_stats_updated", stats)
