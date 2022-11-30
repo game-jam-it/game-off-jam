@@ -1,4 +1,6 @@
-[
+extends Resource
+
+const dialogue = [
   {
     "Name": "Norman",
     "Text": "Perhaps I should go to bed.",

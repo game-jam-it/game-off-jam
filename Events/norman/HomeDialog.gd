@@ -20,6 +20,13 @@ enum Action {
 	FocusReward
 }
 
+onready var base = preload("res://Dialogue/norman/act1/home-base.gd")
+onready var intro = preload("res://Dialogue/norman/act1/home-intro.gd")
+onready var restless = preload("res://Dialogue/norman/act1/home-restless.gd")
+onready var game_over = preload("res://Dialogue/norman/act1/home-game-over.gd")
+onready var repeat_glow = preload("res://Dialogue/norman/act1/home-repeat-glow.gd")
+onready var remember_glow = preload("res://Dialogue/norman/act1/home-remember-glow.gd")
+
 # State defines the dialogue to open
 # when the player enters the map event.
 var state = State.Start
@@ -87,18 +94,18 @@ func _base_check():
 """
 
 func _home_base():
-	var box = DialogueSystem.show_dialogue("norman/act1/home-base")
+	var box = DialogueSystem.show_dialogue(base.dialogue)
 	if box != null: box.connect_signals(self)
 	self.action = Action.None
 
 func _home_start():
-	var box = DialogueSystem.show_dialogue("norman/act1/home-intro")
+	var box = DialogueSystem.show_dialogue(intro.dialogue)
 	if box != null: box.connect_signals(self)
 	self.action = Action.None
 
 func _home_closer():
 	# TODO Fade to black and start kill event with dialog triggers
-	var box = DialogueSystem.show_dialogue("norman/act1/home-restless")
+	var box = DialogueSystem.show_dialogue(restless.dialogue)
 	if box != null: box.connect_signals(self)
 	# TODO Setup Act2 maps and data and enable
 	print("[%s] TODO Enable Atc2" % name)
@@ -107,21 +114,21 @@ func _home_closer():
 
 func _home_game_over():
 	# TODO: game over dialog
-	var box = DialogueSystem.show_dialogue("norman/act1/home-game-over")
+	var box = DialogueSystem.show_dialogue(game_over.dialogue)
 	if box != null: box.connect_signals(self)
 	self.action = Action.CloseGame
 
 func _home_repeat_glow():
 	# TODO: Slasher nightmare; increase stress
 	# TODO: Repeat glow at cemetery dialog
-	var box = DialogueSystem.show_dialogue("norman/act1/home-repeat-glow")
+	var box = DialogueSystem.show_dialogue(repeat_glow.dialogue)
 	if box != null: box.connect_signals(self)
 	self.action = Action.FocusReward
 
 func _home_remember_glow():
 	# TODO: Slasher nightmare; increase stress
 	# TODO: Remember glow at cemetery dialog
-	var box = DialogueSystem.show_dialogue("norman/act1/home-repeat-glow")
+	var box = DialogueSystem.show_dialogue(remember_glow.dialogue)
 	if box != null: box.connect_signals(self)
 	self.action = Action.FocusReward
 

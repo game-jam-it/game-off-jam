@@ -1,4 +1,6 @@
-[
+extends Resource
+
+const dialogue = [
   {
     "Name": "Narrator",
     "Text": "As the figure digs his knife into you... the following words enter your mind...",
