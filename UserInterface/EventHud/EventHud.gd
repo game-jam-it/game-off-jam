@@ -79,10 +79,13 @@ func setup_event_data(coords):
 					else: ent.connect("unhide_entity", self, "_on_unhide_enemy")
 
 	var goals = _scene.goals()
-	lore_box.visible = goals.lore.total > 0
+	lore_box.visible = true
+	# TODO Setup stats again, hacked up
+	#lore_box.visible = goals.lore.total > 0
 	relic_box.visible = goals.pickup.relic.total > 0
 	banish_box.visible = goals.banish.total > 0
-	lore_label.text = "0/%s" % goals.lore.total
+	lore_label.text = "0/1"
+	#lore_label.text = "0/%s" % goals.lore.total
 	relic_label.text = "0/%s" % goals.pickup.relic.total
 	banish_label.text = "0/%s" % goals.banish.total
 
@@ -113,7 +116,8 @@ func _on_queue_changed(_list):
 		escape_button.visible = true
 
 func _on_stats_updated(stats):
-	lore_label.text = "%s/%s" % [stats.lore.done, stats.lore.total]
+	lore_label.text = "%s/%s" % [stats.banish.boss.done, stats.banish.boss.total]
+	#lore_label.text = "%s/%s" % [stats.lore.done, stats.lore.total]
 	relic_label.text = "%s/%s" % [stats.pickup.relic.done, stats.pickup.relic.total]
 	banish_label.text = "%s/%s" % [stats.banish.done, stats.banish.total]
 

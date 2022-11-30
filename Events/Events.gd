@@ -64,10 +64,10 @@ var _into_key = [{
 },{
 	"size": 4,
 	"order": 80,
-	"locked": false,
+	"locked": true,
 	"offset": Vector2(45.0,-15.0),
 	"name": "The Cemetary",
-	"descr": "You go here to find common sense.",
+	"descr": 'Find the cause, deal with it, and make sure you leave this place alive!',
 	"scene": preload("res://Events/country/Cemetary.tscn"),
 }]
 

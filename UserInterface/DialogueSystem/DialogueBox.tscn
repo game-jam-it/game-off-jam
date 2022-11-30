@@ -77,9 +77,9 @@ script = ExtResource( 9 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 margin_left = 283.0
-margin_top = 538.0
+margin_top = 480.0
 margin_right = 986.0
-margin_bottom = 711.0
+margin_bottom = 653.0
 mouse_filter = 0
 texture = ExtResource( 1 )
 patch_margin_left = 15

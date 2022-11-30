@@ -102,7 +102,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 12
 
 [node name="MBox - ObjectiveInfo" type="MarginContainer" parent="VBoxContainer/BottomBar/HBox - Bottom Bar"]
-margin_right = 320.0
+margin_right = 322.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 320, 0 )
 mouse_filter = 2
@@ -114,7 +114,7 @@ custom_constants/margin_bottom = 16
 [node name="ColorRect" type="ColorRect" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo"]
 margin_left = 24.0
 margin_top = 16.0
-margin_right = 296.0
+margin_right = 298.0
 margin_bottom = 44.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -124,7 +124,7 @@ color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo"]
 margin_left = 24.0
 margin_top = 16.0
-margin_right = 296.0
+margin_right = 298.0
 margin_bottom = 44.0
 mouse_filter = 2
 size_flags_horizontal = 0
@@ -202,7 +202,7 @@ uppercase = true
 [node name="LoreGroup" type="HBoxContainer" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer"]
 unique_name_in_owner = true
 margin_left = 201.0
-margin_right = 272.0
+margin_right = 274.0
 margin_bottom = 28.0
 mouse_filter = 0
 size_flags_horizontal = 3
@@ -223,19 +223,19 @@ valign = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ObjectiveInfo/HBoxContainer/LoreGroup"]
 margin_left = 40.0
-margin_right = 71.0
+margin_right = 73.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 0, 28 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 3 )
-text = " Lore"
+text = "Boss"
 align = 1
 valign = 1
 uppercase = true
 
 [node name="MBox - ThreatMeter" type="MarginContainer" parent="VBoxContainer/BottomBar/HBox - Bottom Bar"]
-margin_left = 324.0
+margin_left = 326.0
 margin_right = 956.0
 margin_bottom = 60.0
 mouse_filter = 2
@@ -248,12 +248,12 @@ custom_constants/margin_bottom = 16
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ThreatMeter"]
 margin_left = 24.0
 margin_top = 16.0
-margin_right = 608.0
+margin_right = 606.0
 margin_bottom = 44.0
 mouse_filter = 2
 
 [node name="HBoxContainer1" type="HBoxContainer" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ThreatMeter/HBoxContainer"]
-margin_right = 224.0
+margin_right = 223.0
 margin_bottom = 28.0
 mouse_filter = 0
 size_flags_horizontal = 3
@@ -262,9 +262,9 @@ custom_constants/separation = 16
 alignment = 2
 
 [node name="ColorRect1" type="ColorRect" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ThreatMeter/HBoxContainer/HBoxContainer1"]
-margin_left = 48.0
+margin_left = 47.0
 margin_top = 6.0
-margin_right = 64.0
+margin_right = 63.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 16, 16 )
 size_flags_horizontal = 4
@@ -272,9 +272,9 @@ size_flags_vertical = 4
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
 [node name="ColorRect2" type="ColorRect" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ThreatMeter/HBoxContainer/HBoxContainer1"]
-margin_left = 80.0
+margin_left = 79.0
 margin_top = 6.0
-margin_right = 96.0
+margin_right = 95.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 16, 16 )
 size_flags_horizontal = 4
@@ -282,9 +282,9 @@ size_flags_vertical = 4
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
 [node name="ColorRect3" type="ColorRect" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ThreatMeter/HBoxContainer/HBoxContainer1"]
-margin_left = 112.0
+margin_left = 111.0
 margin_top = 6.0
-margin_right = 128.0
+margin_right = 127.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 16, 16 )
 size_flags_horizontal = 4
@@ -292,9 +292,9 @@ size_flags_vertical = 4
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
 [node name="ColorRect4" type="ColorRect" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ThreatMeter/HBoxContainer/HBoxContainer1"]
-margin_left = 144.0
+margin_left = 143.0
 margin_top = 6.0
-margin_right = 160.0
+margin_right = 159.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 16, 16 )
 size_flags_horizontal = 4
@@ -302,9 +302,9 @@ size_flags_vertical = 4
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
 [node name="ColorRect5" type="ColorRect" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ThreatMeter/HBoxContainer/HBoxContainer1"]
-margin_left = 176.0
+margin_left = 175.0
 margin_top = 6.0
-margin_right = 192.0
+margin_right = 191.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 16, 16 )
 size_flags_horizontal = 4
@@ -312,9 +312,9 @@ size_flags_vertical = 4
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
 [node name="ColorRect6" type="ColorRect" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ThreatMeter/HBoxContainer/HBoxContainer1"]
-margin_left = 208.0
+margin_left = 207.0
 margin_top = 6.0
-margin_right = 224.0
+margin_right = 223.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 16, 16 )
 size_flags_horizontal = 4
@@ -374,8 +374,8 @@ color = Color( 0.956863, 0.968627, 0.980392, 0.25098 )
 
 [node name="ThreatBox" type="Label" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ThreatMeter/HBoxContainer"]
 unique_name_in_owner = true
-margin_left = 228.0
-margin_right = 356.0
+margin_left = 227.0
+margin_right = 355.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 128, 16 )
 mouse_filter = 0
@@ -387,8 +387,8 @@ valign = 1
 uppercase = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ThreatMeter/HBoxContainer"]
-margin_left = 360.0
-margin_right = 584.0
+margin_left = 359.0
+margin_right = 582.0
 margin_bottom = 28.0
 mouse_filter = 0
 size_flags_horizontal = 3

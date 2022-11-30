@@ -100,7 +100,10 @@ func _home_closer():
 	# TODO Fade to black and start kill event with dialog triggers
 	var box = DialogueSystem.show_dialogue("norman/act1/home-restless")
 	if box != null: box.connect_signals(self)
-	self.action = Action.CloseAct
+	# TODO Setup Act2 maps and data and enable
+	print("[%s] TODO Enable Atc2" % name)
+	#self.action = Action.CloseAct
+	self.action = Action.CloseGame
 
 func _home_game_over():
 	# TODO: game over dialog
