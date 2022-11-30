@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Items/Weapon.gd" type="Script" id=1]
+[ext_resource path="res://Items/Assets/weapon_baseball_bat.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "Baseball Bat"
+flavor = ""
+cost = 1
+texture = ExtResource( 2 )
+base_damage = 1
+base_reduction = 30
+other_effect_description = ""
+other_effects = [  ]
