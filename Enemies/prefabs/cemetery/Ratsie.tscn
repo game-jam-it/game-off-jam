@@ -18,6 +18,7 @@ script = ExtResource( 3 )
 group = 1
 initiative = 4.0
 slot = 2
+hit_chance = 75
 portrait_base = ExtResource( 4 )
 portrait_damaged = ExtResource( 4 )
 portrait_stressed = ExtResource( 4 )

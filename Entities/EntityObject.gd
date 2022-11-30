@@ -11,8 +11,10 @@ enum Group {
 }
 
 signal free_entity(entity)
+signal unhide_entity(entity)
 
 export(Group) var group = Group.None
+export(bool) var hidden = false
 export(float) var initiative = 1.0
 
 var _grid
@@ -35,13 +37,14 @@ func _ready():
 func set_grid(grid):
 	_grid = grid
 	_free = false;
-	_grid.add_entity(self)
 	var list = get_children()
-	for node in list:
-		if node is GridObject:
-			_grid.add_object(node)
 	var hex = _grid.hexgrid.pixel_to_hex(position)
 	self.position = _grid.hexgrid.hex_to_pixel(hex)
+	if not self.hidden:
+		_grid.add_entity(self)
+		for node in list:
+			if node is GridObject:
+				_grid.add_object(node)
 
 func free_entity():
 	_free = true
@@ -54,6 +57,16 @@ func free_entity():
 	# Note: The Queue will free it
 	emit_signal("free_entity", self)
 
+func unhide_entity():
+	if not hidden:
+		return
+	hidden = false
+	_grid.add_entity(self)
+	var list = get_children()
+	for node in list:
+		if node is GridObject:
+			_grid.add_object(node)
+	emit_signal("unhide_entity", self)
 
 func disable():
 	pass

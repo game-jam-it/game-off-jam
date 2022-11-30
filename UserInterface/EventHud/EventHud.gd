@@ -30,7 +30,7 @@ func disable():
 			if obj is QueueObject:
 				var ent = obj.entity()
 				if ent.group == EntityObject.Group.Enemy && ent.hidden: 
-					ent.disconnect("enemy_unhide", self, "_on_enemy_unhide")
+					ent.disconnect("unhide_entity", self, "_on_unhide_enemy")
 		_scene.disconnect("stats_updated", self, "_on_stats_updated")
 		_scene = null
 
@@ -60,7 +60,7 @@ func setup_event_data(coords):
 			match ent.group:
 				EntityObject.Group.Enemy:
 					if !ent.hidden: self._create_box(ent)
-					else: ent.connect("enemy_unhide", self, "_on_enemy_unhide")
+					else: ent.connect("unhide_entity", self, "_on_unhide_enemy")
 
 	var goals = _scene.goals()
 	lore_box.visible = goals.lore.total > 0
@@ -84,6 +84,6 @@ func _on_stats_updated(stats):
 	relic_label.text = "%s/%s" % [stats.pickup.relic.done, stats.pickup.relic.total]
 	banish_label.text = "%s/%s" % [stats.banish.done, stats.banish.total]
 
-func _on_enemy_unhide(entity):
-	entity.disconnect("enemy_unhide", self, "_on_enemy_unhide")
+func _on_unhide_enemy(entity):
+	entity.disconnect("unhide_entity", self, "_on_unhide_enemy")
 	self._create_box(entity)
