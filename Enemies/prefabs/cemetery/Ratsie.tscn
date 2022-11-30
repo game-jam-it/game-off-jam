@@ -3,7 +3,7 @@
 [ext_resource path="res://Entities/Actions/AttackAction.gd" type="Script" id=1]
 [ext_resource path="res://Entities/Actions/MoveToAction.gd" type="Script" id=2]
 [ext_resource path="res://Enemies/prefabs/cemetery/Ratsie.gd" type="Script" id=3]
-[ext_resource path="res://Enemies/assets/portrait_ratsie.png" type="Texture" id=4]
+[ext_resource path="res://Enemies/assets/imp-portrait.png" type="Texture" id=4]
 [ext_resource path="res://Entities/Input/BotInput.gd" type="Script" id=5]
 [ext_resource path="res://Events/assets/cemetery/beast-b-trig.png" type="Texture" id=6]
 [ext_resource path="res://Entities/Detectors/SniffBox.gd" type="Script" id=7]
@@ -18,6 +18,7 @@ script = ExtResource( 3 )
 group = 1
 initiative = 4.0
 slot = 2
+hit_chance = 75
 portrait_base = ExtResource( 4 )
 portrait_damaged = ExtResource( 4 )
 portrait_stressed = ExtResource( 4 )
@@ -33,6 +34,7 @@ script = ExtResource( 5 )
 view_perseption = 75
 
 [node name="ActorHex" type="Light2D" parent="Input"]
+visible = false
 modulate = Color( 1, 0.921569, 0.231373, 1 )
 light_mask = 32
 scale = Vector2( 0.25, 0.25 )
@@ -43,6 +45,7 @@ energy = 1.8
 mode = 2
 
 [node name="TargetHex" type="Light2D" parent="Input"]
+visible = false
 modulate = Color( 1, 0.184314, 0.313726, 1 )
 light_mask = 32
 scale = Vector2( 0.25, 0.25 )

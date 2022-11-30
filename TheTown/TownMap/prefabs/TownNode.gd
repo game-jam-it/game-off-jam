@@ -8,12 +8,13 @@ enum Type {
 	Outskirt,
 }
 
-signal mouse_entered_node(coords)
 signal mouse_exited_node(coords)
+signal mouse_entered_node(coords)
 
 const PI2 = PI*2
 
 var type = 0
+var info = null
 
 var size = 0
 var radius = 1
@@ -25,7 +26,7 @@ var hover_color = Color(0.72, 0.72, 0.72)
 var mouse_hover = false
 
 func _process(_delta):
-	if !TheTown.is_ready():
+	if TheTown.is_paused() || !TheTown.is_ready():
 		return
 
 	var offset = Vector2(size, size)
@@ -46,16 +47,26 @@ func _draw():
 	# the debug box is the only way to show hovers
 	# if !TheTown.draw_debug:
 	# 	return
-
 	var offset = $Shape.shape.extents
-	#var offset = Vector2(size, size)
-	var bounds = Rect2(global_position - offset, offset * 2.0)
 	var render = Rect2($Shape.position - offset, offset * 2.0)
-
-	if bounds.has_point(get_global_mouse_position()):
-		draw_rect(render, hover_color, false)
-	else:
+	if TheTown.is_paused():
 		draw_rect(render, base_color, false)
+		return
+	if TheTown.get_state() != TheTown.State.PrepMode:
+		draw_rect(render, base_color, false)
+		return
+	# This is a mess but we need the updated locked value
+	var scene = TheTown.get_events().get_scene(coords)
+	if scene == null || scene.is_locked():
+		draw_rect(render, base_color, false)
+		return
+	# TODO Next: This should not just hover, it needs to be the coords
+	# var bounds = Rect2(global_position - offset, offset * 2.0)
+	# if !bounds.has_point(get_global_mouse_position()):
+	if TheTown.event_coords() != coords:
+		draw_rect(render, base_color, false)
+		return
+	draw_rect(render, hover_color, false)
 
 
 func set_coords(value:Vector2):

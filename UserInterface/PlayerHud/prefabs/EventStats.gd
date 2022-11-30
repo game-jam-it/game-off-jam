@@ -14,9 +14,9 @@ onready var pickup_weapon = get_node("%WeaponValue")
 onready var pickup_consumable = get_node("%ConsumableValue")
 
 func _ready():
-	TheTown.connect("event_stats_update", self, "_on_event_stats_update")
+	TheTown.connect("event_stats_updated", self, "_on_event_stats_updated")
 
-func _on_event_stats_update(stats):
+func _on_event_stats_updated(stats):
 	lore.text = "%s/%s" % [stats.lore.done, stats.lore.total]
 
 	banish.text = "%s/%s" % [stats.banish.done, stats.banish.total]

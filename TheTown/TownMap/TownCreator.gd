@@ -132,7 +132,7 @@ func _save_roads():
 """
 
 # Generate a town map, default cfg set as small map
-func create_town(_seed_phrase:String, cfg = {
+func create_town(act, _seed_phrase: String, cfg = {
 	"zoom": 20,
 	"nodes": 96,
 	"culler": 0.25,
@@ -153,7 +153,7 @@ func create_town(_seed_phrase:String, cfg = {
 
 	var build_type
 	if _seed_phrase != "DEVOPS-SEEDS":
-		mapped = Events.build_maps()
+		mapped = Events.build_events(act)
 		build_type = "Town Map"
 	else:
 		mapped = Events.build_dev()
@@ -200,9 +200,11 @@ func _create_nodes(cfg):
 		return []
 
 	# Create town event nodes
+	for key in mapped.key:
+		nodes.create_key(key, TILE_SIZE)
 	for _idx in range(cfg.nodes):
 		var rad = 1 + (rng.randi() % 4)
-		nodes.create(rad, TILE_SIZE, Vector2(
+		nodes.create_empty(rad, TILE_SIZE, Vector2(
 			rng.randf_range(-cfg.spread.x, cfg.spread.x),
 			rng.randf_range(-cfg.spread.y, cfg.spread.y)
 		))
@@ -305,28 +307,33 @@ func _run_prims_algo(positions):
 	return tree
 
 func _set_node_region(type, cull, node, list):
-	if rng.randf() < cull:
+	if node.info == null && rng.randf() < cull:
 		node.queue_free()
 		return
 	node.type = type
-	if type == TownNode.Type.Center:
-		## Add to center nodes
-		node.set_colors(
-			Color(0, 0.60, 0.60),
-			Color(0, 0.85, 0.85)
-		)
-	elif type == TownNode.Type.Outskirt:
-		## Add to outskirt nodes
-		node.set_colors(
-			Color(0, 0.40, 0.40),
-			Color(0, 0.75, 0.75)
-		)
-	elif type == TownNode.Type.Country:
-		## Add to country nodes
-		node.set_colors(
-			Color(0, 0.20, 0.20),
-			Color(0, 0.55, 0.55)
-		)
+	# TODO Implement regional colors again
+	# if type == TownNode.Type.Center:
+	# 	## Add to center nodes
+	# 	node.set_colors(
+	# 		Color(0, 0.60, 0.60),
+	# 		Color(0, 0.85, 0.85)
+	# 	)
+	# elif type == TownNode.Type.Outskirt:
+	# 	## Add to outskirt nodes
+	# 	node.set_colors(
+	# 		Color(0, 0.40, 0.40),
+	# 		Color(0, 0.75, 0.75)
+	# 	)
+	# elif type == TownNode.Type.Country:
+	# 	## Add to country nodes
+	# 	node.set_colors(
+	# 		Color(0, 0.20, 0.20),
+	# 		Color(0, 0.55, 0.55)
+	# 	)
+	node.set_colors(
+		Color(0, 0.20, 0.20),
+		Color(0, 0.55, 0.55)
+	)
 	list.append(Vector3(node.position.x, node.position.y, 0))
 
 
@@ -340,15 +347,18 @@ func _draw_nodes(list:Array):
 	for node in list:
 		## TODO Select node type and render
 		grid.draw_node(node.position, node.size)
-		match node.type:
-			TownNode.Type.None:
-				_add_empty_node(node)
-			TownNode.Type.Center:
-				_add_center_node(node)
-			TownNode.Type.Country:
-				_add_country_node(node)
-			TownNode.Type.Outskirt:
-				_add_outskirt_node(node)
+		if node.info != null:
+			_add_story_node(node)
+		else:
+			match node.type:
+				TownNode.Type.None:
+					_add_empty_node(node)
+				TownNode.Type.Center:
+					_add_center_node(node)
+				TownNode.Type.Country:
+					_add_country_node(node)
+				TownNode.Type.Outskirt:
+					_add_outskirt_node(node)
 		yield(get_tree(), "idle_frame")
 	yield(get_tree(), "idle_frame")
 
@@ -378,8 +388,8 @@ func _draw_roads(road:AStar):
 
 func _add_empty_node(node):
 	#print("Free: %s - %s" % [node.radius, node.size])
-	node.queue_free()
 	# TODO Fill out map for roads and travel events
+	node.queue_free()
 
 
 func _add_center_node(node):
@@ -390,16 +400,10 @@ func _add_center_node(node):
 	if list.empty():
 		_add_empty_node(node)
 		return
-	var info = list.pop_front()
-	nodes.events[node.coords] = info
-	#nodes.center_event[node.coords] = info
-	var scn = info.scene.instance()
-	scn.map_title = info.name
-	scn.map_summary = info.descr
-	scn.position = node.position
-	events.add_child(scn)
-	events.scenes[node.coords] = scn
-	print("Center: %s on: %s" % [info.name, node.radius])
+	node.info = list.pop_front()
+	self._initialize_node_scene(node)
+	nodes.events[node.coords] = node.info
+	print("Center: %s" % [node.info.name])
 
 
 func _add_country_node(node):
@@ -410,16 +414,10 @@ func _add_country_node(node):
 	if list.empty():
 		_add_empty_node(node)
 		return
-	var info = list.pop_front()
-	nodes.events[node.coords] = info
-	#nodes.country_event[node.coords] = info
-	var scn = info.scene.instance()
-	scn.map_title = info.name
-	scn.map_summary = info.descr
-	scn.position = node.position
-	events.add_child(scn)
-	events.scenes[node.coords] = scn
-	print("Country: %s on: %s" % [info.name, node.radius])
+	node.info = list.pop_front()
+	self._initialize_node_scene(node)
+	nodes.events[node.coords] = node.info
+	print("Country: %s" % [node.info.name])
 
 
 func _add_outskirt_node(node):
@@ -430,13 +428,22 @@ func _add_outskirt_node(node):
 	if list.empty():
 		_add_empty_node(node)
 		return
-	var info = list.pop_front()
-	nodes.events[node.coords] = info
-	#nodes.outskirt_event[node.coords] = info
-	var scn = info.scene.instance()
-	scn.map_title = info.name
-	scn.map_summary = info.descr
-	scn.position = node.position
+	node.info = list.pop_front()
+	self._initialize_node_scene(node)
+	nodes.events[node.coords] = node.info
+	print("Outskirt: %s" % [node.info.name])
+
+func _add_story_node(node):
+	if node.info == null:
+		print_debug("%s [CRIT] Story node skip" % name)
+		node.queue_free()
+		return
+	self._initialize_node_scene(node)
+	nodes.events[node.coords] = node.info
+	print("Story: %s on: %s" % [node.info.name, node.radius])
+
+func _initialize_node_scene(node):
+	var scn = node.info.scene.instance()
+	scn.set_info(node)
 	events.add_child(scn)
 	events.scenes[node.coords] = scn
-	print("Outskirt: %s on: %s" % [info.name, node.radius])

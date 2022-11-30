@@ -1,28 +1,25 @@
 class_name MallusEntity
 extends EnemyEntity
 
-var smelled_it: EntityObject = null
+var smelled_it: EntityActor = null
 
-func clear_smell(entity: EntityObject):
+func clear_smell(entity: EntityActor):
 	if entity == null:
-		#print("> %s: not an entity" % name)
+		print_debug("[%s]: not an entity" % name)
 		return
 	if entity.group != EntityObject.Group.Player:
-		#print("> %s: not a player" % name)
 		return
-		smelled_it = null
+	smelled_it = null
 
-func investigate_smell(entity: EntityObject):
+func investigate_smell(entity: EntityActor):
 	if _grid == null:
-		#print("> %s: no grid set" % name)
+		print_debug("[%s]: no grid set" % name)
 		return
 	if entity == null:
-		#print("> %s: not an entity" % name)
+		print_debug("[%s]: not an entity" % name)
 		return
 	if entity.group != EntityObject.Group.Player:
-		#print("> %s: not a player" % name)
 		return
-	print("> %s: It smells like something living" % name)
 	smelled_it = entity
 
 func _process(_delta):
@@ -37,7 +34,7 @@ func _process(_delta):
 	if self.input.has_method("set_target"):
 		$Sprite.visible = true
 		$Input.visible = true
-		self.hidden = false
 		self.input.set_target(smelled_it)
-		smelled_it = null
-		emit_signal("enemy_unhide", self)
+		self.smelled_it = null
+		self.unhide_entity()
+

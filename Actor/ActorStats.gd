@@ -11,10 +11,12 @@ Actor stats
 	Smarts
 """
 
+onready var norman = preload("res://Characters/Norman.tres")
+
 func _ready():
 	# TODO Replace with character selection
 	print_debug("[%s] TODO Replace with character selection" % name)
-	set_character(load("res://Characters/Norman.tres"))
+	set_character(norman)
 
 # Base info
 var character: Character setget set_character
@@ -95,7 +97,7 @@ func take_damage(damage: int) -> void:
 func on_death() -> void:
 	print(">> %s died" % character.name)
 	emit_signal("player_died", self)
-	# TODO Handle game over state
+	TheTown.game_over()
 	# TODO Swap out texture and portrait
 	print_debug("[%s] TODO Handle game over state change" % name)
 

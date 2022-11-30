@@ -23,4 +23,5 @@ func _on_ItemSlot_gui_input(event):
 		if event.pressed and event.button_index == BUTTON_LEFT:
 			if DialogueSystem.is_dialogue_open() == false:
 				DialogueSystem.select_item(get_index())
-				DialogueSystem.show_dialogue("dialogue_shop_purchase")
+				# TODO Update Shop to use dictionary script files
+				# DialogueSystem.show_dialogue("dialogue_shop_purchase")

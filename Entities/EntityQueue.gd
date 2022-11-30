@@ -3,7 +3,10 @@ extends Node2D
 
 var _grid: EventGrid
 var _active: QueueObject
+var _counter: int = 0
+var last_size: int = 0
 
+signal next_round(count)
 signal queue_changed(list)
 signal active_changed(active)
 
@@ -25,15 +28,18 @@ func enable():
 	_sort_entities()
 	for obj in get_children():
 		obj.enable()
-	if get_child_count() > 0: 
+	if get_child_count() > 0:
 		_active = get_child(0)
 		emit_signal('active_changed', _active)
 
-func add_entity(entity: EntityObject):
-	var obj = QueuePrefab.instance()
-	obj.initialize(self, entity)
-	entity.initialize(_grid)
-	self.add_child(obj)
+func add_entity(entity: EntityActor):
+	if entity != null:
+		var obj = QueuePrefab.instance()
+		obj.initialize(self, entity)
+		self.add_child(obj)
+		return
+	print_debug("[%s] CRIT: Queued a null entity" % name)
+
 
 """
 	Handle queued turns
@@ -67,8 +73,15 @@ func _next_entity():
 	if count > 1: 
 		var index = _active.get_index()
 		if _active.is_free(): _active.clear()
-		_active = get_child((index+1) % count)
+		var next = (index+1) % count
+		_active = get_child(next)
 		emit_signal('active_changed', _active)
+		if next <= index: 
+			_counter += 1
+			emit_signal("next_round", _counter)
+	if count != last_size:
+		last_size = count
+		emit_signal('queue_changed', get_children())
 
 """
 	Handle queued setup

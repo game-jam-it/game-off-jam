@@ -45,8 +45,20 @@ func clear():
 	for node in self.get_children():
 		node.queue_free()
 
-func create(radius: int, size: float, location: Vector2):
-	# Note: Creator expects these to be in position 0.8 seconds after
+
+func create_key(info, size: float):
+	# TODO Validate info map or setup a type object/resource for it
+	var node = self._make_mode(info, info.size, size, info.offset)
+	nodes[node.coords] = node
+	self.add_child(node)
+
+func create_empty(radius: int, size: float, location: Vector2):
+	var node = self._make_mode(null, radius, size, location)
+	nodes[node.coords] = node
+	self.add_child(node)
+
+func _make_mode(info, radius: int, size: float, location: Vector2):
+	# Note: Creator expects these to be in position 1.2 seconds after
 	# they where created, once passed it wil lock them on to the grid.
 	var scale = 5 * size
 	
@@ -61,16 +73,29 @@ func create(radius: int, size: float, location: Vector2):
 	node.connect("mouse_exited_node", self, "on_mouse_exited_event")
 	node.set_radius(radius, scale)
 	node.set_location(location)
-	nodes[node.coords] = node
-	self.add_child(node)
+	node.info = info
+	return node
 
+
+func set_focus(coords):
+	event_coords = coords
+	emit_signal("event_focused", coords)
+
+func select_focus():
+	if event_coords != null:
+		# This is a mess but we need the updated locked value
+		var scene = TheTown.get_events().get_scene(event_coords)
+		if scene != null && !scene.is_locked(): 
+			emit_signal("event_selected", event_coords)
 
 func handle_input(input):
-	if !TheTown.paused && input.is_action_pressed("ui_cancel"):
+	if TheTown.is_paused():
+		return
+	if input.is_action_pressed("ui_cancel"):
 		get_tree().set_input_as_handled()
 		TheTown.pause_game()
-	if event_coords != null && input.is_action_pressed("mouse_click"):
-			emit_signal("event_selected", event_coords)
+	if input.is_action_pressed("mouse_click"):
+		self.select_focus()
 
 func on_mouse_exited_event(coords):
 	if !self.visible:
@@ -81,9 +106,7 @@ func on_mouse_exited_event(coords):
 	# TODO Clear Event Info
 
 func on_mouse_entered_event(coords):
-	if self.visible:
-		event_coords = coords
-		emit_signal("event_focused", coords)
+	if self.visible: self.set_focus(coords)
 
 func show_mode(_coords):
 	# TODO Expand System

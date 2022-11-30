@@ -12,5 +12,7 @@ func _process(_delta):
 		custom_font.outline_color = Color.black
 
 func _on_CloseButton_pressed():
-	DialogueSystem.show_dialogue("dialogue_shop_leave")
-	shop_ui_node.queue_free()
+	# TODO Update Shop to use dictionary script files
+	# DialogueSystem.show_dialogue("dialogue_shop_leave")
+	# shop_ui_node.queue_free()
+	pass

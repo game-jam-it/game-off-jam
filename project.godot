@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "EntityObject",
+"class": "Challenge",
+"language": "GDScript",
+"path": "res://Challenges/Challenge.gd"
+}, {
 "base": "Resource",
 "class": "Character",
 "language": "GDScript",
@@ -29,17 +34,22 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Items/ConsumableItem.gd"
 }, {
-"base": "EnemyEntity",
-"class": "CrowEntity",
-"language": "GDScript",
-"path": "res://Enemies/prefabs/cemetery/Crow.gd"
-}, {
 "base": "WeaponEffect",
 "class": "DamageBoostEffect",
 "language": "GDScript",
 "path": "res://Items/Weapons/WeaponEffects/Scripts/DamageBoostEffect.gd"
 }, {
-"base": "EntityObject",
+"base": "Control",
+"class": "DialogueBox",
+"language": "GDScript",
+"path": "res://UserInterface/DialogueSystem/DialogueBox.gd"
+}, {
+"base": "EventMap",
+"class": "DialogueEvent",
+"language": "GDScript",
+"path": "res://Events/DialogueEvent.gd"
+}, {
+"base": "EntityActor",
 "class": "EnemyEntity",
 "language": "GDScript",
 "path": "res://Enemies/EnemyEntity.gd"
@@ -48,6 +58,11 @@ _global_script_classes=[ {
 "class": "EntityAction",
 "language": "GDScript",
 "path": "res://Entities/EntityAction.gd"
+}, {
+"base": "EntityObject",
+"class": "EntityActor",
+"language": "GDScript",
+"path": "res://Entities/EntityActor.gd"
 }, {
 "base": "Node2D",
 "class": "EntityInput",
@@ -78,6 +93,11 @@ _global_script_classes=[ {
 "class": "EventMap",
 "language": "GDScript",
 "path": "res://TheTown/EventMap/EventMap.gd"
+}, {
+"base": "EventMap",
+"class": "ExpeditionEvent",
+"language": "GDScript",
+"path": "res://Events/ExpeditionEvent.gd"
 }, {
 "base": "ConsumableEffect",
 "class": "GainRandomAmmoEffect",
@@ -113,6 +133,11 @@ _global_script_classes=[ {
 "class": "PickupEntity",
 "language": "GDScript",
 "path": "res://Items/PickupEntity.gd"
+}, {
+"base": "EntityActor",
+"class": "PlayerActor",
+"language": "GDScript",
+"path": "res://Actor/PlayerActor.gd"
 }, {
 "base": "Node2D",
 "class": "QueueObject",
@@ -193,22 +218,31 @@ _global_script_classes=[ {
 "class": "WeaponEffect",
 "language": "GDScript",
 "path": "res://Items/Weapons/WeaponEffects/Scripts/WeaponEffect.gd"
+}, {
+"base": "EnemyEntity",
+"class": "ZombieEntity",
+"language": "GDScript",
+"path": "res://Enemies/prefabs/cemetery/Zombie.gd"
 } ]
 _global_script_class_icons={
+"Challenge": "",
 "Character": "",
 "CharacterEffect": "",
 "ConsumableEffect": "",
 "ConsumableItem": "",
-"CrowEntity": "",
 "DamageBoostEffect": "",
+"DialogueBox": "",
+"DialogueEvent": "",
 "EnemyEntity": "",
 "EntityAction": "",
+"EntityActor": "",
 "EntityInput": "",
 "EntityObject": "",
 "EntityQueue": "",
 "EventGrid": "",
 "EventHex": "",
 "EventMap": "",
+"ExpeditionEvent": "",
 "GainRandomAmmoEffect": "",
 "GridObject": "",
 "HealingEffect": "",
@@ -216,6 +250,7 @@ _global_script_class_icons={
 "MallusEntity": "",
 "OneChallengeStatBoostEffect": "",
 "PickupEntity": "",
+"PlayerActor": "",
 "QueueObject": "",
 "RatEntity": "",
 "ReductionBoostEffect": "",
@@ -231,7 +266,8 @@ _global_script_class_icons={
 "TownNodes": "",
 "Trinket": "",
 "Weapon": "",
-"WeaponEffect": ""
+"WeaponEffect": "",
+"ZombieEntity": ""
 }
 
 [application]
@@ -261,6 +297,10 @@ window/size/height=720
 window/size/resizable=false
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[global]
+
+clear=false
 
 [gui]
 

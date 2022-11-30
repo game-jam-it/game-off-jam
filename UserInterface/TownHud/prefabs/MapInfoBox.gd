@@ -1,8 +1,13 @@
 extends MarginContainer
 
+var _order = 0
+var _locked = 0
 var _coords = Vector2.ZERO
 
 onready var _info_box = get_node("%InfoBox")
+
+onready var _locked_box = get_node("%LockedBox")
+onready var _objective_box = get_node("%ObjectiveBox")
 
 onready var _map_name_label = get_node("%MapNameValue")
 onready var _objective_label = get_node("%ObjectiveValue")
@@ -13,27 +18,28 @@ func _ready():
 	_info_box.connect("mouse_exited", self, "on_mouse_exited")
 	_info_box.connect("mouse_entered", self, "on_mouse_entered")
 
-func initialize(coords: Vector2, event: EventMap):
+func initialize(coords: Vector2, map: EventMap):
 	_coords = coords
-	if _map_name_label == null:
-		_map_name_label = get_node("%MapNameValue")
-	if _objective_label == null:
-		_objective_label = get_node("%ObjectiveValue")
-	_map_name_label.text = event.map_title
-	var count = 0
-	var total = 0
-	var goals = event. goals()
-	if goals.has("lore"):
-		count += goals.lore.done
-		total += goals.lore.total
-	if goals.has("relic"):
-		count += goals.relic.done
-		total += goals.relic.total
-	if goals.has("banish"):
-		count += goals.banish.done
-		total += goals.banish.total
-	_objective_label.text = "%s/%s" % [count, total]
-	# TODO Subscribe to event
+	self._order = map.order
+	self._locked = map.is_locked()
+	# This can be called before it is ready
+	_locked_box = get_node("%LockedBox")
+	_objective_box = get_node("%ObjectiveBox")
+	_map_name_label = get_node("%MapNameValue")
+	_objective_label = get_node("%ObjectiveValue")
+	_map_name_label.text = map.map_title
+	if self._locked:
+		map.connect("map_unlocked", self, "_on_map_unlocked")
+		self.modulate = Color(0.6, 0.6, 0.6)
+		_objective_box.visible = false
+		_locked_box.visible = true
+	else:
+		self.modulate = Color(1.0, 1.0, 1.0)
+		_objective_box.visible = true
+		_locked_box.visible = false
+	if map.has_goals():
+		map.connect("stats_updated", self, "_on_stats_updated")
+		self._on_stats_updated(map.goals())
 
 
 func on_mouse_exited():
@@ -41,9 +47,34 @@ func on_mouse_exited():
 
 func on_mouse_entered():
 	TheTown.on_event_focused(_coords)
-	print("Mouse Enter: %s" % name)
 
 func on_gui_input(event):
+	if _locked:
+		# TODO [AUDIO]: Play locked sound
+		return
+	if TheTown.is_paused():
+		return
 	if event is InputEventMouseButton and event.pressed:
 		TheTown.cancel_selected_event(_coords)
 		TheTown.on_event_selected(_coords)
+
+
+func _on_map_unlocked(map):
+	map.disconnect("map_unlocked", self, "_on_map_unlocked")
+	_locked = false
+	_locked_box.visible = false
+	_objective_box.visible = true
+	self.modulate = Color(1.0, 1.0, 1.0)
+
+func _on_stats_updated(stats):
+	var count = 0
+	var total = 0
+	if stats.has("lore"):
+		count += stats.lore.done
+		total += stats.lore.total
+	if stats.has("banish"): 
+		if stats.banish.has("boss"):
+			count += stats.banish.boss.done
+			total += stats.banish.boss.total
+	_objective_label.text = "%s/%s" % [count, total]
+	# EXTEND: Achivement tracker all done event

@@ -17,7 +17,7 @@ onready var target_hex = $TargetHex
 onready var target_cell = HexCell.new(Vector2(0, 0))
 
 var _goal = Goal.None
-var _grid: EventGrid
+var _grid: EventGrid = null
 
 """
 	EntityInput Override
@@ -25,9 +25,7 @@ var _grid: EventGrid
 
 func disable():
 	_goal = Goal.None
-	yield(get_tree(), "idle_frame")
 	emit_signal("_target_selected", null)
-	yield(get_tree(), "idle_frame")
 	emit_signal("_action_selected", null)
 
 func enable(grid):
@@ -70,20 +68,19 @@ func _unhandled_input(event):
 """
 
 func _action_process(_delta):
+	# There is no action input as in all cases only one action can be performed
 	var to = _grid.hexgrid.pixel_to_hex(target_hex.position + entity.position)
 	var from = entity.get_grid_cell()
 	var action = null
-	
 	if from.distance_to(to) == 1:
 		var cell = _grid.get_cell_state(to.get_axial_coords())
 		if cell.state == EventGrid.CellState.Entity:
-			action = _attack_target(to, cell.entity)
+			action = _handle_entity(to, cell.entity)
 		elif cell.state != EventGrid.CellState.Blocker:
-			action = _move_to(to)
+			action = self.move_to(to)
 		# TODO else target is blocked, break it?
 	else:
 		action = _try_to_move(to, from)
-
 	_exit_action_state()
 	emit_signal("_action_selected", action)
 
@@ -106,20 +103,18 @@ func _enter_action_state():
 """
 
 func _target_input(event):
-	if TheTown.paused:
-		return
 	if event.is_action_pressed("ui_cancel"):
-		print_debug("[%s] TODO Event Pause/Unpause" % name)
-		#TheTown.stop_active_event()
-		TheTown.pause_game()
-	if event.is_action_pressed("ui_focus_next"):
-		_exit_target_state()
-		emit_signal("_target_selected", null)
-	if event.is_action_pressed("mouse_click"):
-		_exit_target_state()
-		# Note: this does not reset the target
-		var target = _grid.hexgrid.pixel_to_hex(target_hex.position)
-		emit_signal("_target_selected", target)
+		if !TheTown.is_paused(): TheTown.pause_game()
+		else: TheTown.resume_game()
+	if !TheTown.is_paused():
+		if event.is_action_pressed("ui_focus_next"):
+			_exit_target_state()
+			emit_signal("_target_selected", null)
+		if event.is_action_pressed("mouse_click"):
+			_exit_target_state()
+			# Note: this does not reset the target
+			var target = _grid.hexgrid.pixel_to_hex(target_hex.position)
+			emit_signal("_target_selected", target)
 
 func _target_process(_delta):
 	var pos = get_global_mouse_position() - self.global_position
@@ -133,11 +128,17 @@ func _exit_target_state():
 
 func _enter_target_state():
 	_goal = Goal.Target
-	print("%s: choose target" % entity.name)
+	#print("%s: choose target" % entity.name)
 
 """
-	Posible Actions
+	Move Actions
 """
+
+func move_to(hex):
+	#print("> %s: Not scared, get over here rat" % entity.name)
+	var action = get_node("%MoveTo")
+	action.location = _grid.hexgrid.hex_to_pixel(hex)
+	return action
 
 func _try_to_move(to, from):
 	var path = _grid.hexgrid.find_path(from, to)
@@ -146,19 +147,31 @@ func _try_to_move(to, from):
 	var hex = path[1]
 	var cell = _grid.get_cell_state(hex.get_axial_coords())
 	if cell.state == EventGrid.CellState.Entity:
-		return _attack_target(hex, cell.entity)
+		return _handle_entity(hex, cell.entity)
 	elif cell.state != EventGrid.CellState.Blocker:
-		return _move_to(hex)
+		return self.move_to(hex)
+
+"""
+	Entity Actions
+"""
+
+func _handle_entity(hex, entity):
+	match entity.group:
+		EntityObject.Group.Enemy:
+			return _attack_target(hex, entity)
+		EntityObject.Group.Challenge:
+			return _setup_challenge(hex, entity)
 
 func _attack_target(hex, target):
-	print("> %s: I will purge you, beat you" % entity.name)
+	#print("> %s: I will purge you, beat you" % entity.name)
 	var act = get_node("%AttackTo")
 	act.target = target
 	act.location = _grid.hexgrid.hex_to_pixel(hex)
 	return act
-	
-func _move_to(hex):
-	print("> %s: Not scared, get over here rat" % entity.name)
-	var action = get_node("%MoveTo")
-	action.location = _grid.hexgrid.hex_to_pixel(hex)
-	return action
+
+func _setup_challenge(hex, target):
+	# TODO Implement chalange action
+	if target is Challenge:
+		print(">>> Check challenge: '%s'" % target.name)
+		return target.check(self.entity)
+	return null

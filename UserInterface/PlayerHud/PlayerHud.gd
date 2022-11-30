@@ -14,6 +14,8 @@ onready var _label_name = get_node("%BaseName")
 onready var _label_stats = get_node("%BaseStats")
 onready var _label_skills = get_node("%BaseSkills")
 
+onready var _game_over_button = get_node("%ExitGameOver")
+
 var ActorBoxPrefab = preload("res://UserInterface/PlayerHud/prefabs/ActorViewBox.tscn")
 
 func _ready():
@@ -24,6 +26,7 @@ func _ready():
 	_player_info.visible = false
 	_actor_select.visible = false
 	_actor_select_box.visible = false
+	_game_over_button.connect("pressed", self, "_game_over_pressed")
 
 func enable():
 	visible = true
@@ -32,14 +35,17 @@ func disable():
 	visible = false
 
 func restart():
-	if visible:
-		return
 	_actor_select_box.visible = false
-	_actor_select.visible = true
+	_actor_select.visible = false
+	_player_info.visible = false
 	_game_pause.visible = false
 	_game_over.visible = false
 	visible = true
 
+func show_actor_info():
+	_actor_select_box.visible = false
+	_actor_select.visible = false
+	_player_info.visible = true
 
 """
 	Game Over
@@ -51,6 +57,10 @@ func open_game_over():
 
 func close_game_over():
 	_game_over.visible = false
+
+func _game_over_pressed():
+	self.close_game_over()
+	TheTown.restart_game()
 
 """
 	Game Paused

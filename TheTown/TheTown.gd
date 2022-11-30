@@ -30,7 +30,7 @@ const SMALL_MAP = {
 
 const MICRO_MAP = {
 	"zoom": 14,
-	"nodes": 32,
+	"nodes": 28,
 	"culler": 0.25,
 	"spread": Vector2(60.0, 10.0),
 	"grid_size": Vector2(1024.0, 576.0),
@@ -42,7 +42,13 @@ const MICRO_MAP = {
 	"edge_offset": 256,
 }
 
-enum TownState {
+enum Act {
+	Into,
+	Teens,
+	Extend
+}
+
+enum State {
 	SetMode,
 	PrepMode,
 	ExploreMode
@@ -58,6 +64,12 @@ signal event_selected(coords)
 signal game_over
 signal game_pause
 signal game_resume
+signal game_restart
+
+signal stop_dialogue
+signal start_dialogue
+
+signal next_round(count)
 
 signal stop_expedition
 signal start_expedition
@@ -67,8 +79,8 @@ signal expedition_resume
 
 signal state_chaged(state)
 
-signal game_stats_update(stats)
-signal event_stats_update(stats)
+signal game_stats_updated(stats)
+signal event_stats_updated(stats)
 
 var map_cfg = MICRO_MAP
 var draw_debug = false
@@ -79,33 +91,35 @@ onready var events = $Events
 onready var camera = $Camera
 onready var creator = $Creator
 
-## TODO: Add initial set mode
-var paused = false
-var town_state = TownState.SetMode
-var event_coords = null
+var _act = Act.Into
+var _state = State.SetMode
+
+var _paused = false
+var _gameover = false
+var _event_coords = null
 
 func _ready():
 	nodes.connect("event_clear", self, "on_event_clear")
 	nodes.connect("event_focused", self, "on_event_focused")
 	nodes.connect("event_selected", self, "on_event_selected")
-	events.connect("game_stats_update", self, "_on_game_stats_update")
-	events.connect("event_stats_update", self, "_on_event_stats_update")
+	events.connect("game_stats_updated", self, "_on_game_stats_updated")
+	events.connect("event_stats_updated", self, "_on_event_stats_updated")
 	events.connect("pause_explore_event", self, "on_pause_explore_event")
 	# TODO Move create-town-on-load 
 	# to new game event from menu
 	# events.visible = false
-	build_town()
+	build_town(self._act)
 
 func _unhandled_input(input):
-	if paused:
+	if _paused:
 		return
 	if input.is_action_pressed("ui_home"):
 		draw_debug = !draw_debug
-	if town_state == TownState.SetMode:
+	if _state == State.SetMode:
 		_input_set_mode(input)
-	elif town_state == TownState.PrepMode:
+	elif _state == State.PrepMode:
 		nodes.handle_input(input)
-	elif town_state == TownState.ExploreMode:
+	elif _state == State.ExploreMode:
 		events.handle_input(input)
 
 func _input_set_mode(input):
@@ -114,16 +128,22 @@ func _input_set_mode(input):
 	if input.is_action_pressed("small_map"):
 		map_cfg = SMALL_MAP
 	# TODO Fix State, paused is doubled in the hud
-	if !paused && input.is_action_pressed("ui_cancel"):
+	if !_paused && input.is_action_pressed("ui_cancel"):
 		get_tree().set_input_as_handled()
 		self.pause_game()
 	if creator.is_done && input.is_action_pressed("rebuild_town"):
-		build_town()
+		build_town(self._act)
 	elif creator.is_done && input.is_action_pressed("rebuild_devops"):
 		build_devops()
 
+func get_act():
+	return _act
+
 func get_grid():
 	return grid
+
+func get_state():
+	return _state
 
 func get_nodes():
 	return nodes
@@ -131,41 +151,46 @@ func get_nodes():
 func get_events():
 	return events
 
-func get_state():
-	return town_state
+func event_coords():
+	return _event_coords
 
 func is_ready():
 	return creator.is_done
 
-func _set_town_state(state):
-	town_state = state
-	emit_signal("state_chaged", state)
-
+func is_paused():
+	return _paused
 
 func start():
-	self._set_town_state(TownState.PrepMode)
+	self._set_town_state(State.PrepMode)
 	camera.zoom_reset()
+
+func _set_town_state(value):
+	if self._state != value:
+		self._state = value
+		emit_signal("state_chaged", value)
 	
 
-func build_town():
+func build_town(act):
 	if !creator.is_done:
 		return
-	if town_state != TownState.SetMode:
+	if _state != State.SetMode:
 		return
+	self._act = act
 	emit_signal("town_restart")
 	var seed_phrase = "GameOff 2022 - %s" % OS.get_unix_time()
-	yield(creator.create_town(seed_phrase, map_cfg), "completed")
+	yield(creator.create_town(_act, seed_phrase, map_cfg), "completed")
 	self.events.initialize_stats()
 	emit_signal("town_generated")
 
 func build_devops():
 	if !creator.is_done:
 		return
-	if town_state != TownState.SetMode:
+	if _state != State.SetMode:
 		return
+	self._act = Act.Into
 	emit_signal("town_restart")
 	var seed_phrase = "DEVOPS-SEEDS"
-	yield(creator.create_town(seed_phrase, MICRO_MAP), "completed")
+	yield(creator.create_town(_act, seed_phrase, MICRO_MAP), "completed")
 	# TODO Compute and set the initial stats
 	yield(get_tree(), "idle_frame")
 	self.events.initialize_stats()
@@ -176,32 +201,58 @@ func build_devops():
 	UI Callbacks
 """
 
+func game_over():
+	_paused = true
+	_gameover = true
+	emit_signal("game_over")
+
 func pause_game():
-	paused = true
+	_paused = true
 	emit_signal("game_pause")
 
 func resume_game():
-	paused = false
-	if town_state != TownState.ExploreMode:
+	if _gameover:
+		return
+	_paused = false
+	if _state != State.ExploreMode:
 		emit_signal("expedition_resume")
 	else:
 		emit_signal("game_resume")
 
 func restart_game():
-	# TODO Setup restart_game
+	# TODO Fade to black ...
 	# TODO Destroy the old saves
-	self._set_town_state(TownState.SetNode)
-	self.build_town()
+	if self._state == State.ExploreMode:
+		TheTown.stop_active_event()
+	self._set_town_state(State.SetMode)
+	yield(get_tree(), "idle_frame")
+	ActorStats.set_character(ActorStats.norman)
+	emit_signal("game_restart")
+	self.camera.zoom_init()
+	self.build_town(_act)
+	_gameover = false
+	_paused = false
 
 """
 	Global Events & Logic
 """
 
-func _on_game_stats_update(stats):
-	emit_signal("game_stats_update", stats)
+func restart(act):
+	# TODO Fade to black ...
+	if self._state == State.ExploreMode:
+		TheTown.stop_active_event()
+	self._set_town_state(State.SetMode)
+	yield(get_tree(), "idle_frame")
+	emit_signal("town_restart")
+	self.build_town(act)
+	_gameover = false
+	_paused = false
 
-func _on_event_stats_update(stats):
-	emit_signal("event_stats_update", stats)
+func _on_game_stats_updated(value):
+	emit_signal("game_stats_updated", value)
+
+func _on_event_stats_updated(value):
+	emit_signal("event_stats_updated", value)
 
 """
 	Prep-Phase Events & Logic
@@ -210,36 +261,44 @@ func _on_event_stats_update(stats):
 func on_event_clear(coords):
 	if !creator.is_done:
 		return
-	if event_coords == coords:
-		event_coords = null
+	if _event_coords == coords:
+		_event_coords = null
 		emit_signal("event_clear")
 
 func on_event_focused(coords):
 	if !creator.is_done:
 		return
-	if event_coords != coords:
-		event_coords = coords
+	if _event_coords != coords:
+		_event_coords = coords
 		emit_signal("event_focused", coords)
 
 func on_event_selected(coords):
 	if !creator.is_done:
 		return
-	if event_coords == coords:
-		event_coords = coords
+	if _event_coords == coords:
+		_event_coords = coords
 		emit_signal("event_selected", coords)
-	if event_coords != null:
-		camera.set_focus_to(grid.get_location(event_coords))
+	if _event_coords != null:
+		camera.set_focus_to(grid.get_location(_event_coords))
 
 func start_selected_event(coords):
 	print("Start expedition: %s.%s" % [coords.x, coords.y])
-	event_coords = coords
-	self._set_town_state(TownState.ExploreMode)
+	_event_coords = coords
 	emit_signal("event_focused", coords)
-	camera.set_zoom_to(grid.get_location(event_coords))
+	self._set_town_state(State.ExploreMode)
+	#var cam_target = grid.get_location(_event_coords)
+	var cam_target = events.get_cam_target(coords)
+	camera.set_zoom_to(cam_target)
 	nodes.hide_mode(coords)
-	events.start_event(coords)
 	yield(get_tree(), "idle_frame")
-	emit_signal("start_expedition", coords)
+	var type = events.start_event(coords)
+	yield(get_tree(), "idle_frame")
+	if type == EventMap.Type.Expedition:
+		var queue = events.active.queue()
+		queue.connect("next_round", self, "_on_next_round")
+		emit_signal("start_expedition", coords)
+	elif type == EventMap.Type.Dialogue:
+		emit_signal("start_dialogue", coords)
 	grid.visible = false
 
 func cancel_selected_event(coords):
@@ -247,21 +306,25 @@ func cancel_selected_event(coords):
 	camera.zoom_reset()
 	# TODO Implement
 
+func _on_next_round(count):
+	emit_signal("next_round", count)
+
 """
 	Expedition Phase Events & Logic
 """
 
 func stop_active_event():
 	# TODO Make sure this breaks the maps queue
-	self._set_town_state(TownState.PrepMode)
-	events.end_event(event_coords)
-	emit_signal("stop_expedition", event_coords)
-	nodes.show_mode(event_coords)
+	self._set_town_state(State.PrepMode)
+	events.end_event(_event_coords)
+	emit_signal("stop_expedition", _event_coords)
+	nodes.show_mode(_event_coords)
 	camera.zoom_reset()
 	grid.visible = true
 
 func on_pause_explore_event():
-	print("Pause expedition: %s.%s" % [event_coords.x, event_coords.y])
+	#print("Pause expedition: %s.%s" % [_event_coords.x, _event_coords.y])
+	print("[%s] TODO Fix expedition pauses here!" % [name])
 	emit_signal("expedition_pause")
 	# TODO Asjut pause behavior
 	# Current behavior is exit

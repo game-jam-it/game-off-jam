@@ -5,6 +5,7 @@
 [ext_resource path="res://UserInterface/TownHud/prefabs/MapInfoBox.gd" type="Script" id=3]
 
 [node name="MapInfoBox" type="MarginContainer"]
+modulate = Color( 0.6, 0.6, 0.6, 1 )
 margin_right = 236.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 220, 80 )
@@ -68,7 +69,9 @@ text = "Unknown"
 align = 2
 valign = 1
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/InfoBox/VBoxContainer"]
+[node name="ObjectiveBox" type="HBoxContainer" parent="HBoxContainer/InfoBox/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
 margin_top = 34.0
 margin_right = 204.0
 margin_bottom = 64.0
@@ -76,19 +79,19 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="HBoxContainer/InfoBox/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="HBoxContainer/InfoBox/VBoxContainer/ObjectiveBox"]
 margin_right = 164.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 28 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
-text = "Objectives"
+text = "Tasks"
 align = 2
 valign = 1
 uppercase = true
 
-[node name="ObjectiveValue" type="Label" parent="HBoxContainer/InfoBox/VBoxContainer/HBoxContainer3"]
+[node name="ObjectiveValue" type="Label" parent="HBoxContainer/InfoBox/VBoxContainer/ObjectiveBox"]
 unique_name_in_owner = true
 margin_left = 168.0
 margin_right = 204.0
@@ -99,3 +102,24 @@ custom_fonts/font = ExtResource( 1 )
 text = "0/0"
 align = 1
 valign = 1
+
+[node name="LockedBox" type="HBoxContainer" parent="HBoxContainer/InfoBox/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 34.0
+margin_right = 204.0
+margin_bottom = 64.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/InfoBox/VBoxContainer/LockedBox"]
+margin_right = 204.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 28 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "(locked)"
+align = 2
+valign = 1
+uppercase = true

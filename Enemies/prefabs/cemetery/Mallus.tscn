@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Entities/Actions/AttackAction.gd" type="Script" id=1]
 [ext_resource path="res://Entities/Actions/MoveToAction.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Entities/Detectors/SniffBox.gd" type="Script" id=5]
 [ext_resource path="res://prototype/assets/hex-flat-256.png" type="Texture" id=6]
 [ext_resource path="res://Enemies/prefabs/cemetery/Mallus.gd" type="Script" id=7]
+[ext_resource path="res://Enemies/assets/mallus-portrait.png" type="Texture" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 443.971
@@ -15,12 +16,16 @@ radius = 443.971
 light_mask = 32
 script = ExtResource( 7 )
 group = 1
+hidden = true
 initiative = 9.0
 slot = 1
-hidden = true
 enemy_name = "Mallus"
 current_hearts = 2
 max_hearts = 2
+hit_chance = 75
+portrait_base = ExtResource( 8 )
+portrait_damaged = ExtResource( 8 )
+portrait_stressed = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false

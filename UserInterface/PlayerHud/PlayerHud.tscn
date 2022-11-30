@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://UserInterface/PlayerHud/prefabs/PlayerInfoBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UserInterface/PlayerHud/PlayerHud.gd" type="Script" id=2]
 [ext_resource path="res://UserInterface/fonts/poppins_ui_text.tres" type="DynamicFont" id=3]
 [ext_resource path="res://UserInterface/fonts/poppins_description_text.tres" type="DynamicFont" id=4]
 [ext_resource path="res://UserInterface/PlayerHud/prefabs/GamePause.tscn" type="PackedScene" id=5]
+[ext_resource path="res://UserInterface/PlayerHud/prefabs/GameStats.tscn" type="PackedScene" id=6]
 
 [node name="PlayerHud" type="Control"]
 anchor_right = 1.0
@@ -20,6 +21,7 @@ size_flags_vertical = 1
 
 [node name="ActorSelector" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = 4.0
@@ -342,8 +344,70 @@ visible = false
 
 [node name="GameOver" type="CenterContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="GameOver"]
+margin_left = 480.0
+margin_top = 90.0
+margin_right = 800.0
+margin_bottom = 630.0
+rect_min_size = Vector2( 320, 540 )
+
+[node name="ColorRect" type="ColorRect" parent="GameOver/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOver/Control/VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+
+[node name="Label" type="Label" parent="GameOver/Control/VBoxContainer/MarginContainer"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 304.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 3 )
+text = "Game Over"
+align = 1
+
+[node name="GameStats" parent="GameOver/Control/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 54.0
+margin_right = 320.0
+margin_bottom = 480.0
+
+[node name="MCExitButton" type="MarginContainer" parent="GameOver/Control/VBoxContainer"]
+margin_top = 482.0
+margin_right = 320.0
+margin_bottom = 540.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 24
+custom_constants/margin_top = 16
+custom_constants/margin_left = 24
+custom_constants/margin_bottom = 16
+
+[node name="ExitGameOver" type="Button" parent="GameOver/Control/VBoxContainer/MCExitButton"]
+unique_name_in_owner = true
+margin_left = 24.0
+margin_top = 16.0
+margin_right = 296.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 3 )
+text = "try again"

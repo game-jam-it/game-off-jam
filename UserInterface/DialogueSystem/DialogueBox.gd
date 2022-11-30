@@ -1,8 +1,7 @@
+class_name DialogueBox
 extends Control
 
-var dialogue_file: String = ""
-var dialogue_path: String = "res://Dialogue/%s.json"
-export(float) var text_speed = 0.05
+export(float) var text_speed = 0.025
 
 var dialogue: Array
 
@@ -13,7 +12,10 @@ var choice_phrase: bool = false
 var selected_choice: int = 1 setget set_selected_choice
 var selected_choice_result_method: String = ""
 
-var shop_ui: Resource = preload("res://UserInterface/Shops/ShopUI.tscn")
+# var shop_ui: Resource = preload("res://UserInterface/Shops/ShopUI.tscn")
+
+signal dialogue_event(value)
+signal dialogue_closed()
 
 onready var name_label = $NinePatchRect/NameLabel
 onready var text_label = $NinePatchRect/TextLabel
@@ -31,8 +33,9 @@ onready var choice_2_indicator = $NinePatchRect/ChoiceSystem/ChoicesList/Choice2
 
 func _ready():
 	text_timer.wait_time = text_speed
-	dialogue = get_dialogue(dialogue_file)
 	assert(dialogue, "No dialogue found")
+	assert(dialogue is Array, "No dialogue found")
+	self.connect("tree_exiting", self, "_on_tree_exiting")
 	next_phrase()
 
 func _input(event) -> void:
@@ -79,20 +82,36 @@ func _process(_delta) -> void:
 		return
 	indicator.visible = phrase_finished
 
-func get_dialogue(filename: String) -> Array:
-	var dialogue_file_path: String = dialogue_path % filename
+func _on_tree_exiting():
+	self.disconnect("tree_exiting", self, "_on_tree_exiting")
+	emit_signal("dialogue_closed")
+
+func connect_signals(target: Node):
+	if target == null:
+		return
+	if target.has_method("on_dialogue_event"):
+		self.connect("dialogue_event", target, "on_dialogue_event")
+	if target.has_method("on_dialogue_closed"):
+		self.connect("dialogue_closed", target, "on_dialogue_closed")
+
+# func get_dialogue(filename: String) -> Array:
+# 	var file_path: String = dialogue_path % filename
 	
-	var file = File.new()
-	assert(file.file_exists(dialogue_file_path), "Couldn't load dialogue file")
+# 	# var file = File.new()
+# 	# assert(
+# 	# 	file.file_exists(dialogue_file_path), 
+# 	# 	"Couldn't load dialogue file: %s" % dialogue_file_path
+# 	# )
 	
-	file.open(dialogue_file_path, File.READ)
-	var json = file.get_as_text()
-	var output = parse_json(json)
-	
-	if output is Array:
-		return output
-	else:
-		return []
+# 	# file.open(dialogue_file_path, File.READ)
+# 	# var json = file.get_as_text()
+# 	# var output = parse_json(json)
+# 	print("[%s] Loading: %s" % [name, file_path])
+# 	var info = load(file_path)
+# 	if info.data is Array:
+# 		return info.data
+# 	else:
+# 		return []
 
 func next_phrase() -> void:
 	current_phrase += 1
@@ -195,38 +214,45 @@ func set_selected_choice(value: int) -> void:
 func close_dialogue() -> void:
 	queue_free()
 
-func show_dialogue(filename: String) -> void:
-	DialogueSystem.show_dialogue_unsafe(filename)
-	
+func show_dialogue(value: Array) -> void:
+	DialogueSystem.show_dialogue_unsafe(value)
+	# FixMe: Reconnect signals
 	# After opening the new dialogue box close this one
 	queue_free()
 
-func open_shop(shop_id: String) -> void:
-	var shop_instance = shop_ui.instance()
-	shop_instance.shop_id = shop_id
-	Overlay.add_child(shop_instance)
+# func open_shop(shop_id: String) -> void:
+# 	var shop_instance = shop_ui.instance()
+# 	shop_instance.shop_id = shop_id
+# 	Overlay.add_child(shop_instance)
 
-func close_shop() -> void:
-	# Close the shop UI
-	var shop_node = Overlay.get_node_or_null("ShopUI")
-	if shop_node != null:
-		shop_node.queue_free()
+# func close_shop() -> void:
+# 	# Close the shop UI
+# 	var shop_node = Overlay.get_node_or_null("ShopUI")
+# 	if shop_node != null:
+# 		shop_node.queue_free()
 	
-	DialogueSystem.show_dialogue("dialogue_shop_leave")
+# 	DialogueSystem.show_dialogue("dialogue_shop_leave")
+# 	# FixMe: Reconnect signals
 
-func purchase_item() -> void:
-	var selected_item: Item = DialogueSystem.selected_item
-	if selected_item is Item:
-		# Check if the player has enough money first
-		if ActorInventory.money >= selected_item.cost:
-			if ActorInventory.inventory_has_room():
-				ActorInventory.add_item(selected_item)
-				ActorInventory.money -= selected_item.cost
-				DialogueSystem.show_dialogue_unsafe("dialogue_shop_successful_purchase")
-			else:
-				DialogueSystem.show_dialogue_unsafe("dialogue_shop_failed_purchase_inventory_full")
-		else:
-			DialogueSystem.show_dialogue_unsafe("dialogue_shop_failed_purchase_no_money")
+# func purchase_item() -> void:
+# 	var selected_item: Item = DialogueSystem.selected_item
+# 	if selected_item is Item:
+# 		# Check if the player has enough money first
+# 		if ActorInventory.money >= selected_item.cost:
+# 			if ActorInventory.inventory_has_room():
+# 				ActorInventory.add_item(selected_item)
+# 				ActorInventory.money -= selected_item.cost
+# 				DialogueSystem.show_dialogue_unsafe("dialogue_shop_successful_purchase")
+# 				# FixMe: Reconnect signals
+# 			else:
+# 				DialogueSystem.show_dialogue_unsafe("dialogue_shop_failed_purchase_inventory_full")
+# 				# FixMe: Reconnect signals
+# 		else:
+# 			DialogueSystem.show_dialogue_unsafe("dialogue_shop_failed_purchase_no_money")
+# 			# FixMe: Reconnect signals
+
+func dialogue_event(value: String) -> void:
+	emit_signal("dialogue_event", value)
 
 func increase_fortitude(value: String) -> void:
 	ActorStats.fortitude += int(value)
@@ -239,3 +265,9 @@ func increase_smarts(value: String) -> void:
 
 func restore_health(value: String) -> void:
 	ActorStats.current_hearts += int(value)
+	if ActorStats.current_hearts > ActorStats.max_hearts:
+		ActorStats.current_stress = ActorStats.max_hearts
+
+func do_long_rest() -> void:
+	ActorStats.current_hearts = ActorStats.max_hearts
+	if ActorStats.current_stress > 0: ActorStats.current_stress = -1

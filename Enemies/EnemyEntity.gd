@@ -1,5 +1,5 @@
 class_name EnemyEntity
-extends EntityObject
+extends EntityActor
 
 enum Slot {
 	None,
@@ -8,7 +8,6 @@ enum Slot {
 }
 
 signal enemy_died(entity)
-signal enemy_unhide(entity)
 signal hearts_changed(entity)
 
 # This is messy, preferable this would be a resource
@@ -16,23 +15,32 @@ signal hearts_changed(entity)
 # usualy are not characters, and definitly do not have to be
 
 export(Slot) var slot = Slot.None
-export(bool) var hidden = false
 
 export(String) var enemy_name = "Unknown"
 export(int) var current_hearts = 1
 export(int) var max_hearts = 1
 
-export(int) var damage = 1
+export(int) var max_damage: int = 1
+export(int, 100) var hit_chance: int = 50
 
 export(Texture) var portrait_base = preload("res://UserInterface/assets/portrait_default_flip.png")
 export(Texture) var portrait_damaged = preload("res://UserInterface/assets/portrait_default_flip.png")
 export(Texture) var portrait_stressed = preload("res://UserInterface/assets/portrait_default_flip.png")
 
+var rng = RandomNumberGenerator.new()
+
+func _ready():
+	rng.randomize()
+
 func get_damage():
-	return damage
+	if hit_chance < rng.randi_range(0, 100):
+		# Swing event here
+		return rng.randi_range(1, max_damage)
+	# Miss Event here
+	return 0
 
 func take_damage(damage: int) -> void:
-	print(">> %s takes %s damage" % [name, damage])
+	# Hit event here
 	current_hearts -= damage
 	if current_hearts <= 0: on_death()
 	else: emit_signal("hearts_changed", self)
