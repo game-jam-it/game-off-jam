@@ -74,7 +74,7 @@ position = Vector2( -425, -253 )
 position = Vector2( 1, -447 )
 
 [node name="Terrain" type="Sprite" parent="."]
-modulate = Color( 0.315476, 0.369115, 0.40625, 1 )
+modulate = Color( 0.313726, 0.368627, 0.407843, 1 )
 scale = Vector2( 0.5, 0.5 )
 z_index = -10
 texture = ExtResource( 9 )
