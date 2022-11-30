@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Events/assets/cemetery/fence-gate-b.png" type="Texture" id=1]
 [ext_resource path="res://TheTown/EventMap/EventGrid.gd" type="Script" id=2]
@@ -42,9 +42,6 @@
 [ext_resource path="res://Challenges/cemetery/GraveCross-b.tscn" type="PackedScene" id=40]
 [ext_resource path="res://Challenges/cemetery/Tree-b.tscn" type="PackedScene" id=41]
 [ext_resource path="res://Enemies/prefabs/cemetery/Zombie.tscn" type="PackedScene" id=42]
-[ext_resource path="res://UserInterface/assets/portrait_default_flip.png" type="Texture" id=43]
-[ext_resource path="res://Enemies/prefabs/cemetery/Zombie.gd" type="Script" id=44]
-[ext_resource path="res://Enemies/prefabs/cemetery/Zombie.gd" type="Script" id=45]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 seed = 1337
@@ -608,59 +605,35 @@ link_names = [ "Zombie-GC-A-01-01", "Zombie-GC-A-01-02", "Zombie-GC-A-01-03" ]
 position = Vector2( 278, -7 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-script = ExtResource( 44 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="Zombie-GC-A-01-02" parent="Objects" instance=ExtResource( 42 )]
 position = Vector2( 283, 179 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-script = ExtResource( 44 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="Zombie-GC-A-01-03" parent="Objects" instance=ExtResource( 42 )]
 position = Vector2( 177, 111 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-script = ExtResource( 44 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="GraveCross-b" parent="Objects" instance=ExtResource( 40 )]
 position = Vector2( -141, 119 )
 link_names = [ "Zombie-GC-B-01-01", "Zombie-GC-B-01-02", "Zombie-GC-B-01-03" ]
 
 [node name="Zombie-GC-B-01-01" parent="Objects" instance=ExtResource( 42 )]
-position = Vector2( -167, 195 )
+position = Vector2( -167, 196 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-script = ExtResource( 44 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="Zombie-GC-B-01-02" parent="Objects" instance=ExtResource( 42 )]
 position = Vector2( -185, 33 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-script = ExtResource( 44 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="Zombie-GC-B-01-03" parent="Objects" instance=ExtResource( 42 )]
 position = Vector2( -37, 116 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-script = ExtResource( 44 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="GraveCross-c 01" parent="Objects" instance=ExtResource( 20 )]
 position = Vector2( -193, -396 )
@@ -670,28 +643,16 @@ link_names = [ "Zombie-GC-C-01-01", "Zombie-GC-C-01-02", "Zombie-GC-C-01-03" ]
 position = Vector2( -269, -445 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-script = ExtResource( 44 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="Zombie-GC-C-01-02" parent="Objects" instance=ExtResource( 42 )]
 position = Vector2( -160, -488 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-script = ExtResource( 44 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="Zombie-GC-C-01-03" parent="Objects" instance=ExtResource( 42 )]
 position = Vector2( -259, -318 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-script = ExtResource( 44 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="GraveCross-c 02" parent="Objects" instance=ExtResource( 20 )]
 position = Vector2( -265, 320 )
@@ -701,26 +662,16 @@ link_names = [ "Zombie-GC-C-02-01", "Zombie-GC-C-02-02", "Zombie-GC-C-02-03" ]
 position = Vector2( -132, 295 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="Zombie-GC-C-02-02" parent="Objects" instance=ExtResource( 42 )]
 position = Vector2( -369, 300 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="Zombie-GC-C-02-03" parent="Objects" instance=ExtResource( 42 )]
 position = Vector2( -310, 398 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-script = ExtResource( 45 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="GraveStone-a" parent="Objects" instance=ExtResource( 24 )]
 position = Vector2( -134, -194 )
@@ -730,17 +681,11 @@ link_names = [ "Zombie-GS-A-01-01", "Zombie-GS-A-01-02" ]
 position = Vector2( -271, -226 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="Zombie-GS-A-01-02" parent="Objects" instance=ExtResource( 42 )]
 position = Vector2( -43, -217 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="GraveStone-b" parent="Objects" instance=ExtResource( 28 )]
 position = Vector2( -225, 85 )
@@ -750,17 +695,11 @@ link_names = [ "Zombie-GS-B-01-01", "Zombie-GS-B-01-02" ]
 position = Vector2( -271, 176 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="Zombie-GS-B-01-02" parent="Objects" instance=ExtResource( 42 )]
 position = Vector2( -283, 3 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="GraveStone-c" parent="Objects" instance=ExtResource( 27 )]
 position = Vector2( -183, -4 )
@@ -770,17 +709,11 @@ link_names = [ "Zombie-GS-C-01-01", "Zombie-GS-C-01-02" ]
 position = Vector2( -182, -106 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="Zombie-GS-C-01-02" parent="Objects" instance=ExtResource( 42 )]
 position = Vector2( -114, 2 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="GraveStone-d" parent="Objects" instance=ExtResource( 21 )]
 position = Vector2( 137, 142 )
@@ -790,17 +723,11 @@ link_names = [ "Zombie-GS-D-01-01", "Zombie-GS-D-01-02" ]
 position = Vector2( 13, 133 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="Zombie-GS-D-01-02" parent="Objects" instance=ExtResource( 42 )]
 position = Vector2( 117, 58 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="GraveStone-e" parent="Objects" instance=ExtResource( 29 )]
 position = Vector2( 95, -165 )
@@ -810,17 +737,11 @@ link_names = [ "Zombie-GS-E-01-01", "Zombie-GS-E-01-02" ]
 position = Vector2( 186, -227 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="Zombie-GS-E-01-02" parent="Objects" instance=ExtResource( 42 )]
 position = Vector2( 132, -88 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-portrait_base = ExtResource( 43 )
-portrait_damaged = ExtResource( 43 )
-portrait_stressed = ExtResource( 43 )
 
 [node name="Tree-a-1" parent="Objects" instance=ExtResource( 33 )]
 position = Vector2( 223, -84 )
@@ -867,9 +788,6 @@ texture = ExtResource( 19 )
 [node name="Mallus" parent="Objects" instance=ExtResource( 18 )]
 unique_name_in_owner = true
 position = Vector2( 183, 12 )
-portrait_base = null
-portrait_damaged = null
-portrait_stressed = null
 
 [node name="Fountain" parent="Objects" instance=ExtResource( 30 )]
 

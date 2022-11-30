@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Entities/Actions/AttackAction.gd" type="Script" id=1]
 [ext_resource path="res://Entities/Actions/MoveToAction.gd" type="Script" id=2]
 [ext_resource path="res://Enemies/prefabs/cemetery/Zombie.gd" type="Script" id=3]
+[ext_resource path="res://Enemies/assets/zombie-portrait.png" type="Texture" id=4]
 [ext_resource path="res://Entities/Input/BotInput.gd" type="Script" id=5]
 [ext_resource path="res://Events/assets/cemetery/zombie-a.png" type="Texture" id=6]
 [ext_resource path="res://Entities/Detectors/SniffBox.gd" type="Script" id=7]
@@ -21,10 +22,9 @@ slot = 2
 enemy_name = "Zombie"
 current_hearts = 2
 max_hearts = 2
-damage = 2
-portrait_base = null
-portrait_damaged = null
-portrait_stressed = null
+portrait_base = ExtResource( 4 )
+portrait_damaged = ExtResource( 4 )
+portrait_stressed = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false

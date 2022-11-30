@@ -132,4 +132,3 @@ mouse_filter = 2
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 6
-flip_h = true
