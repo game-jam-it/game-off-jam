@@ -75,8 +75,10 @@ func on_queue_changed(list):
 	pass
 
 func on_active_changed(active):
-	if active != null:
-		print("Active: %s (%s)" % [active.name(), active.initiative()])
+	# TODO Update UI
+	# if active != null:
+	# 	print("Active: %s (%s)" % [active.name(), active.initiative()])
+	pass
 
 """
 	Event Map state

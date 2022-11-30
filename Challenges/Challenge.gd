@@ -33,7 +33,6 @@ func roll():
 	return difficulty < (rng.randi_range(0, D20) + boost)
 
 
-
 func check(player: PlayerActor) -> EntityAction:
 	if self.roll(): return self.reward(player)
 	else: return self.penalty(player)
