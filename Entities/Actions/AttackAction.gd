@@ -28,14 +28,16 @@ func execute():
 	return false
 
 func attack_enemy_target():
-	target.take_damage(ActorStats.get_damage())
-	indicate_damage(target, ActorStats.get_damage(), Color.whitesmoke)
+	var damage = ActorStats.get_damage()
+	target.take_damage(damage)
+	indicate_damage(target, damage, Color.whitesmoke)
 	yield(get_tree(), "idle_frame")
 	return true
 
 func attack_player_target():
-	ActorStats.take_damage(entity.get_damage())
-	indicate_damage(target, entity.get_damage(), Color.crimson)
+	var damage = entity.get_damage()
+	ActorStats.take_damage(damage)
+	indicate_damage(target, damage, Color.crimson)
 	yield(get_tree(), "idle_frame")
 	return true
 
