@@ -21,7 +21,7 @@ var _complete = false
 
 signal map_unlocked(map)
 signal map_conpleted(map)
-signal stats_updated(stats)
+signal stats_updated(value)
 
 export(String) var map_title = "Unknown"
 export(String, MULTILINE) var map_summary = "An unknown map"

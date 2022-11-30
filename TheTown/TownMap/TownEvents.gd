@@ -58,8 +58,8 @@ func get_cam_target(coords) -> Vector2:
 		return scene.get_cam_target()
 	return Vector2.ZERO
 
-func _on_stats_updated(stats):
-	emit_signal("event_stats_updated", stats)
+func _on_stats_updated(value):
+	emit_signal("event_stats_updated", value)
 	self._compute_total_stats()
 
 func _compute_total_stats():

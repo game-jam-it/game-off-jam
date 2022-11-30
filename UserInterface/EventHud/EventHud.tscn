@@ -47,27 +47,6 @@ custom_constants/margin_top = 24
 custom_constants/margin_left = 24
 custom_constants/margin_bottom = 24
 
-[node name="EscapeButton" type="Button" parent="VBoxContainer/MainView/HBox - Main/MBox-MainBox"]
-unique_name_in_owner = true
-margin_left = 24.0
-margin_top = 616.0
-margin_right = 80.0
-margin_bottom = 636.0
-focus_mode = 1
-size_flags_horizontal = 0
-size_flags_vertical = 8
-enabled_focus_mode = 1
-text = "Escape"
-flat = true
-
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MainView/HBox - Main/MBox-MainBox/EscapeButton"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color( 0.956863, 0.968627, 0.980392, 0.25098 )
-
 [node name="MBox-QueueList" type="MarginContainer" parent="VBoxContainer/MainView/HBox - Main"]
 margin_left = 1012.0
 margin_right = 1280.0
@@ -342,7 +321,59 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
-[node name="EventCoordsLabel" type="Label" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ThreatMeter/HBoxContainer"]
+[node name="ActionBox" type="CenterContainer" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ThreatMeter/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+margin_left = 196.0
+margin_right = 388.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LeaveButton" type="Button" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ThreatMeter/HBoxContainer/ActionBox"]
+unique_name_in_owner = true
+margin_left = 62.0
+margin_top = 1.0
+margin_right = 129.0
+margin_bottom = 27.0
+focus_mode = 1
+size_flags_vertical = 11
+custom_fonts/font = ExtResource( 2 )
+enabled_focus_mode = 1
+text = "Leave"
+flat = true
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ThreatMeter/HBoxContainer/ActionBox/LeaveButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.956863, 0.968627, 0.980392, 0.25098 )
+
+[node name="EscapeButton" type="Button" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ThreatMeter/HBoxContainer/ActionBox"]
+unique_name_in_owner = true
+margin_left = 62.0
+margin_top = 1.0
+margin_right = 129.0
+margin_bottom = 27.0
+focus_mode = 1
+size_flags_vertical = 11
+custom_fonts/font = ExtResource( 2 )
+enabled_focus_mode = 1
+text = "Escape"
+flat = true
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ThreatMeter/HBoxContainer/ActionBox/EscapeButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.956863, 0.968627, 0.980392, 0.25098 )
+
+[node name="ThreatBox" type="Label" parent="VBoxContainer/BottomBar/HBox - Bottom Bar/MBox - ThreatMeter/HBoxContainer"]
+unique_name_in_owner = true
 margin_left = 228.0
 margin_right = 356.0
 margin_bottom = 28.0

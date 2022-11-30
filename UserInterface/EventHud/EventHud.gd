@@ -3,6 +3,11 @@ extends Control
 var _scene = null
 
 onready var enemy_list = get_node("%EnemyList")
+
+onready var action_box = get_node("%ActionBox")
+onready var thread_box = get_node("%ThreatBox")
+
+onready var leave_button = get_node("%LeaveButton")
 onready var escape_button = get_node("%EscapeButton")
 
 onready var lore_box = get_node("%LoreGroup")
@@ -16,10 +21,15 @@ onready var banish_label = get_node("%BanishValue")
 var enemy_box = preload("res://UserInterface/EventHud/prefabs/EnemyInfoBox.tscn")
 
 func _ready():
+	leave_button.connect("pressed", self, "_on_leave_pressed")
 	escape_button.connect("pressed", self, "_on_escape_pressed")
 
 func enable():
 	visible = true
+	action_box.visible = false
+	thread_box.visible = true
+	leave_button.visible = false
+	escape_button.visible = true
 
 func disable():
 	visible = false
@@ -31,6 +41,9 @@ func disable():
 				var ent = obj.entity()
 				if ent.group == EntityObject.Group.Enemy && ent.hidden: 
 					ent.disconnect("unhide_entity", self, "_on_unhide_enemy")
+		if _scene is ExpeditionEvent:
+			_scene.queue().disconnect("queue_changed", self, "_on_queue_changed")
+		_scene.disconnect("map_conpleted", self, "_on_map_conpleted")
 		_scene.disconnect("stats_updated", self, "_on_stats_updated")
 		_scene = null
 
@@ -49,7 +62,10 @@ func setup_event_data(coords):
 	if _scene == null:
 		print_debug(">> %s: scene not found", name)
 		return
+	_scene.connect("map_conpleted", self, "_on_map_conpleted")
 	_scene.connect("stats_updated", self, "_on_stats_updated")
+	if _scene is ExpeditionEvent:
+		_scene.queue().connect("queue_changed", self, "_on_queue_changed")
 	var list = _scene.queue().get_children()
 	# FixMe See: call order yields, it pushes it back but is bug prone
 	if list == null: print_debug("[WARN] %s: entity list is null" % name)
@@ -75,9 +91,26 @@ func _create_box(entity):
 	enemy_list.add_child(box)
 	box.initialize(entity)
 
-func _on_escape_pressed():
+func _on_leave_pressed():
 	if !TheTown.is_paused() && visible: 
 		TheTown.stop_active_event()
+
+func _on_escape_pressed():
+	print("[%s] TODO Escape dialog" % name)
+	if !TheTown.is_paused() && visible: 
+		TheTown.stop_active_event()
+
+func _on_map_conpleted(_event):
+	action_box.visible = true
+	thread_box.visible = false
+
+func _on_queue_changed(_list):
+	if enemy_list.get_child_count() == 0: 
+		leave_button.visible = true
+		escape_button.visible = false
+	else:
+		leave_button.visible = false
+		escape_button.visible = true
 
 func _on_stats_updated(stats):
 	lore_label.text = "%s/%s" % [stats.lore.done, stats.lore.total]
@@ -86,4 +119,6 @@ func _on_stats_updated(stats):
 
 func _on_unhide_enemy(entity):
 	entity.disconnect("unhide_entity", self, "_on_unhide_enemy")
+	leave_button.visible = false
+	escape_button.visible = true
 	self._create_box(entity)
