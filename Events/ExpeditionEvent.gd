@@ -13,6 +13,8 @@ onready var _static = $Static
 onready var _objects = $Objects
 onready var _connects = $Connects
 
+onready var _moon_light = $MoonLight
+
 func queue():
 	return self._queue
 
@@ -23,6 +25,7 @@ func _ready():
 	self._init_goals()
 	_type = Type.Expedition
 	_objects.visible = false
+	_moon_light.visible = false
 	# TODO Only hide the actors leave some of the map up
 	_queue.connect("queue_changed", self, "on_queue_changed")
 	_queue.connect("active_changed", self, "on_active_changed")
@@ -36,6 +39,7 @@ func end_event():
 	_queue.disable()
 	self.is_active = false
 	_objects.visible = false
+	_moon_light.visible = false
 	print("%s ending" % name)
 	yield(get_tree(), "idle_frame")
 	_static.visible = true
@@ -52,6 +56,7 @@ func start_event():
 	_queue.enable()
 	self.is_active = true
 	_objects.visible = true
+	_moon_light.visible = true
 	print("%s starting" % name)
 	emit_signal("stats_updated", _goals)
 	yield(get_tree(), "idle_frame")
