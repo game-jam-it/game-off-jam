@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://UserInterface/PlayerHud/prefabs/PlayerInfoBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UserInterface/PlayerHud/PlayerHud.gd" type="Script" id=2]
@@ -6,8 +6,10 @@
 [ext_resource path="res://UserInterface/fonts/poppins_description_text.tres" type="DynamicFont" id=4]
 [ext_resource path="res://UserInterface/PlayerHud/prefabs/GamePause.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UserInterface/PlayerHud/prefabs/GameStats.tscn" type="PackedScene" id=6]
-[ext_resource path="res://UserInterface/assets/UIGradientTexture.tres" type="Texture" id=7]
+[ext_resource path="res://UserInterface/style/UIGradientTexture.tres" type="Texture" id=7]
 [ext_resource path="res://UserInterface/assets/ui_background_nineslice.png" type="Texture" id=8]
+[ext_resource path="res://UserInterface/fonts/popins-header-18-3.tres" type="DynamicFont" id=9]
+[ext_resource path="res://UserInterface/style/button-gradient.tres" type="StyleBox" id=10]
 
 [sub_resource type="StyleBoxLine" id=1]
 color = Color( 0.0196078, 0.0196078, 0.0196078, 0.501961 )
@@ -28,7 +30,6 @@ size_flags_vertical = 1
 
 [node name="ActorSelector" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -42,8 +43,35 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="TownSelectBox" type="CenterContainer" parent="ActorSelector/MainView"]
+unique_name_in_owner = true
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -135.0
+rect_min_size = Vector2( 0, 128 )
+
+[node name="MarginContainer" type="MarginContainer" parent="ActorSelector/MainView/TownSelectBox"]
+margin_left = 560.0
+margin_top = 46.0
+margin_right = 719.0
+margin_bottom = 88.0
+
+[node name="TownSelectButton" type="Button" parent="ActorSelector/MainView/TownSelectBox/MarginContainer"]
+unique_name_in_owner = true
+margin_right = 159.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 9 )
+custom_styles/hover = ExtResource( 10 )
+custom_styles/pressed = ExtResource( 10 )
+custom_styles/focus = ExtResource( 10 )
+custom_styles/disabled = ExtResource( 10 )
+custom_styles/normal = ExtResource( 10 )
+text = "Start Game"
+
 [node name="ActorSelectBox" type="HBoxContainer" parent="ActorSelector/MainView"]
 unique_name_in_owner = true
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 0, 644 )
@@ -142,6 +170,7 @@ rect_min_size = Vector2( 0, 76 )
 size_flags_horizontal = 3
 
 [node name="ColorRect" type="ColorRect" parent="ActorSelector/BottomBar"]
+modulate = Color( 1, 1, 1, 0.501961 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -433,7 +462,7 @@ custom_constants/margin_bottom = 12
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 304.0
-margin_bottom = 36.0
+margin_bottom = 42.0
 custom_fonts/font = ExtResource( 3 )
 text = "At the end of one's rope"
 align = 1
@@ -466,6 +495,6 @@ unique_name_in_owner = true
 margin_left = 24.0
 margin_top = 24.0
 margin_right = 296.0
-margin_bottom = 50.0
+margin_bottom = 56.0
 custom_fonts/font = ExtResource( 3 )
 text = "play again"

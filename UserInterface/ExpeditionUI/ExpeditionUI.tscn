@@ -12,7 +12,7 @@
 [ext_resource path="res://UserInterface/assets/minimize_button.png" type="Texture" id=10]
 [ext_resource path="res://UserInterface/assets/expand_button_highlighted.png" type="Texture" id=11]
 [ext_resource path="res://UserInterface/assets/expand_button.png" type="Texture" id=12]
-[ext_resource path="res://UserInterface/assets/UIGradientTexture.tres" type="Texture" id=13]
+[ext_resource path="res://UserInterface/style/UIGradientTexture.tres" type="Texture" id=13]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18

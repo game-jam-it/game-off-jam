@@ -1,8 +1,10 @@
 extends CanvasLayer
 
+
 onready var town_hud = $TownHud
 onready var event_hud = $EventHud
 onready var player_hud = $PlayerHud
+onready var splash_hud = $SplashHud
 
 func _ready():
 	town_hud.disable()
@@ -30,14 +32,19 @@ func on_town_restart():
 	town_hud.disable()
 	event_hud.disable()
 	player_hud.restart()
+	splash_hud.visible = true
 	pass
 
 func on_town_generated():
+	player_hud.open_town_selection()
+
+func on_map_selected():
 	match TheTown.get_act():
 		TheTown.Act.Into: player_hud.open_actor_selection()
 		TheTown.Act.Teens: _run_teens_intro_dialog()
 
 func on_actor_selected():
+	splash_hud.visible = false
 	town_hud.initialize()
 	event_hud.disable()
 	TheTown.start()

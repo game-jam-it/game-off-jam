@@ -26,4 +26,4 @@ script = ExtResource( 4 )
 current = true
 zoom = Vector2( 15, 15 )
 script = ExtResource( 5 )
-init_offset = Vector2( 0, 2560 )
+init_offset = Vector2( 0, -1280 )

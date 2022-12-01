@@ -14,7 +14,7 @@ var zoom_last =Vector2(15.0, 15.0)
 var location_last =Vector2.ZERO
 
 export var init_zoom = Vector2(20.0, 20.0)
-export var init_offset = Vector2(0.0, 256.0)
+export var init_offset = Vector2(0.0, 2560.0)
 
 onready var viewport_ratio = Vector2.ONE
 onready var viewport_offset = get_viewport().size * 0.5

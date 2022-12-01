@@ -4,7 +4,7 @@
 [ext_resource path="res://UserInterface/fonts/poppins_ui_text.tres" type="DynamicFont" id=2]
 [ext_resource path="res://UserInterface/TownHud/prefabs/MapInfoBox.gd" type="Script" id=3]
 [ext_resource path="res://UserInterface/assets/ui_background_nineslice.png" type="Texture" id=4]
-[ext_resource path="res://UserInterface/assets/UIGradientTexture.tres" type="Texture" id=5]
+[ext_resource path="res://UserInterface/style/UIGradientTexture.tres" type="Texture" id=5]
 
 [node name="MapInfoBox" type="MarginContainer"]
 modulate = Color( 0.6, 0.6, 0.6, 1 )
