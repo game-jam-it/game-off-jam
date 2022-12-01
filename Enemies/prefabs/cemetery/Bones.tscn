@@ -22,6 +22,7 @@ slot = 1
 current_hearts = 3
 max_hearts = 3
 max_damage = 2
+hit_chance = 60
 portrait_base = ExtResource( 8 )
 portrait_damaged = ExtResource( 8 )
 portrait_stressed = ExtResource( 8 )

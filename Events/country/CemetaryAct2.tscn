@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Events/assets/cemetery/fence-gate-b.png" type="Texture" id=1]
 [ext_resource path="res://TheTown/EventMap/EventGrid.gd" type="Script" id=2]
@@ -42,11 +42,12 @@
 [ext_resource path="res://Challenges/cemetery/GraveCross-b.tscn" type="PackedScene" id=40]
 [ext_resource path="res://Challenges/cemetery/Tree-b.tscn" type="PackedScene" id=41]
 [ext_resource path="res://Enemies/prefabs/cemetery/Zombie.tscn" type="PackedScene" id=42]
-[ext_resource path="res://Events/assets/cemetery/fence-corner-sa.png" type="Texture" id=43]
+[ext_resource path="res://Events/assets/cemetery/fence-corner-sb.png" type="Texture" id=43]
 [ext_resource path="res://Events/assets/cemetery/fence-corner-a.png" type="Texture" id=44]
-[ext_resource path="res://Events/assets/cemetery/fence-post-la.png" type="Texture" id=45]
+[ext_resource path="res://Events/assets/cemetery/fence-corner-b.png" type="Texture" id=45]
 [ext_resource path="res://Events/assets/cemetery/fence-vertical-top.png" type="Texture" id=46]
 [ext_resource path="res://Events/assets/cemetery/map-medium-la.png" type="Texture" id=47]
+[ext_resource path="res://Events/assets/cemetery/fence-post-lb.png" type="Texture" id=48]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 seed = 1337
@@ -526,7 +527,7 @@ position = Vector2( -330, 97 )
 [node name="Fence-post-la2" type="Sprite" parent="Objects/Fence - Left"]
 position = Vector2( -3.5, -295 )
 scale = Vector2( 0.075, 0.08 )
-texture = ExtResource( 45 )
+texture = ExtResource( 48 )
 
 [node name="Light2D" parent="Objects/Fence - Left/Fence-post-la2" instance=ExtResource( 15 )]
 position = Vector2( 12.5, -325 )
@@ -564,7 +565,7 @@ position = Vector2( 330, 97 )
 position = Vector2( -1.75, -295 )
 rotation = 3.14159
 scale = Vector2( 0.075, -0.08 )
-texture = ExtResource( 45 )
+texture = ExtResource( 48 )
 
 [node name="Light2D" parent="Objects/Fence - Right/Fence-post-la2" instance=ExtResource( 15 )]
 position = Vector2( 25, -337.5 )
@@ -624,7 +625,7 @@ flip_h = true
 [node name="Fence-corner-a" type="Sprite" parent="Objects/Fence - Bottom"]
 position = Vector2( 110, -25 )
 scale = Vector2( 0.08, 0.08 )
-texture = ExtResource( 44 )
+texture = ExtResource( 45 )
 
 [node name="Fence-corner-a3" type="Sprite" parent="Objects/Fence - Bottom"]
 position = Vector2( -334, -25 )
@@ -634,7 +635,7 @@ texture = ExtResource( 44 )
 [node name="Fence-corner-a2" type="Sprite" parent="Objects/Fence - Bottom"]
 position = Vector2( -110, -25 )
 scale = Vector2( -0.08, 0.08 )
-texture = ExtResource( 44 )
+texture = ExtResource( 45 )
 
 [node name="Fence-corner-a4" type="Sprite" parent="Objects/Fence - Bottom"]
 position = Vector2( 329, -25 )
@@ -645,7 +646,7 @@ texture = ExtResource( 44 )
 position = Vector2( 329, -30 )
 rotation = 3.14159
 scale = Vector2( 0.08, -0.08 )
-texture = ExtResource( 45 )
+texture = ExtResource( 48 )
 
 [node name="Light2D" parent="Objects/Fence - Bottom/Fence-post-la3" instance=ExtResource( 15 )]
 position = Vector2( 25, -337.5 )
@@ -655,7 +656,7 @@ scale = Vector2( 12.5, 12.5 )
 [node name="Fence-post-la" type="Sprite" parent="Objects/Fence - Bottom"]
 position = Vector2( -334, -25 )
 scale = Vector2( 0.08, 0.08 )
-texture = ExtResource( 45 )
+texture = ExtResource( 48 )
 
 [node name="Light2D" parent="Objects/Fence - Bottom/Fence-post-la" instance=ExtResource( 15 )]
 position = Vector2( 12.5, -325 )
@@ -827,19 +828,15 @@ position = Vector2( 340, 411 )
 
 [node name="Rubble-01" parent="Objects" instance=ExtResource( 37 )]
 position = Vector2( 277, -224 )
-initiative = null
 
 [node name="Rubble-02" parent="Objects" instance=ExtResource( 37 )]
 position = Vector2( -60, -141 )
-initiative = null
 
 [node name="Rubble-03" parent="Objects" instance=ExtResource( 37 )]
 position = Vector2( 157, -435 )
-initiative = null
 
 [node name="Rubble-04" parent="Objects" instance=ExtResource( 37 )]
 position = Vector2( 379, 96 )
-initiative = null
 
 [node name="Grave-closed" type="Node2D" parent="Objects"]
 position = Vector2( 180, -12 )
@@ -873,12 +870,12 @@ duration = 6
 max_range = 16
 
 [node name="Crow - 04" parent="Objects" instance=ExtResource( 17 )]
-position = Vector2( -91, 283 )
+position = Vector2( 84, 284 )
 duration = 6
 max_range = 16
 
 [node name="Ratsie - 01" parent="Objects" instance=ExtResource( 6 )]
-position = Vector2( -274, -5 )
+position = Vector2( -125, -78 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
 enemy_name = "Ratsie"
@@ -888,7 +885,7 @@ position = Vector2( 244, 173 )
 enemy_name = "Ratsie"
 
 [node name="Ratsie - 03" parent="Objects" instance=ExtResource( 6 )]
-position = Vector2( -397, -336 )
+position = Vector2( -315, -363 )
 enemy_name = "Ratsie"
 
 [node name="Ratsie - 04" parent="Objects" instance=ExtResource( 6 )]
@@ -915,7 +912,7 @@ texture = ExtResource( 31 )
 
 [node name="PlayerActor" parent="Objects" instance=ExtResource( 5 )]
 unique_name_in_owner = true
-position = Vector2( 1, 450 )
+position = Vector2( -32, -483 )
 
 [node name="Bones" parent="Objects" instance=ExtResource( 18 )]
 unique_name_in_owner = true
