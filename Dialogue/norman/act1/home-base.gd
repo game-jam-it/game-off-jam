@@ -5,7 +5,7 @@ const dialogue = [
     "Name": "Norman",
     "Text": "Perhaps I should go to bed.",
     "Speaking": "left",
-    "PortraitLeft": "",
+    "PortraitLeft": "norman-a",
     "PortraitRight": "",
     "ShowExtraInfo": "",
     "Choice": true,

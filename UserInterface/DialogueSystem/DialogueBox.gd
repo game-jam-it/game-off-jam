@@ -22,6 +22,14 @@ onready var text_label = $NinePatchRect/TextLabel
 onready var text_timer = $TextSpeedTimer
 onready var indicator = $NinePatchRect/Indicator
 
+# Jam hack in some extra fluff
+onready var hack_it_a = get_node("%HackIt-01")
+onready var hack_it_b = get_node("%HackIt-02")
+onready var hack_it_c = get_node("%HackIt-03")
+
+onready var slacher_arm = get_node("%SlacherArm")
+onready var slacher_body = get_node("%SlacherBody")
+
 onready var portrait_left = get_node("%PortraitLeft")
 onready var portrait_right = get_node("%PortraitRight")
 
@@ -36,6 +44,9 @@ func _ready():
 	assert(dialogue, "No dialogue found")
 	assert(dialogue is Array, "No dialogue found")
 	self.connect("tree_exiting", self, "_on_tree_exiting")
+	hack_it_a.visible = false
+	hack_it_b.visible = false
+	hack_it_c.visible = false
 	next_phrase()
 
 func _input(event) -> void:
@@ -146,7 +157,12 @@ func next_phrase() -> void:
 	var portrait_left_texture: String = dialogue[current_phrase]["PortraitLeft"]
 	var portrait_right_texture: String = dialogue[current_phrase]["PortraitRight"]
 	var currently_talking: String = dialogue[current_phrase]["Speaking"]
-	set_portraits(portrait_left_texture, portrait_right_texture, currently_talking)
+
+	# End Jam Hacked setup
+	if dialogue[current_phrase].has("Hack"):
+		set_hacked(dialogue[current_phrase]["Hack"], portrait_left_texture)
+	else:
+		set_portraits(portrait_left_texture, portrait_right_texture, currently_talking)
 	
 	# Give choice options
 	choice_phrase = dialogue[current_phrase]["Choice"]
@@ -166,6 +182,61 @@ func next_phrase() -> void:
 	
 	phrase_finished = true
 	return
+
+func set_hacked(step, portrait_left_texture):
+	portrait_right.texture = null
+	if portrait_left_texture != "":
+		var texture_path: String = "res://Dialogue/CharacterPortraits/%s.png" % portrait_left_texture
+		var portrait_texture: Resource = load(texture_path)
+		if portrait_texture is Texture:
+			portrait_left.texture = portrait_texture
+		else:
+			portrait_left.texture = null
+	else:
+		portrait_left.texture = null
+
+	match step:
+		0: 
+			portrait_left.visible = true
+			hack_it_a.visible = false
+			hack_it_b.visible = false
+			hack_it_c.visible = false
+			portrait_left.material.set("shader_param/grayscale", false)
+			slacher_arm.material.set("shader_param/grayscale", true)
+			slacher_body.material.set("shader_param/grayscale", true)
+		1:
+			portrait_left.visible = false
+			hack_it_a.visible = true
+			hack_it_b.visible = false
+			hack_it_c.visible = false
+			hack_it_a.material.set("shader_param/grayscale", false)
+			slacher_arm.material.set("shader_param/grayscale", true)
+			slacher_body.material.set("shader_param/grayscale", true)
+		2:
+			portrait_left.visible = false
+			hack_it_a.visible = false
+			hack_it_b.visible = true
+			hack_it_c.visible = false
+			hack_it_b.material.set("shader_param/grayscale", false)
+			slacher_arm.material.set("shader_param/grayscale", true)
+			slacher_body.material.set("shader_param/grayscale", true)
+		3:
+			portrait_left.visible = false
+			hack_it_a.visible = false
+			hack_it_b.visible = false
+			hack_it_c.visible = true
+			hack_it_c.material.set("shader_param/grayscale", false)
+			slacher_arm.material.set("shader_param/grayscale", true)
+			slacher_body.material.set("shader_param/grayscale", true)
+		4:
+			portrait_left.visible = false
+			hack_it_a.visible = false
+			hack_it_b.visible = false
+			hack_it_c.visible = true
+			hack_it_c.material.set("shader_param/grayscale", true)
+			slacher_arm.material.set("shader_param/grayscale", false)
+			slacher_body.material.set("shader_param/grayscale", false)
+		
 
 func set_portraits(portrait_left_texture: String, portrait_right_texture: String, currently_talking: String) -> void:
 	# Set the left portrait
