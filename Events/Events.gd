@@ -80,6 +80,7 @@ var _into_key = [{
 var _teens_key = [{
 	"size": 2,
 	"order": 90,
+	"intro": true,
 	"locked": false,
 	"offset": Vector2(-45.0,-15.0),
 	"name": "A Home",
@@ -88,11 +89,12 @@ var _teens_key = [{
 },{
 	"size": 4,
 	"order": 80,
+	"intro": false,
 	"locked": false,
 	"offset": Vector2(-55.0,-10.0),
 	"name": "The Cemetary",
-	"descr": "You go here to find common sense.",
-	"scene": preload("res://Events/country/act2/Cemetary.tscn"),
+	"descr": 'Find the cause, deal with it, and make sure you leave this place alive!',
+	"scene": preload("res://Events/country/CemetaryAct2.tscn"),
 }]
 
 """

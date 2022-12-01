@@ -6,6 +6,8 @@ onready var event_hud = $EventHud
 onready var player_hud = $PlayerHud
 onready var splash_hud = $SplashHud
 
+onready var intro_norman = preload("res://Dialogue/norman/act2/intro-teens.gd")
+
 func _ready():
 	town_hud.disable()
 	event_hud.disable()
@@ -39,6 +41,7 @@ func on_town_generated():
 	player_hud.open_town_selection()
 
 func on_map_selected():
+	print_debug(">>> Act: %s" % TheTown.get_act())
 	match TheTown.get_act():
 		TheTown.Act.Into: player_hud.open_actor_selection()
 		TheTown.Act.Teens: _run_teens_intro_dialog()
@@ -82,18 +85,14 @@ func on_expedition_pause():
 func on_expedition_resume():
 	player_hud.close_game_paused()
 
-
 func _run_teens_intro_dialog():
-	var actor_path = "norman"
-	# TODO Fix Hardcoded path variable,
+	# TODO Fix Hardcoded actor variable,
 	# works because only one is available
-	var box = DialogueSystem.show_dialogue(
-		"%s/act2/intro-teens" % actor_path
-	)
+	var box = DialogueSystem.show_dialogue(intro_norman.dialogue)
 	if box != null: box.connect_signals(self)
 
 func on_dialogue_closed():
-	player_hud.show_actor_info()
+	splash_hud.visible = false
 	town_hud.initialize()
 	event_hud.disable()
 	TheTown.start()

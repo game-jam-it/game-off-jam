@@ -30,7 +30,6 @@ func _ready():
 	_actor_select.visible = true
 	_actor_box.visible = false
 	_town_box.visible = false
-	_town_box.connect("pressed", self, "_game_over_pressed")
 	_game_over_button.connect("pressed", self, "_game_over_pressed")
 	_town_select_button.connect("pressed", self, "_town_select_pressed")
 
