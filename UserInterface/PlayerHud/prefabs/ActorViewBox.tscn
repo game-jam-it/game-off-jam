@@ -29,7 +29,7 @@ margin_bottom = 272.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
+color = Color( 0.956863, 0.968627, 0.980392, 0.0627451 )
 
 [node name="ActorRect" type="TextureRect" parent="MBox-Texture"]
 unique_name_in_owner = true

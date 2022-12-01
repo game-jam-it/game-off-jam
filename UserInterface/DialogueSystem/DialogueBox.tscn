@@ -77,9 +77,9 @@ script = ExtResource( 9 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 margin_left = 283.0
-margin_top = 480.0
+margin_top = 446.0
 margin_right = 986.0
-margin_bottom = 653.0
+margin_bottom = 619.0
 mouse_filter = 0
 texture = ExtResource( 1 )
 patch_margin_left = 15
@@ -87,36 +87,39 @@ patch_margin_top = 15
 patch_margin_right = 15
 patch_margin_bottom = 15
 
-[node name="TextureRect" type="TextureRect" parent="NinePatchRect"]
-show_behind_parent = true
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 2.0
-margin_top = 2.0
-margin_right = -2.0
-margin_bottom = -2.0
-mouse_filter = 0
-texture = ExtResource( 2 )
-expand = true
-
-[node name="Portraits" type="Control" parent="NinePatchRect/TextureRect"]
+[node name="Portraits" type="Control" parent="NinePatchRect"]
 show_behind_parent = true
 anchor_left = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-margin_top = -2.0
-margin_bottom = -2.0
+margin_bottom = 173.0
 
-[node name="PortraitLeft" type="Sprite" parent="NinePatchRect/TextureRect/Portraits"]
+[node name="PortraitLeft" type="Sprite" parent="NinePatchRect/Portraits"]
+unique_name_in_owner = true
 material = SubResource( 7 )
 texture = ExtResource( 10 )
 offset = Vector2( -255, -50 )
 
-[node name="PortraitRight" type="Sprite" parent="NinePatchRect/TextureRect/Portraits"]
+[node name="PortraitRight" type="Sprite" parent="NinePatchRect/Portraits"]
+unique_name_in_owner = true
 material = SubResource( 8 )
 texture = ExtResource( 10 )
 offset = Vector2( 255, -50 )
 flip_h = true
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect"]
+show_behind_parent = true
+anchor_left = 0.995
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 167.485
+margin_bottom = 528.0
+rect_min_size = Vector2( 169, 699 )
+rect_rotation = 90.0
+mouse_filter = 0
+texture = ExtResource( 2 )
+expand = true
 
 [node name="NameLabel" type="Label" parent="NinePatchRect"]
 anchor_right = 1.0

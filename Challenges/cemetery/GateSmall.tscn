@@ -10,6 +10,7 @@
 [node name="SmallGate" type="Node2D"]
 script = ExtResource( 4 )
 group = 5
+snap = false
 difficulty = 18
 attribute = 1
 
@@ -21,16 +22,12 @@ texture = ExtResource( 3 )
 [node name="Light2D" parent="Sprite" instance=ExtResource( 1 )]
 position = Vector2( -587.5, -500 )
 scale = Vector2( 11.8281, 11.6328 )
-energy = 1.8
-mode = 2
 range_item_cull_mask = 33
 noise = SubResource( 1 )
 
 [node name="Light2D2" parent="Sprite" instance=ExtResource( 1 )]
 position = Vector2( 525, -525 )
 scale = Vector2( 11.8281, 11.6328 )
-energy = 1.8
-mode = 2
 range_item_cull_mask = 33
 noise = SubResource( 1 )
 

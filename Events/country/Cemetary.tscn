@@ -85,6 +85,7 @@ texture = ExtResource( 9 )
 flip_h = true
 
 [node name="-- Test Grid2" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 14 )
 
 [node name="Queue" type="Node2D" parent="."]
@@ -820,7 +821,7 @@ position = Vector2( 277, -224 )
 initiative = null
 
 [node name="Rubble-02" parent="Objects" instance=ExtResource( 37 )]
-position = Vector2( -69, -138 )
+position = Vector2( -60, -141 )
 initiative = null
 
 [node name="Rubble-03" parent="Objects" instance=ExtResource( 37 )]

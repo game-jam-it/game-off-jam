@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://UserInterface/TownHud/prefabs/ExpeditionDialog.gd" type="Script" id=1]
 [ext_resource path="res://UserInterface/fonts/poppins_ui_text.tres" type="DynamicFont" id=2]
 [ext_resource path="res://UserInterface/fonts/poppins_description_text.tres" type="DynamicFont" id=3]
+[ext_resource path="res://UserInterface/assets/ui_background_nineslice.png" type="Texture" id=4]
+[ext_resource path="res://UserInterface/assets/UIGradientTexture.tres" type="Texture" id=5]
+
+[sub_resource type="StyleBoxLine" id=1]
+color = Color( 0.0196078, 0.0196078, 0.0196078, 0.501961 )
+grow_begin = -16.0
+grow_end = -16.0
 
 [node name="ExpeditionDialog" type="Control"]
 anchor_bottom = 1.0
@@ -20,39 +27,66 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 24
-custom_constants/margin_top = 128
+custom_constants/margin_top = 152
 custom_constants/margin_left = 24
-custom_constants/margin_bottom = 84
+custom_constants/margin_bottom = 152
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
+margin_left = 24.0
+margin_top = 152.0
+margin_right = 296.0
+margin_bottom = 568.0
+mouse_filter = 0
+texture = ExtResource( 4 )
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/NinePatchRect"]
+show_behind_parent = true
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 133.0
+margin_top = 3.0
+margin_right = 540.0
+margin_bottom = 268.0
+rect_rotation = 90.0
+mouse_filter = 0
+texture = ExtResource( 5 )
+expand = true
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+visible = false
 margin_left = 24.0
-margin_top = 128.0
+margin_top = 152.0
 margin_right = 296.0
-margin_bottom = 636.0
+margin_bottom = 568.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
+color = Color( 0.0196078, 0.0196078, 0.0196078, 0.752941 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 24.0
-margin_top = 128.0
+margin_top = 152.0
 margin_right = 296.0
-margin_bottom = 636.0
+margin_bottom = 568.0
 custom_constants/separation = 8
 
 [node name="TopMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 margin_right = 272.0
-margin_bottom = 36.0
+margin_bottom = 48.0
 custom_constants/margin_right = 8
-custom_constants/margin_top = 8
+custom_constants/margin_top = 16
 custom_constants/margin_left = 8
-custom_constants/margin_bottom = 8
+custom_constants/margin_bottom = 12
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/TopMargin"]
+visible = false
 margin_left = 8.0
-margin_top = 8.0
+margin_top = 16.0
 margin_right = 264.0
-margin_bottom = 28.0
+margin_bottom = 36.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
@@ -60,67 +94,86 @@ color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 [node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/TopMargin"]
 unique_name_in_owner = true
 margin_left = 8.0
-margin_top = 8.0
+margin_top = 16.0
 margin_right = 264.0
-margin_bottom = 28.0
+margin_bottom = 36.0
 custom_fonts/font = ExtResource( 2 )
 text = "Event Title Here"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+margin_top = 56.0
+margin_right = 272.0
+margin_bottom = 60.0
+custom_constants/separation = 4
+custom_styles/separator = SubResource( 1 )
 
 [node name="InfoMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 44.0
+margin_top = 68.0
 margin_right = 272.0
-margin_bottom = 458.0
+margin_bottom = 334.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 16
-custom_constants/margin_top = 16
+custom_constants/margin_top = 12
 custom_constants/margin_left = 16
 custom_constants/margin_bottom = 16
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/InfoMargin"]
 margin_left = 16.0
-margin_top = 16.0
+margin_top = 12.0
 margin_right = 256.0
-margin_bottom = 398.0
+margin_bottom = 250.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
-[node name="DescrLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoMargin"]
-unique_name_in_owner = true
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/InfoMargin"]
 margin_left = 16.0
-margin_top = 16.0
+margin_top = 12.0
 margin_right = 256.0
-margin_bottom = 398.0
+margin_bottom = 250.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="DescrLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoMargin/MarginContainer"]
+unique_name_in_owner = true
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 232.0
+margin_bottom = 230.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 3 )
-text = "Some Info about the event goes here. In to a long text box that wraps,"
+text = "Some Info about the event goes here. In to a long text box that wraps."
 autowrap = true
 
 [node name="OptionsMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 466.0
+margin_top = 342.0
 margin_right = 272.0
-margin_bottom = 508.0
+margin_bottom = 416.0
 custom_constants/margin_right = 16
-custom_constants/margin_top = 8
+custom_constants/margin_top = 24
 custom_constants/margin_left = 16
-custom_constants/margin_bottom = 8
+custom_constants/margin_bottom = 24
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/OptionsMargin"]
+visible = false
 margin_left = 16.0
-margin_top = 8.0
+margin_top = 24.0
 margin_right = 256.0
-margin_bottom = 34.0
+margin_bottom = 50.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.956863, 0.968627, 0.980392, 0.12549 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/OptionsMargin"]
 margin_left = 16.0
-margin_top = 8.0
+margin_top = 24.0
 margin_right = 256.0
-margin_bottom = 34.0
+margin_bottom = 50.0
 size_flags_horizontal = 11
 size_flags_vertical = 3
 custom_constants/separation = 24

@@ -159,6 +159,7 @@ text = "0/0"
 valign = 1
 
 [node name="PickupStats" type="MarginContainer" parent="VBoxContainer"]
+visible = false
 margin_top = 136.0
 margin_right = 272.0
 margin_bottom = 280.0
@@ -332,9 +333,10 @@ text = "0/0"
 valign = 1
 
 [node name="ChallengeStats" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 284.0
+visible = false
+margin_top = 136.0
 margin_right = 272.0
-margin_bottom = 362.0
+margin_bottom = 214.0
 custom_constants/margin_top = 8
 custom_constants/margin_left = 16
 

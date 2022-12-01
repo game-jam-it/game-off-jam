@@ -22,8 +22,8 @@ onready var text_label = $NinePatchRect/TextLabel
 onready var text_timer = $TextSpeedTimer
 onready var indicator = $NinePatchRect/Indicator
 
-onready var portrait_left = $NinePatchRect/TextureRect/Portraits/PortraitLeft
-onready var portrait_right = $NinePatchRect/TextureRect/Portraits/PortraitRight
+onready var portrait_left = get_node("%PortraitLeft")
+onready var portrait_right = get_node("%PortraitRight")
 
 onready var choice_system = $NinePatchRect/ChoiceSystem
 onready var choice_1_label = $NinePatchRect/ChoiceSystem/ChoicesList/Choice1/TextLabel
