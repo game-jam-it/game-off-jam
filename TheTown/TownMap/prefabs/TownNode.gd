@@ -25,6 +25,9 @@ var hover_color = Color(0.72, 0.72, 0.72)
 
 var mouse_hover = false
 
+# func _ready():
+# 	self.connect("input_event", self, "on_input_event")
+
 func _process(_delta):
 	if TheTown.is_paused() || !TheTown.is_ready():
 		return
@@ -42,11 +45,24 @@ func _process(_delta):
 
 	update()
 
+func _unhandled_input(event):
+	if TheTown.get_state() != TheTown.State.PrepMode:
+		return
+	if event is InputEventMouseButton and event.doubleclick:
+		if mouse_hover: 
+			print("Mouse Double Clicked on %s" % name)
+			# TheTown -> Overlay -> TownHud -> on ...
+			Overlay.town_hud.on_start_expedition(coords)
+
 func _draw():
 	# FixMe: Untill we have an other indicator
 	# the debug box is the only way to show hovers
 	# if !TheTown.draw_debug:
 	# 	return
+	var scn = TheTown.get_events().get_scene(coords)
+	if scn == null || scn.is_locked() || scn.is_complete():
+		return
+
 	var offset = $Shape.shape.extents
 	var render = Rect2($Shape.position - offset, offset * 2.0)
 	if TheTown.is_paused():

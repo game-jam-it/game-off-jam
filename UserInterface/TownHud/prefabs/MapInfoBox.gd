@@ -4,6 +4,8 @@ var _order = 0
 var _locked = 0
 var _coords = Vector2.ZERO
 
+signal start_expedition(coords)
+
 onready var _info_box = get_node("%InfoBox")
 
 onready var _locked_box = get_node("%LockedBox")
@@ -43,21 +45,25 @@ func initialize(coords: Vector2, map: EventMap):
 
 
 func on_mouse_exited():
-	TheTown.on_event_clear(_coords)
+	if TheTown.get_state() == TheTown.State.PrepMode:
+		TheTown.on_event_clear(_coords)
 
 func on_mouse_entered():
-	TheTown.on_event_focused(_coords)
+	if TheTown.get_state() == TheTown.State.PrepMode:
+		TheTown.on_event_focused(_coords)
 
 func on_gui_input(event):
-	if _locked:
+	if _locked || TheTown.is_paused():
 		# TODO [AUDIO]: Play locked sound
 		return
-	if TheTown.is_paused():
+	if TheTown.get_state() != TheTown.State.PrepMode:
 		return
-	if event is InputEventMouseButton and event.pressed:
-		TheTown.cancel_selected_event(_coords)
-		TheTown.on_event_selected(_coords)
-
+	if event is InputEventMouseButton:
+		if event.pressed:
+			TheTown.cancel_selected_event(_coords)
+			TheTown.on_event_selected(_coords)
+		if event.doubleclick:
+			emit_signal("start_expedition", _coords)
 
 func _on_map_unlocked(map):
 	map.disconnect("map_unlocked", self, "_on_map_unlocked")

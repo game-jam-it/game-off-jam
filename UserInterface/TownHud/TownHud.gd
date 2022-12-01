@@ -58,8 +58,8 @@ func on_event_selected(coords:Vector2):
 		expedition_popup.set_info(event.name, event.descr)
 
 
-func on_start_expedition():
-	var coords = expedition_popup.coords
+func on_start_expedition(coords):
+	#var coords = expedition_popup.coords
 	expedition_popup.coords = null
 	expedition_popup.visible = false
 	TheTown.start_selected_event(coords)
@@ -78,6 +78,7 @@ func setup_event_list():
 	for key in scenes:
 		var box = map_box.instance()
 		box.initialize(key, scenes[key])
+		box.connect("start_expedition", self, "on_start_expedition")
 		map_list.add_child(box)
 	var list = map_list.get_children()
 	list.sort_custom(self, 'map_sort')
