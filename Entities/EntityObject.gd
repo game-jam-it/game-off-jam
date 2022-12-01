@@ -14,6 +14,7 @@ signal free_entity(entity)
 signal unhide_entity(entity)
 
 export(Group) var group = Group.None
+export(bool) var snap = true
 export(bool) var hidden = false
 export(float) var initiative = 1.0
 
@@ -38,8 +39,9 @@ func set_grid(grid):
 	_grid = grid
 	_free = false;
 	var list = get_children()
-	var hex = _grid.hexgrid.pixel_to_hex(position)
-	self.position = _grid.hexgrid.hex_to_pixel(hex)
+	if self.snap:
+		var hex = _grid.hexgrid.pixel_to_hex(position)
+		self.position = _grid.hexgrid.hex_to_pixel(hex)
 	if not self.hidden:
 		_grid.add_entity(self)
 		for node in list:

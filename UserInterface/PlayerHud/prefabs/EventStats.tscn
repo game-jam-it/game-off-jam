@@ -159,6 +159,7 @@ text = "0/0"
 valign = 1
 
 [node name="PickupStats" type="MarginContainer" parent="VBoxContainer"]
+visible = false
 margin_top = 136.0
 margin_right = 272.0
 margin_bottom = 280.0

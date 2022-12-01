@@ -37,6 +37,7 @@ func on_dialogue_closed():
 """
 
 func _home_base():
-	var box = DialogueSystem.show_dialogue("norman/act2/home-base")
-	if box != null: box.connect_signals(self)
+	# var box = DialogueSystem.show_dialogue("norman/act2/home-base")
+	# if box != null: box.connect_signals(self)
 	self.action = Action.None
+	pass

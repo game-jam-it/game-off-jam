@@ -2,7 +2,7 @@ extends Control
 
 var coords = null
 
-signal start_expedition()
+signal start_expedition(coords)
 signal cancel_expedition()
 
 onready var title_txt = get_node('%TitleLabel')
@@ -28,7 +28,7 @@ func set_info(title, descr):
 	descr_txt.text = descr
 
 func on_start_pressed():
-	emit_signal("start_expedition")
+	emit_signal("start_expedition", coords)
 
 func on_cancel_pressed():
 	self.visible = false

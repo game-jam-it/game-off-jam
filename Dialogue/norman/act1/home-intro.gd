@@ -5,7 +5,7 @@ const dialogue = [
     "Name": "Norman",
     "Text": "Well, I've arrived, not much to do left but unpack and sleep through the night, it's pretty late.",
     "Speaking": "left",
-    "PortraitLeft": "portrait_nerd",
+    "PortraitLeft": "norman-a",
     "PortraitRight": "",
     "ShowExtraInfo": "",
     "Choice": false
@@ -14,7 +14,7 @@ const dialogue = [
     "Name": "Norman",
     "Text": "My room's upstairs, best get to it.",
     "Speaking": "left",
-    "PortraitLeft": "portrait_nerd",
+    "PortraitLeft": "norman-a",
     "PortraitRight": "",
     "ShowExtraInfo": "",
     "Choice": false
@@ -22,8 +22,8 @@ const dialogue = [
   {
     "Name": "Narrator",
     "Text": "As you walk up the stairs a red glow becomes visible trough the window.",
-    "Speaking": "right",
-    "PortraitLeft": "portrait_nerd",
+    "Speaking": "left",
+    "PortraitLeft": "norman-e",
     "PortraitRight": "",
     "ShowExtraInfo": "",
     "Choice": false
@@ -32,7 +32,7 @@ const dialogue = [
     "Name": "Norman",
     "Text": "That's odd, perhaps it's related to the goings on in the town.",
     "Speaking": "left",
-    "PortraitLeft": "portrait_nerd",
+    "PortraitLeft": "norman-b",
     "PortraitRight": "",
     "ShowExtraInfo": "",
     "Choice": true,

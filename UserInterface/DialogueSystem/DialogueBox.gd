@@ -22,8 +22,16 @@ onready var text_label = $NinePatchRect/TextLabel
 onready var text_timer = $TextSpeedTimer
 onready var indicator = $NinePatchRect/Indicator
 
-onready var portrait_left = $NinePatchRect/TextureRect/Portraits/PortraitLeft
-onready var portrait_right = $NinePatchRect/TextureRect/Portraits/PortraitRight
+# Jam hack in some extra fluff
+onready var hack_it_a = get_node("%HackIt-01")
+onready var hack_it_b = get_node("%HackIt-02")
+onready var hack_it_c = get_node("%HackIt-03")
+
+onready var slacher_arm = get_node("%SlacherArm")
+onready var slacher_body = get_node("%SlacherBody")
+
+onready var portrait_left = get_node("%PortraitLeft")
+onready var portrait_right = get_node("%PortraitRight")
 
 onready var choice_system = $NinePatchRect/ChoiceSystem
 onready var choice_1_label = $NinePatchRect/ChoiceSystem/ChoicesList/Choice1/TextLabel
@@ -36,41 +44,63 @@ func _ready():
 	assert(dialogue, "No dialogue found")
 	assert(dialogue is Array, "No dialogue found")
 	self.connect("tree_exiting", self, "_on_tree_exiting")
+	hack_it_a.visible = false
+	hack_it_b.visible = false
+	hack_it_c.visible = false
+	indicator.connect("gui_input", self, "_on_input_next")
+	choice_1_label.connect("gui_input", self, "_on_input_choice_a")
+	choice_1_indicator.connect("gui_input", self, "_on_input_choice_a")
+	choice_2_label.connect("gui_input", self, "_on_input_choice_b")
+	choice_2_indicator.connect("gui_input", self, "_on_input_choice_b")
 	next_phrase()
 
+func _on_input_next(event):
+	if !indicator.visible:
+		return
+	if !phrase_finished:
+		text_label.visible_characters = len(text_label.text)
+	elif event is InputEventMouseButton and event.pressed:
+		next_phrase()
+	
+func _on_input_choice_a(event):
+	if !choice_system.visible:
+		return
+	if event is InputEventMouseButton and event.pressed:
+		print("_on_input_choice_a Clicked on %s" % name)
+		# If the dialogue should be cancelled call close_dialogue as the choice_method
+		_execute_choise(dialogue[current_phrase]["Choice1"])
+		next_phrase()
+
+func _on_input_choice_b(event):
+	if !choice_system.visible:
+		return
+	if event is InputEventMouseButton and event.pressed:
+		print("_on_input_choice_b Clicked on %s" % name)
+		# If the dialogue should be cancelled call close_dialogue as the choice_method
+		_execute_choise(dialogue[current_phrase]["Choice2"])
+		next_phrase()
+
 func _input(event) -> void:
+
 	if event.is_action_pressed("dialogue_next"):
 		if phrase_finished:
 			if choice_phrase:
-				# Get the method to call
-				var choice_array: Array
-				var choice_method: String
-				var choice_method_parameter: String = ""
 				if selected_choice == 1:
-					choice_array = dialogue[current_phrase]["Choice1"]
-					choice_method = choice_array[1]
-					if choice_array.size() >= 3:
-						choice_method_parameter = choice_array[2]
-				if selected_choice == 2:
-					choice_array = dialogue[current_phrase]["Choice2"]
-					choice_method = choice_array[1]
-					if choice_array.size() >= 3:
-						choice_method_parameter = choice_array[2]
-				if self.has_method(choice_method):
-					if choice_method_parameter != "":
-						print("Calling method: " + choice_method + " with parameter: " + choice_method_parameter)
-						call(choice_method, choice_method_parameter)
-					else:
-						call(choice_method)
+					_execute_choise(dialogue[current_phrase]["Choice1"])
+				elif selected_choice == 2:
+					_execute_choise(dialogue[current_phrase]["Choice2"])
 				# If the dialogue should be cancelled call close_dialogue as the choice_method
 				next_phrase()
 			else:
 				next_phrase()
 		else:
 			text_label.visible_characters = len(text_label.text)
-	
+	elif !phrase_finished and event is InputEventMouseButton and event.pressed:
+		text_label.visible_characters = len(text_label.text)
+
 	# Selecting a choice
 	if choice_phrase:
+		# FixMe: These need to be clamped
 		if event.is_action_pressed("ui_up"):
 			self.selected_choice -= 1
 		if event.is_action_pressed("ui_down"):
@@ -81,6 +111,19 @@ func _process(_delta) -> void:
 		indicator.visible = false
 		return
 	indicator.visible = phrase_finished
+
+
+func _execute_choise(command):
+	var parameter: String = ""
+	var method = command[1]
+	if command.size() >= 3:
+		parameter = command[2]
+	if self.has_method(method):
+		if parameter != "":
+			print("Calling method: " + method + " with parameter: " + parameter)
+			call(method, parameter)
+		else:
+			call(method)
 
 func _on_tree_exiting():
 	self.disconnect("tree_exiting", self, "_on_tree_exiting")
@@ -146,7 +189,12 @@ func next_phrase() -> void:
 	var portrait_left_texture: String = dialogue[current_phrase]["PortraitLeft"]
 	var portrait_right_texture: String = dialogue[current_phrase]["PortraitRight"]
 	var currently_talking: String = dialogue[current_phrase]["Speaking"]
-	set_portraits(portrait_left_texture, portrait_right_texture, currently_talking)
+
+	# End Jam Hacked setup
+	if dialogue[current_phrase].has("Hack"):
+		set_hacked(dialogue[current_phrase]["Hack"], portrait_left_texture)
+	else:
+		set_portraits(portrait_left_texture, portrait_right_texture, currently_talking)
 	
 	# Give choice options
 	choice_phrase = dialogue[current_phrase]["Choice"]
@@ -166,6 +214,61 @@ func next_phrase() -> void:
 	
 	phrase_finished = true
 	return
+
+func set_hacked(step, portrait_left_texture):
+	portrait_right.texture = null
+	if portrait_left_texture != "":
+		var texture_path: String = "res://Dialogue/CharacterPortraits/%s.png" % portrait_left_texture
+		var portrait_texture: Resource = load(texture_path)
+		if portrait_texture is Texture:
+			portrait_left.texture = portrait_texture
+		else:
+			portrait_left.texture = null
+	else:
+		portrait_left.texture = null
+
+	match step:
+		0: 
+			portrait_left.visible = true
+			hack_it_a.visible = false
+			hack_it_b.visible = false
+			hack_it_c.visible = false
+			portrait_left.material.set("shader_param/grayscale", false)
+			slacher_arm.material.set("shader_param/grayscale", true)
+			slacher_body.material.set("shader_param/grayscale", true)
+		1:
+			portrait_left.visible = false
+			hack_it_a.visible = true
+			hack_it_b.visible = false
+			hack_it_c.visible = false
+			hack_it_a.material.set("shader_param/grayscale", false)
+			slacher_arm.material.set("shader_param/grayscale", true)
+			slacher_body.material.set("shader_param/grayscale", true)
+		2:
+			portrait_left.visible = false
+			hack_it_a.visible = false
+			hack_it_b.visible = true
+			hack_it_c.visible = false
+			hack_it_b.material.set("shader_param/grayscale", false)
+			slacher_arm.material.set("shader_param/grayscale", true)
+			slacher_body.material.set("shader_param/grayscale", true)
+		3:
+			portrait_left.visible = false
+			hack_it_a.visible = false
+			hack_it_b.visible = false
+			hack_it_c.visible = true
+			hack_it_c.material.set("shader_param/grayscale", false)
+			slacher_arm.material.set("shader_param/grayscale", true)
+			slacher_body.material.set("shader_param/grayscale", true)
+		4:
+			portrait_left.visible = false
+			hack_it_a.visible = false
+			hack_it_b.visible = false
+			hack_it_c.visible = true
+			hack_it_c.material.set("shader_param/grayscale", true)
+			slacher_arm.material.set("shader_param/grayscale", false)
+			slacher_body.material.set("shader_param/grayscale", false)
+		
 
 func set_portraits(portrait_left_texture: String, portrait_right_texture: String, currently_talking: String) -> void:
 	# Set the left portrait

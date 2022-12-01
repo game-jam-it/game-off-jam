@@ -1,34 +1,30 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://UserInterface/assets/ui_background_nineslice.png" type="Texture" id=1]
 [ext_resource path="res://UserInterface/assets/UIGradientTexture.tres" type="Texture" id=2]
 [ext_resource path="res://UserInterface/assets/chat_choice_indicator.png" type="Texture" id=3]
 [ext_resource path="res://UserInterface/fonts/poppins_ui_text.tres" type="DynamicFont" id=4]
-[ext_resource path="res://UserInterface/fonts/Poppins-Bold.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://UserInterface/fonts/popins-header-18-3.tres" type="DynamicFont" id=5]
 [ext_resource path="res://UserInterface/fonts/Poppins-Regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://UserInterface/assets/chat_next_indicator.png" type="Texture" id=7]
 [ext_resource path="res://UserInterface/DialogueSystem/grayscale.gdshader" type="Shader" id=8]
 [ext_resource path="res://UserInterface/DialogueSystem/DialogueBox.gd" type="Script" id=9]
-[ext_resource path="res://Dialogue/CharacterPortraits/portrait_nerd.png" type="Texture" id=10]
+[ext_resource path="res://Dialogue/CharacterPortraits/norman-b.png" type="Texture" id=10]
+[ext_resource path="res://Dialogue/CharacterPortraits/norman-a.png" type="Texture" id=11]
+[ext_resource path="res://Dialogue/CharacterPortraits/norman-d.png" type="Texture" id=12]
+[ext_resource path="res://Dialogue/CharacterPortraits/gardner-a.png" type="Texture" id=13]
+[ext_resource path="res://Dialogue/CharacterPortraits/norman-c.png" type="Texture" id=14]
+[ext_resource path="res://Dialogue/CharacterPortraits/gardner-as-arm.png" type="Texture" id=15]
+[ext_resource path="res://Dialogue/CharacterPortraits/gardner-as-body.png" type="Texture" id=16]
+[ext_resource path="res://UserInterface/fonts/poppins-descr-16-0.tres" type="DynamicFont" id=17]
 
 [sub_resource type="ShaderMaterial" id=7]
 shader = ExtResource( 8 )
-shader_param/grayscale = true
+shader_param/grayscale = false
 
 [sub_resource type="ShaderMaterial" id=8]
 shader = ExtResource( 8 )
 shader_param/grayscale = true
-
-[sub_resource type="DynamicFont" id=5]
-size = 18
-outline_size = 3
-outline_color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
-use_filter = true
-font_data = ExtResource( 5 )
-
-[sub_resource type="DynamicFont" id=2]
-use_filter = true
-font_data = ExtResource( 6 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "Bounce"
@@ -74,12 +70,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 9 )
+text_speed = 0.02
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 margin_left = 283.0
-margin_top = 480.0
+margin_top = 446.0
 margin_right = 986.0
-margin_bottom = 653.0
+margin_bottom = 619.0
 mouse_filter = 0
 texture = ExtResource( 1 )
 patch_margin_left = 15
@@ -87,43 +84,124 @@ patch_margin_top = 15
 patch_margin_right = 15
 patch_margin_bottom = 15
 
+[node name="Portraits" type="Control" parent="NinePatchRect"]
+show_behind_parent = true
+anchor_left = 0.5
+anchor_right = 0.5
+margin_bottom = 173.0
+
+[node name="PortraitLeft" type="Sprite" parent="NinePatchRect/Portraits"]
+unique_name_in_owner = true
+material = SubResource( 7 )
+position = Vector2( -220.9, -69.8 )
+scale = Vector2( 0.24, 0.24 )
+texture = ExtResource( 11 )
+offset = Vector2( -255, -50 )
+
+[node name="HackIt-01" type="Sprite" parent="NinePatchRect/Portraits"]
+unique_name_in_owner = true
+material = SubResource( 7 )
+position = Vector2( -220.9, -69.8 )
+scale = Vector2( 0.24, 0.24 )
+texture = ExtResource( 10 )
+offset = Vector2( -255, -50 )
+
+[node name="PortraitRight2" type="Sprite" parent="NinePatchRect/Portraits/HackIt-01"]
+unique_name_in_owner = true
+visible = false
+material = SubResource( 8 )
+position = Vector2( -635.834, -79.9998 )
+scale = Vector2( 0.8, 0.8 )
+z_index = -1
+texture = ExtResource( 13 )
+offset = Vector2( 255, -50 )
+
+[node name="HackIt-02" type="Sprite" parent="NinePatchRect/Portraits"]
+unique_name_in_owner = true
+visible = false
+material = SubResource( 7 )
+use_parent_material = true
+position = Vector2( -220.9, -69.8 )
+scale = Vector2( 0.24, 0.24 )
+texture = ExtResource( 14 )
+offset = Vector2( -255, -50 )
+
+[node name="PortraitRight3" type="Sprite" parent="NinePatchRect/Portraits/HackIt-02"]
+unique_name_in_owner = true
+material = SubResource( 8 )
+position = Vector2( -565, -21.6664 )
+scale = Vector2( 0.95, 0.95 )
+z_index = -1
+texture = ExtResource( 16 )
+offset = Vector2( 255, -50 )
+
+[node name="PortraitRight4" type="Sprite" parent="NinePatchRect/Portraits/HackIt-02"]
+unique_name_in_owner = true
+material = SubResource( 8 )
+position = Vector2( -756.667, -4.99976 )
+rotation = 0.479966
+scale = Vector2( 0.95, 0.95 )
+z_index = 1
+texture = ExtResource( 15 )
+offset = Vector2( 255, -50 )
+
+[node name="HackIt-03" type="Sprite" parent="NinePatchRect/Portraits"]
+unique_name_in_owner = true
+visible = false
+material = SubResource( 7 )
+position = Vector2( -220.9, -69.8 )
+scale = Vector2( 0.24, 0.24 )
+texture = ExtResource( 12 )
+offset = Vector2( -255, -50 )
+
+[node name="SlacherArm" type="Sprite" parent="NinePatchRect/Portraits/HackIt-03"]
+unique_name_in_owner = true
+material = SubResource( 8 )
+position = Vector2( -552.5, -0.83313 )
+scale = Vector2( 0.95, 0.95 )
+z_index = 1
+texture = ExtResource( 15 )
+offset = Vector2( 255, -50 )
+
+[node name="SlacherBody" type="Sprite" parent="NinePatchRect/Portraits/HackIt-03"]
+unique_name_in_owner = true
+material = SubResource( 8 )
+position = Vector2( -565, -21.6664 )
+scale = Vector2( 0.95, 0.95 )
+z_index = -1
+texture = ExtResource( 16 )
+offset = Vector2( 255, -50 )
+
+[node name="PortraitRight" type="Sprite" parent="NinePatchRect/Portraits"]
+unique_name_in_owner = true
+material = SubResource( 8 )
+position = Vector2( 227.1, -67.8 )
+scale = Vector2( 0.24, 0.24 )
+texture = ExtResource( 13 )
+offset = Vector2( 255, -50 )
+flip_h = true
+
 [node name="TextureRect" type="TextureRect" parent="NinePatchRect"]
 show_behind_parent = true
+anchor_left = 0.995
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 2.0
 margin_top = 2.0
-margin_right = -2.0
-margin_bottom = -2.0
+margin_right = 167.485
+margin_bottom = 528.0
+rect_min_size = Vector2( 169, 699 )
+rect_rotation = 90.0
 mouse_filter = 0
 texture = ExtResource( 2 )
 expand = true
-
-[node name="Portraits" type="Control" parent="NinePatchRect/TextureRect"]
-show_behind_parent = true
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_top = -2.0
-margin_bottom = -2.0
-
-[node name="PortraitLeft" type="Sprite" parent="NinePatchRect/TextureRect/Portraits"]
-material = SubResource( 7 )
-texture = ExtResource( 10 )
-offset = Vector2( -255, -50 )
-
-[node name="PortraitRight" type="Sprite" parent="NinePatchRect/TextureRect/Portraits"]
-material = SubResource( 8 )
-texture = ExtResource( 10 )
-offset = Vector2( 255, -50 )
-flip_h = true
 
 [node name="NameLabel" type="Label" parent="NinePatchRect"]
 anchor_right = 1.0
 margin_left = 12.0
 margin_top = 8.0
 margin_bottom = 38.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 5 )
 text = "<Speaker name>"
 
 [node name="TextLabel" type="RichTextLabel" parent="NinePatchRect"]
@@ -134,13 +212,14 @@ margin_top = 38.0
 margin_right = -8.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_fonts/bold_font = ExtResource( 4 )
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/normal_font = ExtResource( 17 )
 bbcode_enabled = true
 bbcode_text = "<Text>"
 text = "<Text>"
 scroll_active = false
 
 [node name="Indicator" type="TextureRect" parent="NinePatchRect"]
+unique_name_in_owner = true
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -181,6 +260,7 @@ stretch_mode = 4
 margin_left = 24.0
 margin_right = 106.0
 margin_bottom = 23.0
+mouse_filter = 1
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 9 )
 text = "<Choice 1>"
@@ -201,6 +281,7 @@ stretch_mode = 4
 margin_left = 24.0
 margin_right = 110.0
 margin_bottom = 23.0
+mouse_filter = 1
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 10 )
 text = "<Choice 2>"
