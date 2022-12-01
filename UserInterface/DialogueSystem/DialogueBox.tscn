@@ -1,10 +1,10 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://UserInterface/assets/ui_background_nineslice.png" type="Texture" id=1]
 [ext_resource path="res://UserInterface/assets/UIGradientTexture.tres" type="Texture" id=2]
 [ext_resource path="res://UserInterface/assets/chat_choice_indicator.png" type="Texture" id=3]
 [ext_resource path="res://UserInterface/fonts/poppins_ui_text.tres" type="DynamicFont" id=4]
-[ext_resource path="res://UserInterface/fonts/Poppins-Bold.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://UserInterface/fonts/popins-header-18-3.tres" type="DynamicFont" id=5]
 [ext_resource path="res://UserInterface/fonts/Poppins-Regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://UserInterface/assets/chat_next_indicator.png" type="Texture" id=7]
 [ext_resource path="res://UserInterface/DialogueSystem/grayscale.gdshader" type="Shader" id=8]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Dialogue/CharacterPortraits/norman-c.png" type="Texture" id=14]
 [ext_resource path="res://Dialogue/CharacterPortraits/gardner-as-arm.png" type="Texture" id=15]
 [ext_resource path="res://Dialogue/CharacterPortraits/gardner-as-body.png" type="Texture" id=16]
+[ext_resource path="res://UserInterface/fonts/poppins-descr-16-0.tres" type="DynamicFont" id=17]
 
 [sub_resource type="ShaderMaterial" id=7]
 shader = ExtResource( 8 )
@@ -24,17 +25,6 @@ shader_param/grayscale = false
 [sub_resource type="ShaderMaterial" id=8]
 shader = ExtResource( 8 )
 shader_param/grayscale = true
-
-[sub_resource type="DynamicFont" id=5]
-size = 18
-outline_size = 3
-outline_color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
-use_filter = true
-font_data = ExtResource( 5 )
-
-[sub_resource type="DynamicFont" id=2]
-use_filter = true
-font_data = ExtResource( 6 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "Bounce"
@@ -80,6 +70,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 9 )
+text_speed = 0.02
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 margin_left = 283.0
@@ -210,7 +201,7 @@ anchor_right = 1.0
 margin_left = 12.0
 margin_top = 8.0
 margin_bottom = 38.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 5 )
 text = "<Speaker name>"
 
 [node name="TextLabel" type="RichTextLabel" parent="NinePatchRect"]
@@ -221,13 +212,14 @@ margin_top = 38.0
 margin_right = -8.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_fonts/bold_font = ExtResource( 4 )
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/normal_font = ExtResource( 17 )
 bbcode_enabled = true
 bbcode_text = "<Text>"
 text = "<Text>"
 scroll_active = false
 
 [node name="Indicator" type="TextureRect" parent="NinePatchRect"]
+unique_name_in_owner = true
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -268,6 +260,7 @@ stretch_mode = 4
 margin_left = 24.0
 margin_right = 106.0
 margin_bottom = 23.0
+mouse_filter = 1
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 9 )
 text = "<Choice 1>"
@@ -288,6 +281,7 @@ stretch_mode = 4
 margin_left = 24.0
 margin_right = 110.0
 margin_bottom = 23.0
+mouse_filter = 1
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 10 )
 text = "<Choice 2>"

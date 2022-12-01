@@ -3,8 +3,5 @@
 [ext_resource path="res://UserInterface/fonts/Poppins-Regular.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 14
-outline_size = 2
-outline_color = Color( 0.0392157, 0.0392157, 0.0392157, 1 )
 use_filter = true
 font_data = ExtResource( 1 )

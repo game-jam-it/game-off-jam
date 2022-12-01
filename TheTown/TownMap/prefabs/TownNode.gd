@@ -31,7 +31,6 @@ var mouse_hover = false
 func _process(_delta):
 	if TheTown.is_paused() || !TheTown.is_ready():
 		return
-
 	var offset = Vector2(size, size)
 	var bounds = Rect2(global_position - offset, offset * 2.0)
 	if bounds.has_point(get_global_mouse_position()):
@@ -42,7 +41,6 @@ func _process(_delta):
 		if mouse_hover:
 			mouse_hover = false
 			emit_signal("mouse_exited_node", coords)
-
 	update()
 
 func _unhandled_input(event):
