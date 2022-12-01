@@ -19,6 +19,7 @@ onready var _label_skills = get_node("%BaseSkills")
 onready var _game_over_button = get_node("%ExitGameOver")
 onready var _town_select_button = get_node("%TownSelectButton")
 
+var intro_norman = preload("res://Dialogue/norman/act2/intro-teens.gd")
 var ActorBoxPrefab = preload("res://UserInterface/PlayerHud/prefabs/ActorViewBox.tscn")
 
 func _ready():
@@ -89,9 +90,27 @@ func open_town_selection():
 	_town_box.visible = true
 
 func _town_select_pressed():
+	match TheTown.get_act():
+		TheTown.Act.Into: _open_actor_selection()
+		TheTown.Act.Teens: _run_teens_intro_dialog()
+
+func _open_actor_selection():
 	_actor_select.visible = true
 	_actor_box.visible = true
 	_town_box.visible = false
+
+func _run_teens_intro_dialog():
+	# TODO Fix Hardcoded actor variable,
+	# works because only one is available
+	var box = DialogueSystem.show_dialogue(intro_norman.dialogue)
+	if box != null: box.connect_signals(self)
+
+func on_dialogue_closed():
+	_town_box.visible = false
+	_actor_box.visible = false
+	_actor_select.visible = false
+	_player_info.visible = true
+	emit_signal("actor_selected")
 
 func _setup_actors_list():
 	# FIXME: This a is fast cheat setup

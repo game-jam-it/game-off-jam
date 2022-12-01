@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "EnemyEntity",
+"class": "BonesEntity",
+"language": "GDScript",
+"path": "res://Enemies/prefabs/cemetery/Bones.gd"
+}, {
 "base": "EntityObject",
 "class": "Challenge",
 "language": "GDScript",
@@ -225,6 +230,7 @@ _global_script_classes=[ {
 "path": "res://Enemies/prefabs/cemetery/Zombie.gd"
 } ]
 _global_script_class_icons={
+"BonesEntity": "",
 "Challenge": "",
 "Character": "",
 "CharacterEffect": "",
