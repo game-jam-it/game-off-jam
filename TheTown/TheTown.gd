@@ -163,6 +163,8 @@ func is_paused():
 func start():
 	self._set_town_state(State.PrepMode)
 	camera.zoom_reset()
+	if nodes.start_node != null:
+		start_selected_event(nodes.start_node.coords)
 
 func _set_town_state(value):
 	if self._state != value:

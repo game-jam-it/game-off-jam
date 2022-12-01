@@ -56,6 +56,7 @@ func build_dev():
 var _into_key = [{
 	"size": 2,
 	"order": 90,
+	"intro": true,
 	"locked": false,
 	"offset": Vector2(55.0,-10.0),
 	"name": "A Home",
@@ -64,6 +65,7 @@ var _into_key = [{
 },{
 	"size": 4,
 	"order": 80,
+	"intro": false,
 	"locked": true,
 	"offset": Vector2(45.0,-15.0),
 	"name": "The Cemetary",

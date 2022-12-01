@@ -16,7 +16,8 @@ var events = {}
 # var country_event = {}
 # var outskirt_event = {}
 
-var event_coords
+var start_node = null
+var event_coords = null
 
 var TownNode = preload("res://TheTown/TownMap/prefabs/TownNode.tscn")
 
@@ -49,6 +50,7 @@ func clear():
 func create_key(info, size: float):
 	# TODO Validate info map or setup a type object/resource for it
 	var node = self._make_mode(info, info.size, size, info.offset)
+	if info.intro: start_node = node
 	nodes[node.coords] = node
 	self.add_child(node)
 
