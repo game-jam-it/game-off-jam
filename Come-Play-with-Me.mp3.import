@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Come-Play-with-Me.mp3-d5d47e1e17588ee8c2c9fbffe479559a.mp3str"
+
+[deps]
+
+source_file="res://Come-Play-with-Me.mp3"
+dest_files=[ "res://.import/Come-Play-with-Me.mp3-d5d47e1e17588ee8c2c9fbffe479559a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

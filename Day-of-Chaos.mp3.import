@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Day-of-Chaos.mp3-d589e0d1a104e688947840649ba6f973.mp3str"
+
+[deps]
+
+source_file="res://Day-of-Chaos.mp3"
+dest_files=[ "res://.import/Day-of-Chaos.mp3-d589e0d1a104e688947840649ba6f973.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
