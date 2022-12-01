@@ -108,9 +108,9 @@ func _home_closer():
 	var box = DialogueSystem.show_dialogue(restless.dialogue)
 	if box != null: box.connect_signals(self)
 	# TODO Setup Act2 maps and data and enable
-	print("[%s] TODO Enable Atc2" % name)
-	#self.action = Action.CloseAct
-	self.action = Action.CloseGame
+	#print("[%s] TODO Enable Atc2" % name)
+	self.action = Action.CloseAct
+	#self.action = Action.CloseGame
 
 func _home_game_over():
 	# TODO: game over dialog

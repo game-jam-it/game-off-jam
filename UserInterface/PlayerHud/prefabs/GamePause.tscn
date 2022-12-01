@@ -6,7 +6,7 @@
 [ext_resource path="res://UserInterface/PlayerHud/prefabs/GameStats.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UserInterface/PlayerHud/prefabs/EventStats.tscn" type="PackedScene" id=6]
 [ext_resource path="res://UserInterface/assets/ui_background_nineslice.png" type="Texture" id=7]
-[ext_resource path="res://UserInterface/assets/UIGradientTexture.tres" type="Texture" id=8]
+[ext_resource path="res://UserInterface/style/UIGradientTexture.tres" type="Texture" id=8]
 
 [sub_resource type="StyleBoxLine" id=1]
 content_margin_left = 16.0

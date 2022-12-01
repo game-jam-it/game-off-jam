@@ -5,7 +5,7 @@
 [ext_resource path="res://UserInterface/assets/portrait_default_flip.png" type="Texture" id=3]
 [ext_resource path="res://UserInterface/EventHud/prefabs/EnemyInfoBox.gd" type="Script" id=4]
 [ext_resource path="res://UserInterface/assets/ui_background_nineslice.png" type="Texture" id=6]
-[ext_resource path="res://UserInterface/assets/UIGradientTexture.tres" type="Texture" id=7]
+[ext_resource path="res://UserInterface/style/UIGradientTexture.tres" type="Texture" id=7]
 
 [node name="EnemyInfoBox" type="MarginContainer"]
 margin_right = 236.0

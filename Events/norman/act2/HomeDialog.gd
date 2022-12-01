@@ -8,6 +8,8 @@ enum Action {
 	None,
 }
 
+onready var base = preload("res://Dialogue/norman/act2/home-base.gd")
+
 # State defines the dialogue to open
 # when the player enters the map event.
 var state = State.Base
@@ -19,6 +21,7 @@ var action = Action.None
 func _ready():
 	self._init_goals()
 	self._type = Type.Dialogue
+	TheTown.connect("game_stats_updated", self, "_on_game_stats_updated")
 
 func _init_goals():
 	self._goals =  EventMap.new_goals()
@@ -37,7 +40,18 @@ func on_dialogue_closed():
 """
 
 func _home_base():
-	# var box = DialogueSystem.show_dialogue("norman/act2/home-base")
-	# if box != null: box.connect_signals(self)
+	var box = DialogueSystem.show_dialogue(base.dialogue)
+	if box != null: box.connect_signals(self)
 	self.action = Action.None
 	pass
+
+func _on_game_stats_updated(stats):
+	# FixMe This does not complete the map ...
+	# also the other act2 maps don't compelte ether
+	print("[%s] >>> _on_bones_died" % [name])
+	if self._goals.lore.done == 0:
+		if stats.banish.boss.done == stats.banish.boss.total:
+			print("[%s] >>> _on_bones_died +++" % [name])
+			self._goals.lore.done = 1
+			emit_signal("stats_updated", _goals)
+			self.mark_complete()

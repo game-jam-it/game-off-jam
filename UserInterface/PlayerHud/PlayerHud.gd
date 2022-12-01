@@ -6,8 +6,10 @@ onready var _game_over = $GameOver
 onready var _game_pause = $GamePause
 onready var _player_info = $PlayerInfoBox
 
+onready var _town_box = get_node("%TownSelectBox")
+onready var _actor_box = get_node("%ActorSelectBox")
+
 onready var _actor_select = get_node("%ActorSelector")
-onready var _actor_select_box = get_node("%ActorSelectBox")
 onready var _actor_select_list = get_node("%ActorSelectList")
 
 onready var _label_name = get_node("%BaseName")
@@ -15,7 +17,9 @@ onready var _label_stats = get_node("%BaseStats")
 onready var _label_skills = get_node("%BaseSkills")
 
 onready var _game_over_button = get_node("%ExitGameOver")
+onready var _town_select_button = get_node("%TownSelectButton")
 
+var intro_norman = preload("res://Dialogue/norman/act2/intro-teens.gd")
 var ActorBoxPrefab = preload("res://UserInterface/PlayerHud/prefabs/ActorViewBox.tscn")
 
 func _ready():
@@ -24,9 +28,11 @@ func _ready():
 	_game_over.visible = false
 	_game_pause.visible = false
 	_player_info.visible = false
-	_actor_select.visible = false
-	_actor_select_box.visible = false
+	_actor_select.visible = true
+	_actor_box.visible = false
+	_town_box.visible = false
 	_game_over_button.connect("pressed", self, "_game_over_pressed")
+	_town_select_button.connect("pressed", self, "_town_select_pressed")
 
 func enable():
 	visible = true
@@ -35,17 +41,19 @@ func disable():
 	visible = false
 
 func restart():
-	_actor_select_box.visible = false
-	_actor_select.visible = false
+	_actor_box.visible = false
+	_town_box.visible = false
+	_actor_select.visible = true
 	_player_info.visible = false
 	_game_pause.visible = false
 	_game_over.visible = false
 	visible = true
 
 func show_actor_info():
-	_actor_select_box.visible = false
 	_actor_select.visible = false
 	_player_info.visible = true
+	_actor_box.visible = false
+	_town_box.visible = false
 
 """
 	Game Over
@@ -76,9 +84,33 @@ func close_game_paused():
 	Actor Selection
 """
 
-func open_actor_selection():
-	_actor_select_box.visible = true
+func open_town_selection():
 	_actor_select.visible = true
+	_actor_box.visible = false
+	_town_box.visible = true
+
+func _town_select_pressed():
+	match TheTown.get_act():
+		TheTown.Act.Into: _open_actor_selection()
+		TheTown.Act.Teens: _run_teens_intro_dialog()
+
+func _open_actor_selection():
+	_actor_select.visible = true
+	_actor_box.visible = true
+	_town_box.visible = false
+
+func _run_teens_intro_dialog():
+	# TODO Fix Hardcoded actor variable,
+	# works because only one is available
+	var box = DialogueSystem.show_dialogue(intro_norman.dialogue)
+	if box != null: box.connect_signals(self)
+
+func on_dialogue_closed():
+	_town_box.visible = false
+	_actor_box.visible = false
+	_actor_select.visible = false
+	_player_info.visible = true
+	emit_signal("actor_selected")
 
 func _setup_actors_list():
 	# FIXME: This a is fast cheat setup
@@ -147,7 +179,8 @@ func _on_actor_selected(info):
 		return
 	# FixMe set the resource, atm default to norman
 	print("> Selected Friend: %s" % info.name)
-	_actor_select_box.visible = false
+	_town_box.visible = false
+	_actor_box.visible = false
 	_actor_select.visible = false
 	_player_info.visible = true
 	emit_signal("actor_selected")
