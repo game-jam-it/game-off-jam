@@ -7,9 +7,9 @@ var settings = {
 	"vsync": true,
 	"fullscreen": false,
 	"brightness": 100,
-	"volume_sfx": 100,
-	"volume_music": 100,
-	"volume_master": 100,
+	"volume_sfx": 10,
+	"volume_music": 10,
+	"volume_master": 10,
 }
 
 # TODO Fullscreen Event -> Adjust camera and assets?
@@ -81,7 +81,9 @@ func update_brightness(value):
 func update_master_volume(value):
 	# TODO Implement: Depends on FMOD Integration Setup
 	if settings.volume_master != value:
+		AudioServer.set_bus_volume_db(0, value)
 		settings.volume_master = value
+		print("Volume: %s" % value)
 		_save_settings()
 
 func update_music_volume(value):
