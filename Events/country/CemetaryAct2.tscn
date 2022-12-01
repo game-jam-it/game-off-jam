@@ -17,7 +17,7 @@
 [ext_resource path="res://Events/prefabs/Light2D.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Events/assets/cemetery/fountain-a-red.png" type="Texture" id=16]
 [ext_resource path="res://Challenges/cemetery/Crow.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Enemies/prefabs/cemetery/Mallus.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Enemies/prefabs/cemetery/Bones.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Events/assets/cemetery/grave-closed.png" type="Texture" id=19]
 [ext_resource path="res://Challenges/cemetery/GraveCross-c.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Challenges/cemetery/GraveStone-d.tscn" type="PackedScene" id=21]
@@ -855,10 +855,6 @@ position = Vector2( 0, 12 )
 scale = Vector2( 0.06, 0.06 )
 texture = ExtResource( 19 )
 
-[node name="Mallus" parent="Objects" instance=ExtResource( 18 )]
-unique_name_in_owner = true
-position = Vector2( 183, 12 )
-
 [node name="Fountain" parent="Objects" instance=ExtResource( 30 )]
 
 [node name="Crow - 01" parent="Objects" instance=ExtResource( 17 )]
@@ -920,3 +916,7 @@ texture = ExtResource( 31 )
 [node name="PlayerActor" parent="Objects" instance=ExtResource( 5 )]
 unique_name_in_owner = true
 position = Vector2( 1, 450 )
+
+[node name="Bones" parent="Objects" instance=ExtResource( 18 )]
+unique_name_in_owner = true
+position = Vector2( -1, -79 )
