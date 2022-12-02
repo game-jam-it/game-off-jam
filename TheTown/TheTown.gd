@@ -224,6 +224,7 @@ func resume_game():
 func restart_game():
 	# TODO Fade to black ...
 	# TODO Destroy the old saves
+	# Soft progress # self._act = Act.Into
 	if self._state == State.ExploreMode:
 		TheTown.stop_active_event()
 	self._set_town_state(State.SetMode)

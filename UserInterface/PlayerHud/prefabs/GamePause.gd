@@ -5,8 +5,12 @@ onready var tabs = get_node("%TabContainer")
 onready var game_stats = get_node("%GameStats")
 onready var event_stats = get_node("%EventStats")
 
+onready var exit_box = get_node("%MBoxExit")
+onready var restart_box = get_node("%MBoxRestart")
+
 onready var exit_game = get_node("%ExitGame")
 onready var resume_game = get_node("%ResumeGame")
+onready var restart_game = get_node("%RestartGame")
 
 onready var sfx_slider = get_node("%SfxSlider")
 onready var music_slider = get_node("%MusicSlider")
@@ -17,6 +21,8 @@ onready var screen_check_button = get_node("%FullscreenCheck")
 
 
 func _ready():
+	exit_box.visible = true
+	restart_box.visible = false
 	sfx_slider.value = AppState.settings.volume_sfx
 	music_slider.value = AppState.settings.volume_music
 	master_slider.value = AppState.settings.volume_master
@@ -25,8 +31,10 @@ func _ready():
 	screen_check_button.pressed = AppState.settings.fullscreen
 	self.connect("gui_input", self, "_on_gui_input")
 	TheTown.connect("state_chaged", self, "_on_town_state_chaged")
-	exit_game.connect("pressed", self, "_on_exit_game")
+	if OS.get_name() == "HTML5": exit_game.disabled = true
+	else: exit_game.connect("pressed", self, "_on_exit_game")
 	resume_game.connect("pressed", self, "_on_resume_game")
+	restart_game.connect("pressed", self, "_on_restart_game")
 	sfx_slider.connect("value_changed", self, "_on_sfx_slider_changed")
 	music_slider.connect("value_changed", self, "_on_music_slider_changed")
 	master_slider.connect("value_changed", self, "_on_master_slider_changed")
@@ -40,33 +48,24 @@ func _unhandled_input(input):
 		TheTown.resume_game()
 
 func _on_exit_game():
-	match TheTown.get_state():
-		TheTown.State.ExploreMode:
-			self._on_exit_explore()
-		TheTown.State.PrepMode:
-			self._on_exit_prep()
-		TheTown.State.SetMode:
-			self._on_exit_set()
-
-func _on_exit_set():
-	get_tree().quit()
-
-func _on_exit_prep():
-	# TODO: Reset to character select
-	# FixMe Optional soft exit here?
-	get_tree().quit()
-
-func _on_exit_explore():
-	# TODO: Reset to character select
-	# FixMe Optional hard exit here?
-	TheTown.stop_active_event()
+	if OS.get_name() != "HTML5": get_tree().quit()
+	else: exit_game.disabled = true
 
 func _on_resume_game():
 	TheTown.resume_game()
 	tabs.current_tab = 0
 
+func _on_restart_game():
+	TheTown.restart_game()
+
 func _on_town_state_chaged(state):
-	# TODO Update button
+	if state == TheTown.State.SetMode:
+		exit_box.visible = true
+		restart_box.visible = false
+	else:
+		exit_box.visible = false
+		restart_box.visible = true
+
 	if state == TheTown.State.ExploreMode:
 		exit_game.disabled = true
 		game_stats.visible = false
