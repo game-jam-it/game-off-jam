@@ -343,7 +343,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
 
-[node name="MCButtons" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/Footer/GridContainer"]
+[node name="MBoxExit" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/Footer/GridContainer"]
+unique_name_in_owner = true
+visible = false
 margin_right = 158.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
@@ -353,7 +355,7 @@ custom_constants/margin_top = 16
 custom_constants/margin_left = 24
 custom_constants/margin_bottom = 16
 
-[node name="ExitGame" type="Button" parent="Control/MarginContainer/VBoxContainer/Footer/GridContainer/MCButtons"]
+[node name="ExitGame" type="Button" parent="Control/MarginContainer/VBoxContainer/Footer/GridContainer/MBoxExit"]
 unique_name_in_owner = true
 margin_left = 24.0
 margin_top = 16.0
@@ -361,6 +363,26 @@ margin_right = 134.0
 margin_bottom = 48.0
 custom_fonts/font = ExtResource( 1 )
 text = "Quit"
+
+[node name="MBoxRestart" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/Footer/GridContainer"]
+unique_name_in_owner = true
+margin_right = 158.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 24
+custom_constants/margin_top = 16
+custom_constants/margin_left = 24
+custom_constants/margin_bottom = 16
+
+[node name="RestartGame" type="Button" parent="Control/MarginContainer/VBoxContainer/Footer/GridContainer/MBoxRestart"]
+unique_name_in_owner = true
+margin_left = 24.0
+margin_top = 16.0
+margin_right = 134.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 1 )
+text = "Restart"
 
 [node name="MCButtons2" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/Footer/GridContainer"]
 margin_left = 162.0
