@@ -1,4 +1,4 @@
-extends Challenge
+extends EventEntity
 
 func reward(player: PlayerActor) -> EntityAction:
 	if player == null: 

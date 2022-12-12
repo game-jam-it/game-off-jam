@@ -1,5 +1,5 @@
-class_name EntityActor
-extends EntityObject
+class_name ActorEntity
+extends BaseEntity
 
 onready var input: EntityInput = $Input
 onready var actions: Node2D = $Actions

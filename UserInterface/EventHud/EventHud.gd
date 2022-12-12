@@ -39,7 +39,7 @@ func disable():
 		for obj in _scene.queue().get_children():
 			if obj is QueueObject:
 				var ent = obj.entity()
-				if ent.group == EntityObject.Group.Enemy && ent.hidden: 
+				if ent.group == BaseEntity.Group.Enemy && ent.hidden: 
 					ent.disconnect("unhide_entity", self, "_on_unhide_enemy")
 		if _scene is ExpeditionEvent:
 			_scene.queue().disconnect("queue_changed", self, "_on_queue_changed")
@@ -74,7 +74,7 @@ func setup_event_data(coords):
 		if obj is QueueObject:
 			var ent = obj.entity()
 			match ent.group:
-				EntityObject.Group.Enemy:
+				BaseEntity.Group.Enemy:
 					if !ent.hidden: self._create_box(ent)
 					else: ent.connect("unhide_entity", self, "_on_unhide_enemy")
 

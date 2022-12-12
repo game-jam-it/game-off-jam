@@ -1,24 +1,24 @@
 class_name MallusEntity
-extends EnemyEntity
+extends EnemyActor
 
-var smelled_it: EntityActor = null
+var smelled_it: ActorEntity = null
 
-func clear_smell(entity: EntityActor):
+func clear_smell(entity: ActorEntity):
 	if entity == null:
 		print_debug("[%s]: not an entity" % name)
 		return
-	if entity.group != EntityObject.Group.Player:
+	if entity.group != BaseEntity.Group.Player:
 		return
 	smelled_it = null
 
-func investigate_smell(entity: EntityActor):
+func investigate_smell(entity: ActorEntity):
 	if _grid == null:
 		print_debug("[%s]: no grid set" % name)
 		return
 	if entity == null:
 		print_debug("[%s]: not an entity" % name)
 		return
-	if entity.group != EntityObject.Group.Player:
+	if entity.group != BaseEntity.Group.Player:
 		return
 	smelled_it = entity
 

@@ -6,18 +6,18 @@ onready var actor_hex = $ActorHex
 onready var target_hex = $TargetHex
 
 var _grid: EventGrid
-var _target: EntityActor = null
-var _trigger: EntityObject = null
+var _target: ActorEntity = null
+var _trigger: BaseEntity = null
 
 
 func clear_target():
 	_target = null
 
 
-func set_target(entity: EntityActor):
+func set_target(entity: ActorEntity):
 	_target = entity
 
-func set_trigger(entity: EntityObject):
+func set_trigger(entity: BaseEntity):
 	if _trigger != null: _trigger.disconnect("free_entity", self, "_on_free_trigger")
 	entity.connect("free_entity", self, "_on_free_trigger")
 	_trigger = entity

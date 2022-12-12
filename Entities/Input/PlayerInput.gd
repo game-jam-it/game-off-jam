@@ -157,10 +157,10 @@ func _try_to_move(to, from):
 
 func _handle_entity(hex, entity):
 	match entity.group:
-		EntityObject.Group.Enemy:
+		BaseEntity.Group.Enemy:
 			return _attack_target(hex, entity)
-		EntityObject.Group.Challenge:
-			return _setup_challenge(hex, entity)
+		BaseEntity.Group.Challenge:
+			return _setup_challenge_event(hex, entity)
 
 func _attack_target(hex, target):
 	#print("> %s: I will purge you, beat you" % entity.name)
@@ -169,9 +169,9 @@ func _attack_target(hex, target):
 	act.location = _grid.hexgrid.hex_to_pixel(hex)
 	return act
 
-func _setup_challenge(hex, target):
+func _setup_challenge_event(hex, target):
 	# TODO Implement chalange action
-	if target is Challenge:
+	if target is EventEntity:
 		print(">>> Check challenge: '%s'" % target.name)
 		return target.check(self.entity)
 	return null

@@ -1,4 +1,4 @@
-extends Challenge
+extends EventEntity
 
 var _counter: int = 0
 

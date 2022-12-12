@@ -1,5 +1,5 @@
-class_name Challenge
-extends EntityObject
+class_name EventEntity
+extends BaseEntity
 
 const D20: int = 20
 
@@ -38,9 +38,9 @@ func check(player: PlayerActor) -> EntityAction:
 	else: return self.penalty(player)
 
 func reward(player: PlayerActor) -> EntityAction:
-	print("%s missing overwrite of the challenge.reward() method" % name)
+	print("%s missing overwrite of the EventEntity.reward() method" % name)
 	return null
 
 func penalty(player: PlayerActor) -> EntityAction:
-	print("%s missing overwrite of the challenge.penalty() method" % name)
+	print("%s missing overwrite of the EventEntity.penalty() method" % name)
 	return null

@@ -2,7 +2,7 @@ extends EntityAction
 
 onready var damageIndicator = preload("res://Items/Weapons/WeaponEffects/DamageIndicator.tscn")
 
-var target: EntityActor
+var target: ActorEntity
 var location: Vector2
 
 func execute():
@@ -20,9 +20,9 @@ func execute():
 		weapon.play_animation("Swing")
 	
 	# Damage the target and maybe kill it
-	if target.group == EntityObject.Group.Player:
+	if target.group == BaseEntity.Group.Player:
 		return attack_player_target()
-	if target.group == EntityObject.Group.Enemy:
+	if target.group == BaseEntity.Group.Enemy:
 		return attack_enemy_target()
 	yield(get_tree(), "idle_frame")
 	return false

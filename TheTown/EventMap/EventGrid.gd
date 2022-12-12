@@ -96,10 +96,10 @@ func clear_object(object: GridObject):
 			GridObject.ObjType.Path:
 				_clear_path_object(object)
 
-func add_entity(entity: EntityObject):
+func add_entity(entity: BaseEntity):
 	entity_map[entity.id()] = entity
 
-func clear_entity(entity: EntityObject):
+func clear_entity(entity: BaseEntity):
 	entity_map.erase(entity.id())
 
 func add_cell_blocker(coords: Vector2):

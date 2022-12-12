@@ -827,19 +827,15 @@ position = Vector2( 340, 411 )
 
 [node name="Rubble-01" parent="Objects" instance=ExtResource( 37 )]
 position = Vector2( 277, -224 )
-initiative = null
 
 [node name="Rubble-02" parent="Objects" instance=ExtResource( 37 )]
 position = Vector2( -60, -141 )
-initiative = null
 
 [node name="Rubble-03" parent="Objects" instance=ExtResource( 37 )]
 position = Vector2( 157, -435 )
-initiative = null
 
 [node name="Rubble-04" parent="Objects" instance=ExtResource( 37 )]
 position = Vector2( 379, 96 )
-initiative = null
 
 [node name="Grave-closed" type="Node2D" parent="Objects"]
 position = Vector2( 180, -12 )

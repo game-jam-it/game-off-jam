@@ -1,10 +1,10 @@
 class_name ZombieEntity
-extends EnemyEntity
+extends EnemyActor
 
 # TODO On death respawn x turns
 # Waiting for knock back on this
 
-func investigate_smell(entity: EntityActor):
+func investigate_smell(entity: ActorEntity):
 	if hidden:
 		return
 	if _grid == null:
@@ -13,18 +13,18 @@ func investigate_smell(entity: EntityActor):
 	if entity == null:
 		print_debug("[%s]: not an entity" % name)
 		return
-	if entity.group != EntityObject.Group.Player:
+	if entity.group != BaseEntity.Group.Player:
 		return
 	if self.input.has_method("set_target"):
 		self.input.set_target(entity)
 
-func noise_trigger(entity: EntityObject):
+func noise_trigger(entity: BaseEntity):
 	print("[%s] Noise tigger: '%s'" % [name, entity.name])
 	if self.input.has_method("set_trigger") && self._is_cell_free():
 		self.input.set_trigger(entity)
 		self._unhide_zombie()
 
-func linked_trigger(entity: EntityObject):
+func linked_trigger(entity: BaseEntity):
 	print("[%s] Linked tigger: '%s'" % [name, entity.name])
 	if self._is_cell_free(): 
 		self._unhide_zombie()
@@ -40,7 +40,7 @@ func _unhide_zombie():
 		var coords = hex.get_axial_coords()
 		var cell = _grid.get_cell_state(coords)
 		if cell.state == EventGrid.CellState.Entity:
-			if cell.entity.group == EntityObject.Group.Player:
+			if cell.entity.group == BaseEntity.Group.Player:
 				if self.input.has_method("set_target"):
 					self.input.set_target(cell.entity)
 

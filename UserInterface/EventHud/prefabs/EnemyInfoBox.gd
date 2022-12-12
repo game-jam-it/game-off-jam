@@ -13,7 +13,7 @@ func _ready():
 	_info_box.connect("mouse_exited", self, "on_mouse_exited")
 	_info_box.connect("mouse_entered", self, "on_mouse_entered")
 
-func initialize(enemy: EnemyEntity):
+func initialize(enemy: EnemyActor):
 	if _name_label == null:
 		_name_label = get_node("%NameValue")
 	if _index_label == null:

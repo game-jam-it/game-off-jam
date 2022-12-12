@@ -1,5 +1,5 @@
 class_name PlayerActor
-extends EntityActor
+extends ActorEntity
 
 func take_damage(value: int):
 	PlayerStats.take_damage(value)

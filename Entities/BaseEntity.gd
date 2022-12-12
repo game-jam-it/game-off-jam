@@ -1,4 +1,4 @@
-class_name EntityObject
+class_name BaseEntity
 extends Node2D
 
 enum Group {

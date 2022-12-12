@@ -1,5 +1,5 @@
-extends Item
 class_name ConsumableItem
+extends Item
 
 export(String) var effect_description = ""
 

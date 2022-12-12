@@ -1,5 +1,5 @@
-class_name PickupEntity
-extends EntityObject
+class_name ItemEntity
+extends BaseEntity
 
 enum Slot {
 	None,

@@ -121,20 +121,20 @@ func _init_goals():
 func _build_map_goals():
 	self._goals = self.new_goals()
 	for ent in self._objects.get_children():
-		if ent is EntityObject:
+		if ent is BaseEntity:
 			match ent.group:
-				EntityObject.Group.Enemy:
+				BaseEntity.Group.Enemy:
 					self._build_enemy_goals(ent)
-				EntityObject.Group.Lore:
+				BaseEntity.Group.Lore:
 					self._build_lore_goals()
-				EntityObject.Group.Pickup:
+				BaseEntity.Group.Pickup:
 					self._build_pickup_goals(ent)
 
 func _build_enemy_goals(ent):
 	_goals.banish.total += 1
 	match ent.slot:
-		EnemyEntity.Slot.Boss: _goals.banish.boss.total += 1
-		EnemyEntity.Slot.Drone: _goals.banish.drone.total += 1
+		EnemyActor.Slot.Boss: _goals.banish.boss.total += 1
+		EnemyActor.Slot.Drone: _goals.banish.drone.total += 1
 
 func _build_lore_goals():
 	_goals.lore.total += 1
@@ -142,11 +142,11 @@ func _build_lore_goals():
 func _build_pickup_goals(ent):
 	_goals.pickup.total += 1
 	match ent.slot:
-		PickupEntity.Slot.Relic: _goals.pickup.relic.total += 1
-		PickupEntity.Slot.Money: _goals.pickup.money.total += 1
-		PickupEntity.Slot.Weapon: _goals.pickup.weapon.total += 1
-		PickupEntity.Slot.Trinket: _goals.pickup.trinket.total += 1
-		PickupEntity.Slot.Consumable: _goals.pickup.consumable.total += 1
+		ItemEntity.Slot.Relic: _goals.pickup.relic.total += 1
+		ItemEntity.Slot.Money: _goals.pickup.money.total += 1
+		ItemEntity.Slot.Weapon: _goals.pickup.weapon.total += 1
+		ItemEntity.Slot.Trinket: _goals.pickup.trinket.total += 1
+		ItemEntity.Slot.Consumable: _goals.pickup.consumable.total += 1
 
 
 """
@@ -163,15 +163,15 @@ func _save_map_state():
 	# TODO: Save to file 
 	# TODO Save data to file
 	for obj in self._objects.get_children():
-		if obj is EntityObject:
+		if obj is BaseEntity:
 			match obj.group:
-				EntityObject.Group.Enemy:
+				BaseEntity.Group.Enemy:
 					obj.disconnect("enemy_died", self, "_on_enemy_died")
-				EntityObject.Group.Player:
+				BaseEntity.Group.Player:
 					continue
-				EntityObject.Group.Lore:
+				BaseEntity.Group.Lore:
 					continue
-				EntityObject.Group.Pickup:
+				BaseEntity.Group.Pickup:
 					obj.disconnect("picked_up", self, "_on_picked_up")
 
 
@@ -181,21 +181,21 @@ func _setup_map_objects():
 	for obj in self._objects.get_children():
 		if obj is GridObject:
 			self._grid.add_object(obj)
-		elif obj is EntityObject:
-			_setup_entity_object(obj)
+		elif obj is BaseEntity:
+			_setup_entity(obj)
 
-func _setup_entity_object(ent):
+func _setup_entity(ent):
 	ent.set_grid(self._grid)
 	match ent.group:
-		EntityObject.Group.Enemy:
+		BaseEntity.Group.Enemy:
 			self._setup_enemy_entity(ent)
-		EntityObject.Group.Player:
+		BaseEntity.Group.Player:
 			self._setup_player_entity(ent)
-		EntityObject.Group.Lore:
+		BaseEntity.Group.Lore:
 			self._setup_lore_entity(ent)
-		EntityObject.Group.Pickup:
+		BaseEntity.Group.Pickup:
 			self._setup_pickup_entity(ent)
-		EntityObject.Group.Challenge:
+		BaseEntity.Group.Challenge:
 			self._setup_challenge_entity(ent)
 
 func _setup_enemy_entity(ent):
@@ -222,22 +222,22 @@ func _setup_challenge_entity(ent):
 	Entity Events
 """
 
-func _on_enemy_died(ent: EnemyEntity):
+func _on_enemy_died(ent: EnemyActor):
 	ent.disconnect("enemy_died", self, "_on_enemy_died")
 	_goals.banish.done += 1
 	match ent.slot:
-		EnemyEntity.Slot.Boss: _goals.banish.boss.done += 1
-		EnemyEntity.Slot.Drone: _goals.banish.drone.done += 1
+		EnemyActor.Slot.Boss: _goals.banish.boss.done += 1
+		EnemyActor.Slot.Drone: _goals.banish.drone.done += 1
 	emit_signal("stats_updated", _goals)
 
 
-func _on_picked_up(ent: PickupEntity):
+func _on_picked_up(ent: ItemEntity):
 	ent.disconnect("picked_up", self, "_on_picked_up")
 	_goals.pickup.done += 1
 	match ent.slot:
-		PickupEntity.Slot.Relic: _goals.pickup.relic.done += 1
-		PickupEntity.Slot.Money: _goals.pickup.money.done += 1
-		PickupEntity.Slot.Weapon: _goals.pickup.weapon.done += 1
-		PickupEntity.Slot.Trinket: _goals.pickup.trinket.done += 1
-		PickupEntity.Slot.Consumable: _goals.pickup.consumable.done += 1
+		ItemEntity.Slot.Relic: _goals.pickup.relic.done += 1
+		ItemEntity.Slot.Money: _goals.pickup.money.done += 1
+		ItemEntity.Slot.Weapon: _goals.pickup.weapon.done += 1
+		ItemEntity.Slot.Trinket: _goals.pickup.trinket.done += 1
+		ItemEntity.Slot.Consumable: _goals.pickup.consumable.done += 1
 	emit_signal("stats_updated", _goals)
