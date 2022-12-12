@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://UserInterface/assets/portrait_default.png" type="Texture" id=1]
+[ext_resource path="res://Actor/Character.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+name = "Occult Girl (Lola)"
+unique_effect_description = "All stats gain +1 when above 3 stress, all stats gain another +1 when in a panic."
+max_hp = 2
+speed = 4
+fortitude = 2
+daring = 3
+smarts = 3
+items = [  ]
+character_effects = [  ]
+portrait_base = ExtResource( 1 )
+portrait_damaged = ExtResource( 1 )
+portrait_stressed = ExtResource( 1 )

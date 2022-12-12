@@ -11,7 +11,7 @@ Actor stats
 	Smarts
 """
 
-onready var norman = preload("res://Characters/Norman.tres")
+onready var norman = preload("res://Actor/Player/resources/Norman.tres")
 
 func _ready():
 	# TODO Replace with character selection

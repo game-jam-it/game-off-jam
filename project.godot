@@ -22,17 +22,17 @@ _global_script_classes=[ {
 "base": "EnemyActor",
 "class": "BonesEntity",
 "language": "GDScript",
-"path": "res://Enemies/prefabs/cemetery/Bones.gd"
+"path": "res://Actor/Enemy/prefabs/cemetery/Rattle.gd"
 }, {
 "base": "Resource",
 "class": "Character",
 "language": "GDScript",
-"path": "res://Characters/Character.gd"
+"path": "res://Actor/Character.gd"
 }, {
 "base": "Resource",
 "class": "CharacterEffect",
 "language": "GDScript",
-"path": "res://Characters/Effects/Scripts/CharacterEffect.gd"
+"path": "res://Actor/CharacterEffect.gd"
 }, {
 "base": "Resource",
 "class": "ConsumableEffect",
@@ -62,7 +62,7 @@ _global_script_classes=[ {
 "base": "ActorEntity",
 "class": "EnemyActor",
 "language": "GDScript",
-"path": "res://Enemies/EnemyActor.gd"
+"path": "res://Actor/EnemyActor.gd"
 }, {
 "base": "Node2D",
 "class": "EntityAction",
@@ -132,7 +132,7 @@ _global_script_classes=[ {
 "base": "EnemyActor",
 "class": "MallusEntity",
 "language": "GDScript",
-"path": "res://Enemies/prefabs/cemetery/Mallus.gd"
+"path": "res://Actor/Enemy/prefabs/cemetery/Mallus.gd"
 }, {
 "base": "ConsumableEffect",
 "class": "OneChallengeStatBoostEffect",
@@ -152,7 +152,7 @@ _global_script_classes=[ {
 "base": "EnemyActor",
 "class": "RatEntity",
 "language": "GDScript",
-"path": "res://Enemies/prefabs/cemetery/Ratsie.gd"
+"path": "res://Actor/Enemy/prefabs/cemetery/Imp.gd"
 }, {
 "base": "WeaponEffect",
 "class": "ReductionBoostEffect",
@@ -227,7 +227,7 @@ _global_script_classes=[ {
 "base": "EnemyActor",
 "class": "ZombieEntity",
 "language": "GDScript",
-"path": "res://Enemies/prefabs/cemetery/Zombie.gd"
+"path": "res://Actor/Enemy/prefabs/cemetery/Zombie.gd"
 } ]
 _global_script_class_icons={
 "ActorEntity": "",

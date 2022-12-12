@@ -119,7 +119,7 @@ func _setup_actors_list():
 		"active": false,
 		"flip": true,
 		"name": "Paul",
-		"data": preload("res://Characters/Paul.tres"),
+		"data": preload("res://Actor/Player/resources/Paul.tres"),
 		"texture": preload("res://UserInterface/assets/the-cast/the-cast-paul.png")
 	})
 	actor.connect("actor_selected", self, "_on_actor_selected")
@@ -131,7 +131,7 @@ func _setup_actors_list():
 		"active": false,
 		"flip": true,
 		"name": "Vanessa",
-		"data": preload("res://Characters/Vanessa.tres"),
+		"data": preload("res://Actor/Player/resources/Vanessa.tres"),
 		"texture": preload("res://UserInterface/assets/the-cast/the-cast-vanessa.png")
 	})
 	actor.connect("actor_selected", self, "_on_actor_selected")
@@ -143,7 +143,7 @@ func _setup_actors_list():
 		"active": true,
 		"flip": false,
 		"name": "Norman",
-		"data": preload("res://Characters/Norman.tres"),
+		"data": preload("res://Actor/Player/resources/Norman.tres"),
 		"texture": preload("res://UserInterface/assets/the-cast/the-cast-norman.png")
 	})
 	actor.connect("actor_selected", self, "_on_actor_selected")
@@ -155,7 +155,7 @@ func _setup_actors_list():
 		"active": false,
 		"flip": true,
 		"name": "Stacy",
-		"data": preload("res://Characters/Stacy.tres"),
+		"data": preload("res://Actor/Player/resources/Stacy.tres"),
 		"texture": preload("res://UserInterface/assets/the-cast/the-cast-stacy.png")
 	})
 	actor.connect("actor_selected", self, "_on_actor_selected")
@@ -167,7 +167,7 @@ func _setup_actors_list():
 		"active": false,
 		"flip": false,
 		"name": "Brandon",
-		"data": preload("res://Characters/Brandon.tres"),
+		"data": preload("res://Actor/Player/resources/Brandon.tres"),
 		"texture": preload("res://UserInterface/assets/the-cast/the-cast-brandon.png")
 	})
 	actor.connect("actor_selected", self, "_on_actor_selected")
