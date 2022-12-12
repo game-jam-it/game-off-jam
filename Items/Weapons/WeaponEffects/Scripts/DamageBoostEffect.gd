@@ -14,10 +14,10 @@ func trigger_effect(weapon: Weapon) -> void:
 	var damage_increase: int = 0
 	
 	if fortitude:
-		damage_increase += floor(ActorStats.fortitude / every_x_stat) * damage_boost
+		damage_increase += floor(PlayerStats.fortitude / every_x_stat) * damage_boost
 	if daring:
-		damage_increase += floor(ActorStats.daring / every_x_stat) * damage_boost
+		damage_increase += floor(PlayerStats.daring / every_x_stat) * damage_boost
 	if smarts:
-		damage_increase += floor(ActorStats.smarts / every_x_stat) * damage_boost
+		damage_increase += floor(PlayerStats.smarts / every_x_stat) * damage_boost
 	
 	weapon.damage = weapon.base_damage + damage_increase

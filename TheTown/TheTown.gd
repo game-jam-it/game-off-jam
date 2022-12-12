@@ -229,7 +229,7 @@ func restart_game():
 		TheTown.stop_active_event()
 	self._set_town_state(State.SetMode)
 	yield(get_tree(), "idle_frame")
-	ActorStats.set_character(ActorStats.norman)
+	PlayerStats.set_character(PlayerStats.norman)
 	emit_signal("game_restart")
 	self.camera.zoom_init()
 	self.build_town(_act)

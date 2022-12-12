@@ -16,11 +16,11 @@ func _ready():
 	_info_box.connect("gui_input", self, "on_gui_input")
 	_info_box.connect("mouse_exited", self, "on_mouse_exited")
 	_info_box.connect("mouse_entered", self, "on_mouse_entered")
-	ActorStats.connect("hearts_changed", self, "on_health_updated")
-	ActorStats.connect("max_hearts_changed", self, "on_health_updated")
-	ActorStats.connect("stress_changed", self, "on_stress_updated")
-	ActorStats.connect("max_stress_changed", self, "on_stress_updated")
-	ActorStats.connect("character_changed", self, "on_character_updated")
+	PlayerStats.connect("hearts_changed", self, "on_health_updated")
+	PlayerStats.connect("max_hearts_changed", self, "on_health_updated")
+	PlayerStats.connect("stress_changed", self, "on_stress_updated")
+	PlayerStats.connect("max_stress_changed", self, "on_stress_updated")
+	PlayerStats.connect("character_changed", self, "on_character_updated")
 
 
 func on_mouse_exited():
@@ -35,14 +35,14 @@ func on_gui_input(event):
 
 
 func on_health_updated(_value):
-	var max_hearts = ActorStats.max_hearts
-	var current_hearts = ActorStats.current_hearts
+	var max_hearts = PlayerStats.max_hearts
+	var current_hearts = PlayerStats.current_hearts
 	_health_label.text = " %s/%s " % [current_hearts, max_hearts]
 
 func on_stress_updated(_value):
-	var max_stress = ActorStats.max_stress
-	var current_stress = ActorStats.current_stress
+	var max_stress = PlayerStats.max_stress
+	var current_stress = PlayerStats.current_stress
 	_stress_label.text = " %s/%s " % [current_stress, max_stress]
 
 func on_character_updated(_character):
-	_portrait_texture.texture = ActorStats.character.portrait_base
+	_portrait_texture.texture = PlayerStats.character.portrait_base

@@ -341,10 +341,10 @@ func show_dialogue(value: Array) -> void:
 # 	var selected_item: Item = DialogueSystem.selected_item
 # 	if selected_item is Item:
 # 		# Check if the player has enough money first
-# 		if ActorInventory.money >= selected_item.cost:
-# 			if ActorInventory.inventory_has_room():
-# 				ActorInventory.add_item(selected_item)
-# 				ActorInventory.money -= selected_item.cost
+# 		if PlayerInventory.money >= selected_item.cost:
+# 			if PlayerInventory.inventory_has_room():
+# 				PlayerInventory.add_item(selected_item)
+# 				PlayerInventory.money -= selected_item.cost
 # 				DialogueSystem.show_dialogue_unsafe("dialogue_shop_successful_purchase")
 # 				# FixMe: Reconnect signals
 # 			else:
@@ -358,19 +358,19 @@ func dialogue_event(value: String) -> void:
 	emit_signal("dialogue_event", value)
 
 func increase_fortitude(value: String) -> void:
-	ActorStats.fortitude += int(value)
+	PlayerStats.fortitude += int(value)
 
 func increase_daring(value: String) -> void:
-	ActorStats.daring += int(value)
+	PlayerStats.daring += int(value)
 
 func increase_smarts(value: String) -> void:
-	ActorStats.smarts += int(value)
+	PlayerStats.smarts += int(value)
 
 func restore_health(value: String) -> void:
-	ActorStats.current_hearts += int(value)
-	if ActorStats.current_hearts > ActorStats.max_hearts:
-		ActorStats.current_stress = ActorStats.max_hearts
+	PlayerStats.current_hearts += int(value)
+	if PlayerStats.current_hearts > PlayerStats.max_hearts:
+		PlayerStats.current_stress = PlayerStats.max_hearts
 
 func do_long_rest() -> void:
-	ActorStats.current_hearts = ActorStats.max_hearts
-	if ActorStats.current_stress > 0: ActorStats.current_stress = -1
+	PlayerStats.current_hearts = PlayerStats.max_hearts
+	if PlayerStats.current_stress > 0: PlayerStats.current_stress = -1

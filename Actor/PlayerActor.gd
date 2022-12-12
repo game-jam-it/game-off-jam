@@ -2,7 +2,7 @@ class_name PlayerActor
 extends EntityActor
 
 func take_damage(value: int):
-	ActorStats.take_damage(value)
+	PlayerStats.take_damage(value)
 	# TODO: spawn animate hit damage
 	# an other option is on_take_damage
 

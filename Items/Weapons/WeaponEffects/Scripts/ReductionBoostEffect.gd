@@ -14,10 +14,10 @@ func trigger_effect(weapon: Weapon) -> void:
 	var reduction_increase: int = 0
 	
 	if fortitude:
-		reduction_increase += floor(ActorStats.fortitude / every_x_stat) * reduction_boost
+		reduction_increase += floor(PlayerStats.fortitude / every_x_stat) * reduction_boost
 	if daring:
-		reduction_increase += floor(ActorStats.daring / every_x_stat) * reduction_boost
+		reduction_increase += floor(PlayerStats.daring / every_x_stat) * reduction_boost
 	if smarts:
-		reduction_increase += floor(ActorStats.smarts / every_x_stat) * reduction_boost
+		reduction_increase += floor(PlayerStats.smarts / every_x_stat) * reduction_boost
 	
 	weapon.reduction = weapon.base_reduction + reduction_increase

@@ -288,8 +288,8 @@ AppState="*res://AppState.gd"
 Events="*res://Events/Events.gd"
 TheTown="*res://TheTown/TheTown.tscn"
 Overlay="*res://UserInterface/Overlay.tscn"
-ActorStats="*res://Actor/ActorStats.gd"
-ActorInventory="*res://Actor/ActorInventory.gd"
+PlayerStats="*res://Actor/PlayerStats.gd"
+PlayerInventory="*res://Actor/PlayerInventory.gd"
 DialogueSystem="*res://UserInterface/DialogueSystem/DialogueSystem.gd"
 
 [debug]

@@ -40,11 +40,11 @@ func set_character(new_character: Character) -> void:
 	set_smarts(new_character.smarts)
 	set_smarts_boost(0)
 	# Reset inventory too
-	ActorInventory.ammo = 0
-	ActorInventory.money = 0
-	ActorInventory.clear_inventory()
+	PlayerInventory.ammo = 0
+	PlayerInventory.money = 0
+	PlayerInventory.clear_inventory()
 	for item in character.items:
-		ActorInventory.add_item(item)
+		PlayerInventory.add_item(item)
 
 # Primary stats
 var current_hearts: int = 5 setget set_current_hearts
@@ -143,16 +143,16 @@ func set_smarts_boost(value: int) -> void:
 
 func get_damage() -> int:
 	# Trigger the weapon effect first for possible additional damage calculations
-	ActorInventory.get_current_weapon().get_effect()
+	PlayerInventory.get_current_weapon().get_effect()
 	
-	var weapon_damage: int = ActorInventory.get_current_weapon().damage
+	var weapon_damage: int = PlayerInventory.get_current_weapon().damage
 	print("Damage: " + str(weapon_damage))
 	return weapon_damage
 
 func get_reduction() -> int:
 	# Trigger the weapon effect first for possible additional reduction calculations
-	ActorInventory.get_current_weapon().get_effect()
+	PlayerInventory.get_current_weapon().get_effect()
 	
-	var reduction: int = ActorInventory.get_current_weapon().reduction
+	var reduction: int = PlayerInventory.get_current_weapon().reduction
 	print("Reduction: " + str(reduction) + "%")
 	return reduction

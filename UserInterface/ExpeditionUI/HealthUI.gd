@@ -23,11 +23,11 @@ func set_max_hearts(value: int) -> void:
 
 func _ready() -> void:
 	# Use self to call the setter methods
-	self.max_hearts = ActorStats.max_hearts
-	self.hearts = ActorStats.current_hearts
+	self.max_hearts = PlayerStats.max_hearts
+	self.hearts = PlayerStats.current_hearts
 	
-	ActorStats.connect("max_hearts_changed", self, "on_max_hearts_changed")
-	ActorStats.connect("hearts_changed", self, "on_hearts_changed")
+	PlayerStats.connect("max_hearts_changed", self, "on_max_hearts_changed")
+	PlayerStats.connect("hearts_changed", self, "on_hearts_changed")
 
 func on_hearts_changed(value: int) -> void:
 	set_hearts(value)

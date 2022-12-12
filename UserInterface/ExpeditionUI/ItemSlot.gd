@@ -53,11 +53,11 @@ func _on_ItemSlot_mouse_exited():
 func consume_item() -> void:
 	# Get the index of this inventory slot
 	var slot_index: int = get_index()
-	var item: Item = ActorInventory.inventory[slot_index]
+	var item: Item = PlayerInventory.inventory[slot_index]
 	if item is ConsumableItem:
 		item.consume()
 		
-		ActorInventory.remove_item(slot_index)
+		PlayerInventory.remove_item(slot_index)
 		_on_ItemSlot_mouse_exited()
 
 func _on_ItemSlot_gui_input(event):

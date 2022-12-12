@@ -9,4 +9,4 @@ func trigger_effect(_consumable_item: ConsumableItem) -> void:
 	rng.randomize()
 	var random_ammo = rng.randi_range(minimum, maximum)
 	
-	ActorInventory.ammo += random_ammo
+	PlayerInventory.ammo += random_ammo

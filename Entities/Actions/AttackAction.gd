@@ -14,7 +14,7 @@ func execute():
 	#print("[%s] TODO Implement attack animation" % name)
 	var weapon = get_node_or_null("../../Weapon")
 	if weapon is Node:
-		var weaponTexture = ActorInventory.current_weapon.texture
+		var weaponTexture = PlayerInventory.current_weapon.texture
 		if weaponTexture != null:
 			weapon.set_texture(weaponTexture)
 		weapon.play_animation("Swing")
@@ -28,7 +28,7 @@ func execute():
 	return false
 
 func attack_enemy_target():
-	var damage = ActorStats.get_damage()
+	var damage = PlayerStats.get_damage()
 	target.take_damage(damage)
 	indicate_damage(target, damage, Color.whitesmoke)
 	yield(get_tree(), "idle_frame")
@@ -36,7 +36,7 @@ func attack_enemy_target():
 
 func attack_player_target():
 	var damage = entity.get_damage()
-	ActorStats.take_damage(damage)
+	PlayerStats.take_damage(damage)
 	indicate_damage(target, damage, Color.crimson)
 	yield(get_tree(), "idle_frame")
 	return true

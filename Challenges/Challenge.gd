@@ -27,9 +27,9 @@ func disable():
 func roll():
 	var boost = 0;
 	match attribute:
-		Attribute.Smarts: boost = ActorStats.smarts
-		Attribute.Daring: boost = ActorStats.daring
-		Attribute.Fortitude: boost = ActorStats.fortitude
+		Attribute.Smarts: boost = PlayerStats.smarts
+		Attribute.Daring: boost = PlayerStats.daring
+		Attribute.Fortitude: boost = PlayerStats.fortitude
 	return difficulty < (rng.randi_range(0, D20) + boost)
 
 
