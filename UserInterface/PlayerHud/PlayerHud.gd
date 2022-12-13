@@ -28,7 +28,7 @@ func _ready():
 	_game_over.visible = false
 	_game_pause.visible = false
 	_player_info.visible = false
-	_actor_select.visible = true
+	_actor_select.visible = false
 	_actor_box.visible = false
 	_town_box.visible = false
 	_game_over_button.connect("pressed", self, "_game_over_pressed")
@@ -54,6 +54,17 @@ func show_actor_info():
 	_player_info.visible = true
 	_actor_box.visible = false
 	_town_box.visible = false
+
+
+func open_game_intro():
+	match TheTown.get_act():
+		TheTown.Act.Into: _open_actor_selection()
+		TheTown.Act.Teens: _run_teens_intro_dialog()
+
+func open_town_selection():
+	_actor_select.visible = true
+	_actor_box.visible = false
+	_town_box.visible = true
 
 """
 	Game Over
@@ -84,15 +95,8 @@ func close_game_paused():
 	Actor Selection
 """
 
-func open_town_selection():
-	_actor_select.visible = true
-	_actor_box.visible = false
-	_town_box.visible = true
-
 func _town_select_pressed():
-	match TheTown.get_act():
-		TheTown.Act.Into: _open_actor_selection()
-		TheTown.Act.Teens: _run_teens_intro_dialog()
+	self.open_game_intro()
 
 func _open_actor_selection():
 	_actor_select.visible = true

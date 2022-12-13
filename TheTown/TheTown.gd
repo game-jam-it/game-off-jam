@@ -105,10 +105,6 @@ func _ready():
 	events.connect("game_stats_updated", self, "_on_game_stats_updated")
 	events.connect("event_stats_updated", self, "_on_event_stats_updated")
 	events.connect("pause_explore_event", self, "on_pause_explore_event")
-	# TODO Move create-town-on-load 
-	# to new game event from menu
-	# events.visible = false
-	build_town(self._act)
 
 func _unhandled_input(input):
 	if _paused:
@@ -132,9 +128,9 @@ func _input_set_mode(input):
 		get_tree().set_input_as_handled()
 		self.pause_game()
 	if creator.is_done && input.is_action_pressed("rebuild_town"):
-		build_town(self._act)
+		self._build_town(self._act)
 	elif creator.is_done && input.is_action_pressed("rebuild_devops"):
-		build_devops()
+		self._build_devops()
 
 func get_act():
 	return _act
@@ -160,11 +156,15 @@ func is_ready():
 func is_paused():
 	return _paused
 
-func start():
+func start_game():
+	# Called once an actor is selected
 	self._set_town_state(State.PrepMode)
 	camera.zoom_reset()
 	if nodes.start_node != null:
 		start_selected_event(nodes.start_node.coords)
+
+func start_map_generator():
+	self._build_town(self._act)
 
 func _set_town_state(value):
 	if self._state != value:
@@ -172,7 +172,7 @@ func _set_town_state(value):
 		emit_signal("state_chaged", value)
 	
 
-func build_town(act):
+func _build_town(act):
 	if !creator.is_done:
 		return
 	if _state != State.SetMode:
@@ -184,7 +184,7 @@ func build_town(act):
 	self.events.initialize_stats()
 	emit_signal("town_generated")
 
-func build_devops():
+func _build_devops():
 	if !creator.is_done:
 		return
 	if _state != State.SetMode:
@@ -232,7 +232,7 @@ func restart_game():
 	PlayerStats.set_character(PlayerStats.norman)
 	emit_signal("game_restart")
 	self.camera.zoom_init()
-	self.build_town(_act)
+	self._build_town(_act)
 	_gameover = false
 	_paused = false
 
@@ -247,7 +247,7 @@ func restart(act):
 	self._set_town_state(State.SetMode)
 	yield(get_tree(), "idle_frame")
 	emit_signal("town_restart")
-	self.build_town(act)
+	self._build_town(act)
 	_gameover = false
 	_paused = false
 

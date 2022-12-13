@@ -11,11 +11,10 @@ onready var splash_hud = $SplashHud
 func _ready():
 	town_hud.disable()
 	event_hud.disable()
-	player_hud.restart()
+	player_hud.disable()
+	splash_hud.visible = false
 	TheTown.connect("town_restart", self, "on_town_restart")
-	TheTown.connect("town_generated", self, "on_town_generated")
 	
-
 	TheTown.connect("game_over", self, "on_game_over")
 	TheTown.connect("game_pause", self, "on_game_pause")
 	TheTown.connect("game_resume", self, "on_game_resume")
@@ -30,27 +29,28 @@ func _ready():
 	player_hud.connect("actor_selected", self, "on_actor_selected")
 
 
+func start_game_intro():
+	player_hud.restart()
+	splash_hud.visible = true
+	player_hud.open_game_intro()
+
+func start_town_selection():
+	player_hud.restart()
+	splash_hud.visible = true
+	player_hud.open_town_selection()
+
+
 func on_town_restart():
 	town_hud.disable()
 	event_hud.disable()
 	player_hud.restart()
 	splash_hud.visible = true
-	pass
-
-func on_town_generated():
-	player_hud.open_town_selection()
-
-# func on_map_selected():
-# 	print_debug(">>> Act: %s" % TheTown.get_act())
-# 	match TheTown.get_act():
-# 		TheTown.Act.Into: player_hud.open_actor_selection()
-# 		TheTown.Act.Teens: _run_teens_intro_dialog()
 
 func on_actor_selected():
 	splash_hud.visible = false
 	town_hud.initialize()
 	event_hud.disable()
-	TheTown.start()
+	TheTown.start_game()
 
 
 func on_event_ended(coords):
@@ -95,4 +95,4 @@ func on_expedition_resume():
 # 	splash_hud.visible = false
 # 	town_hud.initialize()
 # 	event_hud.disable()
-# 	TheTown.start()
+# 	TheTown.start_game()
