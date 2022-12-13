@@ -1,7 +1,5 @@
 extends EntityInput
 
-var HexCell = preload("res://TheTown/HexMap/HexCell.gd")
-
 enum Goal {
 	None,
 	Action,

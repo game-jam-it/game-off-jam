@@ -1,4 +1,5 @@
-extends Resource
+class_name HexCell
+extends Object
 
 const SIZE = Vector2(1, sqrt(3)/2)
 

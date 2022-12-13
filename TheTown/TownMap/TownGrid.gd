@@ -11,9 +11,6 @@ var width = 0
 var height = 0
 var hexgrid = null
 
-var HexCell = preload("res://TheTown/HexMap/HexCell.gd")
-var HexGrid = preload("res://TheTown/HexMap/HexGrid.gd")
-
 var TownHex = preload("res://TheTown/TownMap/prefabs/TownHex.tscn")
 
 func _ready():

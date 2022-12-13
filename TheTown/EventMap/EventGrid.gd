@@ -19,9 +19,6 @@ var obj_map = {}
 var view_map = {}
 var entity_map = {}
 
-var HexCell = preload("res://TheTown/HexMap/HexCell.gd")
-var HexGrid = preload("res://TheTown/HexMap/HexGrid.gd")
-
 var TownHex = preload("res://TheTown/EventMap/prefabs/EventHex.tscn")
 
 # func _ready():

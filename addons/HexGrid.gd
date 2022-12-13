@@ -1,4 +1,5 @@
-extends Reference
+class_name HexGrid
+extends Object
 
 const SQ3 = sqrt(3)
 
@@ -9,8 +10,6 @@ const Direction_SE = Vector3(1, -1, 0)
 const Direction_S = Vector3(0, -1, 1)
 const Direction_SW = Vector3(-1, 0, 1)
 const Direction_NW = Vector3(-1, 1, 0)
-
-var HexCell = preload("./HexCell.gd")
 
 var hex_size
 var hex_scale

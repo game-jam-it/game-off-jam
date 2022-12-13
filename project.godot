@@ -119,6 +119,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Items/Consumables/ConsumableEffects/Scripts/HealingEffect.gd"
 }, {
+"base": "Object",
+"class": "HexCell",
+"language": "GDScript",
+"path": "res://addons/HexCell.gd"
+}, {
+"base": "Object",
+"class": "HexGrid",
+"language": "GDScript",
+"path": "res://addons/HexGrid.gd"
+}, {
 "base": "Resource",
 "class": "Item",
 "language": "GDScript",
@@ -252,6 +262,8 @@ _global_script_class_icons={
 "GainRandomAmmoEffect": "",
 "GridObject": "",
 "HealingEffect": "",
+"HexCell": "",
+"HexGrid": "",
 "Item": "",
 "ItemEntity": "",
 "MallusEntity": "",
