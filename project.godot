@@ -55,9 +55,9 @@ _global_script_classes=[ {
 "path": "res://UserInterface/DialogueSystem/DialogueBox.gd"
 }, {
 "base": "EventMap",
-"class": "DialogueEvent",
+"class": "DialogueMap",
 "language": "GDScript",
-"path": "res://Events/DialogueEvent.gd"
+"path": "res://Maps/DialogueMap.gd"
 }, {
 "base": "ActorEntity",
 "class": "EnemyActor",
@@ -100,9 +100,9 @@ _global_script_classes=[ {
 "path": "res://TheTown/EventMap/EventMap.gd"
 }, {
 "base": "EventMap",
-"class": "ExpeditionEvent",
+"class": "ExpeditionMap",
 "language": "GDScript",
-"path": "res://Events/ExpeditionEvent.gd"
+"path": "res://Maps/ExpeditionMap.gd"
 }, {
 "base": "ConsumableEffect",
 "class": "GainRandomAmmoEffect",
@@ -119,15 +119,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Items/Consumables/ConsumableEffects/Scripts/HealingEffect.gd"
 }, {
-"base": "Object",
+"base": "Reference",
 "class": "HexCell",
 "language": "GDScript",
-"path": "res://addons/HexCell.gd"
+"path": "res://addons/hexmap/HexCell.gd"
 }, {
-"base": "Object",
+"base": "Reference",
 "class": "HexGrid",
 "language": "GDScript",
-"path": "res://addons/HexGrid.gd"
+"path": "res://addons/hexmap/HexGrid.gd"
 }, {
 "base": "Resource",
 "class": "Item",
@@ -224,6 +224,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Items/Trinket.gd"
 }, {
+"base": "Node",
+"class": "TurnQueue",
+"language": "GDScript",
+"path": "res://Entities/TurnQueue.gd"
+}, {
 "base": "Item",
 "class": "Weapon",
 "language": "GDScript",
@@ -249,7 +254,7 @@ _global_script_class_icons={
 "ConsumableItem": "",
 "DamageBoostEffect": "",
 "DialogueBox": "",
-"DialogueEvent": "",
+"DialogueMap": "",
 "EnemyActor": "",
 "EntityAction": "",
 "EntityInput": "",
@@ -258,7 +263,7 @@ _global_script_class_icons={
 "EventGrid": "",
 "EventHex": "",
 "EventMap": "",
-"ExpeditionEvent": "",
+"ExpeditionMap": "",
 "GainRandomAmmoEffect": "",
 "GridObject": "",
 "HealingEffect": "",
@@ -283,6 +288,7 @@ _global_script_class_icons={
 "TownNode": "",
 "TownNodes": "",
 "Trinket": "",
+"TurnQueue": "",
 "Weapon": "",
 "WeaponEffect": "",
 "ZombieEntity": ""
@@ -297,7 +303,7 @@ config/icon="res://icon.png"
 [autoload]
 
 AppState="*res://AppState.gd"
-Events="*res://Events/Events.gd"
+Maps="*res://Maps/Maps.gd"
 TheTown="*res://TheTown/TheTown.tscn"
 Overlay="*res://UserInterface/Overlay.tscn"
 PlayerStats="*res://Actor/PlayerStats.gd"

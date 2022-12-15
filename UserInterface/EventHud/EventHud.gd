@@ -41,7 +41,7 @@ func disable():
 				var ent = obj.entity()
 				if ent.group == BaseEntity.Group.Enemy && ent.hidden: 
 					ent.disconnect("unhide_entity", self, "_on_unhide_enemy")
-		if _scene is ExpeditionEvent:
+		if _scene is ExpeditionMap:
 			_scene.queue().disconnect("queue_changed", self, "_on_queue_changed")
 		_scene.disconnect("map_conpleted", self, "_on_map_conpleted")
 		_scene.disconnect("stats_updated", self, "_on_stats_updated")
@@ -64,7 +64,7 @@ func setup_event_data(coords):
 		return
 	_scene.connect("map_conpleted", self, "_on_map_conpleted")
 	_scene.connect("stats_updated", self, "_on_stats_updated")
-	if _scene is ExpeditionEvent:
+	if _scene is ExpeditionMap:
 		_scene.queue().connect("queue_changed", self, "_on_queue_changed")
 	var list = _scene.queue().get_children()
 	# FixMe See: call order yields, it pushes it back but is bug prone

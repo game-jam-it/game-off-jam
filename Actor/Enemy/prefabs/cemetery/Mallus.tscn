@@ -5,7 +5,7 @@
 [ext_resource path="res://Entities/Actions/MoveToAction.gd" type="Script" id=3]
 [ext_resource path="res://prototype/assets/hex-flat-256.png" type="Texture" id=4]
 [ext_resource path="res://Entities/Input/BotInput.gd" type="Script" id=5]
-[ext_resource path="res://Events/assets/cemetery/deamon-a.png" type="Texture" id=6]
+[ext_resource path="res://Maps/assets/cemetery/deamon-a.png" type="Texture" id=6]
 [ext_resource path="res://Actor/Enemy/prefabs/cemetery/Mallus.gd" type="Script" id=7]
 [ext_resource path="res://Actor/Enemy/assets/cemetery/mallus-portrait.png" type="Texture" id=8]
 

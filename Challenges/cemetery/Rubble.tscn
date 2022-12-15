@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Events/assets/cemetery/rubble-a.png" type="Texture" id=1]
+[ext_resource path="res://Maps/assets/cemetery/rubble-a.png" type="Texture" id=1]
 [ext_resource path="res://Challenges/cemetery/scripts/Rubble.gd" type="Script" id=2]
 [ext_resource path="res://TheTown/EventMap/GridObject.gd" type="Script" id=3]
 
