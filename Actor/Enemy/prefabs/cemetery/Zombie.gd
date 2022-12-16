@@ -4,7 +4,7 @@ extends EnemyActor
 # TODO On death respawn x turns
 # Waiting for knock back on this
 
-func investigate_smell(entity: ActorEntity):
+func investigate_smell(entity: BaseActor):
 	if hidden:
 		return
 	if _grid == null:

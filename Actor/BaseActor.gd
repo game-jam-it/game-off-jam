@@ -1,10 +1,14 @@
-class_name ActorEntity
+class_name BaseActor
 extends BaseEntity
 
-onready var input: EntityInput = $Input
-onready var actions: Node2D = $Actions
+signal free_actor(actor)
 
-onready var sense_area = $SenseArea
+export(float) var initiative = 1.0
+
+onready var input: EntityInput = $Input
+
+onready var actions: Node2D = $Actions
+onready var sense_area: Area2D = $SenseArea
 
 func _ready():
 	if input != null:
@@ -12,6 +16,10 @@ func _ready():
 	if actions != null:
 		for action in actions.get_children():
 			action.initialize(self)
+	self.connect("tree_exiting", self, "_on_actor_exiting")
+
+func _on_actor_exiting():
+	emit_signal("free_actor", self)
 
 
 func disable():

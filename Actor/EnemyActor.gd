@@ -1,5 +1,5 @@
 class_name EnemyActor
-extends ActorEntity
+extends BaseActor
 
 enum Slot {
 	None,
