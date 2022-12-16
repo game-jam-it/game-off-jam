@@ -157,7 +157,7 @@ func _handle_entity(hex, entity):
 	match entity.group:
 		BaseEntity.Group.Enemy:
 			return _attack_target(hex, entity)
-		BaseEntity.Group.Challenge:
+		BaseEntity.Group.Dare:
 			return _setup_challenge_event(hex, entity)
 
 func _attack_target(hex, target):

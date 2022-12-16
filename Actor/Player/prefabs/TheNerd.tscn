@@ -117,7 +117,7 @@ tracks/3/keys = {
 [node name="TheNerd" type="Node2D"]
 light_mask = 32
 script = ExtResource( 4 )
-group = 2
+group = 5
 initiative = 2.0
 
 [node name="Sprite" type="Sprite" parent="."]

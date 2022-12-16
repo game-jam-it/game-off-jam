@@ -15,7 +15,7 @@ radius = 768.0
 [node name="Ratsie" type="Node2D"]
 light_mask = 32
 script = ExtResource( 7 )
-group = 1
+group = 4
 initiative = 4.0
 slot = 2
 hit_chance = 75

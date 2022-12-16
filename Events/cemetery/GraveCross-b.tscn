@@ -1,22 +1,22 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Maps/assets/cemetery/tomb-b.png" type="Texture" id=1]
-[ext_resource path="res://Challenges/cemetery/scripts/GraveCross.gd" type="Script" id=2]
-[ext_resource path="res://TheTown/EventMap/GridObject.gd" type="Script" id=3]
+[ext_resource path="res://TheTown/EventMap/GridObject.gd" type="Script" id=1]
+[ext_resource path="res://Events/cemetery/scripts/GraveCross.gd" type="Script" id=2]
+[ext_resource path="res://Maps/assets/cemetery/tomb-b.png" type="Texture" id=3]
 
 [node name="GraveCross-b" type="Node2D"]
 scale = Vector2( 0.999999, 0.999999 )
 script = ExtResource( 2 )
-group = 5
+group = 1
 difficulty = 18
 attribute = 3
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.06, 0.06 )
-texture = ExtResource( 1 )
+texture = ExtResource( 3 )
 
 [node name="Obstical" type="Node2D" parent="."]
 unique_name_in_owner = true
-script = ExtResource( 3 )
+script = ExtResource( 1 )
 cell_cost = 4
 cell_cover = 10

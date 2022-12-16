@@ -1,4 +1,4 @@
-extends EventEntity
+extends DareEvent
 
 var links = []
 
@@ -12,7 +12,7 @@ func _ready():
 		else: print("[%s] Invalid link name: %s" % [self.name, name])
 
 func reward(player: PlayerActor) -> EntityAction:
-	print("%s missing overwrite of the EventEntity.reward() method" % name)
+	print("%s missing overwrite of the DareEvent.reward() method" % name)
 	#if not triggered: triggered = true
 	# TODO Spawn item from grave
 	return null

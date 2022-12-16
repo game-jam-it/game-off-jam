@@ -1,4 +1,4 @@
-class_name EventEntity
+class_name DareEvent
 extends BaseEntity
 
 const D20: int = 20
@@ -38,9 +38,9 @@ func check(player: PlayerActor) -> EntityAction:
 	else: return self.penalty(player)
 
 func reward(player: PlayerActor) -> EntityAction:
-	print("%s missing overwrite of the EventEntity.reward() method" % name)
+	print("%s missing overwrite of the DareEvent.reward() method" % name)
 	return null
 
 func penalty(player: PlayerActor) -> EntityAction:
-	print("%s missing overwrite of the EventEntity.penalty() method" % name)
+	print("%s missing overwrite of the DareEvent.penalty() method" % name)
 	return null

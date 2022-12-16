@@ -1,4 +1,4 @@
-extends EventEntity
+extends DareEvent
 
 var _counter: int = 0
 

@@ -127,7 +127,7 @@ func _build_map_goals():
 					self._build_enemy_goals(ent)
 				BaseEntity.Group.Lore:
 					self._build_lore_goals()
-				BaseEntity.Group.Pickup:
+				BaseEntity.Group.Item:
 					self._build_pickup_goals(ent)
 
 func _build_enemy_goals(ent):
@@ -142,11 +142,11 @@ func _build_lore_goals():
 func _build_pickup_goals(ent):
 	_goals.pickup.total += 1
 	match ent.slot:
-		ItemEntity.Slot.Relic: _goals.pickup.relic.total += 1
-		ItemEntity.Slot.Money: _goals.pickup.money.total += 1
-		ItemEntity.Slot.Weapon: _goals.pickup.weapon.total += 1
-		ItemEntity.Slot.Trinket: _goals.pickup.trinket.total += 1
-		ItemEntity.Slot.Consumable: _goals.pickup.consumable.total += 1
+		BaseItem.Slot.Relic: _goals.pickup.relic.total += 1
+		BaseItem.Slot.Money: _goals.pickup.money.total += 1
+		BaseItem.Slot.Weapon: _goals.pickup.weapon.total += 1
+		BaseItem.Slot.Trinket: _goals.pickup.trinket.total += 1
+		BaseItem.Slot.Consumable: _goals.pickup.consumable.total += 1
 
 
 """
@@ -171,7 +171,7 @@ func _save_map_state():
 					continue
 				BaseEntity.Group.Lore:
 					continue
-				BaseEntity.Group.Pickup:
+				BaseEntity.Group.Item:
 					obj.disconnect("picked_up", self, "_on_picked_up")
 
 
@@ -193,9 +193,9 @@ func _setup_entity(ent):
 			self._setup_player_entity(ent)
 		BaseEntity.Group.Lore:
 			self._setup_lore_entity(ent)
-		BaseEntity.Group.Pickup:
+		BaseEntity.Group.Item:
 			self._setup_pickup_entity(ent)
-		BaseEntity.Group.Challenge:
+		BaseEntity.Group.Dare:
 			self._setup_challenge_entity(ent)
 
 func _setup_enemy_entity(ent):
@@ -233,13 +233,13 @@ func _on_enemy_died(ent: EnemyActor):
 	emit_signal("stats_updated", _goals)
 
 
-func _on_picked_up(ent: ItemEntity):
+func _on_picked_up(ent: BaseItem):
 	ent.disconnect("picked_up", self, "_on_picked_up")
 	_goals.pickup.done += 1
 	match ent.slot:
-		ItemEntity.Slot.Relic: _goals.pickup.relic.done += 1
-		ItemEntity.Slot.Money: _goals.pickup.money.done += 1
-		ItemEntity.Slot.Weapon: _goals.pickup.weapon.done += 1
-		ItemEntity.Slot.Trinket: _goals.pickup.trinket.done += 1
-		ItemEntity.Slot.Consumable: _goals.pickup.consumable.done += 1
+		BaseItem.Slot.Relic: _goals.pickup.relic.done += 1
+		BaseItem.Slot.Money: _goals.pickup.money.done += 1
+		BaseItem.Slot.Weapon: _goals.pickup.weapon.done += 1
+		BaseItem.Slot.Trinket: _goals.pickup.trinket.done += 1
+		BaseItem.Slot.Consumable: _goals.pickup.consumable.done += 1
 	emit_signal("stats_updated", _goals)

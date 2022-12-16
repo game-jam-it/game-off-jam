@@ -1,4 +1,4 @@
-extends EventEntity
+extends DareEvent
 
 func reward(player: PlayerActor) -> EntityAction:
 	if player == null: 

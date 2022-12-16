@@ -15,7 +15,7 @@ radius = 448.571
 [node name="Zombie" type="Node2D"]
 light_mask = 32
 script = ExtResource( 7 )
-group = 1
+group = 4
 hidden = true
 initiative = 4.0
 slot = 2

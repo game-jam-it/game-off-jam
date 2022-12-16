@@ -15,7 +15,7 @@ radius = 443.971
 [node name="Mallus" type="Node2D"]
 light_mask = 32
 script = ExtResource( 7 )
-group = 1
+group = 4
 hidden = true
 initiative = 9.0
 slot = 1
