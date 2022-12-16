@@ -1,4 +1,4 @@
-class_name ItemEntity
+class_name BaseItem
 extends BaseEntity
 
 enum Slot {
