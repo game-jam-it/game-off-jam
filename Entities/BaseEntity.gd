@@ -3,11 +3,11 @@ extends Node2D
 
 enum Group {
 	None,
+	Dare,
+	Lore,
+	Item,
 	Enemy,
 	Player,
-	Lore,
-	Pickup,
-	Challenge,
 }
 
 signal free_entity(entity)
@@ -16,9 +16,8 @@ signal unhide_entity(entity)
 export(Group) var group = Group.None
 export(bool) var snap = true
 export(bool) var hidden = false
-export(float) var initiative = 1.0
 
-var _grid
+var _grid: Object = null
 
 var _id: int = 0
 var _free: bool = false
@@ -38,12 +37,12 @@ func _ready():
 func set_grid(grid):
 	_grid = grid
 	_free = false;
-	var list = get_children()
 	if self.snap:
 		var hex = _grid.hexgrid.pixel_to_hex(position)
 		self.position = _grid.hexgrid.hex_to_pixel(hex)
 	if not self.hidden:
 		_grid.add_entity(self)
+		var list = get_children()
 		for node in list:
 			if node is GridObject:
 				_grid.add_object(node)

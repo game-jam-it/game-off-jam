@@ -2,7 +2,7 @@ extends EntityAction
 
 onready var damageIndicator = preload("res://Items/Weapons/WeaponEffects/DamageIndicator.tscn")
 
-var target: ActorEntity
+var target: BaseActor
 var location: Vector2
 
 func execute():

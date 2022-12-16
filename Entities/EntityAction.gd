@@ -1,11 +1,11 @@
 class_name EntityAction
 extends Node2D
 
-var entity: ActorEntity
+var entity: BaseActor
 
 onready var tween = $Tween
 
-func initialize(ent: ActorEntity) -> void:
+func initialize(ent: BaseActor) -> void:
 	entity = ent
 
 func execute():

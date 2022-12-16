@@ -6,7 +6,7 @@ onready var actor_hex = $ActorHex
 onready var target_hex = $TargetHex
 
 var _grid: EventGrid
-var _target: ActorEntity = null
+var _target: BaseActor = null
 var _trigger: BaseEntity = null
 
 
@@ -14,7 +14,7 @@ func clear_target():
 	_target = null
 
 
-func set_target(entity: ActorEntity):
+func set_target(entity: BaseActor):
 	_target = entity
 
 func set_trigger(entity: BaseEntity):

@@ -32,7 +32,7 @@ func enable():
 		_active = get_child(0)
 		emit_signal('active_changed', _active)
 
-func add_entity(entity: ActorEntity):
+func add_entity(entity: BaseActor):
 	if entity != null:
 		var obj = QueuePrefab.instance()
 		obj.initialize(self, entity)

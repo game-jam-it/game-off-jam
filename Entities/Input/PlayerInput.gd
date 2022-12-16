@@ -169,7 +169,7 @@ func _attack_target(hex, target):
 
 func _setup_challenge_event(hex, target):
 	# TODO Implement chalange action
-	if target is EventEntity:
+	if target is DareEvent:
 		print(">>> Check challenge: '%s'" % target.name)
 		return target.check(self.entity)
 	return null
