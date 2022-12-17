@@ -21,7 +21,7 @@ var _complete = false
 
 signal map_unlocked(map)
 signal map_conpleted(map)
-signal stats_updated(value)
+signal goals_updated(value)
 
 export(String) var map_title = "Unknown"
 export(String, MULTILINE) var map_summary = "An unknown map"
@@ -78,7 +78,11 @@ func set_info(node):
 
 static func new_goals():
 	return {
-		"lore": {"done": 0, "total": 0,},
+		"event": {
+			"done": 0, "total": 0,
+			"dare": {"done": 0, "total": 0,},
+			"lore": {"done": 0, "total": 0,},
+		},
 		"banish": {
 			"done": 0, "total": 0,
 			"boss": {"done": 0, "total": 0,},
@@ -91,10 +95,5 @@ static func new_goals():
 			"weapon": {"done": 0, "total": 0,},
 			"trinket": {"done": 0, "total": 0,},
 			"consumable": {"done": 0, "total": 0,},
-		},
-		"challenge": {
-			"done": 0, "total": 0,
-			"hide": {"done": 0, "total": 0,},
-			"escape": {"done": 0, "total": 0,},
 		},
 	}

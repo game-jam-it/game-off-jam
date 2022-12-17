@@ -58,7 +58,7 @@ func start_event():
 	_objects.visible = true
 	_moon_light.visible = true
 	print("%s starting" % name)
-	emit_signal("stats_updated", _goals)
+	emit_signal("goals_updated", _goals)
 	yield(get_tree(), "idle_frame")
 	yield(run_event(), "completed")
 
@@ -91,7 +91,11 @@ func on_active_changed(active):
 
 static func new_goals():
 	return {
-		"lore": {"done": 0, "total": 0,},
+		"event": {
+			"done": 0, "total": 0,
+			"dare": {"done": 0, "total": 0,},
+			"lore": {"done": 0, "total": 0,},
+		},
 		"banish": {
 			"done": 0, "total": 0,
 			"boss": {"done": 0, "total": 0,},
@@ -104,11 +108,6 @@ static func new_goals():
 			"weapon": {"done": 0, "total": 0,},
 			"trinket": {"done": 0, "total": 0,},
 			"consumable": {"done": 0, "total": 0,},
-		},
-		"challenge": {
-			"done": 0, "total": 0,
-			"hide": {"done": 0, "total": 0,},
-			"escape": {"done": 0, "total": 0,},
 		},
 	}
 
@@ -137,7 +136,7 @@ func _build_enemy_goals(ent):
 		EnemyActor.Slot.Drone: _goals.banish.drone.total += 1
 
 func _build_lore_goals():
-	_goals.lore.total += 1
+	_goals.event.lore.total += 1
 
 func _build_pickup_goals(ent):
 	_goals.pickup.total += 1
@@ -230,7 +229,7 @@ func _on_enemy_died(ent: EnemyActor):
 	match ent.slot:
 		EnemyActor.Slot.Boss: _goals.banish.boss.done += 1
 		EnemyActor.Slot.Drone: _goals.banish.drone.done += 1
-	emit_signal("stats_updated", _goals)
+	emit_signal("goals_updated", _goals)
 
 
 func _on_picked_up(ent: BaseItem):
@@ -242,4 +241,4 @@ func _on_picked_up(ent: BaseItem):
 		BaseItem.Slot.Weapon: _goals.pickup.weapon.done += 1
 		BaseItem.Slot.Trinket: _goals.pickup.trinket.done += 1
 		BaseItem.Slot.Consumable: _goals.pickup.consumable.done += 1
-	emit_signal("stats_updated", _goals)
+	emit_signal("goals_updated", _goals)

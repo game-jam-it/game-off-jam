@@ -46,7 +46,7 @@ func _ready():
 
 func _init_goals():
 	self._goals =  EventMap.new_goals()
-	self._goals.lore.total = 2
+	self._goals.event.lore.total = 2
 
 func open_dialog():
 	match state:
@@ -144,16 +144,16 @@ func _run_sleep():
 	self._home_closer()
 
 func _run_move_out():
-	self._goals.lore.done += 1
-	emit_signal("stats_updated", _goals)
+	self._goals.event.lore.done += 1
+	emit_signal("goals_updated", _goals)
 	self.state = State.Base
 	self.action = Action.None
 	self._focus_on_reward_map()
 
 func _run_close_act():
 	self._complete = true
-	self._goals.lore.done += 1
-	emit_signal("stats_updated", _goals)
+	self._goals.event.lore.done += 1
+	emit_signal("goals_updated", _goals)
 	TheTown.stop_active_event()
 	TheTown.restart(TheTown.Act.Teens)
 

@@ -22,7 +22,7 @@ func end_event():
 	print("%s ending" % name)
 
 func start_event():
-	emit_signal("stats_updated", _goals)
+	emit_signal("goals_updated", _goals)
 	yield(get_tree(), "idle_frame")
 	print("%s starting" % name)
 	_moon_light.visible = true
