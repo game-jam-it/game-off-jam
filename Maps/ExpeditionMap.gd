@@ -188,6 +188,7 @@ func _on_enemy_died(actor: EnemyActor):
 		EnemyActor.Slot.Drone:
 			_goals.banish.drone.done += 1
 	emit_signal("goals_updated", _goals)
+	actor.queue_free()
 	# TODO: Trigger enemy died
 
 
@@ -201,6 +202,7 @@ func _initialize_player_actor(actor: PlayerActor) -> String:
 func _on_player_died(actor: PlayerActor):
 	actor.disconnect("player_died", self, "_on_player_died")
 	_queue.remove_actor(actor)
+	actor.queue_free()
 	# TODO: Trigger player died
 
 

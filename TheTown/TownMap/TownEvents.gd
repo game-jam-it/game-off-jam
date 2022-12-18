@@ -34,7 +34,9 @@ func handle_input(input):
 func initialize_goals():
 	# Compute the total of all maps
 	self._compute_goal_total()
-
+	for map in get_children():
+		if map.has_method("initialize"):
+			map.initialize()
 
 func end_event(_coords):
 	if active != null:
@@ -69,8 +71,6 @@ func _compute_goal_total():
 		"maps": {"done": 0, "total": 0}
 	})
 	for map in get_children():
-		if map.has_method("initialize"):
-			map.initialize()
 		if map is EventMap:
 			if map.is_complete():
 				_goals.maps.done += 1

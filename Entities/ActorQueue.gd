@@ -124,12 +124,12 @@ func sort():
 func clear():
 	_run_active = false
 	_run_ended = true
-	for actor in _players:
-		actor.disconnect("end_turn", self, "_end_actors_turn")
-		actor.disconnect("end_turn", self, "_end_players_turn")
-	for actor in _enemies:
-		actor.disconnect("end_turn", self, "_end_actors_turn")
-		actor.disconnect("end_turn", self, "_end_enemies_turn")
+	# for actor in _players:
+	# 	actor.disconnect("end_turn", self, "_end_actors_turn")
+	# 	actor.disconnect("end_turn", self, "_end_players_turn")
+	# for actor in _enemies:
+	# 	actor.disconnect("end_turn", self, "_end_actors_turn")
+	# 	actor.disconnect("end_turn", self, "_end_enemies_turn")
 	_enemies.clear()
 	_players.clear()
 	_queue.clear()
@@ -197,7 +197,7 @@ func _start_enemies_turn():
 func _end_enemies_turn(actor: ActorEntity):
 	actor.disconnect("end_turn", self, "_end_enemies_turn")
 	_enemies_done.append(actor)
-	if _enemies.size() == _enemies_done.size():
+	if _enemies.size() <= _enemies_done.size():
 		emit_signal("turn_ended", self)
 		_run_team_queue()
 

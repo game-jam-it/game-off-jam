@@ -667,6 +667,30 @@ position = Vector2( 0, 280 )
 [node name="SmallGate" parent="Objects" instance=ExtResource( 38 )]
 position = Vector2( 0, -260 )
 
+[node name="Tree-a-1" parent="Objects" instance=ExtResource( 33 )]
+position = Vector2( 223, -84 )
+
+[node name="Tree-a-2" parent="Objects" instance=ExtResource( 33 )]
+position = Vector2( -442, 144 )
+
+[node name="Tree-b-1" parent="Objects" instance=ExtResource( 41 )]
+position = Vector2( -241, -100 )
+
+[node name="Tree-b-2" parent="Objects" instance=ExtResource( 41 )]
+position = Vector2( 340, 411 )
+
+[node name="Rubble-01" parent="Objects" instance=ExtResource( 37 )]
+position = Vector2( 277, -224 )
+
+[node name="Rubble-02" parent="Objects" instance=ExtResource( 37 )]
+position = Vector2( -60, -141 )
+
+[node name="Rubble-03" parent="Objects" instance=ExtResource( 37 )]
+position = Vector2( 157, -435 )
+
+[node name="Rubble-04" parent="Objects" instance=ExtResource( 37 )]
+position = Vector2( 379, 96 )
+
 [node name="GraveCross-a" parent="Objects" instance=ExtResource( 25 )]
 position = Vector2( 241, 73 )
 link_names = [ "Zombie-GC-A-01-01", "Zombie-GC-A-01-02", "Zombie-GC-A-01-03" ]
@@ -812,30 +836,6 @@ scale = Vector2( 1, -1 )
 position = Vector2( 132, -88 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
-
-[node name="Tree-a-1" parent="Objects" instance=ExtResource( 33 )]
-position = Vector2( 223, -84 )
-
-[node name="Tree-a-2" parent="Objects" instance=ExtResource( 33 )]
-position = Vector2( -442, 144 )
-
-[node name="Tree-b-1" parent="Objects" instance=ExtResource( 41 )]
-position = Vector2( -241, -100 )
-
-[node name="Tree-b-2" parent="Objects" instance=ExtResource( 41 )]
-position = Vector2( 340, 411 )
-
-[node name="Rubble-01" parent="Objects" instance=ExtResource( 37 )]
-position = Vector2( 277, -224 )
-
-[node name="Rubble-02" parent="Objects" instance=ExtResource( 37 )]
-position = Vector2( -60, -141 )
-
-[node name="Rubble-03" parent="Objects" instance=ExtResource( 37 )]
-position = Vector2( 157, -435 )
-
-[node name="Rubble-04" parent="Objects" instance=ExtResource( 37 )]
-position = Vector2( 379, 96 )
 
 [node name="Grave-closed" type="Node2D" parent="Objects"]
 position = Vector2( 180, -12 )

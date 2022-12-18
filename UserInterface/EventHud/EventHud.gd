@@ -40,7 +40,7 @@ func disable():
 			if actor.group == BaseEntity.Group.Enemy && actor.hidden: 
 				actor.disconnect("unhide_entity", self, "_on_unhide_enemy")
 		if _scene is ExpeditionMap:
-			_scene.queue().disconnect("queue_updated", self, "_on_queue_changed")
+			_scene.get_queue().disconnect("queue_updated", self, "_on_queue_changed")
 		_scene.disconnect("map_conpleted", self, "_on_map_conpleted")
 		_scene.disconnect("goals_updated", self, "_on_goals_updated")
 		_scene = null

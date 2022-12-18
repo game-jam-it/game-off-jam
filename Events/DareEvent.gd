@@ -10,21 +10,38 @@ enum Attribute {
 	Fortitude,
 }
 
+var _done = false
+
+var rng = RandomNumberGenerator.new()
+
+signal ended(event)
+signal started(event)
+
 export(int, 20) var difficulty = 10
 export(Attribute) var attribute = Attribute.None
 
-var rng = RandomNumberGenerator.new()
+
+func is_done():
+	return _done
+
 
 func _ready():
 	rng.randomize()
 
+
 func destroy():
-	self.free_entity()
+	free_entity()
 
 func disable():
-	self.queue_free()
+	queue_free()
 
-func roll():
+
+func roll(player: PlayerActor) -> EntityAction:
+	if _roll(): return _reward(player)
+	else: return _penalty(player)
+
+
+func _roll():
 	var boost = 0;
 	match attribute:
 		Attribute.Smarts: boost = PlayerStats.smarts
@@ -32,15 +49,10 @@ func roll():
 		Attribute.Fortitude: boost = PlayerStats.fortitude
 	return difficulty < (rng.randi_range(0, D20) + boost)
 
-
-func check(player: PlayerActor) -> EntityAction:
-	if self.roll(): return self.reward(player)
-	else: return self.penalty(player)
-
-func reward(player: PlayerActor) -> EntityAction:
+func _reward(player: PlayerActor) -> EntityAction:
 	print("%s missing overwrite of the DareEvent.reward() method" % name)
 	return null
 
-func penalty(player: PlayerActor) -> EntityAction:
+func _penalty(player: PlayerActor) -> EntityAction:
 	print("%s missing overwrite of the DareEvent.penalty() method" % name)
 	return null

@@ -1,8 +1,21 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Day-of-Chaos.mp3" type="AudioStream" id=1]
+[ext_resource path="res://prototype/CameraDrag.gd" type="Script" id=2]
+[ext_resource path="res://prototype/events/turn-queue-test.tscn" type="PackedScene" id=3]
 
-[node name="Control" type="Control"]
+[node name="Node" type="Node2D"]
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 640, 360 )
+current = true
+zoom = Vector2( 0.75, 0.75 )
+script = ExtResource( 2 )
+init_run = false
+init_offset = Vector2( 0, -1280 )
+
+[node name="TurnQueueTest" parent="." instance=ExtResource( 3 )]
+position = Vector2( 640, 360 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )

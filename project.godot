@@ -291,7 +291,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Game Off Jam"
-run/main_scene="res://MainScene.tscn"
+run/main_scene="res://DevScene.tscn"
 config/icon="res://icon.png"
 
 [autoload]
