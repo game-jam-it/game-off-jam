@@ -297,8 +297,9 @@ func start_selected_event(coords):
 	var type = events.start_event(coords)
 	yield(get_tree(), "idle_frame")
 	if type == EventMap.Type.Expedition:
-		var queue = events.active.queue()
-		queue.connect("next_round", self, "_on_next_round")
+		var queue = events.active.get_queue()
+		# TODO Update Round signal from next to starting
+		queue.connect("round_starting", self, "_on_next_round")
 		emit_signal("start_expedition", coords)
 	elif type == EventMap.Type.Dialogue:
 		emit_signal("start_dialogue", coords)

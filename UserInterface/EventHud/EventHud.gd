@@ -36,13 +36,11 @@ func disable():
 	for box in enemy_list.get_children():
 		box.queue_free()
 	if _scene != null:
-		for obj in _scene.queue().get_children():
-			if obj is QueueObject:
-				var ent = obj.entity()
-				if ent.group == BaseEntity.Group.Enemy && ent.hidden: 
-					ent.disconnect("unhide_entity", self, "_on_unhide_enemy")
+		for actor in _scene.get_queue().get_actors():
+			if actor.group == BaseEntity.Group.Enemy && actor.hidden: 
+				actor.disconnect("unhide_entity", self, "_on_unhide_enemy")
 		if _scene is ExpeditionMap:
-			_scene.queue().disconnect("queue_changed", self, "_on_queue_changed")
+			_scene.queue().disconnect("queue_updated", self, "_on_queue_changed")
 		_scene.disconnect("map_conpleted", self, "_on_map_conpleted")
 		_scene.disconnect("goals_updated", self, "_on_goals_updated")
 		_scene = null
@@ -65,18 +63,16 @@ func setup_event_data(coords):
 	_scene.connect("map_conpleted", self, "_on_map_conpleted")
 	_scene.connect("goals_updated", self, "_on_goals_updated")
 	if _scene is ExpeditionMap:
-		_scene.queue().connect("queue_changed", self, "_on_queue_changed")
-	var list = _scene.queue().get_children()
+		_scene.get_queue().connect("queue_updated", self, "_on_queue_changed")
+	var list = _scene.get_queue().get_actors()
 	# FixMe See: call order yields, it pushes it back but is bug prone
 	if list == null: print_debug("[WARN] %s: entity list is null" % name)
 	if list.size() == 0: print_debug("[WARN] %s: entity list empty" % name)
-	for obj in list:
-		if obj is QueueObject:
-			var ent = obj.entity()
-			match ent.group:
-				BaseEntity.Group.Enemy:
-					if !ent.hidden: self._create_box(ent)
-					else: ent.connect("unhide_entity", self, "_on_unhide_enemy")
+	for actor in list:
+		match actor.group:
+			BaseEntity.Group.Enemy:
+				if !actor.hidden: self._create_box(actor)
+				else: actor.connect("unhide_entity", self, "_on_unhide_enemy")
 
 	var goals = _scene.goals()
 	lore_box.visible = true

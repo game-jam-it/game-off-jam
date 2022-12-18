@@ -15,12 +15,13 @@ var order = 0
 var _type = Type.None
 var _coords = Vector2.ZERO
 
-var _goals = null
+var _goals = new_goals()
 var _locked = true
 var _complete = false
 
 signal map_unlocked(map)
 signal map_conpleted(map)
+
 signal goals_updated(value)
 
 export(String) var map_title = "Unknown"

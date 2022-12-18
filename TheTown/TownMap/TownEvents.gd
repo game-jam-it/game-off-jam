@@ -69,6 +69,8 @@ func _compute_goal_total():
 		"maps": {"done": 0, "total": 0}
 	})
 	for map in get_children():
+		if map.has_method("initialize"):
+			map.initialize()
 		if map is EventMap:
 			if map.is_complete():
 				_goals.maps.done += 1
