@@ -1,5 +1,7 @@
 class_name PlayerActor
-extends BaseActor
+extends ActorEntity
+
+signal player_died(actor)
 
 func take_damage(value: int):
 	PlayerStats.take_damage(value)

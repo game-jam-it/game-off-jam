@@ -1,9 +1,9 @@
 class_name BonesEntity
 extends EnemyActor
 
-var smelled_it: BaseActor = null
+var smelled_it: BaseEntity = null
 
-func clear_smell(entity: BaseActor):
+func clear_smell(entity: BaseEntity):
 	if entity == null:
 		print_debug("[%s]: not an entity" % name)
 		return
@@ -11,7 +11,7 @@ func clear_smell(entity: BaseActor):
 		return
 	smelled_it = null
 
-func investigate_smell(entity: BaseActor):
+func investigate_smell(entity: BaseEntity):
 	if _grid == null:
 		print_debug("[%s]: no grid set" % name)
 		return

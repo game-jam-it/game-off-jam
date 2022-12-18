@@ -5,8 +5,7 @@ export(int) var view_perseption = 50
 onready var actor_hex = $ActorHex
 onready var target_hex = $TargetHex
 
-var _grid: EventGrid
-var _target: BaseActor = null
+var _target: BaseEntity = null
 var _trigger: BaseEntity = null
 
 
@@ -14,7 +13,7 @@ func clear_target():
 	_target = null
 
 
-func set_target(entity: BaseActor):
+func set_target(entity: BaseEntity):
 	_target = entity
 
 func set_trigger(entity: BaseEntity):
@@ -30,14 +29,12 @@ func _on_free_trigger(entity):
 	EntityInput Override
 """
 
-func enable(grid):
-	_grid = grid
-
 func end_turn():
 	actor_hex.visible = false
 	# target_hex.visible = false
 
-func start_turn():
+func start_turn(grid):
+	_grid = grid
 	actor_hex.visible = true
 	# target_hex.visible = true
 
