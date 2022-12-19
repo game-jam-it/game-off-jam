@@ -93,7 +93,8 @@ func run(grid, team_queue: bool = true):
 	else: _run_actors_queue(0)
 
 func stop():
-	if !_run_ended: return _error("stop: ended")
+	if !_run_ended: 
+		return
 	_run_active = false
 	_run_ended = true
 

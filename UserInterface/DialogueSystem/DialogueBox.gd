@@ -303,7 +303,7 @@ func set_portraits(portrait_left_texture: String, portrait_right_texture: String
 
 func set_selected_choice(value: int) -> void:
 	# Currently 2 choices is the maximum
-	selected_choice = clamp(value, 1, 2)
+	selected_choice = int(clamp(value, 1, 2))
 	
 	# Set the indicator on the correct choice
 	choice_1_indicator.modulate.a = 0

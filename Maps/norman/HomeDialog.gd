@@ -47,6 +47,7 @@ func _ready():
 func _init_goals():
 	self._goals =  EventMap.new_goals()
 	self._goals.event.lore.total = 2
+	emit_signal("goals_updated", _goals)
 
 func open_dialog():
 	match state:

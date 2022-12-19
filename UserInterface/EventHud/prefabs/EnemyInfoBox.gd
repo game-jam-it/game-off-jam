@@ -42,7 +42,7 @@ func on_gui_input(event):
 		print("Mouse Double Clicked %s" % name)
 
 
-func on_free_entity(entity):
+func on_free_entity(_entity):
 	self.queue_free()
 
 func on_health_changed(entity):

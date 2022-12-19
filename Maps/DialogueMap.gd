@@ -12,7 +12,7 @@ export(String) var dialog_name = "unknown"
 onready var _moon_light = $MoonLight
 
 func _ready():
-	# TODO self._init_goals()
+	self._init_goals()
 	self._type = Type.Dialogue
 	_moon_light.visible = false
 
@@ -22,7 +22,6 @@ func end_event():
 	print("%s ending" % name)
 
 func start_event():
-	emit_signal("goals_updated", _goals)
 	yield(get_tree(), "idle_frame")
 	print("%s starting" % name)
 	_moon_light.visible = true

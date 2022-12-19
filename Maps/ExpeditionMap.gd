@@ -64,7 +64,7 @@ func initialize():
 	for object in _objects.get_children():
 		if object is GridObject: _grid.add_object(object)
 		elif object is BaseEntity: _initialize_entity(object)
-		else: _object_error("initialize: unknown object", object)
+		# else: _object_error("initialize: unknown object", object)
 
 func _initialize_entity(entity: BaseEntity):
 	entity.set_grid(_grid)

@@ -13,3 +13,6 @@ enum Slot {
 signal picked_up(entity)
 
 export var slot = Slot.None
+
+func pick_up():
+	emit_signal("picked_up", self)

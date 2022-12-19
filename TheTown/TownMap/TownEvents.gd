@@ -41,8 +41,11 @@ func initialize_goals():
 func end_event(_coords):
 	if active != null:
 		active.disconnect("goals_updated", self, "_on_goals_updated")
+		var type = active.type()
 		active.end_event()
 		active = null
+		return type
+	return EventMap.Type.None
 
 func start_event(coords):
 	if active != null:

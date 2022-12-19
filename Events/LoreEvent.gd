@@ -35,6 +35,13 @@ func disable():
 	queue_free()
 
 
+func end():
+	emit_signal("ended", self)
+
+func start():
+	emit_signal("started", self)
+
+
 func roll(player: PlayerActor) -> EntityAction:
 	if _roll(): return self._reward(player)
 	else: return self._penalty(player)
@@ -48,10 +55,10 @@ func _roll():
 		Attribute.Fortitude: boost = PlayerStats.fortitude
 	return difficulty < (rng.randi_range(0, D20) + boost)
 
-func _reward(player: PlayerActor) -> EntityAction:
+func _reward(_player: PlayerActor) -> EntityAction:
 	print("%s missing overwrite of the LoreEvent.reward() method" % name)
 	return null
 
-func _penalty(player: PlayerActor) -> EntityAction:
+func _penalty(_player: PlayerActor) -> EntityAction:
 	print("%s missing overwrite of the LoreEvent.penalty() method" % name)
 	return null

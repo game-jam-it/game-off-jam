@@ -22,7 +22,7 @@ var _complete = false
 signal map_unlocked(map)
 signal map_conpleted(map)
 
-signal goals_updated(value)
+signal goals_updated(data)
 
 export(String) var map_title = "Unknown"
 export(String, MULTILINE) var map_summary = "An unknown map"
@@ -76,6 +76,10 @@ func set_info(node):
 """
 	Event Map Base Goals
 """
+
+func _init_goals():
+	emit_signal("goals_updated", _goals)
+	print("%s missing overwrite of the DialogueMap._init_goals() method" % name)
 
 static func new_goals():
 	return {

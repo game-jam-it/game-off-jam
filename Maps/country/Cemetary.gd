@@ -9,7 +9,7 @@ func _ready():
 func get_cam_target():
 	return player.global_position
 
-func _on_mallus_died(entity):
+func _on_mallus_died(_entity):
 	mallus.disconnect("enemy_died", self, "_on_mallus_died")
 	print("[%s] TODO _on_mallus_died events" % [name])
 	# TODO: Dimm the glow on the fontain

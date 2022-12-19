@@ -11,14 +11,13 @@ func _ready():
 		if node != null && node.has_method("linked_trigger"): links.append(node)
 		else: print("[%s] Invalid link name: %s" % [self.name, name])
 
-func reward(player: PlayerActor) -> EntityAction:
+func reward(_player: PlayerActor) -> EntityAction:
 	print("%s missing overwrite of the DareEvent.reward() method" % name)
 	#if not triggered: triggered = true
 	# TODO Spawn item from grave
 	return null
 
-func penalty(player: PlayerActor) -> EntityAction:
-	var m = rng.randi_range(1, 3)
+func penalty(_player: PlayerActor) -> EntityAction:
 	for _idx in rng.randi_range(0, 3):
 		if links.size() > 0:
 			var entity = links.pop_front()

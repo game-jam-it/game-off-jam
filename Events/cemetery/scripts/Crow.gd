@@ -12,7 +12,7 @@ func reward(player: PlayerActor) -> EntityAction:
 	var hex = self.get_grid_cell()
 	return player.get_move_to(hex)
 
-func penalty(player: PlayerActor) -> EntityAction:
+func penalty(_player: PlayerActor) -> EntityAction:
 	var center = self.get_grid_cell()
 	for hex in center.get_all_within(max_range):
 		var coords = hex.get_axial_coords()
@@ -28,7 +28,7 @@ func penalty(player: PlayerActor) -> EntityAction:
 	# setup destroy event
 	return null
 
-func _on_next_round(count: int):
+func _on_next_round(_count: int):
 	self._counter +=1
 	if self._counter > duration:
 		self.destroy()

@@ -17,7 +17,7 @@ func show_dialogue(value: Array) -> DialogueBox:
 	Overlay.add_child(dialogue_box_instance)
 	return dialogue_box_instance
 
-func show_dialogue_unsafe(value: Array) -> DialogueBox:
+func show_dialogue_unsafe(_value: Array) -> DialogueBox:
 	# Open a new dialogue box even if one is already open
 	var dialogue_box_instance = dialogue_box.instance()
 	dialogue_box_instance.dialogue = filename

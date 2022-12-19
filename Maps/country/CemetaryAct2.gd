@@ -9,7 +9,7 @@ func _ready():
 func get_cam_target():
 	return player.global_position
 
-func _on_bones_died(entity):
+func _on_bones_died(_entity):
 	bones.disconnect("enemy_died", self, "_on_bones_died")
 	print("[%s] TODO _on_bones_died events" % [name])
 	# TODO: Dimm the glow on the fontain

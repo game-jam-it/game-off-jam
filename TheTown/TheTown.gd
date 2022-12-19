@@ -320,8 +320,11 @@ func _on_next_round(count):
 func stop_active_event():
 	# TODO Make sure this breaks the maps queue
 	self._set_town_state(State.PrepMode)
-	events.end_event(_event_coords)
-	emit_signal("stop_expedition", _event_coords)
+	var type = events.end_event(_event_coords)
+	if type == EventMap.Type.Expedition:
+		emit_signal("stop_expedition", _event_coords)
+	elif type == EventMap.Type.Dialogue:
+		emit_signal("stop_dialogue", _event_coords)
 	nodes.show_mode(_event_coords)
 	camera.zoom_reset()
 	grid.visible = true

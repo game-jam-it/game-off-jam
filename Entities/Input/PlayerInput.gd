@@ -163,7 +163,7 @@ func _attack_target(hex, target):
 	act.location = _grid.hexgrid.hex_to_pixel(hex)
 	return act
 
-func _setup_challenge_event(hex, target):
+func _setup_challenge_event(_hex, target):
 	# TODO Implement chalange action
 	if target is DareEvent:
 		return target.roll(self.entity)
