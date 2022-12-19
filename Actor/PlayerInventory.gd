@@ -58,7 +58,7 @@ func consume_item(item_slot: int) -> void:
 	
 	var item = inventory[item_slot]
 	# Make sure the item is a consumable and consume + remove it
-	if item is ConsumableItem:
+	if item is Consumable:
 		item.consume()
 		inventory.remove(item_slot)
 		emit_signal("inventory_changed", inventory)

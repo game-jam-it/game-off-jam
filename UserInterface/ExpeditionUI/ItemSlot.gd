@@ -34,7 +34,7 @@ func _on_ItemSlot_mouse_entered():
 	if displayed_item is Item:
 		tooltip_instance.header_text = displayed_item.name
 		tooltip_instance.description_text = displayed_item.flavor
-		if displayed_item is ConsumableItem:
+		if displayed_item is Consumable:
 			tooltip_instance.shown_item = displayed_item
 	else:
 		tooltip_instance.header_text = "<ItemName>"
@@ -54,7 +54,7 @@ func consume_item() -> void:
 	# Get the index of this inventory slot
 	var slot_index: int = get_index()
 	var item: Item = PlayerInventory.inventory[slot_index]
-	if item is ConsumableItem:
+	if item is Consumable:
 		item.consume()
 		
 		PlayerInventory.remove_item(slot_index)

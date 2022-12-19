@@ -53,7 +53,7 @@ func on_actor_selected():
 	TheTown.start_game()
 
 
-func on_event_ended(coords):
+func on_event_ended(_coords):
 	town_hud.enable()
 	event_hud.disable()
 	pass

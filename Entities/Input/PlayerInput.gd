@@ -15,7 +15,6 @@ onready var target_hex = $TargetHex
 onready var target_cell = HexCell.new(Vector2(0, 0))
 
 var _goal = Goal.None
-var _grid: EventGrid = null
 
 """
 	EntityInput Override
@@ -26,18 +25,16 @@ func disable():
 	emit_signal("_target_selected", null)
 	emit_signal("_action_selected", null)
 
-func enable(grid):
-	_grid = grid
-
 func end_turn():
 	target_hex.visible = false
 	actor_hex.visible = false
 	_goal = Goal.None
 
-func start_turn():
+func start_turn(grid):
 	target_hex.visible = true
 	actor_hex.visible = true
 	_goal = Goal.None
+	_grid = grid
 
 func choose_action():
 	_enter_action_state()
@@ -93,7 +90,6 @@ func _enter_action_state():
 	# Note: MVP only has two actions
 	# Thus no 'action selection' to show,
 	# _action_process is the same as the bot
-	print("%s: choose action" % entity.name)
 
 
 """
@@ -157,7 +153,7 @@ func _handle_entity(hex, entity):
 	match entity.group:
 		BaseEntity.Group.Enemy:
 			return _attack_target(hex, entity)
-		BaseEntity.Group.Challenge:
+		BaseEntity.Group.Dare:
 			return _setup_challenge_event(hex, entity)
 
 func _attack_target(hex, target):
@@ -167,9 +163,8 @@ func _attack_target(hex, target):
 	act.location = _grid.hexgrid.hex_to_pixel(hex)
 	return act
 
-func _setup_challenge_event(hex, target):
+func _setup_challenge_event(_hex, target):
 	# TODO Implement chalange action
-	if target is EventEntity:
-		print(">>> Check challenge: '%s'" % target.name)
-		return target.check(self.entity)
+	if target is DareEvent:
+		return target.roll(self.entity)
 	return null

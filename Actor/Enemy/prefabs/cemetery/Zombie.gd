@@ -4,7 +4,7 @@ extends EnemyActor
 # TODO On death respawn x turns
 # Waiting for knock back on this
 
-func investigate_smell(entity: ActorEntity):
+func investigate_smell(entity: BaseEntity):
 	if hidden:
 		return
 	if _grid == null:
@@ -46,6 +46,5 @@ func _unhide_zombie():
 
 func _is_cell_free() -> bool:
 	var hex = self.get_grid_cell()
-	var coords = hex.get_axial_coords()
 	var grid_cell = self._grid.get_cell_state(hex.get_axial_coords())
 	return grid_cell.state != EventGrid.CellState.Entity

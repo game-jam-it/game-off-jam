@@ -5,7 +5,7 @@
 [ext_resource path="res://Entities/Actions/MoveToAction.gd" type="Script" id=3]
 [ext_resource path="res://prototype/assets/hex-flat-256.png" type="Texture" id=4]
 [ext_resource path="res://Entities/Input/BotInput.gd" type="Script" id=5]
-[ext_resource path="res://Events/assets/cemetery/zombie-a.png" type="Texture" id=6]
+[ext_resource path="res://Maps/assets/cemetery/zombie-a.png" type="Texture" id=6]
 [ext_resource path="res://Actor/Enemy/prefabs/cemetery/Zombie.gd" type="Script" id=7]
 [ext_resource path="res://Actor/Enemy/assets/cemetery/zombie-portrait.png" type="Texture" id=8]
 
@@ -15,7 +15,7 @@ radius = 448.571
 [node name="Zombie" type="Node2D"]
 light_mask = 32
 script = ExtResource( 7 )
-group = 1
+group = 4
 hidden = true
 initiative = 4.0
 slot = 2

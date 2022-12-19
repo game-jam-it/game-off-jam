@@ -40,8 +40,8 @@ func initialize(coords: Vector2, map: EventMap):
 		_objective_box.visible = true
 		_locked_box.visible = false
 	if map.has_goals():
-		map.connect("stats_updated", self, "_on_stats_updated")
-		self._on_stats_updated(map.goals())
+		map.connect("goals_updated", self, "_on_goals_updated")
+		self._on_goals_updated(map.goals())
 
 
 func on_mouse_exited():
@@ -72,15 +72,15 @@ func _on_map_unlocked(map):
 	_objective_box.visible = true
 	self.modulate = Color(1.0, 1.0, 1.0)
 
-func _on_stats_updated(stats):
+func _on_goals_updated(goals):
 	var count = 0
 	var total = 0
-	if stats.has("lore"):
-		count += stats.lore.done
-		total += stats.lore.total
-	if stats.has("banish"): 
-		if stats.banish.has("boss"):
-			count += stats.banish.boss.done
-			total += stats.banish.boss.total
+	if goals.has("event"):
+		count += goals.event.done
+		total += goals.event.total
+	if goals.has("banish"): 
+		if goals.banish.has("boss"):
+			count += goals.banish.boss.done
+			total += goals.banish.boss.total
 	_objective_label.text = "%s/%s" % [count, total]
 	# EXTEND: Achivement tracker all done event

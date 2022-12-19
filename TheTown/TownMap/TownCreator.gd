@@ -153,10 +153,10 @@ func create_town(act, _seed_phrase: String, cfg = {
 
 	var build_type
 	if _seed_phrase != "DEVOPS-SEEDS":
-		mapped = Events.build_events(act)
+		mapped = Maps.build_events(act)
 		build_type = "Town Map"
 	else:
-		mapped = Events.build_dev()
+		mapped = Maps.build_dev()
 		build_type = "Devops"
 
 	rng = RandomNumberGenerator.new()

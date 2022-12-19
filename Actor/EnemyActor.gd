@@ -7,7 +7,7 @@ enum Slot {
 	Drone,
 }
 
-signal enemy_died(entity)
+signal enemy_died(actor)
 signal hearts_changed(entity)
 
 # This is messy, preferable this would be a resource

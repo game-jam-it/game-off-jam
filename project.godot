@@ -14,10 +14,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Entities/ActorEntity.gd"
 }, {
+"base": "Node",
+"class": "ActorQueue",
+"language": "GDScript",
+"path": "res://Entities/ActorQueue.gd"
+}, {
 "base": "Node2D",
 "class": "BaseEntity",
 "language": "GDScript",
 "path": "res://Entities/BaseEntity.gd"
+}, {
+"base": "BaseEntity",
+"class": "BaseItem",
+"language": "GDScript",
+"path": "res://Items/BaseItem.gd"
 }, {
 "base": "EnemyActor",
 "class": "BonesEntity",
@@ -34,20 +44,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Actor/CharacterEffect.gd"
 }, {
+"base": "Item",
+"class": "Consumable",
+"language": "GDScript",
+"path": "res://Items/Consumable.gd"
+}, {
 "base": "Resource",
 "class": "ConsumableEffect",
 "language": "GDScript",
 "path": "res://Items/Consumables/ConsumableEffects/Scripts/ConsumableEffect.gd"
 }, {
-"base": "Item",
-"class": "ConsumableItem",
-"language": "GDScript",
-"path": "res://Items/ConsumableItem.gd"
-}, {
 "base": "WeaponEffect",
 "class": "DamageBoostEffect",
 "language": "GDScript",
 "path": "res://Items/Weapons/WeaponEffects/Scripts/DamageBoostEffect.gd"
+}, {
+"base": "BaseEntity",
+"class": "DareEvent",
+"language": "GDScript",
+"path": "res://Events/DareEvent.gd"
 }, {
 "base": "Control",
 "class": "DialogueBox",
@@ -55,9 +70,9 @@ _global_script_classes=[ {
 "path": "res://UserInterface/DialogueSystem/DialogueBox.gd"
 }, {
 "base": "EventMap",
-"class": "DialogueEvent",
+"class": "DialogueMap",
 "language": "GDScript",
-"path": "res://Events/DialogueEvent.gd"
+"path": "res://Maps/DialogueMap.gd"
 }, {
 "base": "ActorEntity",
 "class": "EnemyActor",
@@ -75,16 +90,6 @@ _global_script_classes=[ {
 "path": "res://Entities/EntityInput.gd"
 }, {
 "base": "Node2D",
-"class": "EntityQueue",
-"language": "GDScript",
-"path": "res://Entities/EntityQueue.gd"
-}, {
-"base": "BaseEntity",
-"class": "EventEntity",
-"language": "GDScript",
-"path": "res://Challenges/EventEntity.gd"
-}, {
-"base": "Node2D",
 "class": "EventGrid",
 "language": "GDScript",
 "path": "res://TheTown/EventMap/EventGrid.gd"
@@ -100,9 +105,9 @@ _global_script_classes=[ {
 "path": "res://TheTown/EventMap/EventMap.gd"
 }, {
 "base": "EventMap",
-"class": "ExpeditionEvent",
+"class": "ExpeditionMap",
 "language": "GDScript",
-"path": "res://Events/ExpeditionEvent.gd"
+"path": "res://Maps/ExpeditionMap.gd"
 }, {
 "base": "ConsumableEffect",
 "class": "GainRandomAmmoEffect",
@@ -119,15 +124,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Items/Consumables/ConsumableEffects/Scripts/HealingEffect.gd"
 }, {
-"base": "Object",
+"base": "Reference",
 "class": "HexCell",
 "language": "GDScript",
-"path": "res://addons/HexCell.gd"
+"path": "res://addons/hexmap/HexCell.gd"
 }, {
-"base": "Object",
+"base": "Reference",
 "class": "HexGrid",
 "language": "GDScript",
-"path": "res://addons/HexGrid.gd"
+"path": "res://addons/hexmap/HexGrid.gd"
 }, {
 "base": "Resource",
 "class": "Item",
@@ -135,9 +140,9 @@ _global_script_classes=[ {
 "path": "res://Items/Item.gd"
 }, {
 "base": "BaseEntity",
-"class": "ItemEntity",
+"class": "LoreEvent",
 "language": "GDScript",
-"path": "res://Items/ItemEntity.gd"
+"path": "res://Events/LoreEvent.gd"
 }, {
 "base": "EnemyActor",
 "class": "MallusEntity",
@@ -153,11 +158,6 @@ _global_script_classes=[ {
 "class": "PlayerActor",
 "language": "GDScript",
 "path": "res://Actor/PlayerActor.gd"
-}, {
-"base": "Node2D",
-"class": "QueueObject",
-"language": "GDScript",
-"path": "res://Entities/QueueObject.gd"
 }, {
 "base": "EnemyActor",
 "class": "RatEntity",
@@ -241,35 +241,35 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "ActorEntity": "",
+"ActorQueue": "",
 "BaseEntity": "",
+"BaseItem": "",
 "BonesEntity": "",
 "Character": "",
 "CharacterEffect": "",
+"Consumable": "",
 "ConsumableEffect": "",
-"ConsumableItem": "",
 "DamageBoostEffect": "",
+"DareEvent": "",
 "DialogueBox": "",
-"DialogueEvent": "",
+"DialogueMap": "",
 "EnemyActor": "",
 "EntityAction": "",
 "EntityInput": "",
-"EntityQueue": "",
-"EventEntity": "",
 "EventGrid": "",
 "EventHex": "",
 "EventMap": "",
-"ExpeditionEvent": "",
+"ExpeditionMap": "",
 "GainRandomAmmoEffect": "",
 "GridObject": "",
 "HealingEffect": "",
 "HexCell": "",
 "HexGrid": "",
 "Item": "",
-"ItemEntity": "",
+"LoreEvent": "",
 "MallusEntity": "",
 "OneChallengeStatBoostEffect": "",
 "PlayerActor": "",
-"QueueObject": "",
 "RatEntity": "",
 "ReductionBoostEffect": "",
 "SniffBox": "",
@@ -297,7 +297,7 @@ config/icon="res://icon.png"
 [autoload]
 
 AppState="*res://AppState.gd"
-Events="*res://Events/Events.gd"
+Maps="*res://Maps/Maps.gd"
 TheTown="*res://TheTown/TheTown.tscn"
 Overlay="*res://UserInterface/Overlay.tscn"
 PlayerStats="*res://Actor/PlayerStats.gd"

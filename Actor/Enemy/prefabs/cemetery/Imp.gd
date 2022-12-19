@@ -1,7 +1,7 @@
 class_name RatEntity
 extends EnemyActor
 
-func investigate_smell(entity: ActorEntity):
+func investigate_smell(entity: BaseEntity):
 	if _grid == null:
 		print_debug("[%s]: no grid set" % name)
 		return

@@ -1,5 +1,5 @@
-extends Item
 class_name Weapon
+extends Item
 
 export(int) var base_damage = 1
 var damage: int
