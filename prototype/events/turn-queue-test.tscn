@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Maps/assets/cemetery/map-medium-la.png" type="Texture" id=1]
+[ext_resource path="res://Maps/ExpeditionMap.gd" type="Script" id=2]
+[ext_resource path="res://Maps/assets/cemetery/map-small-a.png" type="Texture" id=3]
+[ext_resource path="res://TheTown/EventMap/EventGrid.gd" type="Script" id=4]
+[ext_resource path="res://Actor/Player/prefabs/TheNerd.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Actor/Enemy/prefabs/cemetery/Imp.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Entities/ActorQueue.gd" type="Script" id=7]
+[ext_resource path="res://Events/cemetery/Rubble.tscn" type="PackedScene" id=8]
+[ext_resource path="res://prototype/DevRuner.gd" type="Script" id=9]
+
+[node name="TurnQueueTest" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Map-small-a" type="Sprite" parent="."]
+scale = Vector2( 0.55, 0.55 )
+texture = ExtResource( 3 )
+
+[node name="MoonLight" type="Light2D" parent="."]
+unique_name_in_owner = true
+visible = false
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+color = Color( 0.780392, 0.854902, 0.905882, 1 )
+energy = 1.8
+range_item_cull_mask = 33
+
+[node name="DevRuner" type="Node2D" parent="."]
+script = ExtResource( 9 )
+
+[node name="Grid" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="Nodes" type="Node2D" parent="Grid"]
+
+[node name="Queue" type="Node2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="Objects" type="YSort" parent="."]
+
+[node name="Rubble 01" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 118, 287 )
+
+[node name="Rubble 02" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( -153, 244 )
+
+[node name="Ratsie 01" parent="Objects" instance=ExtResource( 6 )]
+position = Vector2( 49, -133 )
+
+[node name="Ratsie 02" parent="Objects" instance=ExtResource( 6 )]
+position = Vector2( -158, -240 )
+
+[node name="Ratsie 03" parent="Objects" instance=ExtResource( 6 )]
+position = Vector2( 202, -264 )
+
+[node name="The Nerd" parent="Objects" instance=ExtResource( 5 )]
+position = Vector2( -13, 332 )
+snap = null
+hidden = null

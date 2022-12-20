@@ -36,15 +36,13 @@ func disable():
 	for box in enemy_list.get_children():
 		box.queue_free()
 	if _scene != null:
-		for obj in _scene.queue().get_children():
-			if obj is QueueObject:
-				var ent = obj.entity()
-				if ent.group == EntityObject.Group.Enemy && ent.hidden: 
-					ent.disconnect("unhide_entity", self, "_on_unhide_enemy")
-		if _scene is ExpeditionEvent:
-			_scene.queue().disconnect("queue_changed", self, "_on_queue_changed")
+		for actor in _scene.get_queue().get_actors():
+			if actor.group == BaseEntity.Group.Enemy && actor.hidden: 
+				actor.disconnect("unhide_entity", self, "_on_unhide_enemy")
+		if _scene is ExpeditionMap:
+			_scene.get_queue().disconnect("queue_updated", self, "_on_queue_changed")
 		_scene.disconnect("map_conpleted", self, "_on_map_conpleted")
-		_scene.disconnect("stats_updated", self, "_on_stats_updated")
+		_scene.disconnect("goals_updated", self, "_on_goals_updated")
 		_scene = null
 
 func initialize(coords):
@@ -63,29 +61,27 @@ func setup_event_data(coords):
 		print_debug(">> %s: scene not found", name)
 		return
 	_scene.connect("map_conpleted", self, "_on_map_conpleted")
-	_scene.connect("stats_updated", self, "_on_stats_updated")
-	if _scene is ExpeditionEvent:
-		_scene.queue().connect("queue_changed", self, "_on_queue_changed")
-	var list = _scene.queue().get_children()
+	_scene.connect("goals_updated", self, "_on_goals_updated")
+	if _scene is ExpeditionMap:
+		_scene.get_queue().connect("queue_updated", self, "_on_queue_changed")
+	var list = _scene.get_queue().get_actors()
 	# FixMe See: call order yields, it pushes it back but is bug prone
 	if list == null: print_debug("[WARN] %s: entity list is null" % name)
 	if list.size() == 0: print_debug("[WARN] %s: entity list empty" % name)
-	for obj in list:
-		if obj is QueueObject:
-			var ent = obj.entity()
-			match ent.group:
-				EntityObject.Group.Enemy:
-					if !ent.hidden: self._create_box(ent)
-					else: ent.connect("unhide_entity", self, "_on_unhide_enemy")
+	for actor in list:
+		match actor.group:
+			BaseEntity.Group.Enemy:
+				if !actor.hidden: self._create_box(actor)
+				else: actor.connect("unhide_entity", self, "_on_unhide_enemy")
 
 	var goals = _scene.goals()
 	lore_box.visible = true
-	# TODO Setup stats again, hacked up
-	#lore_box.visible = goals.lore.total > 0
+	# TODO Setup goals again, hacked up
+	#lore_box.visible = goals.event.lore.total > 0
 	relic_box.visible = goals.pickup.relic.total > 0
 	banish_box.visible = goals.banish.total > 0
 	lore_label.text = "0/1"
-	#lore_label.text = "0/%s" % goals.lore.total
+	#lore_label.text = "0/%s" % goals.event.lore.total
 	relic_label.text = "0/%s" % goals.pickup.relic.total
 	banish_label.text = "0/%s" % goals.banish.total
 
@@ -115,11 +111,11 @@ func _on_queue_changed(_list):
 		leave_button.visible = false
 		escape_button.visible = true
 
-func _on_stats_updated(stats):
-	lore_label.text = "%s/%s" % [stats.banish.boss.done, stats.banish.boss.total]
-	#lore_label.text = "%s/%s" % [stats.lore.done, stats.lore.total]
-	relic_label.text = "%s/%s" % [stats.pickup.relic.done, stats.pickup.relic.total]
-	banish_label.text = "%s/%s" % [stats.banish.done, stats.banish.total]
+func _on_goals_updated(goals):
+	lore_label.text = "%s/%s" % [goals.banish.boss.done, goals.banish.boss.total]
+	#lore_label.text = "%s/%s" % [goals.event.lore.done, goals.event.lore.total]
+	relic_label.text = "%s/%s" % [goals.pickup.relic.done, goals.pickup.relic.total]
+	banish_label.text = "%s/%s" % [goals.banish.done, goals.banish.total]
 
 func _on_unhide_enemy(entity):
 	entity.disconnect("unhide_entity", self, "_on_unhide_enemy")

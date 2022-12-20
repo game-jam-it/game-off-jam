@@ -19,9 +19,6 @@ var obj_map = {}
 var view_map = {}
 var entity_map = {}
 
-var HexCell = preload("res://TheTown/HexMap/HexCell.gd")
-var HexGrid = preload("res://TheTown/HexMap/HexGrid.gd")
-
 var TownHex = preload("res://TheTown/EventMap/prefabs/EventHex.tscn")
 
 # func _ready():
@@ -96,10 +93,10 @@ func clear_object(object: GridObject):
 			GridObject.ObjType.Path:
 				_clear_path_object(object)
 
-func add_entity(entity: EntityObject):
+func add_entity(entity: BaseEntity):
 	entity_map[entity.id()] = entity
 
-func clear_entity(entity: EntityObject):
+func clear_entity(entity: BaseEntity):
 	entity_map.erase(entity.id())
 
 func add_cell_blocker(coords: Vector2):

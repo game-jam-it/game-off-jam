@@ -1,5 +1,5 @@
-extends Resource
 class_name Item
+extends Resource
 
 export(String) var name = ""
 export(String) var flavor = ""

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
-[ext_resource path="res://Items/ConsumableItem.gd" type="Script" id=1]
+[ext_resource path="res://Items/Consumable.gd" type="Script" id=1]
 [ext_resource path="res://Items/Consumables/ConsumableEffects/MiniWeightEffect.tres" type="Resource" id=2]
 [ext_resource path="res://Items/Assets/mini_weight.png" type="Texture" id=3]
 

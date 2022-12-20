@@ -15,11 +15,11 @@ func set_current_stress(value: int) -> void:
 
 func _ready() -> void:
 	# Use self to call the setter methods
-	self.current_stress = ActorStats.current_stress
-	max_stress = ActorStats.max_stress
+	self.current_stress = PlayerStats.current_stress
+	max_stress = PlayerStats.max_stress
 	
-	ActorStats.connect("stress_changed", self, "on_stress_changed")
-	ActorStats.connect("max_stress_changed", self, "on_max_stress_changed")
+	PlayerStats.connect("stress_changed", self, "on_stress_changed")
+	PlayerStats.connect("max_stress_changed", self, "on_max_stress_changed")
 
 func on_stress_changed(value: int) -> void:
 	set_current_stress(value)

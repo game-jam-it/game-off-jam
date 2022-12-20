@@ -79,8 +79,8 @@ signal expedition_resume
 
 signal state_chaged(state)
 
-signal game_stats_updated(stats)
-signal event_stats_updated(stats)
+signal map_goals_updated(goals)
+signal game_goals_updated(goals)
 
 var map_cfg = MICRO_MAP
 var draw_debug = false
@@ -102,13 +102,9 @@ func _ready():
 	nodes.connect("event_clear", self, "on_event_clear")
 	nodes.connect("event_focused", self, "on_event_focused")
 	nodes.connect("event_selected", self, "on_event_selected")
-	events.connect("game_stats_updated", self, "_on_game_stats_updated")
-	events.connect("event_stats_updated", self, "_on_event_stats_updated")
+	events.connect("map_goals_updated", self, "_on_map_goals_updated")
+	events.connect("game_goals_updated", self, "_on_game_goals_updated")
 	events.connect("pause_explore_event", self, "on_pause_explore_event")
-	# TODO Move create-town-on-load 
-	# to new game event from menu
-	# events.visible = false
-	build_town(self._act)
 
 func _unhandled_input(input):
 	if _paused:
@@ -132,9 +128,9 @@ func _input_set_mode(input):
 		get_tree().set_input_as_handled()
 		self.pause_game()
 	if creator.is_done && input.is_action_pressed("rebuild_town"):
-		build_town(self._act)
+		self._build_town(self._act)
 	elif creator.is_done && input.is_action_pressed("rebuild_devops"):
-		build_devops()
+		self._build_devops()
 
 func get_act():
 	return _act
@@ -160,11 +156,15 @@ func is_ready():
 func is_paused():
 	return _paused
 
-func start():
+func start_game():
+	# Called once an actor is selected
 	self._set_town_state(State.PrepMode)
 	camera.zoom_reset()
 	if nodes.start_node != null:
 		start_selected_event(nodes.start_node.coords)
+
+func start_map_generator():
+	self._build_town(self._act)
 
 func _set_town_state(value):
 	if self._state != value:
@@ -172,7 +172,7 @@ func _set_town_state(value):
 		emit_signal("state_chaged", value)
 	
 
-func build_town(act):
+func _build_town(act):
 	if !creator.is_done:
 		return
 	if _state != State.SetMode:
@@ -181,10 +181,10 @@ func build_town(act):
 	emit_signal("town_restart")
 	var seed_phrase = "GameOff 2022 - %s" % OS.get_unix_time()
 	yield(creator.create_town(_act, seed_phrase, map_cfg), "completed")
-	self.events.initialize_stats()
+	self.events.initialize_goals()
 	emit_signal("town_generated")
 
-func build_devops():
+func _build_devops():
 	if !creator.is_done:
 		return
 	if _state != State.SetMode:
@@ -195,7 +195,7 @@ func build_devops():
 	yield(creator.create_town(_act, seed_phrase, MICRO_MAP), "completed")
 	# TODO Compute and set the initial stats
 	yield(get_tree(), "idle_frame")
-	self.events.initialize_stats()
+	self.events.initialize_goals()
 	emit_signal("town_generated")
 
 
@@ -229,10 +229,10 @@ func restart_game():
 		TheTown.stop_active_event()
 	self._set_town_state(State.SetMode)
 	yield(get_tree(), "idle_frame")
-	ActorStats.set_character(ActorStats.norman)
+	PlayerStats.set_character(PlayerStats.norman)
 	emit_signal("game_restart")
 	self.camera.zoom_init()
-	self.build_town(_act)
+	self._build_town(_act)
 	_gameover = false
 	_paused = false
 
@@ -247,15 +247,15 @@ func restart(act):
 	self._set_town_state(State.SetMode)
 	yield(get_tree(), "idle_frame")
 	emit_signal("town_restart")
-	self.build_town(act)
+	self._build_town(act)
 	_gameover = false
 	_paused = false
 
-func _on_game_stats_updated(value):
-	emit_signal("game_stats_updated", value)
+func _on_map_goals_updated(value):
+	emit_signal("map_goals_updated", value)
 
-func _on_event_stats_updated(value):
-	emit_signal("event_stats_updated", value)
+func _on_game_goals_updated(value):
+	emit_signal("game_goals_updated", value)
 
 """
 	Prep-Phase Events & Logic
@@ -297,8 +297,9 @@ func start_selected_event(coords):
 	var type = events.start_event(coords)
 	yield(get_tree(), "idle_frame")
 	if type == EventMap.Type.Expedition:
-		var queue = events.active.queue()
-		queue.connect("next_round", self, "_on_next_round")
+		var queue = events.active.get_queue()
+		# TODO Update Round signal from next to starting
+		queue.connect("round_starting", self, "_on_next_round")
 		emit_signal("start_expedition", coords)
 	elif type == EventMap.Type.Dialogue:
 		emit_signal("start_dialogue", coords)
@@ -319,8 +320,11 @@ func _on_next_round(count):
 func stop_active_event():
 	# TODO Make sure this breaks the maps queue
 	self._set_town_state(State.PrepMode)
-	events.end_event(_event_coords)
-	emit_signal("stop_expedition", _event_coords)
+	var type = events.end_event(_event_coords)
+	if type == EventMap.Type.Expedition:
+		emit_signal("stop_expedition", _event_coords)
+	elif type == EventMap.Type.Dialogue:
+		emit_signal("stop_dialogue", _event_coords)
 	nodes.show_mode(_event_coords)
 	camera.zoom_reset()
 	grid.visible = true

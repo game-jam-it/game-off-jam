@@ -15,13 +15,14 @@ var order = 0
 var _type = Type.None
 var _coords = Vector2.ZERO
 
-var _goals = null
+var _goals = new_goals()
 var _locked = true
 var _complete = false
 
 signal map_unlocked(map)
 signal map_conpleted(map)
-signal stats_updated(value)
+
+signal goals_updated(data)
 
 export(String) var map_title = "Unknown"
 export(String, MULTILINE) var map_summary = "An unknown map"
@@ -76,9 +77,17 @@ func set_info(node):
 	Event Map Base Goals
 """
 
+func _init_goals():
+	emit_signal("goals_updated", _goals)
+	print("%s missing overwrite of the DialogueMap._init_goals() method" % name)
+
 static func new_goals():
 	return {
-		"lore": {"done": 0, "total": 0,},
+		"event": {
+			"done": 0, "total": 0,
+			"dare": {"done": 0, "total": 0,},
+			"lore": {"done": 0, "total": 0,},
+		},
 		"banish": {
 			"done": 0, "total": 0,
 			"boss": {"done": 0, "total": 0,},
@@ -91,10 +100,5 @@ static func new_goals():
 			"weapon": {"done": 0, "total": 0,},
 			"trinket": {"done": 0, "total": 0,},
 			"consumable": {"done": 0, "total": 0,},
-		},
-		"challenge": {
-			"done": 0, "total": 0,
-			"hide": {"done": 0, "total": 0,},
-			"escape": {"done": 0, "total": 0,},
 		},
 	}

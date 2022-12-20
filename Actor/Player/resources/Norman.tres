@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://Items/Consumables/CSForIdiots.tres" type="Resource" id=1]
+[ext_resource path="res://Actor/Character.gd" type="Script" id=2]
+[ext_resource path="res://Actor/Player/assets/nerd-damage-portrait.png" type="Texture" id=3]
+[ext_resource path="res://Actor/Player/assets/nerd-scared-portrait-c.png" type="Texture" id=4]
+[ext_resource path="res://Actor/Player/assets/nerd-neutral-portrait.png" type="Texture" id=5]
+
+[resource]
+script = ExtResource( 2 )
+name = "The Nerd (Norman)"
+unique_effect_description = "Wining a smarts challenge will show the player the location of a valuable treasure, or the slasher, it will be differentiated."
+max_hp = 3
+speed = 3
+fortitude = 2
+daring = 3
+smarts = 5
+items = [ ExtResource( 1 ) ]
+character_effects = [  ]
+portrait_base = ExtResource( 5 )
+portrait_damaged = ExtResource( 3 )
+portrait_stressed = ExtResource( 4 )

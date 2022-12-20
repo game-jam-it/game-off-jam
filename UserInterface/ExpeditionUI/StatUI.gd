@@ -13,26 +13,26 @@ onready var money_label = $MoneyLabel
 
 func _ready() -> void:
 	# Secondary stats
-	on_fortitude_changed(ActorStats.fortitude)
-	on_daring_changed(ActorStats.daring)
-	on_smarts_changed(ActorStats.smarts)
-	on_fortitude_boost_changed(ActorStats.fortitude_boost)
-	on_daring_boost_changed(ActorStats.daring_boost)
-	on_smarts_boost_changed(ActorStats.smarts_boost)
+	on_fortitude_changed(PlayerStats.fortitude)
+	on_daring_changed(PlayerStats.daring)
+	on_smarts_changed(PlayerStats.smarts)
+	on_fortitude_boost_changed(PlayerStats.fortitude_boost)
+	on_daring_boost_changed(PlayerStats.daring_boost)
+	on_smarts_boost_changed(PlayerStats.smarts_boost)
 	
-	ActorStats.connect("fortitude_changed", self, "on_fortitude_changed")
-	ActorStats.connect("daring_changed", self, "on_daring_changed")
-	ActorStats.connect("smarts_changed", self, "on_smarts_changed")
-	ActorStats.connect("fortitude_boost_changed", self, "on_fortitude_boost_changed")
-	ActorStats.connect("daring_boost_changed", self, "on_daring_boost_changed")
-	ActorStats.connect("smarts_boost_changed", self, "on_smarts_boost_changed")
+	PlayerStats.connect("fortitude_changed", self, "on_fortitude_changed")
+	PlayerStats.connect("daring_changed", self, "on_daring_changed")
+	PlayerStats.connect("smarts_changed", self, "on_smarts_changed")
+	PlayerStats.connect("fortitude_boost_changed", self, "on_fortitude_boost_changed")
+	PlayerStats.connect("daring_boost_changed", self, "on_daring_boost_changed")
+	PlayerStats.connect("smarts_boost_changed", self, "on_smarts_boost_changed")
 	
 	# Supplies
-	on_ammo_changed(ActorInventory.ammo)
-	on_money_changed(ActorInventory.money)
+	on_ammo_changed(PlayerInventory.ammo)
+	on_money_changed(PlayerInventory.money)
 	
-	ActorInventory.connect("ammo_changed", self, "on_ammo_changed")
-	ActorInventory.connect("money_changed", self, "on_money_changed")
+	PlayerInventory.connect("ammo_changed", self, "on_ammo_changed")
+	PlayerInventory.connect("money_changed", self, "on_money_changed")
 
 # Secondary stats
 func on_fortitude_changed(value: int) -> void:

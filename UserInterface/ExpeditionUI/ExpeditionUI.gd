@@ -8,10 +8,10 @@ var character_name: String = "" setget set_character_name
 var expanded: bool = false
 
 func _ready():
-	if ActorStats.character != null:
-		self.character_name = ActorStats.character.name
+	if PlayerStats.character != null:
+		self.character_name = PlayerStats.character.name
 	
-	ActorStats.connect("character_changed", self, "on_character_changed")
+		PlayerStats.connect("character_changed", self, "on_character_changed")
 
 func set_character_name(name: String) -> void:
 	character_name = name

@@ -13,6 +13,7 @@ var zoom_out = Vector2(15.0, 15.0)
 var zoom_last =Vector2(15.0, 15.0)
 var location_last =Vector2.ZERO
 
+export var init_run = true
 export var init_zoom = Vector2(20.0, 20.0)
 export var init_offset = Vector2(0.0, 2560.0)
 
@@ -23,7 +24,7 @@ onready var viewport_transform = get_viewport_transform()
 func _ready():
 	get_viewport().connect("size_changed", self, "_on_size_changed")
 	viewport_ratio = Vector2(BASE_X, BASE_Y) / get_viewport().size
-	zoom_init()
+	if init_run: zoom_init()
 	
 func _input(event):
 	if event.is_action_pressed("mouse_pan"):

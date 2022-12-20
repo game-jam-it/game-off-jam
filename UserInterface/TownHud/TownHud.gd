@@ -18,7 +18,7 @@ func _ready():
 	TheTown.connect("event_selected", self, "on_event_selected")
 	
 	var events = TheTown.get_events()
-	events.connect("game_stats_updated", self, "_on_game_stats_updated")
+	events.connect("game_goals_updated", self, "_on_game_goals_updated")
 
 	expedition_popup.connect("start_expedition", self, "on_start_expedition")
 	expedition_popup.connect("cancel_expedition", self, "on_cancel_expedition")
@@ -85,13 +85,13 @@ func setup_event_list():
 	for object in list: object.raise()
 
 
-func _on_game_stats_updated(stats):
+func _on_game_goals_updated(goals):
 	# if maps_label == null: maps_label = get_node("%MapsValue")
 	# if lore_label == null: lore_label = get_node("%LoreValue")
 	# if boss_label == null: boss_label = get_node("%BossValue")
-	maps_label.text = "%s/%s" % [stats.maps.done, stats.maps.total]
-	lore_label.text = "%s/%s" % [stats.lore.done, stats.lore.total]
-	boss_label.text = "%s/%s" % [stats.banish.boss.done, stats.banish.boss.total]
+	maps_label.text = "%s/%s" % [goals.maps.done, goals.maps.total]
+	lore_label.text = "%s/%s" % [goals.event.lore.done, goals.event.lore.total]
+	boss_label.text = "%s/%s" % [goals.banish.boss.done, goals.banish.boss.total]
 
 
 static func map_sort(a, b) -> bool:

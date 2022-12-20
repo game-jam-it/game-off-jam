@@ -3,5 +3,5 @@ class_name HealingEffect
 
 export(int) var hearts_healed: int = 1
 
-func trigger_effect(_consumable_item: ConsumableItem) -> void:
-	ActorStats.current_hearts += hearts_healed
+func trigger_effect(_consumable_item: Consumable) -> void:
+	PlayerStats.current_hearts += hearts_healed

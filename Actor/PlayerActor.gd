@@ -1,10 +1,24 @@
 class_name PlayerActor
-extends EntityActor
+extends ActorEntity
 
-func take_damage(value: int):
-	ActorStats.take_damage(value)
-	# TODO: spawn animate hit damage
-	# an other option is on_take_damage
+signal player_died(actor)
+signal hearts_changed(actor)
+
+
+func _ready():
+	PlayerStats.connect("player_died", self, "_on_player_died")
+	PlayerStats.connect("hearts_changed", self, "_on_hearts_changed")
+
 
 func get_move_to(hex):
 	return self.input.move_to(hex)
+
+func take_damage(value: int):
+	PlayerStats.take_damage(value)
+
+
+func _on_player_died() -> void:
+	emit_signal("player_died", self)
+
+func _on_hearts_changed(_value) -> void:
+	emit_signal("hearts_changed", self)
