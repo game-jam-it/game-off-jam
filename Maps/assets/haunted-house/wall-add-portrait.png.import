@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/deamon-c.png-cfd7c91029e89dd3e15b859390f37584.stex"
+path="res://.import/wall-add-portrait.png-fa99abe89c37cb73dbfff46d7baa411d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Maps/assets/cemetery/deamon-c.png"
-dest_files=[ "res://.import/deamon-c.png-cfd7c91029e89dd3e15b859390f37584.stex" ]
+source_file="res://Maps/assets/haunted-house/wall-add-portrait.png"
+dest_files=[ "res://.import/wall-add-portrait.png-fa99abe89c37cb73dbfff46d7baa411d.stex" ]
 
 [params]
 
