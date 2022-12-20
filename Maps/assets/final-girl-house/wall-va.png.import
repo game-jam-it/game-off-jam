@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/beast-a.png-fb16b942449ea17c4497e2ceaafb6580.stex"
+path="res://.import/wall-va.png-6232058c2604f998fb8290156eb9fe60.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Maps/assets/cemetery/beast-a.png"
-dest_files=[ "res://.import/beast-a.png-fb16b942449ea17c4497e2ceaafb6580.stex" ]
+source_file="res://Maps/assets/final-girl-house/wall-va.png"
+dest_files=[ "res://.import/wall-va.png-6232058c2604f998fb8290156eb9fe60.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/deamon-a.png-cfa6146ca99668a7ea94372217bd279a.stex"
+path="res://.import/prop-brazer.png-e47e067c66b0fe8d5f7ca796b4ed54f4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Maps/assets/cemetery/deamon-a.png"
-dest_files=[ "res://.import/deamon-a.png-cfa6146ca99668a7ea94372217bd279a.stex" ]
+source_file="res://Maps/assets/final-girl-house/prop-brazer.png"
+dest_files=[ "res://.import/prop-brazer.png-e47e067c66b0fe8d5f7ca796b4ed54f4.stex" ]
 
 [params]
 

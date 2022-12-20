@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/beast-b-trig.png-eb9802affea6bd4f340ad14d9b2710b8.stex"
+path="res://.import/floor-add-blood-spot.png-ddde50c9278ba748347862ae5dd6d4c3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Maps/assets/cemetery/beast-b-trig.png"
-dest_files=[ "res://.import/beast-b-trig.png-eb9802affea6bd4f340ad14d9b2710b8.stex" ]
+source_file="res://Maps/assets/final-girl-house/floor-add-blood-spot.png"
+dest_files=[ "res://.import/floor-add-blood-spot.png-ddde50c9278ba748347862ae5dd6d4c3.stex" ]
 
 [params]
 

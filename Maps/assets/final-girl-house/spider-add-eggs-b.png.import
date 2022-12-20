@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/beast-b.png-13a3de2e7a90de5835b12d01bffe9b34.stex"
+path="res://.import/spider-add-eggs-b.png-e4599458347a916e4ba95fc7899064f8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Maps/assets/cemetery/beast-b.png"
-dest_files=[ "res://.import/beast-b.png-13a3de2e7a90de5835b12d01bffe9b34.stex" ]
+source_file="res://Maps/assets/final-girl-house/spider-add-eggs-b.png"
+dest_files=[ "res://.import/spider-add-eggs-b.png-e4599458347a916e4ba95fc7899064f8.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/beast-a-trig.png-c725292a312b65f09d3edb80eacc4645.stex"
+path="res://.import/prop-book-skull.png-baa2790d436b116dd467570ce62f4295.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Maps/assets/cemetery/beast-a-trig.png"
-dest_files=[ "res://.import/beast-a-trig.png-c725292a312b65f09d3edb80eacc4645.stex" ]
+source_file="res://Maps/assets/final-girl-house/prop-book-skull.png"
+dest_files=[ "res://.import/prop-book-skull.png-baa2790d436b116dd467570ce62f4295.stex" ]
 
 [params]
 
