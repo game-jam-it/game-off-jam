@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://TheTown/EventMap/GridObject.gd" type="Script" id=1]
-[ext_resource path="res://Maps/assets/cemetery/beast-a-trig.png" type="Texture" id=2]
-[ext_resource path="res://Maps/assets/cemetery/beast-a.png" type="Texture" id=3]
+[ext_resource path="res://Maps/assets/cemetery/enemy-beast-a-trig.png" type="Texture" id=2]
+[ext_resource path="res://Maps/assets/cemetery/enemy-beast-a.png" type="Texture" id=3]
 [ext_resource path="res://Events/cemetery/scripts/Crow.gd" type="Script" id=4]
 
 [node name="Crow" type="Node2D"]
