@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/beast-b-trig.png-eb9802affea6bd4f340ad14d9b2710b8.stex"
+path="res://.import/wall-add-window.png-2db3b97411f7f41f3136509e32ceeced.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Maps/assets/cemetery/beast-b-trig.png"
-dest_files=[ "res://.import/beast-b-trig.png-eb9802affea6bd4f340ad14d9b2710b8.stex" ]
+source_file="res://Maps/assets/haunted-house/wall-add-window.png"
+dest_files=[ "res://.import/wall-add-window.png-2db3b97411f7f41f3136509e32ceeced.stex" ]
 
 [params]
 
